@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test thread-count="5" name="chromeTest">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="yanolja.com.automationScript.YanoljaLeisureTicket" />
+			<class name="yanolja.com.automationScript.YanoljaRegion" />
+			<class name="yanolja.com.automationScript.YanoljaSignup" />
+			<class name="yanolja.com.automationScript.YanoljaGuesthouse" />
+			<class name="yanolja.com.automationScript.YanoljaMotel" />
+			<class name="yanolja.com.automationScript.YanoljaPension" />
+			<class name="yanolja.com.automationScript.YanoljaHotel" />
+			<class name="yanolja.com.automationScript.YanoljaTrainTicket" />
+			<class name="yanolja.com.automationScript.YanoljaHome" />
+			<class name="yanolja.com.automationScript.YanoljaMyRoom" />
+			<class name="yanolja.com.automationScript.YanoljaPlaceList" />
+			<class name="yanolja.com.automationScript.YanoljaFlights" />
+			<class name="yanolja.com.automationScript.YanoljaExhibition" />
+			<class name="yanolja.com.automationScript.YanoljaGlobalPlace" />
+		</classes>
+	</test>
+</suite>
