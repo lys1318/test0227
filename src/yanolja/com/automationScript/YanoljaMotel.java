@@ -43,7 +43,7 @@ public class YanoljaMotel {
 
 		home.get();
 	}
-
+	
 	
 	@Parameters("browser")
 	@Test

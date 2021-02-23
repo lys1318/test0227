@@ -12,6 +12,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
 
+import io.qameta.allure.Allure;
+
 public class Util {
 	
 	public static String testResult(Integer result) {
@@ -35,6 +37,8 @@ public class Util {
 
 		System.out.println(Constant.Path_project + "//takeScreenShot//" + todayDate() + "//error_" + getInstanceName
 				+ "_" + todayDateTime() + ".png 스크린샷 캡처가 완료 되었습니다.");
+		
+		Allure.addAttachment("Screeshot",  FileUtils.openInputStream(scrFile));
 	}
 
 	// 현재 날짜 및 시간 기준으로 String 생성
