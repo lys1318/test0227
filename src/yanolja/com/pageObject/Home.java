@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.GNBPage;
 import yanolja.com.uiMap.HomePage;
 import yanolja.com.utility.Browser;
@@ -72,6 +73,8 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryMotel().click();
 		
 		Log.info("퀵카테고리 > 모텔을 선택 하였습니다.");
+		Allure.description("Allure.description : 퀵카테고리 > 모텔을 선택 하였습니다.");
+		Allure.step("Allure.step : 퀵카테고리 > 모텔을 선택 하였습니다.");
 	}
 
 	public static void quickCategoryHotel() throws InterruptedException {

@@ -50,7 +50,7 @@ public class YanoljaTest {
 			Thread.sleep(5000);
 			
 			assertEquals(Dilog.assertLogByDesc("MTHome", "web", "국내모텔 서브홈 화면 진입2", "view", time),true);
-		
+			
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
 			Assert.fail();
@@ -59,7 +59,7 @@ public class YanoljaTest {
 	
 	@Parameters("browser")
 	@AfterMethod
-	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {
+	public void tearDown(ITestResult testResult, String browser) throws IOException {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 
