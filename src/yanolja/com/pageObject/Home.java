@@ -73,7 +73,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryMotel().click();
 		
 		Log.info("퀵카테고리 > 모텔을 선택 하였습니다.");
-		Allure.description("Allure.description : 퀵카테고리 > 모텔을 선택 하였습니다.");
+
 		Allure.step("Allure.step : 퀵카테고리 > 모텔을 선택 하였습니다.");
 	}
 

@@ -38,7 +38,9 @@ public class Util {
 		System.out.println(Constant.Path_project + "//takeScreenShot//" + todayDate() + "//error_" + getInstanceName
 				+ "_" + todayDateTime() + ".png 스크린샷 캡처가 완료 되었습니다.");
 		
-		Allure.addAttachment("error_" + getInstanceName + "_" + todayDateTime() + ".png",  FileUtils.openInputStream(scrFile));
+		Allure.addAttachment("addAttachment : error_" + getInstanceName + "_" + todayDateTime() + ".png",  FileUtils.openInputStream(scrFile));
+		Allure.attachment("attachment : error_" + getInstanceName + "_" + todayDateTime() + ".png",  FileUtils.openInputStream(scrFile));
+		
 	}
 
 	// 현재 날짜 및 시간 기준으로 String 생성
