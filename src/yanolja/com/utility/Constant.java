@@ -11,6 +11,9 @@ public class Constant {
     // project 경로
     public static final String Path_project = System.getProperty("user.dir");
     public static final String DILOGDOMAIN = " https://dilog.di.yanolja.in/api/qa/logs";
+    //테스트계정
+    public static final String TESTID = "cih0405@naver.com";
+    public static final String TESTPW = "a5w2h6m8**";
     
     public static long time() {
         long time = System.currentTimeMillis();

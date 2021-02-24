@@ -84,7 +84,7 @@ public class YanoljaMotel {
 			
 			myYanolja.loginLink();
 			
-			Login.login("inho.choi@yanolja.com", "a5w2h6m8**");
+			Login.login(Constant.TESTID, Constant.TESTPW);
 			
 			GNB.home();
 			
