@@ -1,9 +1,5 @@
 package yanolja.com.utility;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.testng.annotations.Parameters;
 
 @Parameters("browser")

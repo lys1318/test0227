@@ -1,9 +1,7 @@
 package yanolja.com.pageObject;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.GNBPage;
-import yanolja.com.uiMap.MyYanoljaPage;
-import yanolja.com.uiMap.sHomeHotelPage;
-import yanolja.com.uiMap.sHomeMotelPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
 
@@ -22,6 +20,7 @@ public class GNB {
 		GNBPage.home().click();
 
 		Log.info("GNB > 홈 을 선택 하였습니다.");
+		Allure.step("GNB > 홈 을 선택 하였습니다.");
 	}
 	
 	public static void area() {
@@ -37,6 +36,7 @@ public class GNB {
 		GNBPage.area().click();
 
 		Log.info("GNB > 지역 을 선택 하였습니다.");
+		Allure.step("GNB > 지역 을 선택 하였습니다.");
 	}
 	
 	public static void around() {
@@ -52,6 +52,7 @@ public class GNB {
 		GNBPage.around().click();
 
 		Log.info("GNB > 내주변 을 선택 하였습니다.");
+		Allure.step("GNB > 내주변 을 선택 하였습니다.");
 	}
 
 	public static void wishlist() {
@@ -67,6 +68,7 @@ public class GNB {
 		GNBPage.wishlist().click();
 
 		Log.info("GNB > 찜 을 선택 하였습니다.");
+		Allure.step("GNB > 찜 을 선택 하였습니다.");
 	}
 	
 	public static void myYanolja() {
@@ -82,5 +84,6 @@ public class GNB {
 		GNBPage.myYanolja().click();
 
 		Log.info("GNB > MY야놀자 를 선택 하였습니다.");
+		Allure.step("GNB > MY야놀자 를 선택 하였습니다.");
 	}
 }

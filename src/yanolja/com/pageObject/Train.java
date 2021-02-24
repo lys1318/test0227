@@ -1,9 +1,7 @@
 package yanolja.com.pageObject;
 
-import org.openqa.selenium.By;
-
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.TrainPage;
-import yanolja.com.utility.Browser;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
 import yanolja.com.utility.Wait;
@@ -23,6 +21,7 @@ public class Train {
 		TrainPage.oneWay().click();
 		
 		Log.info("편도 탭을 선택 하였습니다.");
+		Allure.step("편도 탭을 선택 하였습니다.");
 	}
 	
 	public static void roundTrip() {
@@ -38,6 +37,7 @@ public class Train {
 		TrainPage.roundTrip().click();
 		
 		Log.info("왕복 탭을 선택 하였습니다.");
+		Allure.step("왕복 탭을 선택 하였습니다.");
 	}
 	
 	public static void start() {
@@ -53,6 +53,8 @@ public class Train {
 		TrainPage.start().click();
 		
 		Log.info("출발지를 선택 하였습니다.");
+		Allure.step("출발지를 선택 하였습니다.");
+		
 	}
 	
 	public static void destination() {
@@ -68,6 +70,7 @@ public class Train {
 		TrainPage.destination().click();
 		
 		Log.info("도착지를 선택 하였습니다.");
+		Allure.step("도착지를 선택 하였습니다.");
 	}
 	
 	public static void searchText(String text) {
@@ -83,6 +86,7 @@ public class Train {
 		TrainPage.searchText().sendKeys(text);
 		
 		Log.info("검색어를 입력 하였습니다.");
+		Allure.step("검색어를 입력 하였습니다.");
 	}
 	
 	public static void searchResult() {
@@ -98,6 +102,7 @@ public class Train {
 		TrainPage.searchResult().click();
 		
 		Log.info("검색결과 리스트에서 첫번째 결과항목을 선택 하였습니다.");
+		Allure.step("검색결과 리스트에서 첫번째 결과항목을 선택 하였습니다.");
 	}
 	
 	public static void calendar() {
@@ -113,6 +118,7 @@ public class Train {
 		TrainPage.calendar().click();
 		
 		Log.info("가는날을 선택 하였습니다.");
+		Allure.step("가는날을 선택 하였습니다.");
 	}
 	/*
 	public static void selectDate() {
@@ -162,6 +168,7 @@ public class Train {
 		TrainPage.apply().click();
 		
 		Log.info("날짜 선택 후 적용버튼을 선택 하였습니다.");
+		Allure.step("날짜 선택 후 적용버튼을 선택 하였습니다.");
 	}
 	
 	public static void ticketSearch() {
@@ -177,6 +184,7 @@ public class Train {
 		TrainPage.ticketSearch().click();
 		
 		Log.info("승차권 검색 버튼을 선택 하였습니다.");
+		Allure.step("승차권 검색 버튼을 선택 하였습니다.");
 	}
 	
 	public static void resultSelectTicket() {
@@ -192,6 +200,7 @@ public class Train {
 		TrainPage.resultSelectTicket().click();
 		
 		Log.info("검색결과 > 승차권을 선택 하였습니다.");
+		Allure.step("검색결과 > 승차권을 선택 하였습니다.");
 	}
 	
 	public static void resultSelectTicketing() {
@@ -207,6 +216,7 @@ public class Train {
 		TrainPage.resultSelectTicketing().click();
 		
 		Log.info("검색결과 > 승차권 > 바로예매 를 선택 하였습니다.");
+		Allure.step("검색결과 > 승차권 > 바로예매 를 선택 하였습니다.");
 	}
 	
 	public static void popupOk() {
@@ -222,6 +232,7 @@ public class Train {
 		TrainPage.popupOk().click();
 		
 		Log.info("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인을 선택 하였습니다.");
+		Allure.step("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인을 선택 하였습니다.");
 	}
 	
 	public static void reservation() {
@@ -237,5 +248,6 @@ public class Train {
 		TrainPage.reservation().click();
 		
 		Log.info("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인 > 예약하기를 선택 하였습니다.");
+		Allure.step("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인 > 예약하기를 선택 하였습니다.");
 	}
 }

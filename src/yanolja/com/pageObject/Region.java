@@ -1,10 +1,7 @@
 package yanolja.com.pageObject;
 
-import yanolja.com.uiMap.LoginPage;
-import yanolja.com.uiMap.MyYanoljaPage;
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.RegionPage;
-import yanolja.com.uiMap.sHomeHotelPage;
-import yanolja.com.uiMap.sHomeMotelPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
 
@@ -22,6 +19,7 @@ public class Region {
 		RegionPage.rankingWidgetItem().click();
 
 		Log.info("강원도야놀자 > 랭킹위젯 > 임의의 상품을 선택 하였습니다.");
+		Allure.step("강원도야놀자 > 랭킹위젯 > 임의의 상품을 선택 하였습니다.");
 	}
 	
 	public static void regionhomeMapInfo() {
@@ -36,5 +34,6 @@ public class Region {
 		RegionPage.regionhomeMapInfo().click();
 
 		Log.info("강원도야놀자 > 지도 페이지뷰 지도를 선택 하였습니다.");
+		Allure.step("강원도야놀자 > 지도 페이지뷰 지도를 선택 하였습니다.");
 	}
 }

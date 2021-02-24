@@ -1,7 +1,7 @@
 package yanolja.com.pageObject;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.sHomeLeisurePage;
-import yanolja.com.uiMap.sHomeMotelPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
 
@@ -20,6 +20,7 @@ public class sHomeLeisure {
 		sHomeLeisurePage.sHomePopularCategoryAll().click();
 		
 		Log.info("인기 카테고리 > 상품 전체보기를 선택 하였습니다.");
+		Allure.step("인기 카테고리 > 상품 전체보기를 선택 하였습니다.");
 	}
 	
 	public static void categoryMore() {
@@ -35,6 +36,7 @@ public class sHomeLeisure {
 		sHomeLeisurePage.categoryMore().click();
 		
 		Log.info("인기 카테고리 > 더보기 를 선택 하였습니다.");
+		Allure.step("인기 카테고리 > 더보기 를 선택 하였습니다.");
 	}
 	
 	public static void tabBarMobileVoucher() {
@@ -50,6 +52,7 @@ public class sHomeLeisure {
 		sHomeLeisurePage.tabBarMobileVoucher().click();
 		
 		Log.info("전체 카테고리 > 모바일교환권 탭을 선택 하였습니다.");
+		Allure.step("전체 카테고리 > 모바일교환권 탭을 선택 하였습니다.");
 	}
 	
 	public static void mobileVoucherCategory() {
@@ -65,6 +68,7 @@ public class sHomeLeisure {
 		sHomeLeisurePage.mobileVoucherCategory().click();
 		
 		Log.info("전체 카테고리 > 모바일교환권탭 > 첫번째 카테고리를 선택 하였습니다.");
+		Allure.step("전체 카테고리 > 모바일교환권탭 > 첫번째 카테고리를 선택 하였습니다.");
 	}
 	
 	public static void mobileVoucherCategoryAll() {
@@ -80,5 +84,6 @@ public class sHomeLeisure {
 		sHomeLeisurePage.mobileVoucherCategoryAll().click();
 		
 		Log.info("전체 카테고리 > 모바일교환권탭 > 첫번째 카테고리 > 전체 를 선택 하였습니다.");
+		Allure.step("전체 카테고리 > 모바일교환권탭 > 첫번째 카테고리 > 전체 를 선택 하였습니다.");
 	}
 }

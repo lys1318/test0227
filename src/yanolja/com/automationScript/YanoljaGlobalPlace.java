@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import yanolja.com.pageObject.Flights;
 import yanolja.com.pageObject.GNB;
 import yanolja.com.pageObject.GlobalPlace;
 import yanolja.com.pageObject.Home;
@@ -24,7 +23,6 @@ import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
-import yanolja.com.utility.Wait;
 
 
 public class YanoljaGlobalPlace {

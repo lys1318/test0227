@@ -49,6 +49,7 @@ public class Home extends LoadableComponent<Home> {
 		
 		HomePage.img_logo().isDisplayed();
 		Log.info("야놀자 로고가 노출 되었습니다.");
+		Allure.step("야놀자 로고가 노출 되었습니다.");
 	}
 
 	public static void search() throws InterruptedException {
@@ -57,6 +58,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.search().click();
 
 		Log.info("상단 검색 버튼을 선택 하였습니다.");
+		Allure.step("상단 검색 버튼을 선택 하였습니다.");
 	}
 	
 	public static void gnbHomeActive() {
@@ -65,6 +67,7 @@ public class Home extends LoadableComponent<Home> {
 		String result = GNBPage.home().getAttribute("class");
 		assertTrue(result.contains("TabIcon_active"));
 		Log.info("GNB > Home 메뉴가 활성화 상태 입니다.");
+		Allure.step("GNB > Home 메뉴가 활성화 상태 입니다.");
 	}
 
 	public static void quickCategoryMotel() throws InterruptedException {
@@ -73,8 +76,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryMotel().click();
 		
 		Log.info("퀵카테고리 > 모텔을 선택 하였습니다.");
-
-		Allure.step("Allure.step : 퀵카테고리 > 모텔을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 모텔을 선택 하였습니다.");
 	}
 
 	public static void quickCategoryHotel() throws InterruptedException {
@@ -83,6 +85,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryHotel().click();
 
 		Log.info("퀵카테고리 > 호텔을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 호텔을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryPension() throws InterruptedException {
@@ -91,6 +94,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryPension().click();
 
 		Log.info("퀵카테고리 > 펜션/풀빌라를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 펜션/풀빌라를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryGuestHouse() throws InterruptedException {
@@ -99,6 +103,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryGuestHouse().click();
 
 		Log.info("퀵카테고리 > 게스트하우스를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 게스트하우스를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryFirstComeCoupon() throws InterruptedException {
@@ -107,6 +112,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryFirstComeCoupon().click();
 
 		Log.info("퀵카테고리 > 선착순 쿠폰을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 선착순 쿠폰을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryInfinite() throws InterruptedException {
@@ -115,6 +121,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryInfinite().click();
 
 		Log.info("퀵카테고리 > 무한쿠폰룸을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 무한쿠폰룸을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryGlobalPlace() throws InterruptedException {
@@ -123,6 +130,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryGlobalPlace().click();
 
 		Log.info("퀵카테고리 > 해외숙소를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 해외숙소를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryLeisure() throws InterruptedException {
@@ -131,6 +139,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryLeisure().click();
 
 		Log.info("퀵카테고리 > 레저/티켓을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 레저/티켓을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryFights() throws InterruptedException {
@@ -139,6 +148,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryFlights().click();
 
 		Log.info("퀵카테고리 > 항공권을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 항공권을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryTrain() throws InterruptedException {
@@ -147,6 +157,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryTrain().click();
 
 		Log.info("퀵카테고리 > KTX를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > KTX를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryRentACar() throws InterruptedException {
@@ -155,6 +166,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryRentACar().click();
 
 		Log.info("퀵카테고리 > 렌터카를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 렌터카를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryPrimiumHotel() throws InterruptedException {
@@ -163,6 +175,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryPrimiumHotel().click();
 
 		Log.info("퀵카테고리 > 프리미엄호텔을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 프리미엄호텔을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryResort() throws InterruptedException {
@@ -171,6 +184,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryResort().click();
 
 		Log.info("퀵카테고리 > 리조트/콘도를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 리조트/콘도를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryCamping() throws InterruptedException {
@@ -179,6 +193,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryCamping().click();
 
 		Log.info("퀵카테고리 > 글램핑/캠핑을 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 글램핑/캠핑을 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryChild() throws InterruptedException {
@@ -187,6 +202,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryChild().click();
 
 		Log.info("퀵카테고리 > 아이야놀자를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 아이야놀자를 선택 하였습니다.");
 	}
 	
 	public static void quickCategoryRegion() throws InterruptedException {
@@ -195,6 +211,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.quickCategoryRegion().click();
 
 		Log.info("퀵카테고리 > 강원도야놀자를 선택 하였습니다.");
+		Allure.step("퀵카테고리 > 강원도야놀자를 선택 하였습니다.");
 	}
 	
 	public static void recommend() {
@@ -202,6 +219,7 @@ public class Home extends LoadableComponent<Home> {
 		
 		HomePage.homePlaceRecommend().isDisplayed();
 		Log.info("추천위젯이 노출 되었습니다.");
+		Allure.step("추천위젯이 노출 되었습니다.");
 	}
 
 	public static String recommendItemTitle() {
@@ -210,6 +228,7 @@ public class Home extends LoadableComponent<Home> {
 		String recommendTitle = HomePage.themePlaceItemTitle().getText();
 
 		Log.info("추천위젯 > 임의의 상품 타이틀을 저장 하였습니다. (타이틀 : " + recommendTitle + ")");
+		Allure.step("추천위젯 > 임의의 상품 타이틀을 저장 하였습니다. (타이틀 : " + recommendTitle + ")");
 
 		return recommendTitle;
 	}
@@ -220,6 +239,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.themePlaceItem().click();
 
 		Log.info("추천위젯 > 임의의 상품을 선택 하였습니다.");
+		Allure.step("추천위젯 > 임의의 상품을 선택 하였습니다.");
 	}
 	
 	public static void exhibitionListRooms() {
@@ -228,6 +248,7 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.exhibitionListRooms().click();
 
 		Log.info("기획전 > 국내숙박을 선택 하였습니다.");
+		Allure.step("기획전 > 국내숙박을 선택 하였습니다.");
 	}
 	
 	public static void exhibitionListLeisure() {
@@ -236,5 +257,6 @@ public class Home extends LoadableComponent<Home> {
 		HomePage.exhibitionListLeisure().click();
 
 		Log.info("기획전 > 레저를 선택 하였습니다.");
+		Allure.step("기획전 > 레저를 선택 하였습니다.");
 	}
 }

@@ -1,5 +1,6 @@
 package yanolja.com.pageObject;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.SearchPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
@@ -19,6 +20,7 @@ public class Search {
 		SearchPage.searchNavHome().click();
 		
 		Log.info("상단 네비게이션에서 Home 버튼을 선택 하였습니다.");
+		Allure.step("상단 네비게이션에서 Home 버튼을 선택 하였습니다.");
 	}
 	
 	public static void searchInput(String text) {
@@ -34,6 +36,7 @@ public class Search {
 		SearchPage.searchInputBox().sendKeys(text);
 		
 		Log.info("검색어로 '" + text + "' 가 입력 되었습니다.");
+		Allure.step("검색어로 '" + text + "' 가 입력 되었습니다.");
 	}
 	
 	public static String searchPlaceAutocompleteItemTitle() {
@@ -49,6 +52,7 @@ public class Search {
 		String searchPlaceAutocompleteItemTitle = SearchPage.searchPlaceAutocompleteItemTitle().getText();
 		
 		Log.info("자동완성목록 > 아이템 타이틀을 저장 하였습니다. (타이틀 : " + searchPlaceAutocompleteItemTitle + ")");
+		Allure.step("자동완성목록 > 아이템 타이틀을 저장 하였습니다. (타이틀 : " + searchPlaceAutocompleteItemTitle + ")");
 		
 		return searchPlaceAutocompleteItemTitle;
 	}
@@ -66,5 +70,6 @@ public class Search {
 		SearchPage.searchPlaceAutocomplete().click();
 		
 		Log.info("자동완성 목록에서 아이템을 선택 하였습니다.");
+		Allure.step("자동완성 목록에서 아이템을 선택 하였습니다.");
 	}
 }

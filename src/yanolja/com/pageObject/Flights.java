@@ -1,7 +1,7 @@
 package yanolja.com.pageObject;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.FlightsPage;
-import yanolja.com.uiMap.TrainPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
 import yanolja.com.utility.Wait;
@@ -21,6 +21,7 @@ public class Flights {
 		String flightsTitle = FlightsPage.flightsTitle().getText();
 
 		Log.info("항공권 > 타이틀을 저장 하였습니다. (타이틀 : " + flightsTitle + ")");
+		Allure.step("항공권 > 타이틀을 저장 하였습니다. (타이틀 : " + flightsTitle + ")");
 
 		return flightsTitle;
 	}
@@ -38,6 +39,7 @@ public class Flights {
 		FlightsPage.navBack().click();
 
 		Log.info("상단 네비게이션에서 Back 버튼을 선택 하였습니다.");
+		Allure.step("상단 네비게이션에서 Back 버튼을 선택 하였습니다.");
 	}
 	
 	public static void oneWay() {
@@ -53,6 +55,7 @@ public class Flights {
 		FlightsPage.oneWay().click();
 		
 		Log.info("편도 탭을 선택 하였습니다.");
+		Allure.step("편도 탭을 선택 하였습니다.");
 	}
 	
 	public static void roundTrip() {
@@ -68,6 +71,7 @@ public class Flights {
 		FlightsPage.roundTrip().click();
 		
 		Log.info("왕복 탭을 선택 하였습니다.");
+		Allure.step("왕복 탭을 선택 하였습니다.");
 	}
 	
 	public static void start() {
@@ -83,6 +87,7 @@ public class Flights {
 		FlightsPage.start().click();
 		
 		Log.info("출발지를 선택 하였습니다.");
+		Allure.step("출발지를 선택 하였습니다.");
 	}
 	
 	public static void destination() {
@@ -98,6 +103,7 @@ public class Flights {
 		FlightsPage.destination().click();
 		
 		Log.info("도착지를 선택 하였습니다.");
+		Allure.step("도착지를 선택 하였습니다.");
 	}
 	
 	public static void searchText(String text) {
@@ -113,6 +119,7 @@ public class Flights {
 		FlightsPage.searchText().sendKeys(text);
 		
 		Log.info("검색어를 입력 하였습니다.");
+		Allure.step("검색어를 입력 하였습니다.");
 	}
 	
 	public static void searchResult() {
@@ -128,6 +135,7 @@ public class Flights {
 		FlightsPage.searchResult().click();
 		
 		Log.info("검색결과 리스트에서 첫번째 결과항목을 선택 하였습니다.");
+		Allure.step("검색결과 리스트에서 첫번째 결과항목을 선택 하였습니다.");
 	}
 	
 	public static void calendar() {
@@ -143,6 +151,7 @@ public class Flights {
 		FlightsPage.calendar().click();
 		
 		Log.info("가는날을 선택 하였습니다.");
+		Allure.step("가는날을 선택 하였습니다.");
 	}
 	
 	public static String calendarTitle() {
@@ -158,6 +167,7 @@ public class Flights {
 		String calendarTitle = FlightsPage.calendarTitle().getText();
 
 		Log.info("항공권 > 날짜 선택 > 타이틀을 저장 하였습니다. (타이틀 : " + calendarTitle + ")");
+		Allure.step("항공권 > 날짜 선택 > 타이틀을 저장 하였습니다. (타이틀 : " + calendarTitle + ")");
 
 		return calendarTitle;
 	}
@@ -174,7 +184,7 @@ public class Flights {
 			System.out.println(Integer.parseInt(FlightsPage.selectDate().get(i).getText()));
 			if (Util.getDay() == Integer.parseInt(FlightsPage.selectDate().get(i).getText())) {
 				System.out.println("일치!");
-				System.out.println(Integer.parseInt(FlightsPage.selectDate().get(i).getText()));
+				//System.out.println(Integer.parseInt(FlightsPage.selectDate().get(i).getText()));
 				//Browser.driver().findElement(By.cssSelector("div[class^='DatePicker_dayString' innerText='"+ (Util.getDay()+1) +"']")).click();
 				FlightsPage.selectDate().get(Util.getDay()+1).click();
 				break;
@@ -182,6 +192,7 @@ public class Flights {
 		}
 		
 		Log.info("날짜를 선택 하였습니다.");
+		Allure.step("날짜를 선택 하였습니다.");
 		
 	}
 	
@@ -198,6 +209,7 @@ public class Flights {
 		FlightsPage.apply().click();
 		
 		Log.info("날짜 선택 후 적용버튼을 선택 하였습니다.");
+		Allure.step("날짜 선택 후 적용버튼을 선택 하였습니다.");
 	}
 	
 	public static void ticketSearch() {
@@ -213,6 +225,7 @@ public class Flights {
 		FlightsPage.ticketSearch().click();
 		
 		Log.info("항공권 검색 버튼을 선택 하였습니다.");
+		Allure.step("항공권 검색 버튼을 선택 하였습니다.");
 	}
 	
 	public static void resultSelectTicket() {
@@ -228,6 +241,7 @@ public class Flights {
 		FlightsPage.resultSelectTicket().click();
 		
 		Log.info("검색결과 > 승차권을 선택 하였습니다.");
+		Allure.step("검색결과 > 승차권을 선택 하였습니다.");
 	}
 	
 	public static void selectProvider() {
@@ -243,5 +257,6 @@ public class Flights {
 		FlightsPage.selectProvider().click();
 		
 		Log.info("항공권 정보 > 가격리스트에서 결제처를 선택 하였습니다.");
+		Allure.step("항공권 정보 > 가격리스트에서 결제처를 선택 하였습니다.");
 	}
 }

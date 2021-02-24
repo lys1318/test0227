@@ -1,10 +1,8 @@
 package yanolja.com.pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.PlaceDetailPage;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Log;
@@ -25,6 +23,7 @@ public class PlaceDetail {
 		String placeDetailTitle = PlaceDetailPage.placeDetailTitle().getText();
 		
 		Log.info("숙소 상세 > 타이틀을 저장 하였습니다. (타이틀 : " + placeDetailTitle + ")");
+		Allure.step("숙소 상세 > 타이틀을 저장 하였습니다. (타이틀 : " + placeDetailTitle + ")");
 		
 		return placeDetailTitle;
 	}
@@ -42,6 +41,7 @@ public class PlaceDetail {
 		PlaceDetailPage.placeDetailNavHome().click();
 		
 		Log.info("상단 네비게이션에서 Home 버튼을 선택 하였습니다.");
+		Allure.step("상단 네비게이션에서 Home 버튼을 선택 하였습니다.");
 	}
 	
 	public static String roomItemTitle() {
@@ -57,6 +57,7 @@ public class PlaceDetail {
 		String roomItemTitle = PlaceDetailPage.roomItemTitle().getText();
 		
 		Log.info("숙소 상세 > 객실타입을 저장 하였습니다. (타이틀 : " + roomItemTitle + ")");
+		Allure.step("숙소 상세 > 객실타입을 저장 하였습니다. (타이틀 : " + roomItemTitle + ")");
 		
 		return roomItemTitle;
 	}
@@ -78,5 +79,6 @@ public class PlaceDetail {
 		executor.executeScript("arguments[0].click();", PlaceDetailPage.roomItem());
 		
 		Log.info("숙소 상세 > 객실타입을 선택 하였습니다.");
+		Allure.step("숙소 상세 > 객실타입을 선택 하였습니다.");
 	}
 }

@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import io.qameta.allure.Allure;
 import yanolja.com.pageObject.Home;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
@@ -62,8 +61,6 @@ public class YanoljaTest {
 	public void tearDown(ITestResult testResult, String browser) throws IOException {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
-
-		Allure.step("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);

@@ -1,9 +1,7 @@
 package yanolja.com.pageObject;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.LoginPage;
-import yanolja.com.uiMap.MyYanoljaPage;
-import yanolja.com.uiMap.sHomeHotelPage;
-import yanolja.com.uiMap.sHomeMotelPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
 
@@ -29,6 +27,7 @@ public class Login {
 		LoginPage.login().click();
 
 		Log.info("로그인페이지 > 로그인 버튼을 선택 하였습니다.");
+		Allure.step("로그인페이지 > 로그인 버튼을 선택 하였습니다.");
 	}
 
 	public static void signup() {
@@ -43,5 +42,6 @@ public class Login {
 		LoginPage.signup().click();
 
 		Log.info("로그인페이지 > 야놀자 회원가입 을 선택 하였습니다.");
+		Allure.step("로그인페이지 > 야놀자 회원가입 을 선택 하였습니다.");
 	}
 }

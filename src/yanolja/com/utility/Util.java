@@ -39,7 +39,6 @@ public class Util {
 				+ "_" + todayDateTime() + ".png 스크린샷 캡처가 완료 되었습니다.");
 		
 		Allure.addAttachment("addAttachment : error_" + getInstanceName + "_" + todayDateTime() + ".png",  FileUtils.openInputStream(scrFile));
-		Allure.attachment("attachment : error_" + getInstanceName + "_" + todayDateTime() + ".png",  FileUtils.openInputStream(scrFile));
 		
 	}
 

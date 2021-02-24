@@ -2,6 +2,7 @@ package yanolja.com.pageObject;
 
 import org.openqa.selenium.JavascriptExecutor;
 
+import io.qameta.allure.Allure;
 import yanolja.com.uiMap.LeisurePDPPage;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Log;
@@ -23,6 +24,7 @@ public class LeisurePDP {
 		executor.executeScript("arguments[0].click();", LeisurePDPPage.countUp());
 
 		Log.info("레저PDP > 티켓 구매수량이 증가 되었습니다.");
+		Allure.step("레저PDP > 티켓 구매수량이 증가 되었습니다.");
 
 	}
 	
@@ -39,6 +41,7 @@ public class LeisurePDP {
 		LeisurePDPPage.callToAction().click();
 
 		Log.info("레저PDP > 상품 선택하기를 선택 하였습니다.");
+		Allure.step("레저PDP > 상품 선택하기를 선택 하였습니다.");
 
 	}
 }

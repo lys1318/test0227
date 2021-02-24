@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import io.qameta.allure.Allure;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -50,6 +51,7 @@ public class Dilog {
 			if(time < (long)getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs")) {
 				if(getIsValid((JSONObject)json,"isValid").equals("true")) {
 					Log.info(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
+					Allure.step(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
 					filteredArray.add((JSONObject)json);
 				}
 			}
@@ -80,6 +82,8 @@ public class Dilog {
 		if(flag) {
 			Log.info("flag : " + flag);
 		}
+		
+		Allure.step("DiLog 확인결과 : " + flag);
 		
 		return flag;
 		
