@@ -3,7 +3,6 @@ package yanolja.com.automationScript;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Set;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -12,21 +11,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import yanolja.com.pageObject.GNB;
+import io.qameta.allure.Allure;
 import yanolja.com.pageObject.Home;
-import yanolja.com.pageObject.Login;
-import yanolja.com.pageObject.PlaceDetail;
-import yanolja.com.pageObject.PlaceList;
-import yanolja.com.pageObject.Purchase;
-import yanolja.com.pageObject.RoomDetail;
-import yanolja.com.pageObject.myYanolja;
-import yanolja.com.pageObject.sHomeMotel;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
-import yanolja.com.utility.Wait;
 
 
 public class YanoljaTest {
@@ -71,6 +62,8 @@ public class YanoljaTest {
 	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
+
+		Allure.addDescription("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);
