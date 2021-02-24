@@ -63,7 +63,7 @@ public class YanoljaTest {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 
-		Allure.addDescription("테스트 결과 : " + Util.testResult(testResult.getStatus()));
+		Allure.step("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);
