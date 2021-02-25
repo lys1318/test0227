@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -168,14 +170,30 @@ public class HomePage {
 	
 	// 기획전 > 국내숙박 
 	public static WebElement exhibitionListRooms() {
-		element = Browser.driver().findElement(By.cssSelector("section[class^='HomeExhibition_exhibitionList'] > div:nth-child(1) > a"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("section[class^='HomeExhibition_exhibitionList'] > div[class^='ExhibitionItem_item']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).findElement(By.cssSelector("a > div[class^='ExhibitionItem_contents'] > div[class^='ExhibitionItem_title']")).getText().equals("QA 로그 전용")) {
+
+				element = elements.get(i).findElement(By.cssSelector("a"));
+				break;
+			}
+		}
 
 		return element;
 	}
 	
 	// 기획전 > 레저  
 	public static WebElement exhibitionListLeisure() {
-		element = Browser.driver().findElement(By.cssSelector("section[class^='HomeExhibition_exhibitionList'] > div:nth-child(3) > a"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("section[class^='HomeExhibition_exhibitionList'] > div[class^='ExhibitionItem_item']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).findElement(By.cssSelector("a > div[class^='ExhibitionItem_contents'] > div[class^='ExhibitionItem_title']")).getText().equals("레저만 있는 기획전")) {
+
+				element = elements.get(i).findElement(By.cssSelector("a"));
+				break;
+			}
+		}
 
 		return element;
 	}

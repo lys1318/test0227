@@ -62,7 +62,7 @@ public class YanoljaExhibition {
 			Assert.fail();
 		}
 	}
-	
+
 	@Parameters("browser")
 	@Test
 	public void Log_0076_0078 (String browser) throws InterruptedException {
