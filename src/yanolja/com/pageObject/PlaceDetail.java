@@ -10,6 +10,23 @@ import yanolja.com.utility.Wait;
 
 public class PlaceDetail {
 	
+	public static void placeDetailNavBack() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.elementToBeClickable(PlaceDetailPage.placeDetailNavBack());
+
+		PlaceDetailPage.placeDetailNavBack().click();
+		
+		Log.info("숙소 상세 > 뒤로가기 를 선택 하였습니다.");
+		Allure.step("숙소 상세 > 뒤로가기 를 선택 하였습니다.");
+		
+	}
+	
 	public static String placeDetailTitle() {
 		try {
 			Thread.sleep(1000);
@@ -18,8 +35,8 @@ public class PlaceDetail {
 			e.printStackTrace();
 		}
 		
-		Wait.visibilityOf(PlaceDetailPage.placeDetailTitle()
-				);
+		Wait.visibilityOf(PlaceDetailPage.placeDetailTitle());
+		
 		String placeDetailTitle = PlaceDetailPage.placeDetailTitle().getText();
 		
 		Log.info("숙소 상세 > 타이틀을 저장 하였습니다. (타이틀 : " + placeDetailTitle + ")");

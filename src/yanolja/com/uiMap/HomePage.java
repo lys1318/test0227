@@ -168,8 +168,8 @@ public class HomePage {
 		return element;
 	}
 	
-	// 기획전 > 국내숙박 
-	public static WebElement exhibitionListRooms() {
+	// 기획전 > QA로그전용
+	public static WebElement exhibition() {
 		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("section[class^='HomeExhibition_exhibitionList'] > div[class^='ExhibitionItem_item']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
@@ -183,20 +183,6 @@ public class HomePage {
 		return element;
 	}
 	
-	// 기획전 > 레저  
-	public static WebElement exhibitionListLeisure() {
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("section[class^='HomeExhibition_exhibitionList'] > div[class^='ExhibitionItem_item']"));
-		
-		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).findElement(By.cssSelector("a > div[class^='ExhibitionItem_contents'] > div[class^='ExhibitionItem_title']")).getText().equals("레저만 있는 기획전")) {
-
-				element = elements.get(i).findElement(By.cssSelector("a"));
-				break;
-			}
-		}
-
-		return element;
-	}
 	/*
 	 * // test 회사 선택 셀렉박스 public static Select slc_testCompany() { select = new
 	 * Select(Browser.driver().findElement(By.id("Company")));

@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import yanolja.com.pageObject.Exhibition;
 import yanolja.com.pageObject.Home;
+import yanolja.com.pageObject.PlaceDetail;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
@@ -46,12 +47,14 @@ public class YanoljaExhibition {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
 			
-			Home.exhibitionListRooms();
+			Home.exhibition();
 
 			Wait.loader();
 			
-			Exhibition.roomslistItem();
+			Exhibition.selectTab("국내그룹_수정X");
 			
+			Exhibition.roomslistItem();
+
 			Thread.sleep(5000);
 			
 			assertEquals(Dilog.assertLogByDesc("Exhibition", "web", "그룹별, 개별 상품별 노출(국내숙소)", "impr", time),true);
@@ -72,9 +75,11 @@ public class YanoljaExhibition {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
 			
-			Home.exhibitionListRooms();
+			Home.exhibition();
 
 			Wait.loader();
+			
+			Exhibition.selectTab("국내그룹_수정X");
 			
 			Exhibition.roomslistItem();
 			
@@ -87,7 +92,7 @@ public class YanoljaExhibition {
 			Assert.fail();
 		}
 	}
-
+	
 	@Parameters("browser")
 	@Test
 	public void test_Exhibition_leisure_impr (String browser) throws InterruptedException {
@@ -98,8 +103,18 @@ public class YanoljaExhibition {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
 			
-			Home.exhibitionListLeisure();
+			Home.exhibition();
 
+			Wait.loader();
+			
+			Exhibition.selectTab("레저그룹_수정X");
+			
+			Wait.loader();
+			
+			//레저탭 접근 후 페이지 새로고침하고 상품 선택해야 impr 로그가 찍히고 있음
+			//이상동작인지 확인 필요함 (2021.03.02)
+			Browser.driver().navigate().refresh();
+			
 			Wait.loader();
 			
 			Exhibition.leisurelistItem();
@@ -124,9 +139,11 @@ public class YanoljaExhibition {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
 			
-			Home.exhibitionListLeisure();
+			Home.exhibition();
 
 			Wait.loader();
+			
+			Exhibition.selectTab("레저그룹_수정X");
 			
 			Exhibition.leisurelistItem();
 			

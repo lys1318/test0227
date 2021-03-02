@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -16,16 +18,34 @@ public class ExhibitionPage {
 	 * (예: a_1_userName) 3. *= | input[id*='userName'] | ID가 userName을 포함하는 엘리먼트를 반환
 	 * (예:panel_login_userName_textfield)
 	 */
+	
+	// selectTab
+	public static WebElement selectTab(String tabName) {
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("li[class^='CategoryExpandTab']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).getText().equals(tabName)) {
+
+				element = elements.get(i);
+				break;
+			}
+		}
+
+		return element;
+		
+	}
+	
 	// List Item
 	public static WebElement roomslistItem() {
-		element = Browser.driver().findElement(By.cssSelector("div[class*='ReactVirtualized__List'] > div[class^='ReactVirtualized__Grid__innerScrollContainer'] > div:nth-child(2) > div:nth-child(1) > div > div > a"));
+		element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemText'] > a"));
 		
 		return element;
 	}
 
 	// List Item
 	public static WebElement leisurelistItem() {
-		element = Browser.driver().findElement(By.cssSelector("div[class^='ReactVirtualized__Grid__innerScrollContainer'] > div:nth-child(1) > div:nth-child(1) > div > a"));
+		element = Browser.driver().findElement(By.cssSelector("div[class^='ExhibitionDetailDomesticLeisure'] > a"));
 
 		return element;
 	}

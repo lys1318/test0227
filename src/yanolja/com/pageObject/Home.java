@@ -242,21 +242,13 @@ public class Home extends LoadableComponent<Home> {
 		Allure.step("추천위젯 > 임의의 상품을 선택 하였습니다.");
 	}
 	
-	public static void exhibitionListRooms() {
-		Wait.elementToBeClickable(HomePage.exhibitionListRooms());
+	public static void exhibition() {
+		Wait.elementToBeClickable(HomePage.exhibition());
 		
-		HomePage.exhibitionListRooms().click();
+		HomePage.exhibition().click();
 
-		Log.info("기획전 > 국내숙박을 선택 하였습니다.");
-		Allure.step("기획전 > 국내숙박을 선택 하였습니다.");
+		Log.info("기획전 > QA 로그 전용 기획전을 선택 하였습니다.");
+		Allure.step("기획전 > QA 로그 전용 기획전을 선택 하였습니다.");
 	}
 	
-	public static void exhibitionListLeisure() {
-		Wait.elementToBeClickable(HomePage.exhibitionListLeisure());
-		
-		HomePage.exhibitionListLeisure().click();
-
-		Log.info("기획전 > 레저를 선택 하였습니다.");
-		Allure.step("기획전 > 레저를 선택 하였습니다.");
-	}
 }
