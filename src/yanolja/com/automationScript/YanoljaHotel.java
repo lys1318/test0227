@@ -37,7 +37,7 @@ public class YanoljaHotel {
 
 	@Parameters("browser")
 	@Test
-	public void Log_0099 (String browser) throws InterruptedException {
+	public void test_HTHome_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -50,7 +50,6 @@ public class YanoljaHotel {
 			Thread.sleep(5000);
 			
 			assertEquals(Dilog.assertLogByDesc("HTHome", "web", "국내호텔 서브홈 화면 진입", "view", time),true);
-			//assertEquals(Dilog.assertLogByDesc("MTHome", "web", "국내모텔 서브홈 내, 추천 위젯 내, 상품 노출", "impr", time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -60,7 +59,7 @@ public class YanoljaHotel {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0100 (String browser) throws InterruptedException {
+	public void test_HTHome_category_click (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -84,7 +83,7 @@ public class YanoljaHotel {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0101 (String browser) throws InterruptedException {
+	public void test_HTHome_list_click (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		

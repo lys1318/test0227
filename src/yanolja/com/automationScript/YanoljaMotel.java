@@ -47,7 +47,7 @@ public class YanoljaMotel {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0086 (String browser) throws InterruptedException {
+	public void test_MTHome_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -69,7 +69,65 @@ public class YanoljaMotel {
 
 	@Parameters("browser")
 	@Test
-	public void Log_0097_0098 (String browser) throws InterruptedException {
+	public void test_Order_view (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			String parentWindowHandle = Browser.driver().getWindowHandle();
+			System.out.println("Parent window handle: " + parentWindowHandle);
+			
+			GNB.myYanolja();
+			
+			myYanolja.loginLink();
+			
+			Login.login(Constant.TESTID, Constant.TESTPW);
+			
+			GNB.home();
+			
+			Home.quickCategoryMotel();
+			
+			Thread.sleep(2000);
+			
+			sHomeMotel.sHomeRegion1Depth();
+			
+			Thread.sleep(2000);
+			
+			sHomeMotel.sHomeRegion2Depth();
+			
+			Wait.loader();
+			
+			PlaceList.placeListItem();
+			
+			PlaceDetail.roomItem();
+			
+			RoomDetail.roomReserve();
+			
+			Set<String> windowHandles = Browser.driver().getWindowHandles();
+			
+			for(String handle : windowHandles) {
+				if(!handle.equals(parentWindowHandle)) {
+					Browser.driver().switchTo().window(handle);
+					System.out.println("Title of the new window: " + Browser.driver().getTitle());
+				}
+			}
+			
+			Thread.sleep(5000);
+			
+			assertEquals(Dilog.assertLogByDesc("Order", "web", "[국내숙소] 예약 첫페이지 진입", "view", time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
+	}
+	
+	@Parameters("browser")
+	@Test
+	public void test_OrderComplete_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -127,7 +185,6 @@ public class YanoljaMotel {
 			
 			Thread.sleep(10000);
 			
-			assertEquals(Dilog.assertLogByDesc("Order", "web", "[국내숙소] 예약 첫페이지 진입", "view", time),true);
 			assertEquals(Dilog.assertLogByDesc("OrderComplete", "web", "[국내숙소] 예약 완료 페이지 진입", "view", time),true);
 		
 		} catch (Exception e) {

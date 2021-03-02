@@ -44,7 +44,7 @@ public class YanoljaLeisureTicket {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0066 (String browser) throws InterruptedException {
+	public void test_LeisureOrderComplete_mobile_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -98,7 +98,7 @@ public class YanoljaLeisureTicket {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0090 (String browser) throws InterruptedException {
+	public void test_LeisureOrder_mobile_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -144,7 +144,7 @@ public class YanoljaLeisureTicket {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0065 (String browser) throws InterruptedException {
+	public void test_LeisureOrderComplete_normal_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -192,7 +192,7 @@ public class YanoljaLeisureTicket {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0089 (String browser) throws InterruptedException {
+	public void test_LeisureOrder_normal_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		

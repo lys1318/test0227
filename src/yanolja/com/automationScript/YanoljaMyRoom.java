@@ -36,7 +36,7 @@ public class YanoljaMyRoom {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0084 (String browser) throws InterruptedException {
+	public void test_MyRoomHome_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		

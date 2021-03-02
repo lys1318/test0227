@@ -42,7 +42,79 @@ public class YanoljaTrainTicket {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0067_0068 (String browser) throws InterruptedException {
+	public void test_TrainPayment_view (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			GNB.myYanolja();
+			
+			myYanolja.loginLink();
+			
+			Login.login(Constant.TESTID, Constant.TESTPW);
+			
+			GNB.home();
+			
+			Home.quickCategoryTrain();
+			
+			Train.oneWay();
+			
+			Train.start();
+			
+			Train.searchText("서울");
+			
+			Train.searchResult();
+			
+			Train.destination();
+			
+			Train.searchText("대전");
+			
+			Train.searchResult();
+			
+			Train.calendar();
+			
+			Train.selectDate();
+			
+			Train.apply();
+			
+			Train.ticketSearch();
+			
+			Wait.loader();
+			
+			Train.resultSelectTicket();
+			
+			Wait.loader();
+			
+			Train.resultSelectTicketing();
+			
+			Train.popupOk();
+			
+			Train.reservation();
+			
+			Purchase.birthday("19840405");
+			
+			Purchase.paymentKakao();
+			
+			Purchase.trainTicketOrderAgreeAll();
+			
+			Purchase.trainTicketOrder();
+			
+			Thread.sleep(12000);
+			
+			assertEquals(Dilog.assertLogByDesc("TrainPayment", "web", "결제 페이지 진입", "view", time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
+	}
+	
+	@Parameters("browser")
+	@Test
+	public void test_TrainOrderComplete_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -105,7 +177,6 @@ public class YanoljaTrainTicket {
 			Thread.sleep(12000);
 			
 			assertEquals(Dilog.assertLogByDesc("TrainOrderComplete", "web", "주문 완료 페이지 진입", "view", time),true);
-			assertEquals(Dilog.assertLogByDesc("TrainPayment", "web", "결제 페이지 진입", "view", time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());

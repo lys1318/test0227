@@ -38,7 +38,7 @@ public class YanoljaFlights {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0096 (String browser) throws InterruptedException {
+	public void test_FlightHome_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -60,7 +60,7 @@ public class YanoljaFlights {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0094 (String browser) throws InterruptedException {
+	public void test_FlightSearchList_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -106,7 +106,7 @@ public class YanoljaFlights {
 
 	@Parameters("browser")
 	@Test
-	public void Log_0095 (String browser) throws InterruptedException {
+	public void test_FlightSearchList_click (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		

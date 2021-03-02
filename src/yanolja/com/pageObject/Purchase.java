@@ -276,4 +276,21 @@ public class Purchase {
 		Allure.step("해외숙소 예약 > 결제하기 를 선택 하였습니다.");
 
 	}
+	
+	public static void paymentKakao() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.elementToBeClickable(PurchasePage.paymentKakao());
+
+		PurchasePage.paymentKakao().click();
+
+		Log.info("결제 수단 선택 > 카카오페이를 선택 하였습니다.");
+		Allure.step("결제 수단 선택 > 카카오페이를 선택 하였습니다.");
+
+	}
 }

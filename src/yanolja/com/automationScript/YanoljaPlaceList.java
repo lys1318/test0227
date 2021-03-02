@@ -38,7 +38,7 @@ public class YanoljaPlaceList {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0093 (String browser) throws InterruptedException {
+	public void test_PlaceList_impr (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		

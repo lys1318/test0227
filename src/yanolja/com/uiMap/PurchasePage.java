@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -120,6 +122,22 @@ public class PurchasePage {
 		element = Browser.driver().findElement(By.cssSelector("section[class^='reservation-payment-action'] > button"));
 
 		return element;
+	}
+	
+	// paymentKakao
+	public static WebElement paymentKakao() {
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("li[class^='pg-item-container']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).findElement(By.cssSelector("div > span")).getText().equals("카카오페이")) {
+
+				element = elements.get(i).findElement(By.cssSelector("div > span"));
+				break;
+			}
+		}
+
+		return element;
+
 	}
 	
 	/*

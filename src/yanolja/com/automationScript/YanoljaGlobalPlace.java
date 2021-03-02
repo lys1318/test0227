@@ -42,7 +42,7 @@ public class YanoljaGlobalPlace {
 
 	@Parameters("browser")
 	@Test
-	public void Log_0082 (String browser) throws InterruptedException {
+	public void test_GHome_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -64,7 +64,7 @@ public class YanoljaGlobalPlace {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0083 (String browser) throws InterruptedException {
+	public void test_GPlaceDetail_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -88,7 +88,7 @@ public class YanoljaGlobalPlace {
 	
 	@Parameters("browser")
 	@Test
-	public void Log_0080 (String browser) throws InterruptedException {
+	public void test_GlobalOrder_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -116,7 +116,7 @@ public class YanoljaGlobalPlace {
 
 	@Parameters("browser")
 	@Test
-	public void Log_0079_0081 (String browser) throws InterruptedException {
+	public void test_GlobalOrder_click (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -155,6 +155,55 @@ public class YanoljaGlobalPlace {
 			Thread.sleep(12000);
 			
 			assertEquals(Dilog.assertLogByDesc("GlobalOrder", "web", "결제하기 버튼 클릭", "click", time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
+	}
+	
+	@Parameters("browser")
+	@Test
+	public void test_GlobalPayment_view (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			GNB.myYanolja();
+			
+			myYanolja.loginLink();
+			
+			Login.login(Constant.TESTID, Constant.TESTPW);
+			
+			GNB.home();
+			
+			Home.quickCategoryGlobalPlace();
+			
+			sHomeGlobalPlace.sHomeThemedItem();
+			
+			GlobalPlace.selectRoom();
+			
+			GlobalPlace.reservation();
+			
+			Purchase.emailClear();
+			
+			Purchase.email("inho.choi@yanolja.com");
+			
+			Purchase.lastName("CHOI");
+			
+			Purchase.firstName("INHO");
+			
+			Purchase.paymentKakao();
+			
+			Purchase.globalAgreeAll();
+			
+			Purchase.globalOrder();
+			
+			Thread.sleep(12000);
+			
 			assertEquals(Dilog.assertLogByDesc("GlobalPayment", "web", "글로벌 결제하기 화면 진입", "view", time),true);
 		
 		} catch (Exception e) {
