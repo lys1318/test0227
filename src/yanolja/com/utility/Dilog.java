@@ -50,9 +50,13 @@ public class Dilog {
 			
 			if(time < (long)getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs")) {
 				if(getIsValid((JSONObject)json,"isValid").equals("true")) {
-					Log.info(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
-					Allure.step(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
-					filteredArray.add((JSONObject)json);
+					if(getJObj((JSONObject)json,"def").get("priority").equals("H")) {
+						
+						Log.info(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
+						Allure.step(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
+						filteredArray.add((JSONObject)json);
+						
+					}
 				}
 			}
 			
@@ -103,6 +107,18 @@ public class Dilog {
 	}
 	
 	public static String getIsValid(JSONObject json, String key) {
+		try {
+			return json.get(key).toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+	}
+	
+	public static String getPriorityH(JSONObject json, String key) {
 		try {
 			return json.get(key).toString();
 		} catch (Exception e) {
