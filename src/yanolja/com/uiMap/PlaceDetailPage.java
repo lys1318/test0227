@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -56,6 +58,27 @@ public class PlaceDetailPage {
 	public static WebElement roomItem() {
 		element = Browser.driver().findElement(By.cssSelector("section[class^='PlaceDetailRoomList_container'] > div:nth-child(1)"));
 		
+		return element;
+	}
+	
+	// CheckinOutBox
+	public static WebElement CheckinOutBox() {
+		element = Browser.driver().findElement(By.cssSelector("div[class^='CheckinOutBox']"));
+		
+		return element;
+	}
+	
+	// 날짜 선택  
+	public static List<WebElement> selectDate() {
+		List<WebElement> months = Browser.driver().findElements(By.cssSelector("td[class^='CalendarDay']"));
+
+		return months;
+	}
+	
+	// 날짜 선택 적용   
+	public static WebElement apply() {
+		element = Browser.driver().findElement(By.cssSelector("section[class^='DateRangePicker_modalBottomButton'] > button"));
+
 		return element;
 	}
 

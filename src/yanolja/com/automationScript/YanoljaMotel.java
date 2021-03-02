@@ -102,6 +102,12 @@ public class YanoljaMotel {
 			
 			PlaceList.placeListItem();
 			
+			PlaceDetail.CheckinOutBox();
+			
+			PlaceDetail.selectDate();
+			
+			PlaceDetail.apply();
+			
 			PlaceDetail.roomItem();
 			
 			RoomDetail.roomReserve();
@@ -159,6 +165,12 @@ public class YanoljaMotel {
 			Wait.loader();
 			
 			PlaceList.placeListItem();
+			
+			PlaceDetail.CheckinOutBox();
+			
+			PlaceDetail.selectDate();
+			
+			PlaceDetail.apply();
 			
 			PlaceDetail.roomItem();
 			
