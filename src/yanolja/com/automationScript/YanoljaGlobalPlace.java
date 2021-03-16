@@ -76,7 +76,7 @@ public class YanoljaGlobalPlace {
 			
 			sHomeGlobalPlace.sHomeThemedItem();
 			
-			Thread.sleep(5000);
+			Thread.sleep(8000);
 			
 			assertEquals(Dilog.assertLogByDesc("GPlaceDetail", "web", "해외숙소 상세 뷰", "view", time),true);
 		
