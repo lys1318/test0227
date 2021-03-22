@@ -128,7 +128,7 @@ public class YanoljaRegion {
 			Assert.fail();
 		}
 	}
-	
+
 	@Parameters("browser")
 	@AfterMethod
 	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {

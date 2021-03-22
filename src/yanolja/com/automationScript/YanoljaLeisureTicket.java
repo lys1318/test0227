@@ -95,6 +95,60 @@ public class YanoljaLeisureTicket {
 			Assert.fail();
 		}
 	}
+	/*
+	@Parameters("browser")
+	@Test
+	public void test_LeisureOrderComplete_mobile_view (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			GNB.myYanolja();
+			
+			myYanolja.loginLink();
+			
+			Login.login(Constant.TESTID, Constant.TESTPW);
+			
+			GNB.home();
+			
+			Home.quickCategoryLeisure();
+			
+			sHomeLeisure.categoryMore();
+			
+			sHomeLeisure.tabBarMobileVoucher();
+			
+			sHomeLeisure.mobileVoucherCategory();
+			
+			sHomeLeisure.mobileVoucherCategoryAll();
+			
+			LeisurePLP.mobileVoucherCategoryListItem();
+			
+			Thread.sleep(3000);
+			
+			LeisurePDP.countUp();
+			
+			LeisurePDP.callToAction();
+			
+			Purchase.point();
+			
+			Purchase.agreeAll();
+			
+			Purchase.order();
+			
+			Thread.sleep(10000);
+			
+			OrderComplete.orderComplete();
+			
+			assertEquals(Dilog.assertLogByDesc("LeisureOrderComplete", "web", "[국내레저] 결제완료 진입", "view", time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
+	}
 	
 	@Parameters("browser")
 	@Test
@@ -229,7 +283,7 @@ public class YanoljaLeisureTicket {
 			Assert.fail();
 		}
 	}
-	
+	*/
 	@Parameters("browser")
 	@AfterMethod
 	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {
