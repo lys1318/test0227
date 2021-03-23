@@ -19,7 +19,7 @@ public class RegionPage {
 
 	// RankingWidgetItem
 	public static WebElement rankingWidgetItem() {
-		element = Browser.driver().findElement(By.cssSelector("section[class^='RankingWidget'] > section > div > div > div > div > div:nth-child(1) > a"));
+		element = Browser.driver().findElement(By.cssSelector("section[class^='RankingWidget'] > section > div > div:nth-child(2) > div > div > div:nth-child(1) > div:nth-child(1) > div > a"));
 
 		return element;
 	}
