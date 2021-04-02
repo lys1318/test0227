@@ -80,54 +80,6 @@ public class YanoljaRegion {
 			Assert.fail();
 		}
 	}
-	
-	@Parameters("browser")
-	@Test
-	public void test_RegionHome_impr (String browser) throws InterruptedException {
-		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
-		Log.startTC(tc_id);
-		
-		try {
-			time = Constant.time();
-			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
-			
-			Home.quickCategoryRegion();
-			
-			Region.rankingWidgetItem();
-			
-			Thread.sleep(5000);
-			
-			assertEquals(Dilog.assertLogByDesc("RegionHome", "web", "지역 서브홈 내, 랭킹 타입 추천 위젯 카테고리 내, 상품 노출", "impr", time),true);
-		
-		} catch (Exception e) {
-			Log.error(browser, tc_id, e.getMessage());
-			Assert.fail();
-		}
-	}
-	
-	@Parameters("browser")
-	@Test
-	public void test_RegionHome_click (String browser) throws InterruptedException {
-		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
-		Log.startTC(tc_id);
-		
-		try {
-			time = Constant.time();
-			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
-			
-			Home.quickCategoryRegion();
-			
-			Region.rankingWidgetItem();
-			
-			Thread.sleep(5000);
-			
-			assertEquals(Dilog.assertLogByDesc("RegionHome", "web", "지역 서브홈 내, 랭킹 타입 추천 위젯 카테고리 내, 상품 클릭", "click", time),true);
-		
-		} catch (Exception e) {
-			Log.error(browser, tc_id, e.getMessage());
-			Assert.fail();
-		}
-	}
 
 	@Parameters("browser")
 	@AfterMethod

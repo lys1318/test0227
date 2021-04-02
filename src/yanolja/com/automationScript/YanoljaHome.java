@@ -33,16 +33,18 @@ public class YanoljaHome {
 
 		home.get();
 	}
-	
+
 	@Parameters("browser")
 	@Test
-	public void test_Home_impr (String browser) throws InterruptedException {
+	public void test_Home_Pension_impr (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
 		try {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			Home.recommendType();
 			
 			Home.recommendItem();
 			
@@ -58,13 +60,67 @@ public class YanoljaHome {
 	
 	@Parameters("browser")
 	@Test
-	public void test_Home_click (String browser) throws InterruptedException {
+	public void test_Home_Pension_click (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
 		try {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			Home.recommendType();
+			
+			Home.recommendItem();
+			
+			Thread.sleep(5000);
+			
+			assertEquals(Dilog.assertLogByDesc("Home", "web", "국내숙소 추천 위젯 > 호텔/펜션 각 추천 상품 클릭", "click", time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
+	}
+
+	@Parameters("browser")
+	@Test
+	public void test_Home_Hotel_impr (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			Home.otherTheme();
+			
+			Home.recommendType();
+			
+			Home.recommendItem();
+			
+			Thread.sleep(5000);
+			
+			assertEquals(Dilog.assertLogByDesc("Home", "web", "국내숙소 추천 위젯 테마(숙소카테고리) 숙소단위 impression", "impr", time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
+	}
+	
+	@Parameters("browser")
+	@Test
+	public void test_Home_Hotel_click (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			Home.otherTheme();
+			
+			Home.recommendType();
 			
 			Home.recommendItem();
 			

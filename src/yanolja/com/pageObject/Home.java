@@ -4,12 +4,14 @@ import static org.testng.AssertJUnit.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
 import io.qameta.allure.Allure;
 import yanolja.com.uiMap.GNBPage;
 import yanolja.com.uiMap.HomePage;
+import yanolja.com.uiMap.PlaceDetailPage;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Log;
@@ -240,6 +242,27 @@ public class Home extends LoadableComponent<Home> {
 
 		Log.info("추천위젯 > 임의의 상품을 선택 하였습니다.");
 		Allure.step("추천위젯 > 임의의 상품을 선택 하였습니다.");
+	}
+	
+	public static void otherTheme() {
+		Wait.visibilityOf(HomePage.otherTheme());
+		
+		//HomePage.otherTheme().click();
+		
+		JavascriptExecutor executor = (JavascriptExecutor)Browser.driver();
+		executor.executeScript("arguments[0].click();", HomePage.otherTheme());
+
+		Log.info("추천위젯 > 다른 테마 보기를 선택 하였습니다.");
+		Allure.step("추천위젯 > 다른 테마 보기를 선택 하였습니다.");
+	}
+	
+	public static void recommendType() {
+		Wait.visibilityOf(HomePage.recommendType());
+		
+		String recommendType = HomePage.recommendType().getText();
+
+		Log.info("추천위젯 > 테마타입 = " + recommendType + " 입니다.");
+		Allure.step("추천위젯 > 테마타입 = " + recommendType + " 입니다.");
 	}
 	
 	public static void exhibition() {

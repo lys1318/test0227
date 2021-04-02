@@ -16,13 +16,6 @@ public class RegionPage {
 	 * (예: a_1_userName) 3. *= | input[id*='userName'] | ID가 userName을 포함하는 엘리먼트를 반환
 	 * (예:panel_login_userName_textfield)
 	 */
-
-	// RankingWidgetItem
-	public static WebElement rankingWidgetItem() {
-		element = Browser.driver().findElement(By.cssSelector("section[class^='RankingWidget'] > section > div > div:nth-child(2) > div > div > div:nth-child(1) > div:nth-child(1) > div > a"));
-
-		return element;
-	}
 	
 	// RegionhomeMapInfo_map
 	public static WebElement regionhomeMapInfo() {

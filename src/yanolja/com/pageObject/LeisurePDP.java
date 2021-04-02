@@ -40,8 +40,8 @@ public class LeisurePDP {
 
 		LeisurePDPPage.callToAction().click();
 
-		Log.info("레저PDP > 상품 선택하기를 선택 하였습니다.");
-		Allure.step("레저PDP > 상품 선택하기를 선택 하였습니다.");
+		Log.info("레저PDP > 상품 구매하기를 선택 하였습니다.");
+		Allure.step("레저PDP > 상품 구매하기를 선택 하였습니다.");
 
 	}
 }

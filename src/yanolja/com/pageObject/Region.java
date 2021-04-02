@@ -6,21 +6,6 @@ import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
 
 public class Region {
-
-	public static void rankingWidgetItem() {
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Wait.elementToBeClickable(RegionPage.rankingWidgetItem());
-		
-		RegionPage.rankingWidgetItem().click();
-
-		Log.info("강원도야놀자 > 랭킹위젯 > 임의의 상품을 선택 하였습니다.");
-		Allure.step("강원도야놀자 > 랭킹위젯 > 임의의 상품을 선택 하였습니다.");
-	}
 	
 	public static void regionhomeMapInfo() {
 		try {
