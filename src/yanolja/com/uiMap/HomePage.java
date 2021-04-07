@@ -152,13 +152,6 @@ public class HomePage {
 		return element;
 	}
 	
-	// 추천위젯종류
-	public static WebElement recommendType() {
-		element = Browser.driver().findElement(By.cssSelector("section[class^='HomePlaceRecommend'] > header > div:nth-child(2) > a"));
-
-		return element;
-	}
-	
 	// 다른 테마 보기
 	public static WebElement otherTheme() {
 		element = Browser.driver().findElement(By.cssSelector("section[class^='HomePlaceRecommend'] > div[class^='HomePlaceRecommend_footer']"));
@@ -166,10 +159,16 @@ public class HomePage {
 		return element;
 	}
 
+	// 추천위젯종류
+	public static WebElement recommendType() {
+		element = Browser.driver().findElement(By.cssSelector("section[class^='HomePlaceRecommend'] > header > div:nth-child(2) > a"));
+
+		return element;
+	}
+	
 	// 추천위젯상품
 	public static WebElement themePlaceItem() {
-		element = Browser.driver()
-				.findElement(By.cssSelector("div[class^='HomePlaceRecommend_body'] > a:nth-child(1)"));
+		element = Browser.driver().findElement(By.cssSelector("div[class^='HomePlaceRecommend_body'] > a:nth-child(1)"));
 
 		return element;
 	}

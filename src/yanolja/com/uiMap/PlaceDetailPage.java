@@ -63,7 +63,7 @@ public class PlaceDetailPage {
 	
 	// CheckinOutBox
 	public static WebElement CheckinOutBox() {
-		element = Browser.driver().findElement(By.cssSelector("div[class^='CheckinOutBox']"));
+		element = Browser.driver().findElement(By.cssSelector("div[class^='DateSelect_wrapper'] > div[class^='CheckinOutBox']"));
 		
 		return element;
 	}

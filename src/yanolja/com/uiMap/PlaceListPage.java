@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -98,9 +100,24 @@ public class PlaceListPage {
 	
 	// 임의의 숙소   
 	public static WebElement PlaceListItem() {
-		element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemBanner'] > a"));
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_itemGroup'] > div[class^='PlaceListItemText']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			
+			if (elements.get(i).findElement(By.cssSelector("a > div[class^='PlaceListItemText_area'] > div[class^='PlaceListItemText_contents'] > div[class^='PlaceListTitle'] > strong")).getText().equals("베트 40q")) {
+				System.out.println("베트 40q 발견!!!!!");
+				element = elements.get(i).findElement(By.cssSelector("a"));
+				break;
+			}
+
+		}
 
 		return element;
+		
+		//element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemBanner'] > a"));
+
+		//return element;
 	}
 	
 	/*

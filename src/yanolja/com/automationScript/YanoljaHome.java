@@ -46,7 +46,7 @@ public class YanoljaHome {
 			
 			Home.recommendType();
 			
-			Home.recommendItem();
+			Home.themePlaceItem();
 			
 			Thread.sleep(5000);
 			
@@ -70,7 +70,7 @@ public class YanoljaHome {
 			
 			Home.recommendType();
 			
-			Home.recommendItem();
+			Home.themePlaceItem();
 			
 			Thread.sleep(5000);
 			
@@ -96,7 +96,7 @@ public class YanoljaHome {
 			
 			Home.recommendType();
 			
-			Home.recommendItem();
+			Home.themePlaceItem();
 			
 			Thread.sleep(5000);
 			
@@ -122,7 +122,7 @@ public class YanoljaHome {
 			
 			Home.recommendType();
 			
-			Home.recommendItem();
+			Home.themePlaceItem();
 			
 			Thread.sleep(5000);
 			

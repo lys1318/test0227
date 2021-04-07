@@ -44,7 +44,6 @@ public class YanoljaMotel {
 		home.get();
 	}
 	
-	
 	@Parameters("browser")
 	@Test
 	public void test_MTHome_view (String browser) throws InterruptedException {

@@ -234,15 +234,6 @@ public class Home extends LoadableComponent<Home> {
 
 		return recommendTitle;
 	}
-
-	public static void recommendItem() {
-		Wait.elementToBeClickable(HomePage.themePlaceItem());
-		
-		HomePage.themePlaceItem().click();
-
-		Log.info("추천위젯 > 임의의 상품을 선택 하였습니다.");
-		Allure.step("추천위젯 > 임의의 상품을 선택 하였습니다.");
-	}
 	
 	public static void otherTheme() {
 		Wait.visibilityOf(HomePage.otherTheme());
@@ -263,6 +254,16 @@ public class Home extends LoadableComponent<Home> {
 
 		Log.info("추천위젯 > 테마타입 = " + recommendType + " 입니다.");
 		Allure.step("추천위젯 > 테마타입 = " + recommendType + " 입니다.");
+	}
+	
+
+	public static void themePlaceItem() {
+		Wait.elementToBeClickable(HomePage.themePlaceItem());
+		
+		HomePage.themePlaceItem().click();
+
+		Log.info("추천위젯 > 임의의 상품을 선택 하였습니다.");
+		Allure.step("추천위젯 > 임의의 상품을 선택 하였습니다.");
 	}
 	
 	public static void exhibition() {
