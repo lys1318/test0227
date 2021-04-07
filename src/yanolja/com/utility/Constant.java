@@ -12,6 +12,7 @@ public class Constant {
     public static final String Path_project = System.getProperty("user.dir");
     public static final String DILOGDOMAIN = " https://dilog.di.yanolja.in/api/qa/logs";
     //테스트계정
+    public static final String MEMBERNO = "40107112";
     public static final String TESTID = "cih0405@naver.com";
     public static final String TESTPW = "a5w2h6m8**";
     

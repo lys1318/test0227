@@ -1,9 +1,9 @@
 package yanolja.com.automationScript;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 import yanolja.com.pageObject.Home;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
-import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
 
@@ -32,6 +31,8 @@ public class YanoljaTest {
 		Home home = new Home(browser);
 
 		home.get();
+		
+		Util.point();
 	}
 
 	@Parameters("browser")
@@ -40,20 +41,6 @@ public class YanoljaTest {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
-		try {
-			time = Constant.time();
-			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
-
-			Home.quickCategoryMotel();
-			
-			Thread.sleep(5000);
-			
-			assertEquals(Dilog.assertLogByDesc("MTHome", "web", "국내모텔 서브홈 화면 진입2", "view", time),true);
-			
-		} catch (Exception e) {
-			Log.error(browser, tc_id, e.getMessage());
-			Assert.fail();
-		}
 	}
 	
 	@Parameters("browser")

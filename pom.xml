@@ -25,8 +25,8 @@
 						<suiteXmlFile>${suiteFile}</suiteXmlFile>
 					</suiteXmlFiles>
 					<systemPropertyVariables>
-                    	<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
+						<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -83,6 +83,12 @@
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
 			<version>2.13.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.3.3</version>
 		</dependency>
 
 
