@@ -101,12 +101,12 @@ public class PlaceListPage {
 	// 임의의 숙소   
 	public static WebElement PlaceListItem() {
 		
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_itemGroup'] > div[class^='PlaceListItemText']"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_topAdWrap'] > div[class^='PlaceListItemBanner_container']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
 			
-			if (elements.get(i).findElement(By.cssSelector("a > div[class^='PlaceListItemText_area'] > div[class^='PlaceListItemText_contents'] > div[class^='PlaceListTitle'] > strong")).getText().equals("베트 40q")) {
-				System.out.println("베트 40q 발견!!!!!");
+			if (elements.get(i).findElement(By.cssSelector("a > div[class^='PlaceListItemBanner_contents'] > div:nth-child(1) > div[class^='PlaceListTitle_container'] > strong")).getText().equals("[테스트] PERIOE06")) {
+				System.out.println("[테스트] PERIOE06 업체 발견!!!!!");
 				element = elements.get(i).findElement(By.cssSelector("a"));
 				break;
 			}
