@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -18,9 +20,21 @@ public class LeisurePLPPage {
 	 */
 	// List Item
 	public static WebElement leisureListItem() {
-		element = Browser.driver().findElement(By.cssSelector("main[class^='LeisureListBody'] > section > div:nth-child(1) > a"));
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("main[class^='LeisureListBody'] > section > div"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			
+			if (!elements.get(i).findElement(By.cssSelector("a > div[class^='LeisureListItem_body'] > div[class^='LeisureListItem_priceWrap']")).getText().contains("판매완료")) {
+				System.out.println(elements.get(i).findElement(By.cssSelector("a > div[class^='LeisureListItem_body'] > div[class^='LeisureListItem_priceWrap'] > div[class^='LeisurePriceDiscount_wrap'] > span[class^='LeisurePriceDiscount_amount']")).getText());
+				element = elements.get(i).findElement(By.cssSelector("a"));
+				break;
+			}
+
+		}
 
 		return element;
+
 	}
 	
 	// mobileVoucherCategoryListItem
