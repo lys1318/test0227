@@ -53,7 +53,7 @@ public class RoomDetailPage {
 		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='RoomReserveButtons_form']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']")).getText().equals("숙박 예약하기")) {
+			if (elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']")).getText().contains("예약하기")) {
 
 				element = elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']"));
 				break;
@@ -61,6 +61,25 @@ public class RoomDetailPage {
 		}
 
 		return element;
+	}
+	
+	//Room Reservation Available
+	public static Boolean roomReserveAvailable() {
+		
+		Boolean result = null;
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='RoomReserveButtons_form']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']")).getText().contains("예약하기")) {
+				result = true;
+				break;
+			} else {
+				result = false;
+			}
+		}
+		
+		return result;
 	}
 	
 	/*

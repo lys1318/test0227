@@ -116,7 +116,7 @@ public class PlaceDetail {
 		Allure.step("체크인/체크아웃 영역을 선택 하였습니다.");
 	}
 	
-	public static void selectDate() {
+	public static void selectDate(Integer day) {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -128,7 +128,7 @@ public class PlaceDetail {
 			if (Util.getDay() == Integer.parseInt(PlaceDetailPage.selectDate().get(i).getText())) {
 				System.out.println("일치!");
 				//Browser.driver().findElement(By.cssSelector("div[class^='DatePicker_dayString' innerText='"+ (Util.getDay()+1) +"']")).click();
-				PlaceDetailPage.selectDate().get(Util.getDay()+5).click();
+				PlaceDetailPage.selectDate().get(Util.getDay() + day).click();
 				break;
 			}
 		}

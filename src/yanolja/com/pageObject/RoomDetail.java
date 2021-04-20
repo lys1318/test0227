@@ -51,6 +51,9 @@ public class RoomDetail {
 			e.printStackTrace();
 		}
 		
+		System.out.println("isDisplayed : " + RoomDetailPage.roomReserve().isDisplayed());
+		System.out.println("isEnabled : " + RoomDetailPage.roomReserve().isEnabled());
+		
 		Wait.elementToBeClickable(RoomDetailPage.roomReserve());
 		
 		RoomDetailPage.roomReserve().click();
@@ -58,5 +61,26 @@ public class RoomDetail {
 		Log.info("객실 상세 > 숙박 예약하기를 선택 하였습니다.");
 		Allure.step("객실 상세 > 숙박 예약하기를 선택 하였습니다.");
 	}
-
+	
+	public static void roomReserveAvailable() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("roomReserveAvailable : " + RoomDetailPage.roomReserveAvailable());
+		
+		for (int i = 1; i < 10; i++) {
+			if(RoomDetailPage.roomReserveAvailable() == true) {
+				roomReserve();
+				break;
+			} else {
+				System.out.println("예약 가능한 객실이 없습니다.");
+				PlaceDetail.CheckinOutBox();
+				PlaceDetail.selectDate(i+1);				
+				PlaceDetail.apply();
+			}			
+		}
+	}
 }

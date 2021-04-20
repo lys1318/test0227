@@ -101,15 +101,9 @@ public class YanoljaMotel {
 			
 			PlaceList.placeListItem();
 			
-			PlaceDetail.CheckinOutBox();
-			
-			PlaceDetail.selectDate();
-			
-			PlaceDetail.apply();
-			
 			PlaceDetail.roomItem();
 			
-			RoomDetail.roomReserve();
+			RoomDetail.roomReserveAvailable();
 			
 			Set<String> windowHandles = Browser.driver().getWindowHandles();
 			
@@ -165,15 +159,9 @@ public class YanoljaMotel {
 			
 			PlaceList.placeListItem();
 			
-			PlaceDetail.CheckinOutBox();
-			
-			PlaceDetail.selectDate();
-			
-			PlaceDetail.apply();
-			
 			PlaceDetail.roomItem();
 			
-			RoomDetail.roomReserve();
+			RoomDetail.roomReserveAvailable();
 			
 			Set<String> windowHandles = Browser.driver().getWindowHandles();
 			
