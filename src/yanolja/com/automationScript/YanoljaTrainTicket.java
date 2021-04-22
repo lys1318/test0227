@@ -70,7 +70,7 @@ public class YanoljaTrainTicket {
 			
 			Train.destination();
 			
-			Train.searchText("대전");
+			Train.searchText("부산");
 			
 			Train.searchResult();
 			
