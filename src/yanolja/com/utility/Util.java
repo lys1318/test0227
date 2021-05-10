@@ -25,7 +25,7 @@ import io.restassured.response.ResponseBody;
 public class Util {
 
 	public static JSONParser parser = new JSONParser();
-	
+
 	public static String testResult(Integer result) {
 		String Result = null;
 
@@ -51,6 +51,16 @@ public class Util {
 		Allure.addAttachment("addAttachment : error_" + getInstanceName + "_" + todayDateTime() + ".png",
 				FileUtils.openInputStream(scrFile));
 
+	}
+
+	// 현재 날짜 및 시간 기준으로 String 생성
+	public static String failDateTime() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+
+		String faildatetime = dateFormat.format(date);
+
+		return faildatetime;
 	}
 
 	// 현재 날짜 및 시간 기준으로 String 생성
@@ -95,14 +105,13 @@ public class Util {
 
 	// 잔여포인트 확인
 	public static JSONArray remainingPoint(String memberNo) {
-		
+
 		try {
-			Response res = RestAssured
-								.given().header("member-no", memberNo)
-								.when().get("http://yapay-money-api.qa.yanolja.in/api/v1/asset");
-			
+			Response res = RestAssured.given().header("member-no", memberNo).when()
+					.get("http://yapay-money-api.qa.yanolja.in/api/v1/asset");
+
 			System.out.println(res.body().asString());
-		
+
 			return (JSONArray) parser.parse(res.body().asString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,41 +119,35 @@ public class Util {
 		return null;
 
 	}
-	
+
 	// 포인트(캐시) 충전
 	public static void chargePoint(String memberNo) {
-		
+
 		Map<String, Object> requestData = new HashMap<>();
 		requestData.put("amount", 10000);
 		requestData.put("merchantKey", "ADMIN");
 		requestData.put("typeDetail", "운영자 지급");
 		requestData.put("note", "QA테스트");
 		requestData.put("txId", todayDateTime());
-		
-		RestAssured
-			.given()
-				.header("member-no", memberNo)
-				.contentType("application/json")
-				.body(requestData).log().all()
-			.when().post("http://yapay-money-api.qa.yanolja.in/api/v1/asset/charge")
-			.then()
-				.statusCode(200);
+
+		RestAssured.given().header("member-no", memberNo).contentType("application/json").body(requestData).log().all()
+				.when().post("http://yapay-money-api.qa.yanolja.in/api/v1/asset/charge").then().statusCode(200);
 	}
-	
-	// 포인트 조회 및 충전 
+
+	// 포인트 조회 및 충전
 	public static void point() {
 		JSONArray arr = Util.remainingPoint(Constant.MEMBERNO);
 
 		JSONObject obj = (JSONObject) arr.get(0);
-		
+
 		Log.info("remainingPoint : " + obj);
-		
+
 		Integer point = 200000;
-		
+
 		if (Integer.parseInt(obj.get("usableAmount").toString()) < point) {
 			System.out.println("잔여포인트가 200,000 보다 작습니다. 충전이 필요합니다.(잔여포인트 : " + obj.get("usableAmount") + ")");
 			Log.info("잔여포인트가 200,000 보다 작습니다. 충전이 필요합니다.(잔여포인트 : " + obj.get("usableAmount") + ")");
-			
+
 			Util.chargePoint(Constant.MEMBERNO);
 		} else {
 			System.out.println("잔여포인트가 200,000 보다 커서 충전하지 않습니다. (잔여포인트 : " + obj.get("usableAmount") + ")");

@@ -3,6 +3,7 @@ package yanolja.com.automationScript;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Set;
 
 import org.testng.Assert;
@@ -27,6 +28,7 @@ import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
 import yanolja.com.utility.Wait;
+import yanolja.com.utility.spreadSheetUtil;
 
 
 public class YanoljaMotel {
@@ -50,6 +52,10 @@ public class YanoljaMotel {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
+		Constant.pageName = "MTHome";
+		Constant.eventType = "view";
+		Constant.desc = "국내모텔 서브홈 화면 진입";
+		
 		try {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
@@ -58,7 +64,7 @@ public class YanoljaMotel {
 			
 			Thread.sleep(5000);
 			
-			assertEquals(Dilog.assertLogByDesc("MTHome", "web", "국내모텔 서브홈 화면 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -71,6 +77,10 @@ public class YanoljaMotel {
 	public void test_Order_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "Order";
+		Constant.eventType = "view";
+		Constant.desc = "[국내숙소] 예약 첫페이지 진입";
 		
 		try {
 			time = Constant.time();
@@ -116,7 +126,7 @@ public class YanoljaMotel {
 			
 			Thread.sleep(5000);
 			
-			assertEquals(Dilog.assertLogByDesc("Order", "web", "[국내숙소] 예약 첫페이지 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -129,6 +139,10 @@ public class YanoljaMotel {
 	public void test_OrderComplete_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "OrderComplete";
+		Constant.eventType = "view";
+		Constant.desc = "[국내숙소] 예약 완료 페이지 진입";
 		
 		try {
 			time = Constant.time();
@@ -184,7 +198,7 @@ public class YanoljaMotel {
 			
 			Thread.sleep(10000);
 			
-			assertEquals(Dilog.assertLogByDesc("OrderComplete", "web", "[국내숙소] 예약 완료 페이지 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -194,12 +208,13 @@ public class YanoljaMotel {
 
 	@Parameters("browser")
 	@AfterMethod
-	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {
+	public void takeScreenShot(ITestResult testResult, String browser) throws IOException, GeneralSecurityException {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);
+			spreadSheetUtil.failHistoryAppend(Util.failDateTime(), Constant.pageName, Constant.eventType, Constant.enviroment, Constant.desc);
 		}
 		Browser.close(tc_id);
 	}

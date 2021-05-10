@@ -16,6 +16,11 @@ public class Constant {
     public static final String TESTID = "cih0405@naver.com";
     public static final String TESTPW = "a5w2h6m8**";
     
+    public static String pageName;
+    public static String eventType;
+    public static String desc;
+    public static String enviroment = "web";
+    
     public static long time() {
         long time = System.currentTimeMillis();
         

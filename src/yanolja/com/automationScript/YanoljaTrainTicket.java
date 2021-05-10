@@ -3,6 +3,7 @@ package yanolja.com.automationScript;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -23,6 +24,7 @@ import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
 import yanolja.com.utility.Wait;
+import yanolja.com.utility.spreadSheetUtil;
 
 
 public class YanoljaTrainTicket {
@@ -45,6 +47,10 @@ public class YanoljaTrainTicket {
 	public void test_TrainPayment_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "TrainPayment";
+		Constant.eventType = "view";
+		Constant.desc = "결제 페이지 진입";
 		
 		try {
 			time = Constant.time();
@@ -104,7 +110,7 @@ public class YanoljaTrainTicket {
 			
 			Thread.sleep(12000);
 			
-			assertEquals(Dilog.assertLogByDesc("TrainPayment", "web", "결제 페이지 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -117,6 +123,10 @@ public class YanoljaTrainTicket {
 	public void test_TrainOrderComplete_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "TrainOrderComplete";
+		Constant.eventType = "view";
+		Constant.desc = "주문 완료 페이지 진입";
 		
 		try {
 			time = Constant.time();
@@ -176,7 +186,7 @@ public class YanoljaTrainTicket {
 			
 			Thread.sleep(12000);
 			
-			assertEquals(Dilog.assertLogByDesc("TrainOrderComplete", "web", "주문 완료 페이지 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -186,12 +196,13 @@ public class YanoljaTrainTicket {
 	
 	@Parameters("browser")
 	@AfterMethod
-	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {
+	public void takeScreenShot(ITestResult testResult, String browser) throws IOException, GeneralSecurityException {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);
+			spreadSheetUtil.failHistoryAppend(Util.failDateTime(), Constant.pageName, Constant.eventType, Constant.enviroment, Constant.desc);
 		}
 		Browser.close(tc_id);
 	}

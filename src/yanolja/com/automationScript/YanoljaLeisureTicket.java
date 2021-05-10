@@ -3,6 +3,7 @@ package yanolja.com.automationScript;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -25,6 +26,7 @@ import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
+import yanolja.com.utility.spreadSheetUtil;
 
 
 public class YanoljaLeisureTicket {
@@ -47,6 +49,10 @@ public class YanoljaLeisureTicket {
 	public void test_LeisureOrderComplete_mobile_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "LeisureOrderComplete";
+		Constant.eventType = "view";
+		Constant.desc = "[국내레저] 결제완료 진입";
 		
 		try {
 			time = Constant.time();
@@ -88,7 +94,7 @@ public class YanoljaLeisureTicket {
 			
 			OrderComplete.orderComplete();
 			
-			assertEquals(Dilog.assertLogByDesc("LeisureOrderComplete", "web", "[국내레저] 결제완료 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -101,6 +107,10 @@ public class YanoljaLeisureTicket {
 	public void test_LeisureOrder_mobile_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "LeisureOrder";
+		Constant.eventType = "view";
+		Constant.desc = "[국내레저] 구매하기 화면 진입";
 		
 		try {
 			time = Constant.time();
@@ -134,7 +144,7 @@ public class YanoljaLeisureTicket {
 			
 			Thread.sleep(5000);
 			
-			assertEquals(Dilog.assertLogByDesc("LeisureOrder", "web", "[국내레저] 구매하기 화면 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -147,6 +157,10 @@ public class YanoljaLeisureTicket {
 	public void test_LeisureOrderComplete_normal_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "LeisureOrderComplete";
+		Constant.eventType = "view";
+		Constant.desc = "[국내레저] 결제완료 진입";
 		
 		try {
 			time = Constant.time();
@@ -182,7 +196,7 @@ public class YanoljaLeisureTicket {
 			
 			OrderComplete.orderComplete();
 			
-			assertEquals(Dilog.assertLogByDesc("LeisureOrderComplete", "web", "[국내레저] 결제완료 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -195,6 +209,10 @@ public class YanoljaLeisureTicket {
 	public void test_LeisureOrder_normal_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
+		
+		Constant.pageName = "LeisureOrder";
+		Constant.eventType = "view";
+		Constant.desc = "[국내레저] 구매하기 화면 진입";
 		
 		try {
 			time = Constant.time();
@@ -222,7 +240,7 @@ public class YanoljaLeisureTicket {
 						
 			Thread.sleep(5000);
 			
-			assertEquals(Dilog.assertLogByDesc("LeisureOrder", "web", "[국내레저] 구매하기 화면 진입", "view", time),true);
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
@@ -232,12 +250,13 @@ public class YanoljaLeisureTicket {
 	
 	@Parameters("browser")
 	@AfterMethod
-	public void takeScreenShot(ITestResult testResult, String browser) throws IOException {
+	public void takeScreenShot(ITestResult testResult, String browser) throws IOException, GeneralSecurityException {
 		
 		Log.info("테스트 결과 : " + Util.testResult(testResult.getStatus()));
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);
+			spreadSheetUtil.failHistoryAppend(Util.failDateTime(), Constant.pageName, Constant.eventType, Constant.enviroment, Constant.desc);
 		}
 		Browser.close(tc_id);
 	}
