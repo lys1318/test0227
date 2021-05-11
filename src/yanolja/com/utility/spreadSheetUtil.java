@@ -72,7 +72,7 @@ public class spreadSheetUtil {
 		// Build a new authorized API client service.
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 		final String spreadsheetId = "1v9ecOkXBsJEfUBAtCRyqElY2aHWeyD-70pZ00XUhH14";
-		final String range = "sheet1";
+		final String range = "FailHistory";
 		System.out.println(SCOPES);
 		
 		getSpreadSheet(HTTP_TRANSPORT, spreadsheetId, range);
