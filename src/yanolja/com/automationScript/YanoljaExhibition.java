@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import yanolja.com.pageObject.Exhibition;
 import yanolja.com.pageObject.Home;
-import yanolja.com.pageObject.PlaceDetail;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;

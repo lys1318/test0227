@@ -20,7 +20,6 @@ import org.testng.ITestResult;
 import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 
 public class Util {
 

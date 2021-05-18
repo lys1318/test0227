@@ -1,7 +1,6 @@
 package yanolja.com.pageObject;
 
 import io.qameta.allure.Allure;
-import yanolja.com.uiMap.LeisurePDPPage;
 import yanolja.com.uiMap.RoomDetailPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;

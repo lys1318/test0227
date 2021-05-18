@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import io.qameta.allure.Allure;
 import yanolja.com.uiMap.GNBPage;
 import yanolja.com.uiMap.HomePage;
-import yanolja.com.uiMap.PlaceDetailPage;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Log;
