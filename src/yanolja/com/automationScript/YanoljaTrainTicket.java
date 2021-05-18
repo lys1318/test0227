@@ -98,7 +98,7 @@ public class YanoljaTrainTicket {
 			
 			Train.popupOk();
 			
-			Train.reservation();
+			Train.purchase();
 			
 			Purchase.birthday("19840405");
 			
@@ -173,8 +173,8 @@ public class YanoljaTrainTicket {
 			Train.resultSelectTicketing();
 			
 			Train.popupOk();
-			
-			Train.reservation();
+						
+			Train.purchase();
 			
 			Purchase.birthday("19840405");
 			

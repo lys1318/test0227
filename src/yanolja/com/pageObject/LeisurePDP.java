@@ -28,7 +28,7 @@ public class LeisurePDP {
 
 	}
 	
-	public static void callToAction() {
+	public static void purchase() {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -36,12 +36,12 @@ public class LeisurePDP {
 			e.printStackTrace();
 		}
 		
-		Wait.visibilityOf(LeisurePDPPage.callToAction());
+		Wait.visibilityOf(LeisurePDPPage.purchase());
 
-		LeisurePDPPage.callToAction().click();
+		LeisurePDPPage.purchase().click();
 
-		Log.info("레저PDP > 상품 구매하기를 선택 하였습니다.");
-		Allure.step("레저PDP > 상품 구매하기를 선택 하였습니다.");
+		Log.info("레저PDP > 바로 구매하기를 선택 하였습니다.");
+		Allure.step("레저PDP > 바로 구매하기를 선택 하였습니다.");
 
 	}
 }

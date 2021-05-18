@@ -115,6 +115,8 @@ public class YanoljaMotel {
 			
 			RoomDetail.roomReserveAvailable();
 			
+			RoomDetail.purchase();
+			
 			Set<String> windowHandles = Browser.driver().getWindowHandles();
 			
 			for(String handle : windowHandles) {
@@ -177,7 +179,13 @@ public class YanoljaMotel {
 			
 			RoomDetail.roomReserveAvailable();
 			
+			RoomDetail.purchase();
+			
+			Thread.sleep(5000);
+			
 			Set<String> windowHandles = Browser.driver().getWindowHandles();
+			
+			System.out.println(windowHandles);
 			
 			for(String handle : windowHandles) {
 				if(!handle.equals(parentWindowHandle)) {
@@ -186,15 +194,14 @@ public class YanoljaMotel {
 				}
 			}
 			
-			Purchase.working();
+			//Purchase.working();
+			System.out.println(Browser.driver().getTitle());
 			
 			Purchase.point();
 			
-			Purchase.roomReservationAgreeAll();
+			Purchase.agreeAll();
 			
-			Purchase.roomOrder();
-			
-			Purchase.actionAgreeForPayment();
+			Purchase.order();
 			
 			Thread.sleep(10000);
 			

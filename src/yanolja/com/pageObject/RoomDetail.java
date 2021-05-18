@@ -1,6 +1,7 @@
 package yanolja.com.pageObject;
 
 import io.qameta.allure.Allure;
+import yanolja.com.uiMap.LeisurePDPPage;
 import yanolja.com.uiMap.RoomDetailPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Wait;
@@ -82,5 +83,22 @@ public class RoomDetail {
 				PlaceDetail.apply();
 			}			
 		}
+	}
+	
+	public static void purchase() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.visibilityOf(RoomDetailPage.purchase());
+
+		RoomDetailPage.purchase().click();
+
+		Log.info("객실 상세 > 바로 예약하기를 선택 하였습니다.");
+		Allure.step("객실 상세 > 바로 예약하기를 선택 하였습니다.");
+
 	}
 }

@@ -49,17 +49,19 @@ public class RoomDetailPage {
 	
 	//Room Reservation
 	public static WebElement roomReserve() {
-		
+		//element = Browser.driver().findElement(By.cssSelector("button[class*='RectButton_primary']"));
+
 		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='RoomReserveButtons_form']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']")).getText().contains("예약하기")) {
+			if (elements.get(i).findElement(By.cssSelector("button")).getText().contains("숙박 예약하기")) {
 
-				element = elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']"));
+				element = elements.get(i).findElement(By.cssSelector("button"));
 				break;
 			}
 		}
-
+		
+		
 		return element;
 	}
 	
@@ -71,7 +73,7 @@ public class RoomDetailPage {
 		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='RoomReserveButtons_form']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).findElement(By.cssSelector("button[class^='RoomReserveButtons_button']")).getText().contains("예약하기")) {
+			if (elements.get(i).findElement(By.cssSelector("button")).getText().contains("숙박 예약하기")) {
 				result = true;
 				break;
 			} else {
@@ -80,6 +82,22 @@ public class RoomDetailPage {
 		}
 		
 		return result;
+	}
+	
+	// CallToAction
+	public static WebElement purchase() {
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='CTAButton_buttonWrap']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).findElement(By.cssSelector("button > span")).getText().equals("바로 예약하기")) {
+
+				element = elements.get(i).findElement(By.cssSelector("button"));
+				break;
+			}
+		}
+
+		return element;
 	}
 	
 	/*

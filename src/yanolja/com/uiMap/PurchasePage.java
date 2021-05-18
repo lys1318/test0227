@@ -28,7 +28,7 @@ public class PurchasePage {
 	
 	// point
 	public static WebElement point() {
-		element = Browser.driver().findElement(By.cssSelector("div[class='use-available-point'] > button"));
+		element = Browser.driver().findElement(By.cssSelector("div[class='css-1jnrt8'] > div:nth-child(2) > button"));
 
 		return element;
 	}
@@ -42,7 +42,17 @@ public class PurchasePage {
 	
 	// agreeAll
 	public static WebElement agreeAll() {
-		element = Browser.driver().findElement(By.cssSelector("section[class^='reservation-cancel-terms-container'] > div:nth-child(2) > div:nth-child(1) > section > div[class^='checkbox-icon-container no-select']"));
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("label[class*='12zmth7']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			System.out.println(elements.get(i).getText());
+			if (elements.get(i).getText().equals("전체동의하기")) {
+
+				element = elements.get(i).findElement(By.cssSelector("div > div"));
+				break;
+			}
+		}
 
 		return element;
 	}
@@ -63,7 +73,7 @@ public class PurchasePage {
 
 	// order
 	public static WebElement order() {
-		element = Browser.driver().findElement(By.cssSelector("div[class^='order-action-container'] > button"));
+		element = Browser.driver().findElement(By.cssSelector("div[class^='css-1hw29i9'] > form > button"));
 
 		return element;
 	}

@@ -1,5 +1,7 @@
 package yanolja.com.uiMap;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -25,8 +27,17 @@ public class LeisurePDPPage {
 	}
 	
 	// CallToAction
-	public static WebElement callToAction() {
-		element = Browser.driver().findElement(By.cssSelector("button[class*='CallToActionButton']"));
+	public static WebElement purchase() {
+		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='CTAButton_buttonWrap']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if (elements.get(i).findElement(By.cssSelector("button > span")).getText().equals("바로 구매하기")) {
+
+				element = elements.get(i).findElement(By.cssSelector("button"));
+				break;
+			}
+		}
 
 		return element;
 	}

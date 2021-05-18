@@ -1,6 +1,7 @@
 package yanolja.com.pageObject;
 
 import io.qameta.allure.Allure;
+import yanolja.com.uiMap.RoomDetailPage;
 import yanolja.com.uiMap.TrainPage;
 import yanolja.com.utility.Log;
 import yanolja.com.utility.Util;
@@ -249,5 +250,22 @@ public class Train {
 		
 		Log.info("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인 > 예약하기를 선택 하였습니다.");
 		Allure.step("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인 > 예약하기를 선택 하였습니다.");
+	}
+	
+	public static void purchase() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.visibilityOf(TrainPage.purchase());
+
+		TrainPage.purchase().click();
+
+		Log.info("상세 > 바로 예약하기를 선택 하였습니다.");
+		Allure.step("상세 > 바로 예약하기를 선택 하였습니다.");
+
 	}
 }

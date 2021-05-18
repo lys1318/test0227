@@ -17,7 +17,6 @@ import yanolja.com.pageObject.Home;
 import yanolja.com.pageObject.LeisurePDP;
 import yanolja.com.pageObject.LeisurePLP;
 import yanolja.com.pageObject.Login;
-import yanolja.com.pageObject.OrderComplete;
 import yanolja.com.pageObject.Purchase;
 import yanolja.com.pageObject.myYanolja;
 import yanolja.com.pageObject.sHomeLeisure;
@@ -82,7 +81,7 @@ public class YanoljaLeisureTicket {
 			
 			LeisurePDP.countUp();
 			
-			LeisurePDP.callToAction();
+			LeisurePDP.purchase();
 			
 			Purchase.point();
 			
@@ -91,8 +90,6 @@ public class YanoljaLeisureTicket {
 			Purchase.order();
 			
 			Thread.sleep(10000);
-			
-			OrderComplete.orderComplete();
 			
 			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
@@ -140,7 +137,7 @@ public class YanoljaLeisureTicket {
 			
 			LeisurePDP.countUp();
 			
-			LeisurePDP.callToAction();
+			LeisurePDP.purchase();
 			
 			Thread.sleep(5000);
 			
@@ -184,7 +181,7 @@ public class YanoljaLeisureTicket {
 			
 			LeisurePDP.countUp();
 			
-			LeisurePDP.callToAction();
+			LeisurePDP.purchase();
 			
 			Purchase.point();
 			
@@ -193,8 +190,6 @@ public class YanoljaLeisureTicket {
 			Purchase.order();
 			
 			Thread.sleep(10000);
-			
-			OrderComplete.orderComplete();
 			
 			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
@@ -236,7 +231,7 @@ public class YanoljaLeisureTicket {
 			
 			LeisurePDP.countUp();
 			
-			LeisurePDP.callToAction();
+			LeisurePDP.purchase();
 						
 			Thread.sleep(5000);
 			
