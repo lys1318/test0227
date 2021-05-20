@@ -104,9 +104,9 @@ public class YanoljaTrainTicket {
 			
 			Purchase.paymentKakao();
 			
-			Purchase.trainTicketOrderAgreeAll();
+			Purchase.agreeAll();
 			
-			Purchase.trainTicketOrder();
+			Purchase.order();
 			
 			Thread.sleep(12000);
 			
@@ -180,9 +180,9 @@ public class YanoljaTrainTicket {
 			
 			Purchase.point();
 			
-			Purchase.trainTicketOrderAgreeAll();
+			Purchase.agreeAll();
 			
-			Purchase.trainTicketOrder();
+			Purchase.order();
 			
 			Thread.sleep(12000);
 			

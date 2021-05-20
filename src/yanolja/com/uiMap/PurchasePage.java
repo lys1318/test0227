@@ -21,7 +21,7 @@ public class PurchasePage {
 
 	// birthday
 	public static WebElement birthday() {
-		element = Browser.driver().findElement(By.cssSelector("section[class='train-passenger-input-content'] > div:nth-child(5) > div > section > section > div > input"));
+		element = Browser.driver().findElement(By.name("user.birthDate"));
 
 		return element;
 	}
@@ -32,14 +32,14 @@ public class PurchasePage {
 
 		return element;
 	}
-	
+	/* 미사용 삭제 예정 
 	// trainTicketOrderAgreeAll
 	public static WebElement trainTicketOrderAgreeAll() {
 		element = Browser.driver().findElement(By.cssSelector("section[class^='train-order-terms-content'] > section > div[class^='checkbox-icon-container']"));
 
 		return element;
 	}
-	
+	*/
 	// agreeAll
 	public static WebElement agreeAll() {
 		
@@ -56,35 +56,36 @@ public class PurchasePage {
 
 		return element;
 	}
-	
+	/* 미사용 삭제 예
 	// agree
 	public static WebElement roomReservationAgreeAll() {
 		element = Browser.driver().findElement(By.cssSelector("section[class^='checkbox-content agree-item total'] > div[class^='checkbox-icon-container no-select']"));
 
 		return element;
 	}
-	
+	*/
+	/* 미사용 삭제 예정 
 	// trainTicketOrder
 	public static WebElement trainTicketOrder() {
 		element = Browser.driver().findElement(By.cssSelector("div[class^='payment-btn-container'] > div:nth-child(1) > button"));
 
 		return element;
 	}
-
+	 */
 	// order
 	public static WebElement order() {
 		element = Browser.driver().findElement(By.cssSelector("div[class^='css-1hw29i9'] > form > button"));
 
 		return element;
 	}
-	
+	/* 미사용 삭제 예정
 	// working
 	public static WebElement working() {
 		element = Browser.driver().findElement(By.cssSelector("div[class^='visit-type-container'] > button:nth-child(1)"));
 
 		return element;
 	}
-	
+	*/
 	// actionAgreeForPayment
 	public static WebElement actionAgreeForPayment() {
 		element = Browser.driver().findElement(By.cssSelector("div[class^='payment-actions'] > button:nth-child(2)"));
@@ -136,12 +137,12 @@ public class PurchasePage {
 	
 	// paymentKakao
 	public static WebElement paymentKakao() {
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("li[class^='pg-item-container']"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='css-1lpzpzn']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).findElement(By.cssSelector("div > span")).getText().equals("카카오페이")) {
+			if (elements.get(i).getText().equals("카카오페이")) {
 
-				element = elements.get(i).findElement(By.cssSelector("div > span"));
+				element = elements.get(i);
 				break;
 			}
 		}

@@ -23,7 +23,7 @@ public class Purchase {
 		Allure.step("구매하기 > 대표 탑승자 정보 > 생년월일이 입력 되었습니다.");
 
 	}
-	
+	/* 미사용 삭제 예정 
 	public static void working() {
 		try {
 			Thread.sleep(1000);
@@ -40,7 +40,7 @@ public class Purchase {
 		Allure.step("숙소 예약 > 도보 를 선택 하였습니다.");
 
 	}
-	
+	*/
 	public static void actionAgreeForPayment() {
 		try {
 			Thread.sleep(1000);
@@ -127,7 +127,7 @@ public class Purchase {
 		Allure.step("구매하기 > 결제하기 선택 되었습니다.");
 
 	}
-	
+	/* 미사용 삭제 예정 
 	public static void trainTicketOrderAgreeAll() {
 		try {
 			Thread.sleep(1000);
@@ -178,7 +178,7 @@ public class Purchase {
 		Allure.step("숙소 예약 > 규정 및 약관 동의 > 전체 동의 선택 되었습니다.");
 
 	}
-	
+	*/
 	public static void emailClear() {
 		try {
 			Thread.sleep(1000);
