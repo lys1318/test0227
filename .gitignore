@@ -5,3 +5,4 @@ test-output/
 bin/
 allure-results
 allure-result
+tokens/
