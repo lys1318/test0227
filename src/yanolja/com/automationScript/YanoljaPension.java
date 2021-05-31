@@ -18,6 +18,7 @@ import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
 import yanolja.com.utility.Log;
+import yanolja.com.utility.NewSpredSheetUtil;
 import yanolja.com.utility.Util;
 import yanolja.com.utility.spreadSheetUtil;
 
@@ -127,7 +128,7 @@ public class YanoljaPension {
 		
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			Util.ScreenShot(testResult);
-			spreadSheetUtil.failHistoryAppend(Util.failDateTime(), Constant.pageName, Constant.eventType, Constant.enviroment, Constant.desc);
+			NewSpredSheetUtil.failHistoryAppend(Util.failDateTime(), Constant.pageName, Constant.eventType, Constant.enviroment, Constant.desc);
 		}
 		Browser.close(tc_id);
 	}
