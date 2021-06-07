@@ -135,7 +135,7 @@ public class TrainPage {
 	// CallToAction
 	public static WebElement purchase() {
 		
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='CTAButton_buttonWrap']"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='CTAButtonForCart_buttonWrap']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
 			if (elements.get(i).findElement(By.cssSelector("button > span")).getText().equals("바로 예약하기")) {

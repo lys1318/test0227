@@ -49,7 +49,7 @@ public class Dilog {
 		array.forEach(json -> {
 			
 			if(time < (long)getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs")) {
-				if(getIsValid((JSONObject)json,"isValid").equals("true")) {
+				//if(getIsValid((JSONObject)json,"isValid").equals("true")) {
 					if(getJObj((JSONObject)json,"def").get("priority").equals("H")) {
 						
 						Log.info(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
@@ -57,7 +57,7 @@ public class Dilog {
 						filteredArray.add((JSONObject)json);
 						
 					}
-				}
+				//}
 			}
 			
 		});

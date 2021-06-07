@@ -10,13 +10,13 @@
 			<class name="yanolja.com.automationScript.YanoljaMotel" />
 			<class name="yanolja.com.automationScript.YanoljaPension" />
 			<class name="yanolja.com.automationScript.YanoljaHotel" />
+			<class name="yanolja.com.automationScript.YanoljaTrainTicket" />
 			<class name="yanolja.com.automationScript.YanoljaHome" />
 			<class name="yanolja.com.automationScript.YanoljaMyRoom" />
 			<class name="yanolja.com.automationScript.YanoljaPlaceList" />
 			<class name="yanolja.com.automationScript.YanoljaFlights" />
 			<class name="yanolja.com.automationScript.YanoljaExhibition" />
 			<class name="yanolja.com.automationScript.YanoljaGlobalPlace" />
-			<class name="yanolja.com.automationScript.YanoljaCart" />
 		</classes>
 	</test>
 </suite>

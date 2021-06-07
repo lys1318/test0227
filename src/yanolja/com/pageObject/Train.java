@@ -264,8 +264,8 @@ public class Train {
 
 		TrainPage.purchase().click();
 
-		Log.info("상세 > 바로 예약하기를 선택 하였습니다.");
-		Allure.step("상세 > 바로 예약하기를 선택 하였습니다.");
+		Log.info("선택한 승차권 > 바로 예약하기를 선택 하였습니다.");
+		Allure.step("선택한 승차권 > 바로 예약하기를 선택 하였습니다.");
 
 	}
 }

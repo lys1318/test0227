@@ -32,6 +32,13 @@ public class HomePage {
 
 		return element;
 	}
+	
+	// cart
+	public static WebElement cart() {
+		element = Browser.driver().findElement(By.cssSelector("button[class^='HomeTitle_button'] > img[alt='장바구니']"));
+
+		return element;
+	}
 		
 	// 퀵카테고리 > 모텔
 	public static WebElement quickCategoryMotel() {

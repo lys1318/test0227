@@ -62,6 +62,15 @@ public class Home extends LoadableComponent<Home> {
 		Allure.step("상단 검색 버튼을 선택 하였습니다.");
 	}
 	
+	public static void cart() throws InterruptedException {
+		Wait.elementToBeClickable(HomePage.cart());
+		
+		HomePage.cart().click();
+
+		Log.info("상단 카트 버튼을 선택 하였습니다.");
+		Allure.step("상단 카트 버튼을 선택 하였습니다.");
+	}
+	
 	public static void gnbHomeActive() {
 		Wait.visibilityOf(GNBPage.home());
 		

@@ -41,7 +41,7 @@ public class sHomeLeisurePage {
 	// mobileVoucherCategory
 	public static WebElement mobileVoucherCategory() {
 			
-		element = Browser.driver().findElement(By.cssSelector("div[class^='Body_container'] > section > section:nth-child(1) > button"));
+		element = Browser.driver().findElement(By.cssSelector("div[class^='Body_container'] > section > section:nth-child(2) > button"));
 		return element;
 	}
 	

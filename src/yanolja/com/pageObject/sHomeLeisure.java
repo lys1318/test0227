@@ -83,7 +83,7 @@ public class sHomeLeisure {
 		
 		sHomeLeisurePage.mobileVoucherCategoryAll().click();
 		
-		Log.info("전체 카테고리 > 모바일교환권탭 > 첫번째 카테고리 > 전체 를 선택 하였습니다.");
-		Allure.step("전체 카테고리 > 모바일교환권탭 > 첫번째 카테고리 > 전체 를 선택 하였습니다.");
+		Log.info("전체 카테고리 > 모바일교환권탭 > 카테고리 > 전체 를 선택 하였습니다.");
+		Allure.step("전체 카테고리 > 모바일교환권탭 > 카테고리 > 전체 를 선택 하였습니다.");
 	}
 }

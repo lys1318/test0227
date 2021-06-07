@@ -96,8 +96,25 @@ public class RoomDetail {
 
 		RoomDetailPage.purchase().click();
 
-		Log.info("객실 상세 > 바로 예약하기를 선택 하였습니다.");
-		Allure.step("객실 상세 > 바로 예약하기를 선택 하였습니다.");
+		Log.info("숙소 예약 > 바로 예약하기를 선택 하였습니다.");
+		Allure.step("숙소 예약 > 바로 예약하기를 선택 하였습니다.");
+
+	}
+	
+	public static void cartIn() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.visibilityOf(RoomDetailPage.cartIn());
+
+		RoomDetailPage.cartIn().click();
+
+		Log.info("숙소 예약 > 장바구니 담기를 선택 하였습니다.");
+		Allure.step("숙소 예약 > 장바구니 담기를 선택 하였습니다.");
 
 	}
 }

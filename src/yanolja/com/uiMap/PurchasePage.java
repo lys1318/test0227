@@ -74,7 +74,7 @@ public class PurchasePage {
 	 */
 	// order
 	public static WebElement order() {
-		element = Browser.driver().findElement(By.cssSelector("div[class^='css-1hw29i9'] > form > button"));
+		element = Browser.driver().findElement(By.cssSelector("button[class^='css-128od1m']"));
 
 		return element;
 	}
