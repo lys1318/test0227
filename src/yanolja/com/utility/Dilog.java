@@ -49,18 +49,20 @@ public class Dilog {
 		array.forEach(json -> {
 			
 			if(time < (long)getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs")) {
-				//if(getIsValid((JSONObject)json,"isValid").equals("true")) {
+				if(getIsValid((JSONObject)json,"isValid").equals("true")) {
 					if(getJObj((JSONObject)json,"def").get("priority").equals("H")) {
 						
 						Log.info(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
 						Allure.step(getJObj((JSONObject)json,"def").get("no").toString() + " | " + getJObj(getJObj((JSONObject)json,"raw"),"system").get("createdTs").toString() + " | " + getJObj((JSONObject)json,"def").get("priority").toString() + " | " + getJObj((JSONObject)json,"def").get("eventType").toString() + " | " + getJObj((JSONObject)json,"def").get("desc").toString());
+
 						filteredArray.add((JSONObject)json);
 						
 					}
-				//}
+				}
 			}
 			
 		});
+
 		System.out.println(filteredArray.size());
 		return filteredArray;
 		
@@ -72,7 +74,7 @@ public class Dilog {
 		flag = false;
 		
 		JSONArray array = crreatedTsFilter(getLog(pageName), time);
-
+		
 		array.forEach(json -> {
 			JSONObject def = getJObj((JSONObject)json,"def");
 			
