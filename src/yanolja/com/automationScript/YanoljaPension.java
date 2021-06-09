@@ -63,7 +63,7 @@ public class YanoljaPension {
 			Assert.fail();
 		}
 	}
-	
+
 	@Parameters("browser")
 	@Test
 	public void test_PSHome_category_click (String browser) throws InterruptedException {
@@ -119,7 +119,7 @@ public class YanoljaPension {
 			Assert.fail();
 		}
 	}
-	
+
 	@Parameters("browser")
 	@AfterMethod
 	public void takeScreenShot(ITestResult testResult, String browser) throws IOException, GeneralSecurityException {

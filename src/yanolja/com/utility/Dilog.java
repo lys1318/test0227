@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.mortbay.log.Log;
 
 import io.qameta.allure.Allure;
 import okhttp3.OkHttpClient;
@@ -62,34 +63,51 @@ public class Dilog {
 			}
 			
 		});
-
+		
 		System.out.println(filteredArray.size());
+		Log.info(filteredArray.toJSONString());
 		return filteredArray;
 		
 		
 	}
 	
-	public static boolean assertLogByDesc(String pageName, String osName, String desc, String eventType, long time) {
+	public static boolean assertLogByDesc(String pageName, String osName, String desc, String eventType, long time) throws InterruptedException {
 
 		flag = false;
+		JSONArray array = null;
 		
-		JSONArray array = crreatedTsFilter(getLog(pageName), time);
+		int retryCount = 0;
 		
-		array.forEach(json -> {
-			JSONObject def = getJObj((JSONObject)json,"def");
+		while (retryCount < 3) {
+
+			retryCount++;
 			
-			if((def.get("pageName").toString().equals(pageName)) && (def.get("eventType").toString().equals(eventType) && def.get("desc").toString().equals(desc))) {				
-				flag = true;
+			array = crreatedTsFilter(getLog(pageName), time);
+			
+			array.forEach(json -> {
+				JSONObject def = getJObj((JSONObject)json,"def");
 				
-			}
+				if((def.get("pageName").toString().equals(pageName)) && (def.get("eventType").toString().equals(eventType) && def.get("desc").toString().equals(desc))) {				
+					flag = true;
+					
+				}
+				
+			});
 			
-		});
-		
-		if(flag) {
-			Log.info("flag : " + flag);
+			if(flag == true) {
+				System.out.println("flag 값이 true 이므로 while문을 빠져 나옵니다.");
+				break;
+			} else {
+				Thread.sleep(3000);
+				System.out.println("flag 값이 false 이므로 while문을 재시도 합니다.");
+			}
 		}
 		
-		Allure.step("DiLog 확인결과 : " + flag);
+		Log.info(array.toJSONString());
+		String resultMessage = "DiLog 확인결과 : " + flag;
+		
+		Log.info(resultMessage);
+		Allure.step(resultMessage);
 		
 		return flag;
 		
