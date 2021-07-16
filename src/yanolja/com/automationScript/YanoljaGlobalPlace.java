@@ -111,9 +111,17 @@ public class YanoljaGlobalPlace {
 			time = Constant.time();
 			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
 			
+			GNB.myYanolja();
+			
+			myYanolja.loginLink();
+			
+			Login.login(Constant.TESTID, Constant.TESTPW);
+			
+			GNB.home();
+			
 			Home.quickCategoryGlobalPlace();
 			
-			sHomeGlobalPlace.sHomeThemedItem();
+			sHomeGlobalPlace.sHomeThemedItem2();
 			
 			GlobalPlace.selectRoom();
 			
@@ -153,7 +161,7 @@ public class YanoljaGlobalPlace {
 			
 			Home.quickCategoryGlobalPlace();
 			
-			sHomeGlobalPlace.sHomeThemedItem();
+			sHomeGlobalPlace.sHomeThemedItem2();
 			
 			GlobalPlace.selectRoom();
 			
@@ -205,7 +213,7 @@ public class YanoljaGlobalPlace {
 			
 			Home.quickCategoryGlobalPlace();
 			
-			sHomeGlobalPlace.sHomeThemedItem();
+			sHomeGlobalPlace.sHomeThemedItem2();
 			
 			GlobalPlace.selectRoom();
 			
@@ -219,7 +227,7 @@ public class YanoljaGlobalPlace {
 			
 			Purchase.firstName("INHO");
 			
-			Purchase.paymentKakao();
+			Purchase.point();
 			
 			Purchase.globalAgreeAll();
 			

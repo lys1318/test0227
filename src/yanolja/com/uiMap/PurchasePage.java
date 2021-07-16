@@ -28,7 +28,7 @@ public class PurchasePage {
 	
 	// point
 	public static WebElement point() {
-		element = Browser.driver().findElement(By.cssSelector("div[class='css-1jnrt8'] > div:nth-child(2) > button"));
+		element = Browser.driver().findElement(By.cssSelector("div[class='txt pointer point'] > div:nth-child(2) > button"));
 
 		return element;
 	}
@@ -137,12 +137,12 @@ public class PurchasePage {
 	
 	// paymentKakao
 	public static WebElement paymentKakao() {
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='css-1lpzpzn']"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("ul[class^='pg-items-container']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).getText().equals("카카오페이")) {
-
-				element = elements.get(i);
+			if (elements.get(i).findElement(By.cssSelector("li > div > span")).getText().equals("카카오페이")) {
+				System.out.println("카카오페이를 찾았습니다.");
+				element = elements.get(i).findElement(By.cssSelector("li > div"));
 				break;
 			}
 		}

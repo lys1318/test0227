@@ -7,7 +7,7 @@ public class Constant {
 	
 	// MAIN URL   
 	public static final String URL = "http://qa-m.yanolja.com";
-	public static final String TITLE = "야놀자 | 국내도 해외도 초특가 야놀자";
+	public static final String TITLE = "야놀자 | 여행의 모든 것, 한 번에 쉽게";
     // project 경로
     public static final String Path_project = System.getProperty("user.dir");
     public static final String DILOGDOMAIN = " https://dilog.di.yanolja.in/api/qa/logs";

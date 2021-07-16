@@ -101,6 +101,28 @@ public class PlaceListPage {
 	// 임의의 숙소   
 	public static WebElement PlaceListItem() {
 		
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_itemGroup']"));
+		
+		for (int i = 0; i < elements.size(); i++) {
+			
+			if (elements.get(i).findElement(By.cssSelector("div > a > div[class^='PlaceListItemText_area'] > div[class^='PlaceListItemText'] > div[class^='PlaceListTitle'] > strong")).getText().equals("yanolja cc")) {
+				System.out.println("yanolja cc 업체 발견!!!!!");
+				element = elements.get(i).findElement(By.cssSelector("div > a"));
+				break;
+			}
+
+		}
+
+		return element;
+		
+		//element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemBanner'] > a"));
+
+		//return element;
+	}
+	/*
+	// 임의의 숙소   
+	public static WebElement PlaceListItem() {
+		
 		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_topAdWrap'] > div[class^='PlaceListItemBanner_container']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
@@ -119,7 +141,7 @@ public class PlaceListPage {
 
 		//return element;
 	}
-	
+	*/
 	/*
 	 * // test 회사 선택 셀렉박스 public static Select slc_testCompany() { select = new
 	 * Select(Browser.driver().findElement(By.id("Company")));

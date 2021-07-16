@@ -15,5 +15,14 @@ public class sHomeGlobalPlace {
 		Log.info("해외숙소 서브홈 > 임의의 숙소를 선택 하였습니다.");
 		Allure.step("해외숙소 서브홈 > 임의의 숙소를 선택 하였습니다.");
 	}
+	
+	public static void sHomeThemedItem2() {
+		Wait.elementToBeClickable(sHomeGlobalPlacePage.sHomeThemedItem2());
+		
+		sHomeGlobalPlacePage.sHomeThemedItem2().click();
+		
+		Log.info("해외숙소 서브홈 > 임의의 숙소를 선택 하였습니다.");
+		Allure.step("해외숙소 서브홈 > 임의의 숙소를 선택 하였습니다.");
+	}
 
 }

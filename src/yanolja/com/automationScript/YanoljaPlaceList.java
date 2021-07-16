@@ -13,6 +13,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import yanolja.com.pageObject.Home;
+import yanolja.com.pageObject.PlaceList;
 import yanolja.com.pageObject.Search;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
@@ -37,6 +38,40 @@ public class YanoljaPlaceList {
 		Home home = new Home(browser);
 
 		home.get();
+	}
+	
+	@Parameters("browser")
+	@Test
+	public void test_PlaceList_click (String browser) throws InterruptedException {
+		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
+		Log.startTC(tc_id);
+		
+		Constant.pageName = "PlaceList";
+		Constant.eventType = "click";
+		Constant.desc = "숙소 목록 내 숙소 클릭";
+		
+		try {
+			time = Constant.time();
+			Log.info("테스트 시작 시간 : " + Util.longTodate(time));
+			
+			Home.search();
+			
+			Search.searchInput("춘천");
+			
+			Search.searchPlaceAutocomplete();
+			
+			Wait.loader();
+			
+			PlaceList.placeListItem();
+			
+			Thread.sleep(5000);
+			
+			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
+		
+		} catch (Exception e) {
+			Log.error(browser, tc_id, e.getMessage());
+			Assert.fail();
+		}
 	}
 	
 	@Parameters("browser")

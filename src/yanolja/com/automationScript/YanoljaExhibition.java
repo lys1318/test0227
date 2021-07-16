@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import yanolja.com.pageObject.Exhibition;
 import yanolja.com.pageObject.Home;
+import yanolja.com.pageObject.PlaceDetail;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
@@ -63,6 +64,12 @@ public class YanoljaExhibition {
 
 			Thread.sleep(5000);
 			
+			PlaceDetail.placeDetailNavBack();
+			
+			Exhibition.roomslistItem();
+
+			Thread.sleep(5000);
+			
 			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
 		
 		} catch (Exception e) {
@@ -92,7 +99,7 @@ public class YanoljaExhibition {
 			Exhibition.selectTab("국내그룹_수정X");
 			
 			Exhibition.roomslistItem();
-			
+
 			Thread.sleep(5000);
 			
 			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
