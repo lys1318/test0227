@@ -1,5 +1,7 @@
 package yanolja.com.pageObject;
 
+import org.openqa.selenium.NoSuchElementException;
+
 import io.qameta.allure.Allure;
 import yanolja.com.uiMap.CartPage;
 import yanolja.com.utility.Log;
@@ -51,7 +53,29 @@ public class Cart {
 			e.printStackTrace();
 		}
 		
-		if (CartPage.itemCount().getText().contains("총 0건")) {
+		try {
+			if (CartPage.noItemText().isDisplayed()) {
+				CartPage.back().click();
+				Log.info("장바구니 > 뒤로가기 선택 되었습니다.");
+				Allure.step("장바구니 > 뒤로가기 선택 되었습니다.");
+			}
+		} catch (NoSuchElementException e) {
+			CartPage.delete().click();
+			Log.info("장바구니 > 선택삭제 선택 되었습니다.");
+			Allure.step("장바구니 > 선택삭제 선택 되었습니다.");
+			
+			Thread.sleep(3000);
+			CartPage.popupDelete().click();
+			Log.info("장바구니 > 선택삭제 > 팝업 > 삭제하기 선택 되었습니다.");
+			Allure.step("장바구니 > 선택삭제 > 팝업 > 삭제하기 선택 되었습니다.");
+			
+			Thread.sleep(3000);
+			CartPage.back().click();
+			Log.info("장바구니 > 뒤로가기 선택 되었습니다.");
+			Allure.step("장바구니 > 뒤로가기 선택 되었습니다.");
+		}
+		/*
+		if (CartPage.noItemText().isDisplayed()) {
 			CartPage.back().click();
 			Log.info("장바구니 > 뒤로가기 선택 되었습니다.");
 			Allure.step("장바구니 > 뒤로가기 선택 되었습니다.");
@@ -70,6 +94,6 @@ public class Cart {
 			Log.info("장바구니 > 뒤로가기 선택 되었습니다.");
 			Allure.step("장바구니 > 뒤로가기 선택 되었습니다.");
 		}
-
+		*/
 	}
 }

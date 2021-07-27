@@ -28,7 +28,7 @@ public class PurchasePage {
 	
 	// point
 	public static WebElement point() {
-		element = Browser.driver().findElement(By.cssSelector("div[class='txt pointer point'] > div:nth-child(2) > button"));
+		element = Browser.driver().findElement(By.cssSelector("div[class='css-1jnrt8'] > div:nth-child(2) > button"));
 
 		return element;
 	}

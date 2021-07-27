@@ -39,8 +39,8 @@ public class CartPage {
 	}
 	
 	// itemCount
-	public static WebElement itemCount() {
-		element = Browser.driver().findElement(By.cssSelector("div[class*='item-count']"));
+	public static WebElement noItemText() {
+		element = Browser.driver().findElement(By.cssSelector("div[class*='no-item-text']"));
 
 		return element;
 	}

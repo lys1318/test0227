@@ -101,13 +101,12 @@ public class PlaceListPage {
 	// 임의의 숙소   
 	public static WebElement PlaceListItem() {
 		
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_itemGroup']"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListItemBanner_container']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
 			
-			if (elements.get(i).findElement(By.cssSelector("div > a > div[class^='PlaceListItemText_area'] > div[class^='PlaceListItemText'] > div[class^='PlaceListTitle'] > strong")).getText().equals("yanolja cc")) {
-				System.out.println("yanolja cc 업체 발견!!!!!");
-				element = elements.get(i).findElement(By.cssSelector("div > a"));
+			if (elements.get(i).findElement(By.cssSelector("a > div[class^='PlaceListItemBanner_contents'] > div:nth-child(1) > div[class^='PlaceListTitle_container'] > strong")).getText().equals("[테스트] PERIOE06")) {
+				element = elements.get(i).findElement(By.cssSelector("a"));
 				break;
 			}
 
@@ -115,9 +114,6 @@ public class PlaceListPage {
 
 		return element;
 		
-		//element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemBanner'] > a"));
-
-		//return element;
 	}
 	/*
 	// 임의의 숙소   
