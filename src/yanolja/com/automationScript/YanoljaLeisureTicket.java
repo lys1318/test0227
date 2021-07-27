@@ -1,4 +1,4 @@
-package yanolja.com.delete;
+package yanolja.com.automationScript;
 
 import static org.testng.Assert.assertEquals;
 
@@ -43,7 +43,7 @@ public class YanoljaLeisureTicket {
 
 		home.get();
 	}
-	/*
+	
 	@Parameters("browser")
 	@Test
 	public void test_LeisureOrderComplete_mobile_view (String browser) throws InterruptedException {
@@ -243,7 +243,7 @@ public class YanoljaLeisureTicket {
 			Assert.fail();
 		}
 	}
-	*/
+	
 	@Parameters("browser")
 	@AfterMethod
 	public void takeScreenShot(ITestResult testResult, String browser) throws IOException, GeneralSecurityException {
