@@ -32,6 +32,13 @@ public class PurchasePage {
 
 		return element;
 	}
+	
+	// globalPoint
+	public static WebElement globalPoint() {
+		element = Browser.driver().findElement(By.cssSelector("div[class='txt pointer point'] > div:nth-child(2) > button"));
+
+		return element;
+	}
 	/* 미사용 삭제 예정 
 	// trainTicketOrderAgreeAll
 	public static WebElement trainTicketOrderAgreeAll() {

@@ -62,7 +62,7 @@ public class YanoljaPlaceList {
 			
 			Wait.loader();
 			
-			PlaceList.placeListItem();
+			PlaceList.randomPlaceListItem();
 			
 			Thread.sleep(5000);
 			

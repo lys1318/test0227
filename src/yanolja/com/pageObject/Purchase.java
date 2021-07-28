@@ -243,6 +243,25 @@ public class Purchase {
 		Allure.step("해외숙소 예약 > 투숙객 정보 > 이름(영문) 이 입력 되었습니다.");
 	}
 	
+	public static void globalPoint() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.visibilityOf(PurchasePage.globalPoint());
+
+		PurchasePage.globalPoint().click();
+		//JavascriptExecutor executor = (JavascriptExecutor)Browser.driver();
+		//executor.executeScript("arguments[0].click();", LeisurePDPPage.countUp());
+
+		Log.info("해외숙소 예약 > 가격 및 할인 정보 > 포인트 > 전액사용 선택 되었습니다.");
+		Allure.step("해외숙소 예약 > 가격 및 할인 정보 > 포인트 > 전액사용 선택 되었습니다.");
+
+	}
+	
 	public static void globalAgreeAll() {
 		try {
 			Thread.sleep(1000);

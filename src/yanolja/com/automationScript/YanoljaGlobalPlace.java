@@ -227,7 +227,7 @@ public class YanoljaGlobalPlace {
 			
 			Purchase.firstName("INHO");
 			
-			Purchase.point();
+			Purchase.globalPoint();
 			
 			Purchase.globalAgreeAll();
 			

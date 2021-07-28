@@ -115,29 +115,16 @@ public class PlaceListPage {
 		return element;
 		
 	}
-	/*
+	
 	// 임의의 숙소   
-	public static WebElement PlaceListItem() {
+	public static WebElement randomPlaceListItem() {
 		
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='PlaceListBody_topAdWrap'] > div[class^='PlaceListItemBanner_container']"));
-		
-		for (int i = 0; i < elements.size(); i++) {
-			
-			if (elements.get(i).findElement(By.cssSelector("a > div[class^='PlaceListItemBanner_contents'] > div:nth-child(1) > div[class^='PlaceListTitle_container'] > strong")).getText().equals("[테스트] PERIOE06")) {
-				System.out.println("[테스트] PERIOE06 업체 발견!!!!!");
-				element = elements.get(i).findElement(By.cssSelector("a"));
-				break;
-			}
-
-		}
+		element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemText_container'] > a"));
 
 		return element;
 		
-		//element = Browser.driver().findElement(By.cssSelector("div[class^='PlaceListItemBanner'] > a"));
-
-		//return element;
 	}
-	*/
+	
 	/*
 	 * // test 회사 선택 셀렉박스 public static Select slc_testCompany() { select = new
 	 * Select(Browser.driver().findElement(By.id("Company")));

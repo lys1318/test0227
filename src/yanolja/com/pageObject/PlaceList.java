@@ -228,6 +228,22 @@ public class PlaceList {
 		return result;
 	}
 
+	public static void randomPlaceListItem() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.elementToBeClickable(PlaceListPage.randomPlaceListItem());
+		
+		PlaceListPage.randomPlaceListItem().click();
+
+		Log.info("임의의 숙소를 선택 하였습니다.");
+		Allure.step("임의의 숙소를 선택 하였습니다.");
+	}
+	
 	public static void placeListItem() {
 		try {
 			Thread.sleep(1000);
