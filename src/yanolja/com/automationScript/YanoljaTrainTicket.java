@@ -12,12 +12,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import yanolja.com.pageObject.Cart;
 import yanolja.com.pageObject.GNB;
 import yanolja.com.pageObject.Home;
 import yanolja.com.pageObject.Login;
+import yanolja.com.pageObject.PlaceDetail;
+import yanolja.com.pageObject.PlaceList;
 import yanolja.com.pageObject.Purchase;
+import yanolja.com.pageObject.RoomDetail;
 import yanolja.com.pageObject.Train;
 import yanolja.com.pageObject.myYanolja;
+import yanolja.com.pageObject.sHomeMotel;
 import yanolja.com.utility.Browser;
 import yanolja.com.utility.Constant;
 import yanolja.com.utility.Dilog;
@@ -25,7 +30,6 @@ import yanolja.com.utility.Log;
 import yanolja.com.utility.NewSpredSheetUtil;
 import yanolja.com.utility.Util;
 import yanolja.com.utility.Wait;
-import yanolja.com.utility.spreadSheetUtil;
 
 
 public class YanoljaTrainTicket {
@@ -45,7 +49,7 @@ public class YanoljaTrainTicket {
 	
 	@Parameters("browser")
 	@Test
-	public void test_TrainPayment_view (String browser) throws InterruptedException {
+	public void test_TrainPayment_view_and_TrainOrderComplete_view (String browser) throws InterruptedException {
 		tc_id = Thread.currentThread().getStackTrace()[1].getMethodName();
 		Log.startTC(tc_id);
 		
@@ -64,6 +68,32 @@ public class YanoljaTrainTicket {
 			Login.login(Constant.TESTID, Constant.TESTPW);
 			
 			GNB.home();
+			
+			Home.cart();
+			
+			Cart.delete();
+			
+			Home.quickCategoryMotel();
+			
+			Thread.sleep(2000);
+			
+			sHomeMotel.sHomeRegion1Depth();
+			
+			Thread.sleep(2000);
+			
+			sHomeMotel.sHomeRegion2Depth();
+			
+			Wait.loader();
+			
+			PlaceList.placeListItem();
+			
+			PlaceDetail.roomItem();
+			
+			RoomDetail.roomReserveAvailable();
+			
+			RoomDetail.cartIn();
+			
+			Browser.open(Constant.URL);
 			
 			Home.quickCategoryTrain();
 			
@@ -99,11 +129,15 @@ public class YanoljaTrainTicket {
 			
 			Train.popupOk();
 			
-			Train.purchase();
+			Train.cartIn();
+			
+			Cart.cart();
+			
+			Cart.reservation();
 			
 			Purchase.birthday("19840405");
 			
-			Purchase.paymentKakao();
+			Purchase.point();
 			
 			Purchase.agreeAll();
 			
@@ -112,13 +146,14 @@ public class YanoljaTrainTicket {
 			Thread.sleep(12000);
 			
 			assertEquals(Dilog.assertLogByDesc(Constant.pageName, Constant.enviroment, Constant.desc, Constant.eventType, time),true);
+			assertEquals(Dilog.assertLogByDesc("TrainOrderComplete", Constant.enviroment, "주문 완료 페이지 진입", "view", time),true);
 		
 		} catch (Exception e) {
 			Log.error(browser, tc_id, e.getMessage());
 			Assert.fail();
 		}
 	}
-	
+	/*
 	@Parameters("browser")
 	@Test
 	public void test_TrainOrderComplete_view (String browser) throws InterruptedException {
@@ -175,7 +210,11 @@ public class YanoljaTrainTicket {
 			
 			Train.popupOk();
 						
-			Train.purchase();
+			Train.cartIn();
+			
+			Cart.cart();
+			
+			Cart.reservation();
 			
 			Purchase.birthday("19840405");
 			
@@ -194,7 +233,7 @@ public class YanoljaTrainTicket {
 			Assert.fail();
 		}
 	}
-	
+	*/
 	@Parameters("browser")
 	@AfterMethod
 	public void takeScreenShot(ITestResult testResult, String browser) throws IOException, GeneralSecurityException {

@@ -21,7 +21,7 @@ public class PurchasePage {
 
 	// birthday
 	public static WebElement birthday() {
-		element = Browser.driver().findElement(By.name("user.birthDate"));
+		element = Browser.driver().findElement(By.name("user.birthDate_"));
 
 		return element;
 	}

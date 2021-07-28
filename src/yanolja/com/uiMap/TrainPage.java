@@ -124,21 +124,21 @@ public class TrainPage {
 
 		return element;
 	}
-	
+	/*
 	// 선택한 승차권 > 예약하기  
 	public static WebElement reservation() {
 		element = Browser.driver().findElement(By.cssSelector("div[class^='CallToActionButton_wrap'] > button"));
 
 		return element;
 	}
-	
+	*/
 	// CallToAction
-	public static WebElement purchase() {
+	public static WebElement cartIn() {
 		
 		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='CTAButtonForCart_buttonWrap']"));
 		
 		for (int i = 0; i < elements.size(); i++) {
-			if (elements.get(i).findElement(By.cssSelector("button > span")).getText().equals("바로 예약하기")) {
+			if (elements.get(i).findElement(By.cssSelector("button > span")).getText().equals("장바구니 담기")) {
 
 				element = elements.get(i).findElement(By.cssSelector("button"));
 				break;

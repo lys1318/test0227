@@ -19,8 +19,8 @@ public class Purchase {
 
 		PurchasePage.birthday().sendKeys(birthday);
 
-		Log.info("구매하기 > 대표 탑승자 정보 > 생년월일이 입력 되었습니다.");
-		Allure.step("구매하기 > 대표 탑승자 정보 > 생년월일이 입력 되었습니다.");
+		Log.info("예약 > 이용자 정보 > 생년월일이 입력 되었습니다.");
+		Allure.step("예약 > 이용자 정보 > 생년월일이 입력 되었습니다.");
 
 	}
 	/* 미사용 삭제 예정 

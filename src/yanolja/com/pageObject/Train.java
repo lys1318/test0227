@@ -235,7 +235,7 @@ public class Train {
 		Log.info("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인을 선택 하였습니다.");
 		Allure.step("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인을 선택 하였습니다.");
 	}
-	
+	/*
 	public static void reservation() {
 		try {
 			Thread.sleep(1000);
@@ -251,8 +251,8 @@ public class Train {
 		Log.info("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인 > 예약하기를 선택 하였습니다.");
 		Allure.step("검색결과 > 승차권 > 바로예매 > 바로예매팝업 > 확인 > 예약하기를 선택 하였습니다.");
 	}
-	
-	public static void purchase() {
+	*/
+	public static void cartIn() {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -260,12 +260,12 @@ public class Train {
 			e.printStackTrace();
 		}
 		
-		Wait.visibilityOf(TrainPage.purchase());
+		Wait.visibilityOf(TrainPage.cartIn());
 
-		TrainPage.purchase().click();
+		TrainPage.cartIn().click();
 
-		Log.info("선택한 승차권 > 바로 예약하기를 선택 하였습니다.");
-		Allure.step("선택한 승차권 > 바로 예약하기를 선택 하였습니다.");
+		Log.info("선택한 승차권 > 장바구니 담기를 선택 하였습니다.");
+		Allure.step("선택한 승차권 > 장바구니 담기를 선택 하였습니다.");
 
 	}
 }

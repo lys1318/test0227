@@ -18,7 +18,7 @@
 			<class name="yanolja.com.automationScript.YanoljaGlobalPlace" />
 			<class name="yanolja.com.automationScript.YanoljaLeisureTicket" />
 			<class name="yanolja.com.automationScript.YanoljaCart" />
-			<!-- <class name="yanolja.com.automationScript.YanoljaTrainTicket" /> -->
+			<class name="yanolja.com.automationScript.YanoljaTrainTicket" />
 		</classes>
 	</test>
 </suite>
