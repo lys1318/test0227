@@ -107,7 +107,7 @@ public class YanoljaTrainTicket {
 			
 			Train.destination();
 			
-			Train.searchText("부산");
+			Train.searchText("강릉");
 			
 			Train.searchResult();
 			

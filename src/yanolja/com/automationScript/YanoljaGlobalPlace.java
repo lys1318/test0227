@@ -121,6 +121,8 @@ public class YanoljaGlobalPlace {
 			
 			Home.quickCategoryGlobalPlace();
 			
+			Thread.sleep(3000);
+			
 			sHomeGlobalPlace.sHomeThemedItem2();
 			
 			GlobalPlace.selectRoom();
@@ -136,7 +138,7 @@ public class YanoljaGlobalPlace {
 			Assert.fail();
 		}
 	}
-
+	
 	@Parameters("browser")
 	@Test
 	public void test_GlobalOrder_click (String browser) throws InterruptedException {
@@ -161,6 +163,8 @@ public class YanoljaGlobalPlace {
 			
 			Home.quickCategoryGlobalPlace();
 			
+			Thread.sleep(3000);
+			
 			sHomeGlobalPlace.sHomeThemedItem2();
 			
 			GlobalPlace.selectRoom();
@@ -169,11 +173,11 @@ public class YanoljaGlobalPlace {
 			
 			Purchase.emailClear();
 			
-			Purchase.email("inho.choi@yanolja.com");
+			Purchase.email("qa_test01@yanolja.com");
 			
-			Purchase.lastName("CHOI");
+			Purchase.lastName("TEST");
 			
-			Purchase.firstName("INHO");
+			Purchase.firstName("AUTOMATION");
 			
 			Purchase.globalAgreeAll();
 			
@@ -213,6 +217,8 @@ public class YanoljaGlobalPlace {
 			
 			Home.quickCategoryGlobalPlace();
 			
+			Thread.sleep(3000);
+			
 			sHomeGlobalPlace.sHomeThemedItem2();
 			
 			GlobalPlace.selectRoom();
@@ -221,11 +227,11 @@ public class YanoljaGlobalPlace {
 			
 			Purchase.emailClear();
 			
-			Purchase.email("inho.choi@yanolja.com");
+			Purchase.email("qa_test01@yanolja.com");
 			
-			Purchase.lastName("CHOI");
+			Purchase.lastName("TEST");
 			
-			Purchase.firstName("INHO");
+			Purchase.firstName("AUTOMATION");
 			
 			Purchase.globalPoint();
 			

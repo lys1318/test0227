@@ -45,7 +45,7 @@ public class YanoljaCart {
 
 		home.get();
 	}
-	
+
 	@Parameters("browser")
 	@Test
 	public void test_PlaceHandler_view (String browser) throws InterruptedException {

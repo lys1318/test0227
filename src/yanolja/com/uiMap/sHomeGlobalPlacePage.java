@@ -30,7 +30,10 @@ public class sHomeGlobalPlacePage {
 	// 임의의 숙소   
 	public static WebElement sHomeThemedItem2() {
 		
-		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class='swiper-wrapper']"));
+		List<WebElement> elements = Browser.driver().findElements(By.cssSelector("div[class^='swiper-container']"));
+		
+		System.out.println(elements.size());
+		System.out.println(elements);
 		
 		for (int i = 0; i < elements.size(); i++) {
 			
