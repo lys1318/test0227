@@ -141,6 +141,8 @@ public class YanoljaTrainTicket {
 			
 			Purchase.agreeAll();
 			
+			Thread.sleep(3000);
+			
 			Purchase.order();
 			
 			Thread.sleep(12000);

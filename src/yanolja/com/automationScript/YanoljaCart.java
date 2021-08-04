@@ -250,6 +250,8 @@ public class YanoljaCart {
 			
 			Purchase.agreeAll();
 			
+			Thread.sleep(3000);
+			
 			Purchase.order();
 			
 			Thread.sleep(5000);
@@ -317,6 +319,8 @@ public class YanoljaCart {
 			Purchase.point();
 			
 			Purchase.agreeAll();
+			
+			Thread.sleep(3000);
 			
 			Purchase.order();
 			

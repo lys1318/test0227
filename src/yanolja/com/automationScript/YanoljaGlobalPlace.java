@@ -181,6 +181,8 @@ public class YanoljaGlobalPlace {
 			
 			Purchase.globalAgreeAll();
 			
+			Thread.sleep(3000);
+			
 			Purchase.globalOrder();
 			
 			Thread.sleep(12000);
@@ -236,6 +238,8 @@ public class YanoljaGlobalPlace {
 			Purchase.globalPoint();
 			
 			Purchase.globalAgreeAll();
+			
+			Thread.sleep(3000);
 			
 			Purchase.globalOrder();
 			

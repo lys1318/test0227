@@ -201,6 +201,8 @@ public class YanoljaMotel {
 			
 			Purchase.agreeAll();
 			
+			Thread.sleep(3000);
+			
 			Purchase.order();
 			
 			Thread.sleep(10000);

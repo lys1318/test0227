@@ -88,6 +88,8 @@ public class YanoljaLeisureTicket {
 			
 			Purchase.agreeAll();
 			
+			Thread.sleep(3000);
+			
 			Purchase.order();
 			
 			Thread.sleep(10000);
@@ -187,6 +189,8 @@ public class YanoljaLeisureTicket {
 			Purchase.point();
 			
 			Purchase.agreeAll();
+			
+			Thread.sleep(3000);
 			
 			Purchase.order();
 			
