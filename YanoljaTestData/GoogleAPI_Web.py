@@ -4,7 +4,7 @@ import logging as log
 import os
 
 
-class GoogleAPI():
+class GoogleAPI_Web():
 	
 	def setup(self):
 		scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
@@ -45,9 +45,9 @@ class GoogleAPI():
 		update_value.insert(5, '')
 		update_value.insert(6, '')
 		update_value.insert(7, '')
-		update_value.insert(9, '')
-		update_value.insert(11, 'N/A')
-		update_value.insert(12, 'N/A')
+		update_value.insert(9, 'N/A')
+		update_value.insert(10, 'N/A')
+		update_value.insert(12, '')
 		update_value[13] = str(update_value[13])
 		update_value.insert(14, ' ')
 		update_value = [update_value]
