@@ -2,7 +2,7 @@
 Library           SeleniumLibrary    WITH NAME    S
 Library           DILog.py    WITH NAME    DILog
 Library           DateTime    WITH NAME    DT
-Library           GoogleAPI.py    WITH NAME    Google
+Library           GoogleAPI_Web.py    WITH NAME    Google
 Library           RequestsLibrary    WITH NAME    Re
 Library           String
 Library           Collections
@@ -211,6 +211,7 @@ Suite Teardown
     sleep    5s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
+    sleep    3s
     Close Window
     Switch Window    ${windows}[0]
 
