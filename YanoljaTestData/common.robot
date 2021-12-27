@@ -18,6 +18,7 @@ ${memberNo}       40202024
 ${GoogleDrive_URL}    https://docs.google.com/spreadsheets/d/1trh7Lt8apTJPo-RsXNtspcfj2VZF5gjWfBYm2EyXnlU/edit#gid=887848623
 ${WORKSHEET}      LogAutoTEST4
 ${AUTHORIZATION}    eyJtZW1iZXJObyI6NDAyMDIwMjQsImNnbnRJZCI6ImFwLW5vcnRoZWFzdC0yJTNBMWI2YWQ5ZDctNzgxNC00ZTljLThiNWUtYjJhMTI5OTBhMjhlIn0=
+${CURDIR}         ${EMPTY}
 
 *** Keywords ***
 Suite Setup
@@ -55,7 +56,7 @@ Suite Teardown
     sleep    1s
 
 이메일로 로그인 화면 오픈
-    Open Browser    https://qa-m.yanolja.com/emaillogin?redirect=/mypage    Chrome    executable_path=${executable_path}
+    Open Browser    https://qa-m.yanolja.com/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}
 
 홈 화면 오픈 (테스트용)
     Open Browser    https://qa-m.yanolja.com    Chrome    executable_path=${executable_path}
