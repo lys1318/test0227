@@ -161,6 +161,7 @@ Suite Teardown
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:ThemePlaceItem_image__2_Itg
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:_place_no__container__1FhXY
     sleep    1s
@@ -499,14 +500,12 @@ DILog 조회 및 검증
     [Arguments]    ${status}    ${work_sheet}    ${case_no}
     ${status}    Set Variable If    ${status}    Pass    Fail
     ${cell}    Evaluate    ${case_no} + 13
-    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    L${cell}    ${status}
+    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    M${cell}    ${status}
 
 구글 스프레드 시트 결과 업데이트_플러스
     [Arguments]    ${status}    ${work_sheet}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
     ${status}    Set Variable If    ${status}    Pass    Fail
     ${cell}    Evaluate    ${case_no} + 13
-    Comment    Google.Write Value On Cell    ${GoogleDrive_URL}    LogAutoTEST    L${cell}    ${status}
     @{update_value}    Run Keyword If    '${status}' == 'Pass'    Create List    ${case_no}    ${response}[priority]    ${class}    ${response}[pageName]    ${response}[desc] (v${response}[version])    ${response}[eventType]    ${status}    ${response}
     ...    ELSE    Create List    ${case_no}    ${EMPTY}    ${class}    ${page_name}    ${EMPTY}    ${event_type}    ${status}    ${EMPTY}
-    Comment    @{update_value}    Run Keyword Unless    '${status}' == 'Pass'    Create List    ${case_no}    ${EMPTY}    ${class}    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${status}    ${EMPTY}
     Google.Batch Update    ${GoogleDrive_URL}    ${work_sheet}    B${cell}:P${cell}    @{update_value}
