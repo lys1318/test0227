@@ -52,6 +52,7 @@ Suite Teardown
     ${cookie}    Get Cookie    cgntId
     ${cgntId}    Replace String    ${cookie.value}    %3A    :
     Set Global Variable    ${CGNTID}    ${cgntId}
+    Log To Console    ${CGNTID}
     sleep    1s
 
 이메일로 로그인 화면 오픈
