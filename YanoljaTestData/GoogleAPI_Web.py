@@ -45,10 +45,7 @@ class GoogleAPI_Web():
 		update_value.insert(5, '')
 		update_value.insert(6, '')
 		update_value.insert(7, '')
-		update_value.insert(9, 'N/A')
-		update_value.insert(10, 'N/A')
-		update_value.insert(12, '')
-		update_value[13] = str(update_value[13])
+		update_value[10] = str(update_value[10])
 		update_value.insert(14, ' ')
 		update_value = [update_value]
 		log.info(worksheet.batch_update([{

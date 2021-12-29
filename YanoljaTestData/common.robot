@@ -15,8 +15,8 @@ ${totalTime}      30s
 ${checkTime}      3s
 ${CGNTID}         ${EMPTY}
 ${memberNo}       40202024
-${GoogleDrive_URL}    https://docs.google.com/spreadsheets/d/1trh7Lt8apTJPo-RsXNtspcfj2VZF5gjWfBYm2EyXnlU/edit#gid=887848623
-${WORKSHEET}      LogAutoTEST4
+${GoogleDrive_URL}    https://docs.google.com/spreadsheets/d/1GRjMsn1f8Xv_Kfz9aikRgPDPl4CjdjMYQS_f89gNaIg/edit#gid=1409885317
+${WORKSHEET}      PC_Web
 ${AUTHORIZATION}    eyJtZW1iZXJObyI6NDAyMDIwMjQsImNnbnRJZCI6ImFwLW5vcnRoZWFzdC0yJTNBMWI2YWQ5ZDctNzgxNC00ZTljLThiNWUtYjJhMTI5OTBhMjhlIn0=
 
 *** Keywords ***
@@ -494,7 +494,7 @@ DILog 조회 및 검증
     [Arguments]    ${class}    ${page_name}    ${event_type}    ${case_no}    ${date}    ${desc}=${EMPTY}    ${count}=1
     ${status}    ${response}    DILog.Get Log Page Name Event Type    ${page_name}    ${event_type}    ${date}    ${desc}    ${count}    ${CGNTID}
     Run Keyword If    ${status}    Set Test Message    설명 : ${response}[desc]\n페이지명 : ${response}[pageName]\n이벤트타입 : ${response}[eventType]\n버전 : ${response}[version] \n야놀자 앱 버전 : ${response}[app_ver]\nOS 이름 : ${response}[os_name]\n로그 기록 시간 : ${response}[time]
-    구글 스프레드 시트 결과 업데이트    ${status}    LogAutoTEST    ${case_no}
+    구글 스프레드 시트 결과 업데이트    ${status}    ${WORKSHEET}    ${case_no}
     구글 스프레드 시트 결과 업데이트_플러스    ${status}    ${WORKSHEET}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
     Should Be True    ${status}
 
