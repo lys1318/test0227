@@ -4,7 +4,7 @@ import logging as log
 import os
 
 
-class GoogleAPI_Web():
+class GoogleAPI():
 	
 	def setup(self):
 		scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
@@ -33,7 +33,7 @@ class GoogleAPI_Web():
 		doc = gc.open_by_url(url)
 		worksheet = doc.worksheet(worksheet)
 
-		log.info(worksheet.update_acell(cell, value))
+		log.info(worksheet.update_acell(cell, str(value)))
 
 
 	def batch_update(self, url, worksheet, update_range, *update_value):
@@ -42,13 +42,24 @@ class GoogleAPI_Web():
 		worksheet = doc.worksheet(worksheet)
 
 		update_value = list(update_value)
+		print("TEST")
+		print(update_value)
+		print("TEST")
 		update_value.insert(5, '')
 		update_value.insert(6, '')
 		update_value.insert(7, '')
-		update_value[10] = str(update_value[10])
-		update_value.insert(14, ' ')
+		update_value.insert(10, '')
+		update_value.insert(11, '')
+		update_value[12] = str(update_value[12])
+		#update_value[7] = str(update_value[7])
+		#update_value.insert(14, ' ')
 		update_value = [update_value]
+		print(update_value)
 		log.info(worksheet.batch_update([{
+				'range'		: update_range,
+				'values'	: update_value
+			}]))
+		print(worksheet.batch_update([{
 				'range'		: update_range,
 				'values'	: update_value
 			}]))	

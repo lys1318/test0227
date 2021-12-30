@@ -2,7 +2,7 @@
 Library           SeleniumLibrary    WITH NAME    S
 Library           DILog.py    WITH NAME    DILog
 Library           DateTime    WITH NAME    DT
-Library           GoogleAPI_Web.py    WITH NAME    Google
+Library           GoogleAPI.py    WITH NAME    Google
 Library           RequestsLibrary    WITH NAME    Re
 Library           String
 Library           Collections
@@ -18,11 +18,13 @@ ${memberNo}       40202024
 ${GoogleDrive_URL}    https://docs.google.com/spreadsheets/d/1GRjMsn1f8Xv_Kfz9aikRgPDPl4CjdjMYQS_f89gNaIg/edit#gid=1409885317
 ${WORKSHEET}      PC_Web
 ${AUTHORIZATION}    eyJtZW1iZXJObyI6NDAyMDIwMjQsImNnbnRJZCI6ImFwLW5vcnRoZWFzdC0yJTNBMWI2YWQ5ZDctNzgxNC00ZTljLThiNWUtYjJhMTI5OTBhMjhlIn0=
+${TEST_PHASE}     1
 
 *** Keywords ***
 Suite Setup
     로그인 후 cgntId 구하기
     [API_SET] 장바구니 조회 후 모두 삭제
+    구글시트 테스트 수행 날짜 업데이트
 
 Suite Teardown
     [API_SET] 오늘 자 장바구니 주문 전체 예약 취소
@@ -494,15 +496,19 @@ DILog 조회 및 검증
     [Arguments]    ${class}    ${page_name}    ${event_type}    ${case_no}    ${date}    ${desc}=${EMPTY}    ${count}=1
     ${status}    ${response}    DILog.Get Log Page Name Event Type    ${page_name}    ${event_type}    ${date}    ${desc}    ${count}    ${CGNTID}
     Run Keyword If    ${status}    Set Test Message    설명 : ${response}[desc]\n페이지명 : ${response}[pageName]\n이벤트타입 : ${response}[eventType]\n버전 : ${response}[version] \n야놀자 앱 버전 : ${response}[app_ver]\nOS 이름 : ${response}[os_name]\n로그 기록 시간 : ${response}[time]
-    구글 스프레드 시트 결과 업데이트    ${status}    ${WORKSHEET}    ${case_no}
-    구글 스프레드 시트 결과 업데이트_플러스    ${status}    ${WORKSHEET}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
+    Comment    구글 스프레드 시트 결과 업데이트    ${status}    ${WORKSHEET}    ${case_no}
+    Run Keyword If    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트_플러스    ${status}    ${WORKSHEET}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
+    Run Keyword Unless    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트    ${status}    ${WORKSHEET}    ${case_no}    ${response}
     Should Be True    ${status}
 
 구글 스프레드 시트 결과 업데이트
-    [Arguments]    ${status}    ${work_sheet}    ${case_no}
+    [Arguments]    ${status}    ${work_sheet}    ${case_no}    ${response}
     ${status}    Set Variable If    ${status}    Pass    Fail
     ${cell}    Evaluate    ${case_no} + 13
-    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    M${cell}    ${status}
+    # 결과 업데이트
+    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    L${cell}    ${status}
+    # 응답 업데이트
+    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    O${cell}    ${response}
 
 구글 스프레드 시트 결과 업데이트_플러스
     [Arguments]    ${status}    ${work_sheet}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
@@ -511,3 +517,7 @@ DILog 조회 및 검증
     @{update_value}    Run Keyword If    '${status}' == 'Pass'    Create List    ${case_no}    ${response}[priority]    ${class}    ${response}[pageName]    ${response}[desc] (v${response}[version])    ${response}[eventType]    ${status}    ${response}
     ...    ELSE    Create List    ${case_no}    ${EMPTY}    ${class}    ${page_name}    ${EMPTY}    ${event_type}    ${status}    ${EMPTY}
     Google.Batch Update    ${GoogleDrive_URL}    ${work_sheet}    B${cell}:P${cell}    @{update_value}
+
+구글시트 테스트 수행 날짜 업데이트
+    ${date}    DT.Get Current Date    result_format=%Y.%m.%d
+    Google.Write Value On Cell    ${GoogleDrive_URL}    ${WORKSHEET}    Q7    ${date}
