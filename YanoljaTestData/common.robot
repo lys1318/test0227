@@ -181,6 +181,7 @@ Suite Teardown
 
 지역 서브홈 > 지도 클릭
     ${listTitle}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:RegionhomeMapInfo_active__3ZXSV
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@aria-label='Map']
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${listTitle}    ${title}
@@ -229,6 +230,7 @@ Suite Teardown
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    검색
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:SearchInput_input__342U2    ${keyword}
+    sleep    1s
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:KeywordHighlighted_text__gX5_U
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:GlobalPlaceListItem_title__3vXxU
     Should Be Equal    ${title}    시 피닉스 호텔
