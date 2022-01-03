@@ -223,7 +223,34 @@ Suite Teardown
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:GlobalPlaceDetailBody_container__emEX3
     sleep    1s
 
+해외숙소 서브홈 > 숙소 검색
+    [Arguments]    ${keyword}
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceHomeSearch_input__xqhtJ
+    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    검색
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:SearchInput_input__342U2    ${keyword}
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:KeywordHighlighted_text__gX5_U
+    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:GlobalPlaceListItem_title__3vXxU
+    Should Be Equal    ${title}    시 피닉스 호텔
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceListItem_title__3vXxU
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:GlobalPlaceDetailBody_container__emEX3
+    sleep    1s
+
 해외숙소 상세 > 해외숙소 예약하기 진입
+    FOR    ${index}    IN RANGE    10
+        sleep    3s
+        ${btn}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='RectButton_label__WcAp7'])[1]
+        IF    '${btn}' == '날짜 변경하기'
+        Execute Javascript    window.scrollTo(0, 500)
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceCommonUnbookableInfo_changeDateBtn__2A0ra
+        ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+        Should Be Equal    ${title}    날짜 선택
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//*[text()='체크아웃'])[2]
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '체크인 검색')]
+        ELSE
+        Exit For Loop
+    END
+    END
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RectButton_label__WcAp7
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='예약하기']
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:toolbar-title

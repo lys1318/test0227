@@ -83,7 +83,7 @@ Resource          common.robot
 17~21.해외숙소 서브홈 & 상품 클릭 & 예약 & 결제
     ${date}    현재 시간 구하기
     홈 > 해외숙소 메뉴 클릭
-    해외숙소 서브홈 > 해외숙소 상품 클릭
+    해외숙소 서브홈 > 숙소 검색    시 피닉스 호텔
     해외숙소 상세 > 해외숙소 예약하기 진입
     해외숙소 예약하기 > 해외숙소 결제하기 진입
     Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalPayment    view    17    ${date}
