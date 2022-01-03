@@ -123,7 +123,7 @@ Suite Teardown
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/global/place']
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    해외숙소
-    sleep    1s
+    sleep    3s
 
 홈 > 지역 메뉴 클릭
     메인 이동
@@ -138,7 +138,7 @@ Suite Teardown
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='야놀자라이브']
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:NavigationBarHeading_title__hHbul
     Should Be Equal    ${title}    야놀자라이브
-    sleep    1s
+    sleep    3s
 
 홈 > 검색 버튼 클릭
     메인 이동
@@ -365,11 +365,13 @@ MY야놀자 > 기획전 메뉴 클릭
 KTX > 승차권 조건 선택 후 조회 버튼 클릭
     [Arguments]    ${arrival}
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TrainSHomeStationDisplay_placeholder__3yNbY
+    sleep    1s
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    도착역 선택
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:TrainSHomeStationModalTitle_input__573Rb    ${arrival}
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TrainSHomeStationModal_suggestion__24s5l
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TrainSHomeBody_datePlaceholder__hCwn1
+    sleep    1s
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    날짜 선택
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))]
