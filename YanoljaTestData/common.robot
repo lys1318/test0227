@@ -35,7 +35,7 @@ Suite Teardown
     이메일로 로그인 화면 오픈
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:username    ${username}
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:password    ${password}
-    FOR    ${index}    IN RANGE    10
+    FOR    ${index}    IN RANGE    5
         ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    class: RectButton_primary__3O9TH    class
         ${loginBtn}    Run keyword and Ignore error    Should Contain    ${attr}    RectButton_disabled__14E3B
         IF    '${loginBtn}[0]' == 'FAIL'
@@ -206,6 +206,19 @@ Suite Teardown
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='오늘']
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '적용')]
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='항공권 검색']
+    FOR    ${index}    IN RANGE    2    10
+        sleep    3s
+        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElement    class:FlightListEmpty_noSearchResult__24Glb
+        IF    '${status}[0]' == 'PASS'
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:CollapsingNavTopButtons_backButton__1NQwd
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:FlightSearchFormBody_optionHasValue__2A08R
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[${index}]
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '적용')]
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='항공권 검색']
+        ELSE
+        Exit For Loop
+    END
+    END
 
 항공권 검색결과 > 결제처 클릭
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:FlightListItem_container__23txc
@@ -379,6 +392,14 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RectButton_label__WcAp7
 
 승차권 유무 체크 후 요금조회 버튼 클릭
+    FOR    ${index}    IN RANGE    5
+        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElement    xpath://*[text()='재시도 하기']
+        IF    '${status}[0]' == 'PASS'
+        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='재시도 하기']
+        ELSE
+        Exit For Loop
+    END
+    END
     FOR    ${index}    IN RANGE    30
         ${status}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:RectButton_label__WcAp7
         IF    '${status}'=='좌석부족'

@@ -29,12 +29,12 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrder    view    5    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    Cart    view    6    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    PlaceHandler    view    7    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    impr    26    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    27    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    OrderComplete    view    31    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    Order    view    32    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    impr    28    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    29    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    OrderComplete    view    33    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    Order    view    34    ${date}
 
-08_10.기차티켓
+08_11.기차티켓
     ${date}    현재 시간 구하기
     레저티켓 장바구니 담기
     홈 > KTX 메뉴 클릭
@@ -46,9 +46,9 @@ Resource          common.robot
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    xpath://*[@name='user.birthDate_']    19850223
     예약(포인트 결제) > 예약완료
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainPayment    view    8    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    10    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    11    ${date}
 
-09_25.레저티켓 예약
+09_26.레저티켓(일반) 예약
     ${date}    현재 시간 구하기
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
@@ -56,16 +56,26 @@ Resource          common.robot
     레저 상세 > 예약
     예약(포인트 결제) > 예약완료
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrder    view    25    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrder    view    26    ${date}
 
-11_12.지역 서브홈 & 지도 페이지뷰
+10_27.레저티켓(모바일) 예약
+    ${date}    현재 시간 구하기
+    홈 > 검색 버튼 클릭
+    검색 > 레저/티켓탭 클릭
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [KFC] 징거버거세트
+    레저 상세 > 예약
+    예약(포인트 결제) > 예약완료
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrderComplete    view    10    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrder    view    27    ${date}
+
+12_13.지역 서브홈 & 지도 페이지뷰
     ${date}    현재 시간 구하기
     홈 > 지역 메뉴 클릭
     지역 서브홈 > 지도 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    지역홈    RegionMap    view    11    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    지역홈    RegionHome    view    12    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    지역홈    RegionMap    view    12    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    지역홈    RegionHome    view    13    ${date}
 
-13~16_기획전
+14~17_기획전
     ${date}    현재 시간 구하기
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 기획전 메뉴 클릭
@@ -75,70 +85,70 @@ Resource          common.robot
     go back
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='레저그룹_수정X']
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:LeisureListItem_body__1iNjJ
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    13    ${date}    그룹별, 개별 상품별 노출(국내숙소)
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내레져)    count=2
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    15    ${date}    그룹별, 개별 상품 클릭(국내숙소)
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    16    ${date}    그룹별, 개별 상품 클릭(국내레져)
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    15    ${date}    그룹별, 개별 상품별 노출(국내레져)    count=2
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    16    ${date}    그룹별, 개별 상품 클릭(국내숙소)
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    17    ${date}    그룹별, 개별 상품 클릭(국내레져)
 
-17~21.해외숙소 서브홈 & 상품 클릭 & 예약 & 결제
+18~22.해외숙소 서브홈 & 상품 클릭 & 예약 & 결제
     ${date}    현재 시간 구하기
     홈 > 해외숙소 메뉴 클릭
     해외숙소 서브홈 > 숙소 검색    시 피닉스 호텔
     해외숙소 상세 > 해외숙소 예약하기 진입
     해외숙소 예약하기 > 해외숙소 결제하기 진입
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalPayment    view    17    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    view    18    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    click    19    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GHome    view    20    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GPlaceDetail    view    21    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalPayment    view    18    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    view    19    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    click    20    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GHome    view    21    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GPlaceDetail    view    22    ${date}
 
-22.무한쿠폰룸 서브홈 진입
+23.무한쿠폰룸 서브홈 진입
     ${date}    현재 시간 구하기
     홈 > 무한쿠폰룸 메뉴 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    마이룸    MyRoomHome    view    22    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    마이룸    MyRoomHome    view    23    ${date}
 
-23.게하 서브홈 진입
+24.게하 서브홈 진입
     ${date}    현재 시간 구하기
     홈 > 게하 메뉴 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    게스트하우스    GHHome    view    23    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    게스트하우스    GHHome    view    24    ${date}
 
-24.모텔 서브홈 진입
+25.모텔 서브홈 진입
     ${date}    현재 시간 구하기
     홈 > 모텔 메뉴 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내모텔    MTHome    view    24    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내모텔    MTHome    view    25    ${date}
 
-28~30.항공홈 & 검색결과 & 결제처 선택
+30~32.항공홈 & 검색결과 & 결제처 선택
     ${date}    현재 시간 구하기
     홈 > 항공권 메뉴 클릭
     항공권 검색
     항공권 검색결과 > 결제처 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    view    28    ${date}    검색결과 페이지뷰
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    click    29    ${date}    가격리스트에서 결제처선택
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightHome    view    30    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    view    30    ${date}    검색결과 페이지뷰
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    click    31    ${date}    가격리스트에서 결제처선택
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightHome    view    32    ${date}
 
-33~35.호텔 서브홈 & 테마형/리스트형 상품 클릭
+35~37.호텔 서브홈 & 테마형/리스트형 상품 클릭
     ${date}    현재 시간 구하기
     홈 > 호텔 메뉴 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    view    33    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    view    35    ${date}
     서브홈 > 테마형그룹 상품 클릭
     Go Back
     서브홈 > 리스트형 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    click    34    ${date}    테마형그룹 추천 상품-카테고리별 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    click    35    ${date}    리스트형 추천상품 - 상품 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    click    36    ${date}    테마형그룹 추천 상품-카테고리별 상품 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    click    37    ${date}    리스트형 추천상품 - 상품 클릭
 
-36~38.펜션 서브홈 & 테마형/리스트형 상품 클릭
+38~40.펜션 서브홈 & 테마형/리스트형 상품 클릭
     ${date}    현재 시간 구하기
     홈 > 펜션 메뉴 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    view    36    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    view    38    ${date}
     서브홈 > 테마형그룹 상품 클릭
     Go Back
     서브홈 > 리스트형 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    37    ${date}    테마형그룹 추천 상품-카테고리별 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    38    ${date}    리스트형 추천상품 - 상품 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    39    ${date}    테마형그룹 추천 상품-카테고리별 상품 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    40    ${date}    리스트형 추천상품 - 상품 클릭
 
-39_40.국내숙소 추천 위젯 테마 & 상품 클릭
+41_42.국내숙소 추천 위젯 테마 & 상품 클릭
     ${date}    현재 시간 구하기
     홈 > 국내숙소 추천 위젯
     국내숙소 추천 위젯 > 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    39    ${date}    국내숙소 추천 위젯 테마(숙소카테고리) 숙소단위 impression    count=4
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    40    ${date}    국내숙소 추천 위젯 > 호텔/펜션 각 추천 상품 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    41    ${date}    국내숙소 추천 위젯 테마(숙소카테고리) 숙소단위 impression    count=4
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    42    ${date}    국내숙소 추천 위젯 > 호텔/펜션 각 추천 상품 클릭
