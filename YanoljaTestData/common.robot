@@ -344,7 +344,7 @@ RDP > 숙박 예약
 레저 상세 > 예약
     sleep    1s
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_primary__3O9TH
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//*[text()='+'])[2]
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='+']
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_primary__3O9TH
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:center
     Should Be Equal    ${title}    예약
