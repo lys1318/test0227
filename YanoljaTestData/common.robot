@@ -393,7 +393,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭
 
 승차권 유무 체크 후 요금조회 버튼 클릭
     FOR    ${index}    IN RANGE    5
-        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElement    xpath://*[text()='재시도 하기']
+        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Get WebElement    xpath://*[text()='재시도 하기']
         IF    '${status}[0]' == 'PASS'
         Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='재시도 하기']
         ELSE
