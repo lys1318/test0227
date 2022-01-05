@@ -101,7 +101,7 @@ Suite Teardown
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
     ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    게스트하우스
+    Should Be Equal    ${title}    게하/한옥
 
 홈 > 항공권 메뉴 클릭
     메인 이동
@@ -121,7 +121,7 @@ Suite Teardown
     메인 이동
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/global/place']
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/global/place']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[text()='해외숙소'])[1]
     Should Be Equal    ${title}    해외숙소
     sleep    3s
 
@@ -240,7 +240,7 @@ Suite Teardown
 해외숙소 서브홈 > 숙소 검색
     [Arguments]    ${keyword}
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceHomeSearch_input__xqhtJ
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath://*[text()='검색']
     Should Be Equal    ${title}    검색
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:SearchInput_input__342U2    ${keyword}
     sleep    1s
@@ -423,7 +423,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [테스트] 야놀자 놀이공원
     sleep    1s
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_primary__3O9TH
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//*[text()='+'])[2]
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='+']
     장바구니 담기
 
 [API] 장바구니 조회
