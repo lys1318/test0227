@@ -33,24 +33,21 @@ Suite Teardown
 
 로그인 후 cgntId 구하기
     이메일로 로그인 화면 오픈
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:username    ${username}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:password    ${password}
+    InputText Element[텍스트 입력하기]    id:username    ${username}
+    InputText Element[텍스트 입력하기]    id:password    ${password}
     FOR    ${index}    IN RANGE    5
-        ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    class: RectButton_primary__3O9TH    class
+        ${attr}    Get Element Attribute[속성값 가져오기]    class: RectButton_primary__3O9TH    class
         ${loginBtn}    Run keyword and Ignore error    Should Contain    ${attr}    RectButton_disabled__14E3B
-        IF    '${loginBtn}[0]' == 'FAIL'
-        Exit For Loop
-        ELSE
-        Reload Page
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:username    ${username}
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:password    ${password}
+        Run Keyword If    '${loginBtn}[0]' == 'FAIL'    Exit For Loop
+        Run Keyword If    '${loginBtn}[0]' == 'PASS'    Reload Page
+        Run Keyword If    '${loginBtn}[0]' == 'PASS'    InputText Element[텍스트 입력하기]    id:username    ${username}
+        Run Keyword If    '${loginBtn}[0]' == 'PASS'    InputText Element[텍스트 입력하기]    id:password    ${password}
     END
-    END
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='로그인']
+    Click Element[버튼 클릭]    xpath://*[text()='로그인']
     sleep    1s
-    ${loginYn}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath://*[@class='MyNick_nickname__2Scd9']/div
+    ${loginYn}    Get Text[텍스트 가져오기]    xpath://*[@class='MyNick_nickname__2Scd9']/div
     Should Be Equal    ${loginYn}    냐옹냐옹풀향기0001
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='포인트']
+    Click Element[버튼 클릭]    xpath://*[text()='포인트']
     ${cookie}    Get Cookie    cgntId
     ${cgntId}    Replace String    ${cookie.value}    %3A    :
     Set Global Variable    ${CGNTID}    ${cgntId}
@@ -72,159 +69,159 @@ Suite Teardown
 
 홈 > 국내숙소 추천 위젯
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:HomePlaceRecommend_container__380T6
+    Element Visible[요소 표시 여부 체크]    class:HomePlaceRecommend_container__380T6
     sleep    1s
 
 홈 > 모텔 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/motel']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/motel']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/motel']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/motel']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    모텔
 
 홈 > 호텔 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/hotel']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/hotel']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/hotel']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/hotel']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    호텔/리조트
 
 홈 > 펜션 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/pension']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/pension']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/pension']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/pension']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    펜션/풀빌라
 
 홈 > 게하 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    게하/한옥
 
 홈 > 항공권 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/flights']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/flights']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:flights_title__35srd
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/flights']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/flights']
+    ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
     Should Be Equal    ${title}    항공권
 
 홈 > 무한쿠폰룸 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/motel?myRoom=1']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/motel?myRoom=1']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/motel?myRoom=1']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/motel?myRoom=1']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    무한쿠폰룸
 
 홈 > 해외숙소 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/global/place']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/global/place']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[text()='해외숙소'])[1]
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/global/place']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/global/place']
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[text()='해외숙소'])[1]
     Should Be Equal    ${title}    해외숙소
     sleep    3s
 
 홈 > 지역 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[text()='강원도야놀자']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='강원도야놀자']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:RegionhomeMain_title__2GftR
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='강원도야놀자']
+    Click Element[버튼 클릭]    xpath://*[text()='강원도야놀자']
+    ${title}    Get Text[텍스트 가져오기]    class:RegionhomeMain_title__2GftR
     Should Be Equal    ${title}    강원도
 
 홈 > 라이브 방송 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[text()='야놀자라이브']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='야놀자라이브']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:NavigationBarHeading_title__hHbul
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='야놀자라이브']
+    Click Element[버튼 클릭]    xpath://*[text()='야놀자라이브']
+    ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
     Should Be Equal    ${title}    야놀자라이브
     sleep    3s
 
 홈 > 검색 버튼 클릭
     메인 이동
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@alt='검색']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@alt='검색']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@alt='검색']
+    Click Element[버튼 클릭]    xpath://*[@alt='검색']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    검색
 
 홈 > MY야놀자 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    //*[@href='/mypage']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    //*[@href='/mypage']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:mypage_title__1NaG1
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='/mypage']
+    Click Element[버튼 클릭]    xpath://*[@href='/mypage']
+    ${title}    Get Text[텍스트 가져오기]    class:mypage_title__1NaG1
     Should Be Equal    ${title}    MY 야놀자
 
 홈 > KTX 메뉴 클릭
     메인 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    xpath://*[@href='https://qa-m.yanolja.com/train']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@href='https://qa-m.yanolja.com/train']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/train']
+    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/train']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    KTX
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:ThemePlaceItem_image__2_Itg
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:_place_no__container__1FhXY
+    Click Element[버튼 클릭]    class:ThemePlaceItem_image__2_Itg
+    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
     sleep    1s
 
 서브홈 > 테마형그룹 상품 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:SubhomeThemedItems_container__2BOx-
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:ThemePlaceItem_container__1Clhm
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:_place_no__container__1FhXY
+    Element Visible[요소 표시 여부 체크]    class:SubhomeThemedItems_container__2BOx-
+    Click Element[버튼 클릭]    class:ThemePlaceItem_container__1Clhm
+    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
 서브홈 > 리스트형 상품 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:SubhomeList_container__1WIAh
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:ListItem_container__1z7jK
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:_place_no__container__1FhXY
+    Element Visible[요소 표시 여부 체크]    class:SubhomeList_container__1WIAh
+    Click Element[버튼 클릭]    class:ListItem_container__1z7jK
+    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
 지역 서브홈 > 지도 클릭
-    ${listTitle}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:RegionhomeMapInfo_active__3ZXSV
+    ${listTitle}    Get Text[텍스트 가져오기]    class:RegionhomeMapInfo_active__3ZXSV
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@aria-label='Map']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Click Element[버튼 클릭]    xpath://*[@aria-label='Map']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${listTitle}    ${title}
 
 라이브 방송 서브홈 > 특정 방송 진입
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Select Frame    id:iFrameResizer0
     sleep    3s
-    ${listTitle}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='info-title'])[1]
+    ${listTitle}    Get Text[텍스트 가져오기]    xpath:(//*[@class='info-title'])[1]
     sleep    3s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:card_wrapper
+    Click Element[버튼 클릭]    class:card_wrapper
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Select Frame    id:live-commerce-broadcast
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:HeaderTitle_title__3SXU4
+    ${title}    Get Text[텍스트 가져오기]    class:HeaderTitle_title__3SXU4
     Should Be Equal    ${listTitle}    ${title}
 
 항공권 검색
     sleep    3s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='편도']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='도착']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:FlightSearchAirportModal_searchInput__3oy24    BCN
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:FlightSearchAirportBody_searchResultRow__3e7KX
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '여행 날짜')]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='오늘']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '적용')]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='항공권 검색']
+    Click Element[버튼 클릭]    xpath://*[text()='편도']
+    Click Element[버튼 클릭]    xpath://*[text()='도착']
+    InputText Element[텍스트 입력하기]    class:FlightSearchAirportModal_searchInput__3oy24    BCN
+    Click Element[버튼 클릭]    class:FlightSearchAirportBody_searchResultRow__3e7KX
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '여행 날짜')]
+    Click Element[버튼 클릭]    xpath://*[text()='오늘']
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
+    Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
     FOR    ${index}    IN RANGE    2    10
         sleep    3s
-        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElement    class:FlightListEmpty_noSearchResult__24Glb
+        ${status}    Get Element[요소 가져오기]    class:FlightListEmpty_noSearchResult__24Glb
         IF    '${status}[0]' == 'PASS'
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:CollapsingNavTopButtons_backButton__1NQwd
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:FlightSearchFormBody_optionHasValue__2A08R
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[${index}]
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '적용')]
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='항공권 검색']
+        Click Element[버튼 클릭]    class:CollapsingNavTopButtons_backButton__1NQwd
+        Click Element[버튼 클릭]    class:FlightSearchFormBody_optionHasValue__2A08R
+        Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[${index}]
+        Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
+        Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
         ELSE
         Exit For Loop
     END
     END
 
 항공권 검색결과 > 결제처 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:FlightListItem_container__23txc
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Click Element[버튼 클릭]    class:FlightListItem_container__23txc
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    항공권 정보
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:FlightDetailProviders_providerAnchor__1t5eR
+    Click Element[버튼 클릭]    class:FlightDetailProviders_providerAnchor__1t5eR
     sleep    5s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
@@ -233,51 +230,51 @@ Suite Teardown
     Switch Window    ${windows}[0]
 
 해외숙소 서브홈 > 해외숙소 상품 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:CurationItem_price__DJzAz
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:GlobalPlaceDetailBody_container__emEX3
+    Click Element[버튼 클릭]    class:CurationItem_price__DJzAz
+    Element Visible[요소 표시 여부 체크]    class:GlobalPlaceDetailBody_container__emEX3
     sleep    1s
 
 해외숙소 서브홈 > 숙소 검색
     [Arguments]    ${keyword}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceHomeSearch_input__xqhtJ
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath://*[text()='검색']
+    Click Element[버튼 클릭]    class:GlobalPlaceHomeSearch_input__xqhtJ
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[text()='검색']
     Should Be Equal    ${title}    검색
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:SearchInput_input__342U2    ${keyword}
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:KeywordHighlighted_text__gX5_U
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:GlobalPlaceListItem_title__3vXxU
+    Click Element[버튼 클릭]    class:KeywordHighlighted_text__gX5_U
+    ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceListItem_title__3vXxU
     Should Be Equal    ${title}    시 피닉스 호텔
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceListItem_title__3vXxU
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:GlobalPlaceDetailBody_container__emEX3
+    Click Element[버튼 클릭]    class:GlobalPlaceListItem_title__3vXxU
+    Element Visible[요소 표시 여부 체크]    class:GlobalPlaceDetailBody_container__emEX3
     sleep    1s
 
 해외숙소 상세 > 해외숙소 예약하기 진입
     FOR    ${index}    IN RANGE    10
         sleep    3s
-        ${btn}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='RectButton_label__WcAp7'])[1]
+        ${btn}    Get Text[텍스트 가져오기]    xpath:(//*[@class='RectButton_label__WcAp7'])[1]
         IF    '${btn}' == '날짜 변경하기'
         Execute Javascript    window.scrollTo(0, 500)
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:GlobalPlaceCommonUnbookableInfo_changeDateBtn__2A0ra
-        ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+        Click Element[버튼 클릭]    class:GlobalPlaceCommonUnbookableInfo_changeDateBtn__2A0ra
+        ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
         Should Be Equal    ${title}    날짜 선택
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//*[text()='체크아웃'])[2]
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '체크인 검색')]
+        Click Element[버튼 클릭]    xpath:(//*[text()='체크아웃'])[2]
+        Click Element[버튼 클릭]    xpath://*[contains(text(), '체크인 검색')]
         ELSE
         Exit For Loop
     END
     END
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RectButton_label__WcAp7
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='예약하기']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:toolbar-title
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
     Should Be Equal    ${title}    해외숙소 예약
 
 해외숙소 예약하기 > 해외숙소 결제하기 진입
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:성명    이영성
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:이메일    ${username}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:성(영문)    test
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    id:이름(영문)    test
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='전체 동의']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:radius-md
+    InputText Element[텍스트 입력하기]    id:성명    이영성
+    InputText Element[텍스트 입력하기]    id:이메일    ${username}
+    InputText Element[텍스트 입력하기]    id:성(영문)    test
+    InputText Element[텍스트 입력하기]    id:이름(영문)    test
+    Click Element[버튼 클릭]    xpath://*[text()='전체 동의']
+    Click Element[버튼 클릭]    class:radius-md
     sleep    5s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
@@ -286,49 +283,49 @@ Suite Teardown
     Switch Window    ${windows}[0]
 
 하단 메뉴 홈 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TabIcon_home__1SIsl
+    Click Element[버튼 클릭]    class:TabIcon_home__1SIsl
 
 검색 > 국내숙소 검색결과 > PDP 이동
     [Arguments]    ${keyword}
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:SearchInput_input__342U2    ${keyword}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@alt='검색']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//*[@class='PlaceListItemText_container__fUIgA text-unit'])[1]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:_place_no__container__1FhXY
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Click Element[버튼 클릭]    xpath://*[@alt='검색']
+    Click Element[버튼 클릭]    xpath:(//*[@class='PlaceListItemText_container__fUIgA text-unit'])[1]
+    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
 검색 > 레저/티켓탭 클릭
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='레저/티켓']
+    Click Element[버튼 클릭]    xpath://*[text()='레저/티켓']
 
 PDP > RDP
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RectButton_label__WcAp7
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RoomItem_roomItemContainerStyle__3XjIR
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    Click Element[버튼 클릭]    class:RoomItem_roomItemContainerStyle__3XjIR
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    객실상세
 
 RDP > 숙박 예약
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='숙박 예약하기']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Click Element[버튼 클릭]    xpath://*[text()='숙박 예약하기']
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    숙박 예약
 
 숙박 예약 > 예약
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='바로 예약하기']
+    Click Element[버튼 클릭]    xpath://*[text()='바로 예약하기']
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:center
+    ${title}    Get Text[텍스트 가져오기]    class:center
     Should Be Equal    ${title}    예약
 
 예약(포인트 결제) > 예약완료
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='전액 사용하기']
-    ${amount}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:css-128od1m
+    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    0원 결제하기
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:css-128od1m
+    Click Element[버튼 클릭]    class:css-128od1m
     sleep    5s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:title
+    ${title}    Get Text[텍스트 가져오기]    class:title
     Should Be Equal    ${title}    예약 완료되었습니다.
     sleep    3s
     Close Window
@@ -336,94 +333,86 @@ RDP > 숙박 예약
 
 검색 > 레저티켓 검색결과 > 상품상세 이동
     [Arguments]    ${keyword}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:SearchInput_input__342U2    ${keyword}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:AutocompleteSection_entry__iDjdk
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:LeisureDetailTitle_title__39CSC
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Click Element[버튼 클릭]    class:AutocompleteSection_entry__iDjdk
+    ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
 
 레저 상세 > 예약
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_primary__3O9TH
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='+']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_primary__3O9TH
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:center
+    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    Click Element[버튼 클릭]    xpath://*[text()='+']
+    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    ${title}    Get Text[텍스트 가져오기]    class:center
     Should Be Equal    ${title}    예약
 
 장바구니 담기
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_secondary__3qOVd
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:PageTitleRightButton_cartCount__1WJxk
+    Click Element[버튼 클릭]    class: RectButton_secondary__3qOVd
+    Element Visible[요소 표시 여부 체크]    class:PageTitleRightButton_cartCount__1WJxk
 
 장바구니 이동
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@alt='장바구니']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath://*[text()='장바구니']
+    Click Element[버튼 클릭]    xpath://*[@alt='장바구니']
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[text()='장바구니']
     Should Be Equal    ${title}    장바구니
 
 장바구니 > 예약
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:primary
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath://*[text()='예약']
+    Click Element[버튼 클릭]    class:primary
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[text()='예약']
     Should Be Equal    ${title}    예약
 
 MY야놀자 > 기획전 메뉴 클릭
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    //*[@href='/exhibition']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    (//*[@class='ExhibitionListNav_normal__1ha2N'])[1]
+    Click Element[버튼 클릭]    //*[@href='/exhibition']
+    ${title}    Get Text[텍스트 가져오기]    (//*[@class='ExhibitionListNav_normal__1ha2N'])[1]
     Should Be Equal    ${title}    기획전
 
 기획전 > QA로그전용 메뉴 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath:(//*[text()='해외 숙소'])[2]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='QA 로그 전용']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    //*[@class='ExhibitionDetailNav_title__1NE43']
+    Click Element[버튼 클릭]    xpath:(//*[text()='해외 숙소'])[2]
+    Click Element[버튼 클릭]    xpath://*[text()='QA 로그 전용']
+    ${title}    Get Text[텍스트 가져오기]    //*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    QA 로그 전용
 
 KTX > 승차권 조건 선택 후 조회 버튼 클릭
     [Arguments]    ${arrival}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TrainSHomeStationDisplay_placeholder__3yNbY
+    Click Element[버튼 클릭]    class:TrainSHomeStationDisplay_placeholder__3yNbY
     sleep    1s
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    도착역 선택
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    class:TrainSHomeStationModalTitle_input__573Rb    ${arrival}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TrainSHomeStationModal_suggestion__24s5l
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:TrainSHomeBody_datePlaceholder__hCwn1
+    InputText Element[텍스트 입력하기]    class:TrainSHomeStationModalTitle_input__573Rb    ${arrival}
+    Click Element[버튼 클릭]    class:TrainSHomeStationModal_suggestion__24s5l
+    Click Element[버튼 클릭]    class:TrainSHomeBody_datePlaceholder__hCwn1
     sleep    1s
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    날짜 선택
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[contains(text(), '적용')]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RectButton_label__WcAp7
+    Click Element[버튼 클릭]    xpath://div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))]
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
 
 승차권 유무 체크 후 요금조회 버튼 클릭
-    FOR    ${index}    IN RANGE    5
-        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Get WebElement    xpath://*[text()='재시도 하기']
-        IF    '${status}[0]' == 'PASS'
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='재시도 하기']
-        ELSE
-        Exit For Loop
-    END
-    END
+    ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Get WebElement    xpath://*[text()='재시도 하기']
+    Run Keyword If    '${status}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='재시도 하기']
     FOR    ${index}    IN RANGE    30
-        ${status}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:RectButton_label__WcAp7
-        IF    '${status}'=='좌석부족'
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[@class='TrainTicketsNavButtons_changeDate__ualU1']
-        ELSE
-        Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:RectButton_label__WcAp7
-        Exit For Loop
-    END
+        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Get WebElement    xpath://*[text()='요금조회']
+        Run Keyword If    '${status}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[@class='TrainTicketsNavButtons_changeDate__ualU1']
+        Run Keyword If    '${status}[0]' == 'FAIL'    Continue For Loop
+        Run Keyword If    '${status}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='요금조회']
+        Run Keyword If    '${status}[0]' == 'PASS'    Exit For Loop
     END
 
 바로 예매 > 선택한 승차권 장바구니 담기
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='바로 예매']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='확인']
-    ${title}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    class:PageTitle_pageTitle__Q5MEn
+    Click Element[버튼 클릭]    xpath://*[text()='바로 예매']
+    Click Element[버튼 클릭]    xpath://*[text()='확인']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    선택한 승차권
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='장바구니 담기']
+    Click Element[버튼 클릭]    xpath://*[text()='장바구니 담기']
 
 레저티켓 장바구니 담기
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [테스트] 야놀자 놀이공원
     sleep    1s
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class: RectButton_primary__3O9TH
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='+']
+    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    Click Element[버튼 클릭]    xpath://*[text()='+']
     장바구니 담기
 
 [API] 장바구니 조회
@@ -573,3 +562,30 @@ DILog 조회 및 검증
 구글시트 테스트 수행 날짜 업데이트
     ${date}    DT.Get Current Date    result_format=%Y.%m.%d
     Google.Write Value On Cell    ${GoogleDrive_URL}    ${WORKSHEET}    Q7    ${date}
+
+Click Element[버튼 클릭]
+    [Arguments]    ${element}
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    ${element}
+
+InputText Element[텍스트 입력하기]
+    [Arguments]    ${element}    ${input_text}
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    ${element}    ${input_text}
+
+Get Element Attribute[속성값 가져오기]
+    [Arguments]    ${element}    ${attribute}
+    ${get_attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    ${element}    ${attribute}
+    [Return]    ${get_attr}
+
+Get Text[텍스트 가져오기]
+    [Arguments]    ${element}
+    ${get_text}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Text    ${element}
+    [Return]    ${get_text}
+
+Element Visible[요소 표시 여부 체크]
+    [Arguments]    ${element}
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    ${element}
+
+Get Element[요소 가져오기]
+    [Arguments]    ${element}
+    ${get_element}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElement    ${element}
+    [Return]    ${get_element}

@@ -43,7 +43,7 @@ Resource          common.robot
     바로 예매 > 선택한 승차권 장바구니 담기
     장바구니 이동
     장바구니 > 예약
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Input Text    xpath://*[@name='user.birthDate_']    19850223
+    InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
     예약(포인트 결제) > 예약완료
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainPayment    view    8    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    11    ${date}
@@ -80,11 +80,11 @@ Resource          common.robot
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 기획전 메뉴 클릭
     기획전 > QA로그전용 메뉴 클릭
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='국내그룹_수정X']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:place-content
+    Click Element[버튼 클릭]    xpath://*[text()='국내그룹_수정X']
+    Click Element[버튼 클릭]    class:place-content
     go back
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    xpath://*[text()='레저그룹_수정X']
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    class:LeisureListItem_body__1iNjJ
+    Click Element[버튼 클릭]    xpath://*[text()='레저그룹_수정X']
+    Click Element[버튼 클릭]    class:LeisureListItem_body__1iNjJ
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    15    ${date}    그룹별, 개별 상품별 노출(국내레져)    count=2
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    16    ${date}    그룹별, 개별 상품 클릭(국내숙소)
