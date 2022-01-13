@@ -103,22 +103,25 @@ class DILog():
     
         response = list(filter(lambda x:int(str(x["raw"]["system"]["createdTs"])[:-3]) > date_timestamp, response))
         if not response:
-            log.error("Not Found Log - " + str(date) + " 이후의 로그가 없습니다.")
-            return False, None
+            message = "Not Found Log - 테스트 시작 시간인 " + str(date) + " 이후의 로그가 없습니다."
+            log.error(message)
+            return False, message
 
         #Set Filter pageName
         response = list(filter(lambda x:x["raw"]["pageName"]==pageName, response))
         if not response:
-            log.error("Not Found Log with pageName")
-            log.info(response)
-            return False, None
+            message = "Not Found Log with pageName : " + str(response)
+            log.error(message)
+            #log.info(response)
+            return False, message
 
         #Set Filter eventType
         response = list(filter(lambda x:x["raw"]["eventType"]==eventType, response))
         if not response:
-            log.error("Not Found Log with eventType")
-            log.info(response)
-            return False, None
+            message = "Not Found Log with eventType : " + str(response)
+            log.error(message)
+            #log.info(response)
+            return False, message
         else:
             if desc != '':
                 log.info('desc is not none')
@@ -127,9 +130,10 @@ class DILog():
                 response = list(filter(lambda x:x["def"]["desc"]==desc, response))
 
                 if not response:
-                    log.error("Not Found Log")
-                    log.info(response)
-                    return False, None
+                    message = "Not Found Log with desc : " + str(response)  
+                    log.error(message)
+                    #log.info(response)
+                    return False, message
 
 
             log.info(response)
@@ -168,10 +172,11 @@ class DILog():
 
         
             if len(response) != count:
-                log.error("로그 기록 결과가 " + str(count) + "개 여야 하는데, " + str(len(response)) + "개 입니다.")
+                message = "로그 기록 결과가 " + str(count) + "개 여야 하는데, " + str(len(response)) + "개 입니다. : " + str(response)
+                log.error(message)
                 log.info(response)
 
-                return False, response_dict
+                return False, message
 
             return True, response_dict
 
