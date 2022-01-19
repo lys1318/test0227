@@ -6,6 +6,7 @@ Library           GoogleAPI.py    WITH NAME    Google
 Library           RequestsLibrary    WITH NAME    Re
 Library           String
 Library           Collections
+Library           ImageRecognition.py    WITH NAME    IR
 
 *** Variables ***
 ${executable_path}    /Users/youngsung.lee/Desktop/pythonWorkspace/테스트프로젝트/chromedriver
@@ -440,8 +441,8 @@ MY야놀자 > 기획전 메뉴 클릭
     Should Be Equal    ${title}    기획전
 
 기획전 > QA로그전용 메뉴 클릭
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Click Element[버튼 클릭]    xpath://*[text()='QA 로그 전용']
+    IR.Image MoveTo    ${CURDIR}/Images/Home.png
+    Scroll Wheel Click[휠로 스크롤하여 요소 클릭]    xpath://*[text()='QA 로그 전용']
     ${title}    Get Text[텍스트 가져오기]    //*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    QA 로그 전용
 
@@ -666,3 +667,23 @@ Get Element[요소 가져오기]
 Select Frame[프레임 선택]
     [Arguments]    ${element}
     Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Select Frame    ${element}
+
+Scroll Click[스크롤하여 요소 클릭]
+    [Arguments]    ${element}
+    FOR    ${index}    IN RANGE    100
+        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    ${element}
+        Run Keyword If    '${status}[0]' == 'FAIL'    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+        Run Keyword If    '${status}[0]' == 'PASS'    Click Element[버튼 클릭]    ${element}
+        Run Keyword If    '${status}[0]' == 'PASS'    Exit For Loop
+    END
+
+Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
+    [Arguments]    ${element}
+    FOR    ${index}    IN RANGE    100
+        ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    ${element}
+        Run Keyword If    '${status}[0]' == 'FAIL'    IR.Mouse Scroll
+        ${status2}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Click Element    ${element}
+        Run Keyword If    '${status2}[0]' == 'FAIL'    IR.Mouse Scroll
+        Run Keyword If    '${status2}[0]' == 'PASS'    Click Element[버튼 클릭]    ${element}
+        Run Keyword If    '${status2}[0]' == 'PASS'    Exit For Loop
+    END
