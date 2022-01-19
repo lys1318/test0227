@@ -440,7 +440,7 @@ MY야놀자 > 기획전 메뉴 클릭
     Should Be Equal    ${title}    기획전
 
 기획전 > QA로그전용 메뉴 클릭
-    Click Element[버튼 클릭]    xpath:(//*[text()='해외 숙소'])[2]
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Click Element[버튼 클릭]    xpath://*[text()='QA 로그 전용']
     ${title}    Get Text[텍스트 가져오기]    //*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    QA 로그 전용

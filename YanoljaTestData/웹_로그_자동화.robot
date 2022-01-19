@@ -81,13 +81,13 @@ Resource          common.robot
     MY야놀자 > 기획전 메뉴 클릭
     기획전 > QA로그전용 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='국내그룹_수정X']
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
     Click Element[버튼 클릭]    class:place-content
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    15    ${date}    그룹별, 개별 상품 클릭(국내숙소)
     go back
     Click Element[버튼 클릭]    xpath://*[text()='레저그룹_수정X']
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    16    ${date}    그룹별, 개별 상품별 노출(국내레져)
     Click Element[버튼 클릭]    class:LeisureListItem_body__1iNjJ
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    15    ${date}    그룹별, 개별 상품별 노출(국내레져)    count=2
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    16    ${date}    그룹별, 개별 상품 클릭(국내숙소)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    17    ${date}    그룹별, 개별 상품 클릭(국내레져)
 
 18~22.해외숙소 서브홈 & 상품 클릭 & 예약 & 결제
