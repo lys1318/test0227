@@ -192,6 +192,7 @@ Suite Teardown
     Should Be Equal    ${listTitle}    ${title}
 
 항공권 검색
+    ${date}    현재 시간 구하기
     sleep    3s
     Click Element[버튼 클릭]    xpath://*[text()='편도']
     Click Element[버튼 클릭]    xpath://*[text()='도착']
@@ -201,6 +202,7 @@ Suite Teardown
     Click Element[버튼 클릭]    xpath://*[text()='오늘']
     Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
     Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    view    30    ${date}    검색결과 페이지뷰
     FOR    ${index}    IN RANGE    2    10
         sleep    3s
         ${status}    Get Element[요소 가져오기]    class:FlightListEmpty_noSearchResult__24Glb

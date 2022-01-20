@@ -121,11 +121,10 @@ Resource          common.robot
 30~32.항공홈 & 검색결과 & 결제처 선택
     ${date}    현재 시간 구하기
     홈 > 항공권 메뉴 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightHome    view    32    ${date}
     항공권 검색
     항공권 검색결과 > 결제처 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    view    30    ${date}    검색결과 페이지뷰
     Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    click    31    ${date}    가격리스트에서 결제처선택
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightHome    view    32    ${date}
 
 35~37.호텔 서브홈 & 테마형/리스트형 상품 클릭
     ${date}    현재 시간 구하기
