@@ -681,7 +681,7 @@ Scroll Click[스크롤하여 요소 클릭]
 
 Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     [Arguments]    ${element}
-    FOR    ${index}    IN RANGE    100
+    FOR    ${index}    IN RANGE    5
         ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    ${element}
         Run Keyword If    '${status}[0]' == 'FAIL'    IR.Mouse Scroll
         ${status2}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Click Element    ${element}
