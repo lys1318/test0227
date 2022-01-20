@@ -219,6 +219,7 @@ Suite Teardown
 
 항공권 검색결과 > 결제처 클릭
     Click Element[버튼 클릭]    class:FlightListItem_container__23txc
+    sleep    2s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    항공권 정보
     Click Element[버튼 클릭]    class:FlightDetailProviders_providerAnchor__1t5eR
@@ -443,8 +444,10 @@ MY야놀자 > 기획전 메뉴 클릭
     Should Be Equal    ${title}    기획전
 
 기획전 > QA로그전용 메뉴 클릭
-    IR.Image MoveTo    ${CURDIR}/Images/Home.png
-    Scroll Wheel Click[휠로 스크롤하여 요소 클릭]    xpath://*[text()='QA 로그 전용']
+    Comment    IR.Image MoveTo    ${CURDIR}/Images/Home.png
+    Comment    Scroll Wheel Click[휠로 스크롤하여 요소 클릭]    xpath://*[text()='QA 로그 전용']
+    Click Element[버튼 클릭]    xpath:(//*[text()='해외 숙소'])[2]
+    Click Element[버튼 클릭]    xpath://*[text()='QA 로그 전용']
     ${title}    Get Text[텍스트 가져오기]    //*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    QA 로그 전용
 
@@ -681,7 +684,7 @@ Scroll Click[스크롤하여 요소 클릭]
 
 Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     [Arguments]    ${element}
-    FOR    ${index}    IN RANGE    5
+    FOR    ${index}    IN RANGE    10
         ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    ${element}
         Run Keyword If    '${status}[0]' == 'FAIL'    IR.Mouse Scroll
         ${status2}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Click Element    ${element}
