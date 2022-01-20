@@ -218,8 +218,8 @@ Suite Teardown
     END
 
 항공권 검색결과 > 결제처 클릭
-    Click Element[버튼 클릭]    class:FlightListItem_container__23txc
     sleep    2s
+    Click Element[버튼 클릭]    class:FlightListItem_container__23txc
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    항공권 정보
     Click Element[버튼 클릭]    class:FlightDetailProviders_providerAnchor__1t5eR
