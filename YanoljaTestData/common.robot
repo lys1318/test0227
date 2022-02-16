@@ -28,7 +28,7 @@ Suite Setup
     구글시트 테스트 수행 날짜 업데이트
 
 Suite Teardown
-    [API_SET] 오늘 자 장바구니 주문 전체 예약 취소
+    [API_SET] 장바구니 주문 조회 후 모두 예약 취소
     sleep    3s
     Close Browser
 
@@ -606,11 +606,10 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭
     [Return]    ${test_list}
 
 [API_SET] 장바구니 주문 조회 후 모두 예약 취소
-    ${motel_reservationNo_list}    ${train_reservationNo_list}    ${reisure_reservationNo_list}    [API] 장바구니 주문 조회 API_건별예약번호    ${AUTHORIZATION}
-    [API] 장바구니 관리자 예약 취소 API    ${AUTHORIZATION}    ${motel_reservationNo_list}    ${train_reservationNo_list}    ${reisure_reservationNo_list}
-
-[API_SET] 오늘 자 장바구니 주문 전체 예약 취소
-    [API_SET] 장바구니 주문 조회 후 모두 예약 취소
+    Comment    ${motel_reservationNo_list}    ${train_reservationNo_list}    ${reisure_reservationNo_list}    [API] 장바구니 주문 조회 API_건별예약번호    ${AUTHORIZATION}
+    Comment    [API] 장바구니 관리자 예약 취소 API    ${AUTHORIZATION}    ${motel_reservationNo_list}    ${train_reservationNo_list}    ${reisure_reservationNo_list}
+    ${order_list}    [API] 장바구니 주문 조회 API_orderlist    ${AUTHORIZATION}
+    [API] 장바구니 주문 취소 API    ${AUTHORIZATION}    ${order_list}
 
 DILog 조회 및 검증
     [Arguments]    ${class}    ${page_name}    ${event_type}    ${case_no}    ${date}    ${desc}=${EMPTY}    ${count}=1
@@ -692,3 +691,107 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
         Run Keyword If    '${status2}[0]' == 'PASS'    Click Element[버튼 클릭]    ${element}
         Run Keyword If    '${status2}[0]' == 'PASS'    Exit For Loop
     END
+
+[API] 장바구니 주문 조회 API_orderlist
+    [Arguments]    ${r_authorization}
+    ${headers}    Create Dictionary    authorization=${r_authorization}
+    ${date}    DT.Get Current Date    result_format=%Y%m%d
+    ${params}    Create Dictionary    page=1    size=100    from=${date}    to=${date}    categoryGroup=ALL
+    ${response}    Re.GET    http://order-coordinator.qa.yanolja.in/cart/v1/orders    headers=${headers}    params=${params}
+    Log    ${response.json()}
+    Get Length    ${response.json()}
+    #
+    @{order_list}    Create List
+    FOR    ${index}    IN    @{response.json()}[orders]
+    @{reservationNo_list}    Create List
+    Append To List    ${reservationNo_list}    ${index}[id]
+    FOR    ${category}    IN    @{index}[categoryOrders]
+        Run Keyword And Ignore Error    Continue For Loop If    '${category}[statusGroupCode]' == 'CANCEL'
+        Run Keyword And Ignore Error    Continue For Loop If    '${category}[tickets][0][status]' == 'CANCELED'
+        Run Keyword And Ignore Error    Continue For Loop If    '${category}[items][0][status]' == 'CANCEL_REQUESTED'
+        Run Keyword And Ignore Error    Continue For Loop If    '${category}[items][0][status]' == 'USER_CANCEL_COMPLETED'
+        Run Keyword If    '${category}[category]' == 'DOMESTIC_RESERVATION'    Append To List    ${reservationNo_list}    MOTEL_${category}[id]
+        Run Keyword If    '${category}[category]' == 'DOMESTIC_TRAIN'    Append To List    ${reservationNo_list}    TRAIN_${category}[id]
+        Run Keyword If    '${category}[category]' == 'DOMESTIC_LEISURE'    Append To List    ${reservationNo_list}    LEISURE_${category}[id]
+        Comment    Append To List    ${reservationNo_list}    ${category}[id]
+    END
+    Append To List    ${order_list}    ${reservationNo_list}
+    END
+    Comment    Log    ${motel_reservationNo_list}
+    Comment    Log    ${train_reservationNo_list}
+    Comment    Log    ${reisure_reservationNo_list}
+    Log    ${reservationNo_list}
+    Log    ${order_list}
+    [Return]    ${order_list}
+
+[API] 장바구니 주문 취소 API
+    [Arguments]    ${r_authorization}    ${order_list}
+    [Documentation]    https://confluence.yanolja.in/pages/viewpage.action?pageId=229235534
+    Comment    ${headers}    Create Dictionary    authorization=${r_authorization}
+    Log    ${order_list}
+    Log    ${order_list}[0]
+    FOR    ${order}    IN    @{order_list}
+    ${reservation_list}    Create List
+    FOR    ${reservation}    IN    @{order}[1:]
+        ${reservation_dir}    [API_Sub] Get Reservation Info    ${reservation}
+        Append To List    ${reservation_list}    ${reservation_dir}
+    END
+    Log    ${reservation_list}
+    ${len}    Get Length    ${reservation_list}
+    Continue For Loop If    '${len}'=='0'
+    ${headers}    Create Dictionary    authorization=${r_authorization}
+    ${params}    Create Dictionary    reasonCode=ETC    reasonDetail=QAAuto    categoryOrders=${reservation_list}
+    ${response}    Re.POST    http://order-coordinator.qa.yanolja.in/cart/v1/orders/${order}[0]/cancel    headers=${headers}    json=${params}
+    Log    ${response}
+    END
+
+[API_Sub] Get Reservation Info
+    [Arguments]    ${reservation}
+    @{word}    Split String    ${reservation}    _
+    ${category}    Set Variable    ${word}[0]
+    ${reservationNo}    Set Variable    ${word}[1]
+    ${reservation_dir}    Run Keyword If    "${category}"=="MOTEL"    [API_Sub] Get MOTEL Info    ${reservationNo}
+    Return From Keyword If    "${category}"=="MOTEL"    ${reservation_dir}
+    ${reservation_dir}    Run Keyword If    "${category}"=="TRAIN"    [API_Sub] Get TRAIN Info    ${reservationNo}
+    Return From Keyword If    "${category}"=="TRAIN"    ${reservation_dir}
+    ${reservation_dir}    Run Keyword If    "${category}"=="LEISURE"    [API_Sub] Get LEISURE Info    ${reservationNo}
+    Return From Keyword If    "${category}"=="LEISURE"    ${reservation_dir}
+    [Return]    ${reservation_dir}
+
+[API_Sub] Get LEISURE Info
+    [Arguments]    ${reservationNo}
+    # 레저 예약 취소 정보 Get
+    ${headers}    Create Dictionary    authorization=${AUTHORIZATION}
+    ${response1}    Re.GET    http://order-api.qa.yanolja.in/domestic-leisure/v2/orders/${reservationNo}    headers=${headers}
+    ${item_list}    Create List
+    FOR    ${item}    IN    @{response1.json()}[items]
+        Append To List    ${item_list}    ${item}[id]
+        Comment    ${item_list}    Set Variable If    '${item_list}' == '${EMPTY}'    ${item}[id]    ${item_list},${item}[id]
+    END
+    ###
+    ${reservation_dir}    Create Dictionary    id=${reservationNo}    itemIds=${item_list}
+    Comment    ${reservation_dir}    Create Dictionary    id=${word}[1]
+    Log    ${reservation_dir}
+    [Return]    ${reservation_dir}
+
+[API_Sub] Get MOTEL Info
+    [Arguments]    ${reservationNo}
+    # 모텔 주문 취소 정보
+    ${reservation_dir}    Create Dictionary    id=${reservationNo}
+    Log    ${reservation_dir}
+    [Return]    ${reservation_dir}
+
+[API_Sub] Get TRAIN Info
+    [Arguments]    ${reservationNo}
+    # 기차 예약 취소
+    ${headers}    Create Dictionary    authorization=${AUTHORIZATION}
+    ${response1}    Re.GET    http://train-order-api.qa.yanolja.in/domestic-train/v2/orders/${reservationNo}    headers=${headers}
+    ${item_list}    Create List
+    FOR    ${ticket}    IN    @{response1.json()}[tickets]
+        Append To List    ${item_list}    ${ticket}[id]
+        Comment    ${item_list}    Set Variable If    '${item_list}' == '${EMPTY}'    ${ticket}[id]    ${item_list},${ticket}[id]
+    END
+    ###
+    ${reservation_dir}    Create Dictionary    id=${reservationNo}    itemIds=${item_list}
+    Log    ${reservation_dir}
+    [Return]    ${reservation_dir}
