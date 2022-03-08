@@ -127,7 +127,8 @@ class DILog():
                 log.info('desc is not none')
                 log.info(desc)
 
-                response = list(filter(lambda x:x["def"]["desc"]==desc, response))
+                #response = list(filter(lambda x:x["def"]["desc"]==desc, response))
+                response = list(filter(lambda x:x.get("def", {}).get("desc", None)==desc, response))
 
                 if not response:
                     message = "Not Found Log with desc : " + str(response)  
@@ -139,6 +140,7 @@ class DILog():
             log.info(response)
             response_dict = response[0]['def']
             response_dict2 = response[0]["raw"]["raw"]
+            response_isValid = response[0]['isValid']
             create_time = str(datetime.fromtimestamp(response[0]['raw']['system']['createdTs']/1000))
             if 'ap-northeast' in adid:
                 #log.info("Yanolja APP Version :" + response[0]['raw']['system']['appVersion'])
@@ -173,6 +175,12 @@ class DILog():
         
             if len(response) != count:
                 message = "로그 기록 결과가 " + str(count) + "개 여야 하는데, " + str(len(response)) + "개 입니다. : " + str(response)
+                log.error(message)
+                log.info(response)
+
+                return False, message
+            elif response_isValid != True:
+                message = "로그 기록 결과가 " + str(count) + "만큼 기록 되었으나 isValid 가 False 입니다."
                 log.error(message)
                 log.info(response)
 
