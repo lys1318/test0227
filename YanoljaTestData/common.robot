@@ -20,6 +20,10 @@ ${GoogleDrive_URL}    https://docs.google.com/spreadsheets/d/1GRjMsn1f8Xv_Kfz9ai
 ${WORKSHEET}      PC_Web
 ${AUTHORIZATION}    eyJtZW1iZXJObyI6NDAyMDIwMjQsImNnbnRJZCI6ImFwLW5vcnRoZWFzdC0yJTNBMWI2YWQ5ZDctNzgxNC00ZTljLThiNWUtYjJhMTI5OTBhMjhlIn0=
 ${TEST_PHASE}     1
+${stage_username}    qa_test02@yanolja.com
+${stage_password}    qwert12345@
+${GoogleDrive_URL_StageBasic}    https://docs.google.com/spreadsheets/d/1esDCuZK5eO4fT0XDrDjRc3l4DS3WMxJHnBCMIv0Pes0/edit#gid=0
+${WORKSHEET_StageBasic}    v.8.10.5 기준
 
 *** Keywords ***
 Suite Setup
@@ -65,65 +69,54 @@ Suite Teardown
     ${date}    DT.Get Current Date
     [Return]    ${date}
 
-홈 > 국내숙소 추천 위젯
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    class:HomePlaceRecommend_container__380T6
+국내숙소 > 모텔 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='모텔']
+    Click Element[버튼 클릭]    xpath://*[text()='모텔']
     sleep    1s
-
-홈 > 모텔 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/motel']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/motel']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    모텔
 
-홈 > 호텔 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/hotel']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/hotel']
+국내숙소 > 호텔 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='호텔']
+    Click Element[버튼 클릭]    xpath://*[text()='호텔']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    호텔/리조트
 
-홈 > 펜션 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/pension']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/pension']
+국내숙소 > 펜션 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='펜션/풀빌라']
+    Click Element[버튼 클릭]    xpath://*[text()='펜션/풀빌라']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    펜션/풀빌라
 
-홈 > 게하 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/guest-house']
+국내숙소 > 게하/한옥 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='게하/한옥']
+    Click Element[버튼 클릭]    xpath://*[text()='게하/한옥']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    게하/한옥
 
-홈 > 항공권 메뉴 클릭
-    메인 이동
+교통/항공 > 항공권 메뉴 클릭
     Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/flights']
     Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/flights']
     ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
     Should Be Equal    ${title}    항공권
 
-홈 > 무한쿠폰룸 메뉴 클릭
+추천 > 무한쿠폰룸 메뉴 클릭
     메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/motel?myRoom=1']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/motel?myRoom=1']
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='무한쿠폰룸']
+    Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    무한쿠폰룸
 
-홈 > 해외숙소 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/global/place']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/global/place']
-    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[text()='해외숙소'])[1]
-    Should Be Equal    ${title}    해외숙소
+해외여행 > 해외숙소 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외숙소']
+    Click Element[버튼 클릭]    xpath://*[text()='해외숙소']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    여행지 선택
     sleep    3s
 
-홈 > 지역 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='강원도야놀자']
-    Click Element[버튼 클릭]    xpath://*[text()='강원도야놀자']
+국내숙소 > 강원도 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='강원도']
+    Click Element[버튼 클릭]    xpath://*[text()='강원도']
     ${title}    Get Text[텍스트 가져오기]    class:RegionhomeMain_title__2GftR
     Should Be Equal    ${title}    강원도
 
@@ -138,8 +131,8 @@ Suite Teardown
 홈 > 검색 버튼 클릭
     메인 이동
     sleep    1s
-    Element Visible[요소 표시 여부 체크]    xpath://*[@alt='검색']
-    Click Element[버튼 클릭]    xpath://*[@alt='검색']
+    Element Visible[요소 표시 여부 체크]    class:HomeSearchBar_search__3R15k
+    Click Element[버튼 클릭]    class:HomeSearchBar_search__3R15k
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    검색
 
@@ -147,20 +140,21 @@ Suite Teardown
     메인 이동
     Element Visible[요소 표시 여부 체크]    xpath://*[@href='/mypage']
     Click Element[버튼 클릭]    xpath://*[@href='/mypage']
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:mypage_title__1NaG1
     Should Be Equal    ${title}    MY 야놀자
 
-홈 > KTX 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/train']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/train']
+교통/항공 > KTX 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/train')]
+    Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/train')]
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    KTX
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Click Element[버튼 클릭]    class:ThemePlaceItem_image__2_Itg
+    Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾고 계신 상품이 있나요?']
+    Execute Javascript    window.scrollTo(0, 500)
+    Click Element[버튼 클릭]    xpath://*[text()='TEST YAN 전용 펜션 숙소']
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
     sleep    1s
 
@@ -202,7 +196,7 @@ Suite Teardown
     Click Element[버튼 클릭]    xpath://*[text()='오늘']
     Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
     Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    view    30    ${date}    검색결과 페이지뷰
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    view    29    ${date}    검색결과 페이지뷰
     FOR    ${index}    IN RANGE    2    10
         sleep    3s
         ${status}    Get Element[요소 가져오기]    class:FlightListEmpty_noSearchResult__24Glb
@@ -220,10 +214,11 @@ Suite Teardown
 항공권 검색결과 > 결제처 클릭
     sleep    2s
     Click Element[버튼 클릭]    class:FlightListItem_container__23txc
+    sleep    2s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    항공권 정보
     Click Element[버튼 클릭]    class:FlightDetailProviders_providerAnchor__1t5eR
-    sleep    5s
+    sleep    7s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
     sleep    3s
@@ -237,9 +232,10 @@ Suite Teardown
 
 해외숙소 서브홈 > 숙소 검색
     [Arguments]    ${keyword}
-    Click Element[버튼 클릭]    class:GlobalPlaceHomeSearch_input__xqhtJ
+    Click Element[버튼 클릭]    class: GlobalPlaceAreaListSearch_input__3zV2X
     ${title}    Get Text[텍스트 가져오기]    xpath://*[text()='검색']
     Should Be Equal    ${title}    검색
+    sleep    1s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
     sleep    1s
     Click Element[버튼 클릭]    class:KeywordHighlighted_text__gX5_U
@@ -265,13 +261,14 @@ Suite Teardown
     END
     END
     Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='예약하기']
     ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
     Should Be Equal    ${title}    해외숙소 예약
 
 해외숙소 예약하기 > 해외숙소 결제하기 진입
-    InputText Element[텍스트 입력하기]    id:성명    이영성
-    InputText Element[텍스트 입력하기]    id:이메일    ${username}
+    Comment    InputText Element[텍스트 입력하기]    id:성명    이영성
+    Comment    InputText Element[텍스트 입력하기]    id:이메일    ${username}
     InputText Element[텍스트 입력하기]    id:성(영문)    test
     InputText Element[텍스트 입력하기]    id:이름(영문)    test
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의']
@@ -298,23 +295,50 @@ Suite Teardown
     sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='레저/티켓']
 
-PDP > RDP
+PDP > RDP (모텔 대실)
     sleep    1s
     Click Element[버튼 클릭]    class:RectButton_label__WcAp7
-    Click Element[버튼 클릭]    class:RoomItem_roomItemContainerStyle__3XjIR
+    모텔 대실 예약가능 여부 체크
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    객실상세
+
+PDP > RDP (모텔 숙박)
+    sleep    1s
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    모텔 숙박 예약가능 여부 체크
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    객실상세
+
+PDP > RDP (호텔/게하)
+    sleep    1s
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    호텔/게하 예약가능 여부 체크
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    객실상세
+
+PDP > RDP (펜션)
+    sleep    1s
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    펜션 예약가능 여부 체크
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    객실상세
 
 RDP > 숙박 예약
     sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='숙박 예약하기']
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    숙박 예약
 
-숙박 예약 > 예약
+바로 예약 > 예약
     Click Element[버튼 클릭]    xpath://*[text()='바로 예약하기']
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:center
     Should Be Equal    ${title}    예약
 
@@ -418,6 +442,7 @@ RDP > 숙박 예약
 레저 상세 > 예약
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='+']
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     ${title}    Get Text[텍스트 가져오기]    class:center
@@ -481,6 +506,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭
 바로 예매 > 선택한 승차권 장바구니 담기
     Click Element[버튼 클릭]    xpath://*[text()='바로 예매']
     Click Element[버튼 클릭]    xpath://*[text()='확인']
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    선택한 승차권
     Click Element[버튼 클릭]    xpath://*[text()='장바구니 담기']
@@ -491,6 +517,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [테스트] 야놀자 놀이공원
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='+']
     장바구니 담기
 
@@ -665,7 +692,7 @@ Element Visible[요소 표시 여부 체크]
 
 Get Element[요소 가져오기]
     [Arguments]    ${element}
-    ${get_element}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElement    ${element}
+    ${get_element}    Run keyword and Ignore error    Wait Until Keyword Succeeds    15s    ${checkTime}    Get WebElement    ${element}
     [Return]    ${get_element}
 
 Select Frame[프레임 선택]
@@ -720,7 +747,7 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     Comment    Log    ${motel_reservationNo_list}
     Comment    Log    ${train_reservationNo_list}
     Comment    Log    ${reisure_reservationNo_list}
-    Log    ${reservationNo_list}
+    Run Keyword And Ignore Error    Log    ${reservationNo_list}
     Log    ${order_list}
     [Return]    ${order_list}
 
@@ -729,7 +756,7 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     [Documentation]    https://confluence.yanolja.in/pages/viewpage.action?pageId=229235534
     Comment    ${headers}    Create Dictionary    authorization=${r_authorization}
     Log    ${order_list}
-    Log    ${order_list}[0]
+    Run Keyword And Ignore Error    Log    ${order_list}[0]
     FOR    ${order}    IN    @{order_list}
     ${reservation_list}    Create List
     FOR    ${reservation}    IN    @{order}[1:]
@@ -795,3 +822,498 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     ${reservation_dir}    Create Dictionary    id=${reservationNo}    itemIds=${item_list}
     Log    ${reservation_dir}
     [Return]    ${reservation_dir}
+
+메인 이동 (stage)
+    go to    https://stage-m.yanolja.com/
+
+Suite Setup (stage)
+    stage 테스트숙소 노출 설정
+
+Suite Teardown (stage)
+    sleep    3s
+    Close Browser
+
+구글 스프레드 시트 결과 업데이트[StageBasic]
+    [Arguments]    ${status}    ${case_no}    ${response}=${EMPTY}
+    Return From Keyword If    "${TEST_PHASE}"=="TEST"
+    ${status}    Set Variable If    "${status}" == "PASS"    Pass    Fail
+    ${cell}    Evaluate    ${case_no} + 14
+    # 결과 업데이트
+    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    K${cell}    ${status}
+    Comment    # 응답 업데이트
+    Comment    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    O${cell}    ${response}
+
+stage 테스트숙소 노출 설정
+    Open Browser    https://stage-m.yanolja.com/_settings    Chrome    executable_path=${CURDIR}/chromedriver
+    Click Element[버튼 클릭]    xpath://*[@for='testProduct-ONLY']/span[1]
+
+MY야놀자 > 로그인 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='로그인 및 회원가입 하기']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
+    Should Be Equal    ${title}    로그인
+
+로그인 > 이메일로 로그인 버튼 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='이메일로 로그인']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
+    Should Be Equal    ${title}    이메일로 로그인
+
+로그인 하기 (stage)
+    InputText Element[텍스트 입력하기]    id:username    ${stage_username}
+    InputText Element[텍스트 입력하기]    id:password    ${stage_password}
+    FOR    ${index}    IN RANGE    5
+        ${attr}    Get Element Attribute[속성값 가져오기]    class: RectButton_primary__3O9TH    class
+        ${loginBtn}    Run keyword and Ignore error    Should Contain    ${attr}    RectButton_disabled__14E3B
+        Run Keyword If    '${loginBtn}[0]' == 'FAIL'    Exit For Loop
+        Run Keyword If    '${loginBtn}[0]' == 'PASS'    Reload Page
+        Run Keyword If    '${loginBtn}[0]' == 'PASS'    InputText Element[텍스트 입력하기]    id:username    ${stage_username}
+        Run Keyword If    '${loginBtn}[0]' == 'PASS'    InputText Element[텍스트 입력하기]    id:password    ${stage_password}
+    END
+    Click Element[버튼 클릭]    xpath://*[text()='로그인']
+    sleep    1s
+    ${loginYn}    Get Text[텍스트 가져오기]    xpath://*[@class='MyNick_nickname__2Scd9']/div
+    Should Be Equal    ${loginYn}    Qatest02
+
+MY야놀자 > 내정보관리 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='내정보 관리']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    내 정보 관리
+
+MY야놀자 > 포인트 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='포인트']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Be Equal    ${title}    포인트
+
+MY야놀자 > MY혜택 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='MY 혜택']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    MY 혜택
+
+MY야놀자 > 야놀자코인 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='야놀자 코인']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    야놀자 코인
+
+MY야놀자 > 쿠폰함 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='쿠폰함']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Be Equal    ${title}    쿠폰함
+
+MY야놀자 > 나의후기 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='나의 후기']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Contain    ${title}    나의 후기
+
+MY야놀자 > 찜 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='찜']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:WishListCollapsingNav_title__1SM0I
+    Should Be Equal    ${title}    찜
+
+MY야놀자 > 공지사항 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='공지사항']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    공지사항
+
+MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='자주 묻는 질문 FAQ']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    자주 묻는 질문
+
+모텔 대실 예약가능 여부 체크
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[4]/div[1]//*[@class='price']
+    FOR    ${index}    IN    @{elements}
+        ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
+        Run Keyword If    '${price}' == '예약마감'    Continue For Loop
+        Run Keyword If    '${price}' != '예약마감'    Click Element[버튼 클릭]    ${index}
+        Run Keyword If    '${price}' != '예약마감'    Exit For Loop
+    END
+
+모텔 숙박 예약가능 여부 체크
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[4]/div[2]//*[@class='price']
+    FOR    ${index}    IN    @{elements}
+        ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
+        Run Keyword If    '${price}' == '예약마감'    Continue For Loop
+        Run Keyword If    '${price}' != '예약마감'    Click Element[버튼 클릭]    ${index}
+        Run Keyword If    '${price}' != '예약마감'    Exit For Loop
+    END
+
+호텔/게하 예약가능 여부 체크
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[3]//*[@class='price']
+    FOR    ${index}    IN    @{elements}
+        ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
+        Run Keyword If    '${price}' == '예약마감'    Continue For Loop
+        Run Keyword If    '${price}' != '예약마감'    Click Element[버튼 클릭]    ${index}
+        Run Keyword If    '${price}' != '예약마감'    Exit For Loop
+    END
+
+펜션 예약가능 여부 체크
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath:(//*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[3]//*[@class='price'])[2]
+    FOR    ${index}    IN    @{elements}
+        ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
+        Run Keyword If    '${price}' == '예약마감'    Continue For Loop
+        Run Keyword If    '${price}' != '예약마감'    Click Element[버튼 클릭]    ${index}
+        Run Keyword If    '${price}' != '예약마감'    Exit For Loop
+    END
+
+홈 > 추천탭 클릭
+    메인 이동
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[text()='추천'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[text()='추천'])[1]
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][1]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 국내숙소탭 클릭
+    메인 이동
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='국내숙소']
+    Click Element[버튼 클릭]    xpath://*[text()='국내숙소']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][2]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 교통/항공탭 클릭
+    메인 이동
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='교통/항공']
+    Click Element[버튼 클릭]    xpath://*[text()='교통/항공']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][4]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 해외여행탭 클릭
+    메인 이동
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외여행']
+    Click Element[버튼 클릭]    xpath://*[text()='해외여행']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][5]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 추천 위젯 > 상품 클릭
+    Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾는 상품이 있으신가요?']
+    Execute Javascript    window.scrollTo(0, 500)
+    Click Element[버튼 클릭]    class:RecommendRankingList_itemWrapper__CXnQL
+    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
+    sleep    1s
+
+홈 > 추천탭 클릭 (stage)
+    메인 이동 (stage)
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[text()='추천'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[text()='추천'])[1]
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][1]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 국내숙소탭 클릭 (stage)
+    메인 이동 (stage)
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='국내숙소']
+    Click Element[버튼 클릭]    xpath://*[text()='국내숙소']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][2]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 즐길거리탭 클릭 (stage)
+    메인 이동 (stage)
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='즐길거리']
+    Click Element[버튼 클릭]    xpath://*[text()='즐길거리']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][3]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 교통/항공탭 클릭 (stage)
+    메인 이동 (stage)
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='교통/항공']
+    Click Element[버튼 클릭]    xpath://*[text()='교통/항공']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][4]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 해외여행탭 클릭 (stage)
+    메인 이동 (stage)
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외여행']
+    Click Element[버튼 클릭]    xpath://*[text()='해외여행']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][5]    id
+    Should Be Equal    ${attr}    activeTab
+    sleep    1s
+
+홈 > 검색 버튼 클릭 (stage)
+    메인 이동 (stage)
+    sleep    1s
+    Element Visible[요소 표시 여부 체크]    class:HomeSearchBar_search__3R15k
+    Click Element[버튼 클릭]    class:HomeSearchBar_search__3R15k
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    검색
+
+홈 > MY야놀자 메뉴 클릭 (stage)
+    메인 이동 (stage)
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='/mypage']
+    Click Element[버튼 클릭]    xpath://*[@href='/mypage']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:mypage_title__1NaG1
+    Should Be Equal    ${title}    MY 야놀자
+
+국내숙소 날짜 설정 (stage)
+    [Arguments]    ${days_later}
+    Click Element[버튼 클릭]    class:CheckinOutBox_box__3m3VU
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Should Be Equal    ${title}    날짜 지정
+    Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'CalendarDay__default_2')])[${days_later}]
+    Click Element[버튼 클릭]    xpath://*[text()='확인']
+
+RDP > 대실 예약
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='대실 예약하기']
+    Click Element[버튼 클릭]    class:RoomDetailTimePicker_container__1v4Y5
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Should Be Equal    ${title}    대실 예약
+
+바로예약(포인트 결제) > 예약완료 (stage)
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    sleep    1s
+    ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
+    Should Be Equal    ${amount}    0원 결제하기
+    Click Element[버튼 클릭]    class:css-128od1m
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[2]
+    ${title}    Get Text[텍스트 가져오기]    class:title
+    Should Be Equal    ${title}    예약 완료되었습니다.
+    sleep    3s
+    Close Window
+    Switch Window    ${windows}[1]
+    sleep    3s
+    Close Window
+    Switch Window    ${windows}[0]
+
+장바구니예약(포인트 결제) > 예약완료 (stage)
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
+    Should Be Equal    ${amount}    0원 결제하기
+    Click Element[버튼 클릭]    class:css-128od1m
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[1]
+    ${title}    Get Text[텍스트 가져오기]    class:title
+    Should Be Equal    ${title}    예약 완료되었습니다.
+    sleep    3s
+    Close Window
+    Switch Window    ${windows}[0]
+
+MY야놀자 > 국내여행 통합예약 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='국내여행 통합예약']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:center
+    Should Be Equal    ${title}    국내여행 예약내역
+
+국내여행 예약내역 > 예약내역 상세
+    Click Element[버튼 클릭]    xpath:(//*[text()='상세보기'])[1]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:center
+    Should Be Equal    ${title}    예약내역 상세
+    sleep    1s
+
+국내 예약내역 상세 > 예약취소 요청
+    Click Element[버튼 클릭]    xpath://*[text()='예약취소 요청']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:center
+    Should Be Equal    ${title}    예약취소 요청
+    sleep    1s
+
+국내 예약취소 요청 > 취소 요청하기
+    Click Element[버튼 클릭]    xpath://*[text()='전체 선택']
+    Click Element[버튼 클릭]    class:css-1r214sj
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
+    Should Be Equal    ${title}    취소 사유 선택
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '예약정보 변경')]
+    Click Element[버튼 클릭]    xpath://*[text()='선택 완료']
+    sleep    1s
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    Click Element[버튼 클릭]    xpath://*[text()='전체 동의하기']
+    Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:css-tmlfjl
+    Should Be Equal    ${title}    예약 취소를 요청하시겠어요?
+    Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'css-17y1gu4')])[2]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:title
+    Should Be Equal    ${title}    취소 요청이 완료되었습니다.
+
+취소요청 완료 > 예약내역 상세
+    Click Element[버튼 클릭]    xpath://*[text()='예약상세 보기']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:center
+    Should Be Equal    ${title}    예약내역 상세
+    sleep    1s
+
+취소완료 체크
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@class='cancel-completed css-1esg0fo']
+    Should Be Equal    ${title}    취소 완료
+    sleep    1s
+
+RDP > 예약
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Should Be Equal    ${title}    예약
+
+검색 > 해외숙소탭 클릭
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='해외숙소']
+
+검색 > 해외숙소 검색결과 > PDP 이동
+    [Arguments]    ${keyword}
+    sleep    1s
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    sleep    1s
+    Click Element[버튼 클릭]    class:AutocompleteEntry_container__3AGrX
+    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSection_wrapItem__XzvR7'])[1]
+    Element Visible[요소 표시 여부 체크]    class: GlobalPlaceDetailBody_container__emEX3
+
+해외숙소 날짜 설정 (stage)
+    [Arguments]    ${days_later}
+    sleep    1s
+    Click Element[버튼 클릭]    class:CheckinOutBox_box__3m3VU
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Should Be Equal    ${title}    날짜 선택
+    Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[${days_later}]
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '체크인 검색')]
+
+해외숙소 무료취소 가능 체크 (stage)
+    sleep    5s
+    ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailOptionListItem_badgePC__uMRWP
+    Should Contain    ${title}    무료취소
+
+해외숙소 상세 > 해외숙소 예약하기 진입 (stage)
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Be Equal    ${title}    해외숙소 예약
+
+해외숙소 예약(포인트 결제) > 예약완료 (stage)
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='전액 사용']
+    Click Element[버튼 클릭]    xpath://*[text()='전체 동의']
+    sleep    1s
+    ${amount}    Get Text[텍스트 가져오기]    class:payment-amount
+    Should Be Equal    ${amount}    0원으로 예약하기
+    Click Element[버튼 클릭]    class:payment-amount
+    sleep    5s
+    ${title}    Get Text[텍스트 가져오기]    class:status-text
+    Should Contain    ${title}    예약이 완료 되었습니다.
+
+MY야놀자 > 해외여행 통합예약 메뉴 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='해외 예약 내역']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Contain    ${title}    해외숙소 예약내역
+
+해외여행 예약내역 > 예약내역 상세
+    Click Element[버튼 클릭]    class:list-item--right-block
+    sleep    3s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[contains (@class, 'toolbar-title')])[2]
+    Should Contain    ${title}    예약내역 상세
+
+해외 예약내역 상세 > 예약취소 요청
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '예약취소 신청하기')]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Be Equal    ${title}    예약취소 하기
+
+해외 예약취소 요청 > 취소 요청하기
+    Click Element[버튼 클릭]    class:checkbox-icon-container
+    Click Element[버튼 클릭]    class:order-cancel-action-txt
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='modal-header'])[1]
+    Should Be Equal    ${title}    예약을 취소하시겠어요?
+    Click Element[버튼 클릭]    class:confirm-btn-txt
+    sleep    5s
+    ${title}    Get Text[텍스트 가져오기]    class:status-text
+    Should Contain    ${title}    예약취소가 완료되었습니다.
+
+해외숙소 취소요청 완료 > 예약내역 상세 & 취소완료 체크
+    Click Element[버튼 클릭]    xpath://*[text()='예약내역 보기']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Contain    ${title}    해외숙소 예약내역
+    Element Visible[요소 표시 여부 체크]    class:empty-display
+
+즐길거리 > 레저/티켓 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://www.yanolja.com/leisure']
+    Click Element[버튼 클릭]    xpath://*[@href='https://www.yanolja.com/leisure']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    레저/티켓
+
+레저티켓 장바구니 담기 (stage)
+    홈 > 검색 버튼 클릭 (stage)
+    검색 > 레저/티켓탭 클릭
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [여수] 여수예술랜드 미디어아트 / 조각공원 / 트릭아트
+    sleep    1s
+    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='+']
+    장바구니 담기
+
+모텔 장바구니 담기 (stage)
+    홈 > 검색 버튼 클릭 (stage)
+    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
+    국내숙소 날짜 설정 (stage)    3
+    PDP > RDP (모텔 숙박)
+    RDP > 숙박 예약
+    장바구니 담기
+    sleep    2s
+
+KTX > 왕복탭 클릭
+    Click Element[버튼 클릭]    xpath://*[text()='왕복']
+    sleep    1s
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='왕복']    class
+    Should Contain    ${attr}    TrainSHomeJourneyType_active__3_zJY
+
+KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
+    [Arguments]    ${arrival}
+    Click Element[버튼 클릭]    class:TrainSHomeStationDisplay_placeholder__3yNbY
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Should Be Equal    ${title}    도착역 선택
+    InputText Element[텍스트 입력하기]    class:TrainSHomeStationModalTitle_input__573Rb    ${arrival}
+    Click Element[버튼 클릭]    class:TrainSHomeStationModal_suggestion__24s5l
+    Click Element[버튼 클릭]    class:TrainSHomeBody_datePlaceholder__hCwn1
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+    Should Be Equal    ${title}    날짜 선택
+    Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))])[3]
+    sleep    1s
+    Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))])[3]
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '∙ 적용')]
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+
+바로 예매 > 오는날 승차권 조회
+    Click Element[버튼 클릭]    xpath://*[text()='바로 예매']
+    Click Element[버튼 클릭]    xpath://*[text()='확인']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:TrainTicketsNav_title__3AkFv
+    Should Be Equal    ${title}    오는날 승차권 조회
