@@ -95,8 +95,8 @@ Suite Teardown
     Should Be Equal    ${title}    게하/한옥
 
 교통/항공 > 항공권 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[@href='https://qa-m.yanolja.com/flights']
-    Click Element[버튼 클릭]    xpath://*[@href='https://qa-m.yanolja.com/flights']
+    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/flights')]
+    Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/flights')]
     ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
     Should Be Equal    ${title}    항공권
 
@@ -186,11 +186,10 @@ Suite Teardown
     Should Be Equal    ${listTitle}    ${title}
 
 항공권 검색
+    [Arguments]    ${arrival}
     ${date}    현재 시간 구하기
-    sleep    3s
-    Click Element[버튼 클릭]    xpath://*[text()='편도']
     Click Element[버튼 클릭]    xpath://*[text()='도착']
-    InputText Element[텍스트 입력하기]    class:FlightSearchAirportModal_searchInput__3oy24    BCN
+    InputText Element[텍스트 입력하기]    class:FlightSearchAirportModal_searchInput__3oy24    ${arrival}
     Click Element[버튼 클릭]    class:FlightSearchAirportBody_searchResultRow__3e7KX
     Click Element[버튼 클릭]    xpath://*[contains(text(), '여행 날짜')]
     Click Element[버튼 클릭]    xpath://*[text()='오늘']
@@ -1150,7 +1149,8 @@ MY야놀자 > 국내여행 통합예약 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[contains (text(), '예약정보 변경')]
     Click Element[버튼 클릭]    xpath://*[text()='선택 완료']
     sleep    1s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    IR.Image MoveTo    ${CURDIR}/Images/selectAll.png
+    IR.Mouse Scroll
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의하기']
     Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
     sleep    1s
@@ -1187,8 +1187,11 @@ RDP > 예약
     [Arguments]    ${keyword}
     sleep    1s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    sleep    3s
+    Click Element[버튼 클릭]    xpath:(//*[@class='AutocompleteEntry_container__3AGrX'])[1]
     sleep    1s
-    Click Element[버튼 클릭]    class:AutocompleteEntry_container__3AGrX
+    해외숙소 검색결과 > 가격 낮은순 정렬
+    sleep    3s
     Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSection_wrapItem__XzvR7'])[1]
     Element Visible[요소 표시 여부 체크]    class: GlobalPlaceDetailBody_container__emEX3
 
@@ -1206,13 +1209,6 @@ RDP > 예약
     sleep    5s
     ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailOptionListItem_badgePC__uMRWP
     Should Contain    ${title}    무료취소
-
-해외숙소 상세 > 해외숙소 예약하기 진입 (stage)
-    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
-    sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
-    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
-    Should Be Equal    ${title}    해외숙소 예약
 
 해외숙소 예약(포인트 결제) > 예약완료 (stage)
     sleep    1s
@@ -1317,3 +1313,104 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:TrainTicketsNav_title__3AkFv
     Should Be Equal    ${title}    오는날 승차권 조회
+
+교통/항공 > 고속버스 메뉴 클릭
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='고속버스']
+    Click Element[버튼 클릭]    xpath://*[text()='고속버스']
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    다운로드
+    sleep    1s
+
+항공권 > 편도 클릭
+    sleep    3s
+    Click Element[버튼 클릭]    xpath://*[text()='편도']
+    sleep    1s
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='편도']    class
+    Should Contain    ${attr}    FlightSearchFormBody_tripTypeSelected__3lVjF
+
+항공권 편도 검색 (stage)
+    [Arguments]    ${arrival}
+    Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'FlightSearchFormBody_airportCode__2a2VV')])[2]
+    InputText Element[텍스트 입력하기]    class:FlightSearchAirportModal_searchInput__3oy24    ${arrival}
+    Click Element[버튼 클릭]    class:FlightSearchAirportBody_searchResultRow__3e7KX
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '가는날')]
+    Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
+    Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
+    sleep    10s
+    Element Visible[요소 표시 여부 체크]    class:FlightListBody_tripContainer__QFL8w
+
+항공권 왕복 검색 (stage)
+    [Arguments]    ${arrival}
+    Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'FlightSearchFormBody_airportCode__2a2VV')])[2]
+    InputText Element[텍스트 입력하기]    class:FlightSearchAirportModal_searchInput__3oy24    ${arrival}
+    Click Element[버튼 클릭]    class:FlightSearchAirportBody_searchResultRow__3e7KX
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '가는날')]
+    Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]
+    sleep    2s
+    Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[32]
+    Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
+    Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
+    sleep    10s
+    Element Visible[요소 표시 여부 체크]    class:FlightListBody_tripContainer__QFL8w
+
+예약내역 취소 (stage)
+    홈 > MY야놀자 메뉴 클릭 (stage)
+    MY야놀자 > 국내여행 통합예약 메뉴 클릭
+    국내여행 예약내역 > 예약내역 상세
+    국내 예약내역 상세 > 예약취소 요청
+    국내 예약취소 요청 > 취소 요청하기
+    취소요청 완료 > 예약내역 상세
+    취소완료 체크
+    sleep    2s
+
+문자열에서 숫자만 추출
+    [Arguments]    ${string}
+    ${replace}    Replace String Using Regexp    ${string}    [^\\d]    ${EMPTY}
+    log    ${replace}
+    [Return]    ${replace}
+
+오늘날짜확인
+    ${date}    현재 시간 구하기
+    ${mmdd}    Get Substring    ${date}    5    10
+    ${replace}    Replace String    ${mmdd}    -    ${EMPTY}
+    ${replace2}    Replace String Using Regexp    ${replace}    ^0+    ${EMPTY}
+    log    ${replace2}
+    [Return]    ${replace2}
+
+체크인날짜확인
+    ${today}    오늘날짜확인
+    ${getText}    Get Text[텍스트 가져오기]    (//*[@class='CheckinOutBox_date__HMm-F'])[1]
+    ${convert}    문자열에서 숫자만 추출    ${getText}
+    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정 (stage)    3
+
+해외숙소 검색결과 > 가격 낮은순 정렬
+    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSortSection_sort__2ZeKM'])[2]
+    Element Visible[요소 표시 여부 체크]    class:BottomSheet_heading__SLpdy
+    Click Element[버튼 클릭]    xpath://*[text()='가격 낮은 순']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='GlobalPlaceListSortSection_sort__2ZeKM'])[2]
+    Should Be Equal    ${title}    가격 낮은 순
+
+내정보관리 > 비밀번호입력 후 상세 이동
+    InputText Element[텍스트 입력하기]    id:password    ${stage_password}
+    Click Element[버튼 클릭]    class:RectButton_primary__3O9TH
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:Nickname_memberID__3MMXU
+    Should Be Equal    ${title}    ${stage_username}
+
+여행지 선택 > 오사카
+    Click Element[버튼 클릭]    xpath://*[text()='오사카/교토']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceAreaListBody_countryEntry')])[1]    class
+    Should Contain    ${attr}    Expanded__1nWy4
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='오사카']
+    sleep    3s
+    ${title}    Get Text[텍스트 가져오기]    class:KeywordInputInNav_searchPseudoInput__2KG7_
+    Should Be Equal    ${title}    오사카, 일본
+
+해외숙소 검색결과 > PDP
+    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSection_wrapItem__XzvR7'])[1]
+    sleep    1s
+    Element Visible[요소 표시 여부 체크]    class:GlobalPlaceDetailBody_container__emEX3
+    sleep    1s

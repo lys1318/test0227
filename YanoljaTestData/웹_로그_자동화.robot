@@ -129,7 +129,8 @@ Resource          common.robot
     홈 > 교통/항공탭 클릭
     교통/항공 > 항공권 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightHome    view    31    ${date}
-    항공권 검색
+    항공권 > 편도 클릭
+    항공권 검색    BCN
     항공권 검색결과 > 결제처 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightSearchList    click    30    ${date}    가격리스트에서 결제처선택
 
