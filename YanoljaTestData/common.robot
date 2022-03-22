@@ -286,13 +286,13 @@ Suite Teardown
     [Arguments]    ${keyword}
     sleep    1s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
-    Click Element[버튼 클릭]    xpath://*[@alt='검색']
-    Click Element[버튼 클릭]    xpath:(//*[@class='PlaceListItemText_container__fUIgA text-unit'])[1]
+    Click Element[버튼 클릭]    xpath://*[text()='${keyword}']
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
 검색 > 레저/티켓탭 클릭
     sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='레저/티켓']
+    sleep    2s
 
 PDP > RDP (모텔 대실)
     sleep    1s
@@ -434,7 +434,7 @@ RDP > 숙박 예약
 검색 > 레저티켓 검색결과 > 상품상세 이동
     [Arguments]    ${keyword}
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
-    Click Element[버튼 클릭]    class:AutocompleteSection_entry__iDjdk
+    Click Element[버튼 클릭]    xpath://*[text()='${keyword}']
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
 
@@ -869,6 +869,7 @@ MY야놀자 > 로그인 메뉴 클릭
         Run Keyword If    '${loginBtn}[0]' == 'PASS'    InputText Element[텍스트 입력하기]    id:username    ${stage_username}
         Run Keyword If    '${loginBtn}[0]' == 'PASS'    InputText Element[텍스트 입력하기]    id:password    ${stage_password}
     END
+    sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='로그인']
     sleep    1s
     ${loginYn}    Get Text[텍스트 가져오기]    xpath://*[@class='MyNick_nickname__2Scd9']/div
@@ -1207,7 +1208,7 @@ RDP > 예약
 
 해외숙소 무료취소 가능 체크 (stage)
     sleep    5s
-    ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailOptionListItem_badgePC__uMRWP
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='txt'])[1]
     Should Contain    ${title}    무료취소
 
 해외숙소 예약(포인트 결제) > 예약완료 (stage)
@@ -1256,6 +1257,7 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
     Should Contain    ${title}    해외숙소 예약내역
+    sleep    5s
     Element Visible[요소 표시 여부 체크]    class:empty-display
 
 즐길거리 > 레저/티켓 메뉴 클릭
@@ -1296,7 +1298,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
     Should Be Equal    ${title}    도착역 선택
     InputText Element[텍스트 입력하기]    class:TrainSHomeStationModalTitle_input__573Rb    ${arrival}
-    Click Element[버튼 클릭]    class:TrainSHomeStationModal_suggestion__24s5l
+    Click Element[버튼 클릭]    xpath://*[text()='${arrival}']
     Click Element[버튼 클릭]    class:TrainSHomeBody_datePlaceholder__hCwn1
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
@@ -1317,7 +1319,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
 교통/항공 > 고속버스 메뉴 클릭
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='고속버스']
     Click Element[버튼 클릭]    xpath://*[text()='고속버스']
-    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
     Should Be Equal    ${title}    다운로드
     sleep    1s
 
@@ -1360,6 +1362,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     국내여행 예약내역 > 예약내역 상세
     국내 예약내역 상세 > 예약취소 요청
     국내 예약취소 요청 > 취소 요청하기
+    sleep    5s
     취소요청 완료 > 예약내역 상세
     취소완료 체크
     sleep    2s
@@ -1391,6 +1394,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='GlobalPlaceListSortSection_sort__2ZeKM'])[2]
     Should Be Equal    ${title}    가격 낮은 순
+    sleep    2s
 
 내정보관리 > 비밀번호입력 후 상세 이동
     InputText Element[텍스트 입력하기]    id:password    ${stage_password}
@@ -1413,4 +1417,79 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSection_wrapItem__XzvR7'])[1]
     sleep    1s
     Element Visible[요소 표시 여부 체크]    class:GlobalPlaceDetailBody_container__emEX3
+    sleep    1s
+
+홈 > 장바구니 유무 체크
+    메인 이동 (stage)
+    ${cartCnt}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    class:HomeSearchBar_cartCount__uljw0
+    Run Keyword If    '${cartCnt}[0]' == 'FAIL'    No Operation
+    Run Keyword If    '${cartCnt}[0]' == 'PASS'    장바구니 비우기
+
+장바구니 비우기
+    메인 이동 (stage)
+    Click Element[버튼 클릭]    class:PageTitleImageButton_button__3MXeo
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='선택 삭제']
+    Element Visible[요소 표시 여부 체크]    class:css-e84qjx
+    Click Element[버튼 클릭]    xpath://*[@class='primary css-17y1gu4']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:no-item-text
+    Should Be Equal    ${title}    장바구니에 담긴 상품이 없습니다
+
+해외숙소 > 여행지 선택 (stage)
+    go to    https://stage-m.yanolja.com/global/place/area-list?search=y
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    여행지 선택
+    sleep    3s
+
+국내숙소 > 모텔 (stage)
+    go to    https://stage-m.yanolja.com/motel
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    모텔
+
+국내숙소 > 호텔 (stage)
+    go to    https://stage-m.yanolja.com/hotel
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    호텔/리조트
+
+국내숙소 > 펜션 (stage)
+    go to    https://stage-m.yanolja.com/pension
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    펜션/풀빌라
+
+국내숙소 > 게하 (stage)
+    go to    https://stage-m.yanolja.com/guest-house
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    게하/한옥
+
+즐길거리 > 레저/티켓 (stage)
+    go to    https://stage-m.yanolja.com/leisure
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    레저/티켓
+
+교통/항공 > KTX (stage)
+    go to    https://stage-m.yanolja.com/train
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    KTX
+    sleep    1s
+
+교통/항공 > 고속버스 (stage)
+    go to    https://stage-m.yanolja.com/exhibition/6055
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    Should Be Equal    ${title}    다운로드
+    sleep    1s
+
+교통/항공 > 항공권 (stage)
+    go to    https://stage-m.yanolja.com/flights
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
+    Should Be Equal    ${title}    항공권
     sleep    1s
