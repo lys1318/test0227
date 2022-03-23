@@ -154,7 +154,7 @@ Suite Teardown
 국내숙소 추천 위젯 > 상품 클릭
     Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾고 계신 상품이 있나요?']
     Execute Javascript    window.scrollTo(0, 500)
-    Click Element[버튼 클릭]    xpath://*[text()='TEST YAN 전용 펜션 숙소']
+    Click Element[버튼 클릭]    xpath:(//*[@class='ThemeRecommendList_contentWrapper__3X0YV'])[1]
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
     sleep    1s
 
@@ -342,7 +342,10 @@ RDP > 숙박 예약
     Should Be Equal    ${title}    예약
 
 예약(포인트 결제) > 예약완료
-    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    0원 결제하기
     Click Element[버튼 클릭]    class:css-128od1m
@@ -939,7 +942,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     END
 
 모텔 숙박 예약가능 여부 체크
-    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[4]/div[2]//*[@class='price']
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]//*[text()='숙박']/parent::div/parent::div//*[@class='price']
     FOR    ${index}    IN    @{elements}
         ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
         Run Keyword If    '${price}' == '예약마감'    Continue For Loop
@@ -1004,7 +1007,8 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
 홈 추천 위젯 > 상품 클릭
     Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾는 상품이 있으신가요?']
     Execute Javascript    window.scrollTo(0, 500)
-    Click Element[버튼 클릭]    class:RecommendRankingList_itemWrapper__CXnQL
+    Comment    Click Element[버튼 클릭]    xpath:(//*[text()='TEST YAN 전용 호텔 숙소'])[1]
+    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
     sleep    1s
 
@@ -1208,8 +1212,21 @@ RDP > 예약
 
 해외숙소 무료취소 가능 체크 (stage)
     sleep    5s
-    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='txt'])[1]
-    Should Contain    ${title}    무료취소
+    FOR    ${index}    IN RANGE    2    5
+        ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='txt'])[1]
+        ${freeChk}    Run keyword and Ignore error    Should Contain    ${title}    무료취소
+        IF    '${freeChk}[0]' == 'FAIL'
+        Go Back
+        Click Element[버튼 클릭]    xpath://*[contains (text(), '나가기')]
+        sleep    3s
+        Go Back
+        sleep    1s
+        해외숙소 검색결과 > PDP    ${index}
+        해외숙소 상세 > 해외숙소 예약하기 진입
+        ELSE
+        Exit For Loop
+    END
+    END
 
 해외숙소 예약(포인트 결제) > 예약완료 (stage)
     sleep    1s
@@ -1242,8 +1259,12 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     Should Be Equal    ${title}    예약취소 하기
 
 해외 예약취소 요청 > 취소 요청하기
+    sleep    2s
     Click Element[버튼 클릭]    class:checkbox-icon-container
-    Click Element[버튼 클릭]    class:order-cancel-action-txt
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[@class='order-cancel-action']/button    class
+    ${cancelBtn}    Run keyword and Ignore error    Should Contain    ${attr}    disabled
+    Run Keyword If    '${cancelBtn}[0]' == 'FAIL'    Click Element[버튼 클릭]    class:order-cancel-action-txt
+    Run Keyword If    '${cancelBtn}[0]' == 'PASS'    Click Element[버튼 클릭]    class:checkbox-icon-container
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='modal-header'])[1]
     Should Be Equal    ${title}    예약을 취소하시겠어요?
@@ -1403,18 +1424,19 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${title}    Get Text[텍스트 가져오기]    class:Nickname_memberID__3MMXU
     Should Be Equal    ${title}    ${stage_username}
 
-여행지 선택 > 오사카
-    Click Element[버튼 클릭]    xpath://*[text()='오사카/교토']
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceAreaListBody_countryEntry')])[1]    class
+여행지 선택 > 베트남
+    Click Element[버튼 클릭]    xpath://*[text()='베트남']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceAreaListBody_countryEntry')])[9]    class
     Should Contain    ${attr}    Expanded__1nWy4
     sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='오사카']
+    Click Element[버튼 클릭]    xpath://*[text()='다낭']
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:KeywordInputInNav_searchPseudoInput__2KG7_
-    Should Be Equal    ${title}    오사카, 일본
+    Should Be Equal    ${title}    다낭, 베트남
 
 해외숙소 검색결과 > PDP
-    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSection_wrapItem__XzvR7'])[1]
+    [Arguments]    ${index}
+    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSection_wrapItem__XzvR7'])[${index}]
     sleep    1s
     Element Visible[요소 표시 여부 체크]    class:GlobalPlaceDetailBody_container__emEX3
     sleep    1s
