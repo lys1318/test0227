@@ -933,7 +933,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     Should Be Equal    ${title}    자주 묻는 질문
 
 모텔 대실 예약가능 여부 체크
-    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[4]/div[1]//*[@class='price']
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]//*[text()='대실']/parent::div/parent::div//*[@class='price']
     FOR    ${index}    IN    @{elements}
         ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
         Run Keyword If    '${price}' == '예약마감'    Continue For Loop
@@ -1093,8 +1093,10 @@ RDP > 대실 예약
 
 바로예약(포인트 결제) > 예약완료 (stage)
     sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
-    sleep    1s
+    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    0원 결제하기
     Click Element[버튼 클릭]    class:css-128od1m
@@ -1112,7 +1114,10 @@ RDP > 대실 예약
 
 장바구니예약(포인트 결제) > 예약완료 (stage)
     sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    0원 결제하기
     Click Element[버튼 클릭]    class:css-128od1m
