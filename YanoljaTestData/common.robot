@@ -1159,9 +1159,9 @@ MY야놀자 > 국내여행 통합예약 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[contains (text(), '예약정보 변경')]
     Click Element[버튼 클릭]    xpath://*[text()='선택 완료']
     sleep    1s
-    IR.Image MoveTo    ${CURDIR}/Images/selectAll.png
-    IR.Mouse Scroll
+    Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의하기']
+    sleep    2s
     Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:css-tmlfjl
