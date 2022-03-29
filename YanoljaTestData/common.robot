@@ -1305,8 +1305,9 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
 모텔 장바구니 담기 (stage)
     홈 > 검색 버튼 클릭 (stage)
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    국내숙소 날짜 설정 (stage)    3
+    체크인날짜확인
     PDP > RDP (모텔 숙박)
+    RDP > 무료취소여부체크
     RDP > 숙박 예약
     장바구니 담기
     sleep    2s
@@ -1411,7 +1412,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${today}    오늘날짜확인
     ${getText}    Get Text[텍스트 가져오기]    (//*[@class='CheckinOutBox_date__HMm-F'])[1]
     ${convert}    문자열에서 숫자만 추출    ${getText}
-    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정 (stage)    3
+    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정 (stage)    7
 
 해외숙소 검색결과 > 가격 낮은순 정렬
     Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSortSection_sort__2ZeKM'])[2]
@@ -1520,3 +1521,8 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
     Should Be Equal    ${title}    항공권
     sleep    1s
+
+RDP > 무료취소여부체크
+    ${cancelTxt}    Get Text[텍스트 가져오기]    xpath://*[text()='취소규정']/following::ul/li[1]
+    ${cancelYn}    Run keyword and Ignore error    Should Contain    ${cancelTxt}    무료 취소 가능
+    Run Keyword If    '${cancelYn}[0]' == 'FAIL'    국내숙소 날짜 설정 (stage)    10

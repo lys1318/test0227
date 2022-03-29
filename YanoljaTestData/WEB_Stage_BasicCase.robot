@@ -87,6 +87,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 대실)
+    RDP > 무료취소여부체크
     RDP > 대실 예약
     바로 예약 > 예약
     바로예약(포인트 결제) > 예약완료 (stage)
@@ -99,6 +100,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 숙박)
+    RDP > 무료취소여부체크
     RDP > 숙박 예약
     바로 예약 > 예약
     바로예약(포인트 결제) > 예약완료 (stage)
@@ -112,6 +114,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 대실)
+    RDP > 무료취소여부체크
     RDP > 대실 예약
     장바구니 담기
     장바구니 이동
@@ -127,6 +130,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 숙박)
+    RDP > 무료취소여부체크
     RDP > 숙박 예약
     장바구니 담기
     장바구니 이동
@@ -188,6 +192,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
     체크인날짜확인
     PDP > RDP (펜션)
+    RDP > 무료취소여부체크
     RDP > 예약
     바로 예약 > 예약
     바로예약(포인트 결제) > 예약완료 (stage)
@@ -201,6 +206,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
     체크인날짜확인
     PDP > RDP (펜션)
+    RDP > 무료취소여부체크
     RDP > 예약
     장바구니 담기
     장바구니 이동
@@ -225,6 +231,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트
     체크인날짜확인
     PDP > RDP (호텔/게하)
+    RDP > 무료취소여부체크
     RDP > 예약
     바로 예약 > 예약
     바로예약(포인트 결제) > 예약완료 (stage)
@@ -238,6 +245,7 @@ Resource          common.robot
     검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트
     체크인날짜확인
     PDP > RDP (호텔/게하)
+    RDP > 무료취소여부체크
     RDP > 예약
     장바구니 담기
     장바구니 이동
