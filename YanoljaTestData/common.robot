@@ -104,6 +104,7 @@ Suite Teardown
     메인 이동
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='무한쿠폰룸']
     Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
+    Go To    https://qa-m.yanolja.com/motel?myRoom=1
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    무한쿠폰룸
 
