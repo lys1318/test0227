@@ -831,6 +831,7 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
 
 Suite Setup (stage)
     stage 테스트숙소 노출 설정
+    구글시트 테스트 수행 날짜 업데이트 (stage)
 
 Suite Teardown (stage)
     sleep    3s
@@ -1163,7 +1164,9 @@ MY야놀자 > 국내여행 통합예약 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의하기']
     sleep    2s
-    Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'primary')]    class
+    ${cancelBtn}    Run keyword and Ignore error    Should Contain    ${attr}    disabled
+    Run Keyword If    '${cancelBtn}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:css-tmlfjl
     Should Be Equal    ${title}    예약 취소를 요청하시겠어요?
@@ -1294,9 +1297,10 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     Should Be Equal    ${title}    레저/티켓
 
 레저티켓 장바구니 담기 (stage)
+    [Arguments]    ${productName}
     홈 > 검색 버튼 클릭 (stage)
     검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    [여수] 여수예술랜드 미디어아트 / 조각공원 / 트릭아트
+    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     sleep    1s
@@ -1527,3 +1531,7 @@ RDP > 무료취소여부체크
     ${cancelTxt}    Get Text[텍스트 가져오기]    xpath://*[text()='취소규정']/following::ul/li[1]
     ${cancelYn}    Run keyword and Ignore error    Should Contain    ${cancelTxt}    무료 취소 가능
     Run Keyword If    '${cancelYn}[0]' == 'FAIL'    국내숙소 날짜 설정 (stage)    10
+
+구글시트 테스트 수행 날짜 업데이트 (stage)
+    ${date}    DT.Get Current Date    result_format=%Y.%m.%d
+    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    K12    ${date}
