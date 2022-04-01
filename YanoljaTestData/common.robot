@@ -1097,7 +1097,7 @@ MY야놀자 > 국내여행 통합예약 메뉴 클릭
     ${title}    Get Text[텍스트 가져오기]    class:css-tmlfjl
     Should Be Equal    ${title}    예약 취소를 요청하시겠어요?
     Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'css-17y1gu4')])[2]
-    sleep    2s
+    sleep    4s
     ${title}    Get Text[텍스트 가져오기]    class:title
     Should Be Equal    ${title}    취소 요청이 완료되었습니다.
 
