@@ -296,7 +296,9 @@ Suite Teardown
     [Arguments]    ${keyword}
     sleep    1s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
-    Click Element[버튼 클릭]    xpath://*[text()='${keyword}']
+    Click Element[버튼 클릭]    xpath: //*[@alt='검색']
+    sleep    1s
+    Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
 검색 > 레저/티켓탭 클릭
@@ -1335,9 +1337,17 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${date}    현재 시간 구하기
     ${mmdd}    Get Substring    ${date}    5    10
     ${replace}    Replace String    ${mmdd}    -    ${EMPTY}
-    ${replace2}    Replace String Using Regexp    ${replace}    ^0+    ${EMPTY}
-    log    ${replace2}
-    [Return]    ${replace2}
+    ${month}    ${day}    Split String    ${mmdd}    -
+    ${month2}    Get Substring    ${month}    0    1
+    ${day2}    Get Substring    ${day}    0    1
+    IF    '${month2}' == '0'
+    ${month}    Get Substring    ${month}    1    2
+    END
+    IF    '${day2}' == '0'
+    ${day}    Get Substring    ${day}    1    2
+    END
+    ${checkIn}    Catenate    SEPARATOR=    ${month}    ${day}
+    [Return]    ${checkIn}
 
 체크인날짜확인
     ${today}    오늘날짜확인
@@ -1483,3 +1493,93 @@ live 테스트숙소 노출 설정
     Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    L${cell}    ${status}
     Comment    # 응답 업데이트
     Comment    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    O${cell}    ${response}
+
+국내숙소 > 선착순쿠폰 (stage)
+    go to    ${StageMain}/recommend
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PlaceListTitle_normal__318s-
+    Should Be Equal    ${title}    테헤란로108길
+
+국내숙소 > 무한쿠폰룸 (stage)
+    go to    ${StageMain}/motel?myRoom=1
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    무한쿠폰룸
+
+국내숙소 > 월혜택모음 (stage)
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '혜택모음')]
+    sleep    3s
+    ${getUrl}    Get Location
+    ${reUrl}    Replace String    ${getUrl}    www    stage-m
+    go to    ${reUrl}
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    야놀자 혜택 모아보기
+
+즐길거리 > 맛집 (stage)
+    go to    ${StageMain}/restaurant/app-install
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
+    Should Be Equal    ${title}    다운로드
+
+즐길거리 > 모바일교환권 (stage)
+    Click Element[버튼 클릭]    xpath://*[text()='모바일교환권']
+    sleep    3s
+    ${getUrl}    Get Location
+    ${reUrl}    Replace String    ${getUrl}    www    stage-m
+    go to    ${reUrl}
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    Should Be Equal    ${title}    모바일교환권
+
+교통/항공 > 렌터카 (stage)
+    Click Element[버튼 클릭]    xpath:(//*[text()='렌터카'])[1]
+    sleep    3s
+    ${getUrl}    Get Location
+    ${reUrl}    Replace String    ${getUrl}    www    stage-m
+    go to    ${reUrl}
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    Should Be Equal    ${title}    전국 렌터카
+
+해외여행 > 여행자보험
+    Click Element[버튼 클릭]    xpath://*[text()='여행자보험']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:title-in-app
+    Should Be Equal    ${title}    해외여행보험
+
+국내숙소 > 선착순쿠폰
+    Click Element[버튼 클릭]    xpath://*[text()='선착순쿠폰']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PlaceListTitle_normal__318s-
+    Should Be Equal    ${title}    테헤란로108길
+
+국내숙소 > 무한쿠폰룸
+    Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    무한쿠폰룸
+
+국내숙소 > 월혜택모음
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '혜택모음')]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    야놀자 혜택 모아보기
+
+즐길거리 > 맛집
+    Click Element[버튼 클릭]    xpath://*[text()='맛집']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
+    Should Be Equal    ${title}    다운로드
+
+즐길거리 > 모바일교환권
+    Click Element[버튼 클릭]    xpath://*[text()='모바일교환권']
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    Should Be Equal    ${title}    모바일교환권
+
+교통/항공 > 렌터카
+    Click Element[버튼 클릭]    xpath:(//*[text()='렌터카'])[1]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    Should Be Equal    ${title}    전국 렌터카
