@@ -1018,6 +1018,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾는 상품이 있으신가요?']
     Execute Javascript    window.scrollTo(0, 500)
     Comment    Click Element[버튼 클릭]    xpath:(//*[text()='TEST YAN 전용 호텔 숙소'])[1]
+    sleep    3s
     IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
     sleep    1s
