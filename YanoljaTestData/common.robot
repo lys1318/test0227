@@ -952,7 +952,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     END
 
 호텔/게하 예약가능 여부 체크
-    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]/div[3]//*[@class='price']
+    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]//*[text()='숙박']/parent::div/parent::div//*[@class='price']
     FOR    ${index}    IN    @{elements}
         ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
         Run Keyword If    '${price}' == '예약마감'    Continue For Loop
