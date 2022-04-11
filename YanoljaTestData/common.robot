@@ -36,9 +36,11 @@ Suite Setup
     구글시트 테스트 수행 날짜 업데이트
 
 Suite Teardown
-    [API_SET] 장바구니 주문 조회 후 모두 예약 취소
     sleep    3s
     Close Browser
+
+TC Teardown
+    [API_SET] 장바구니 주문 조회 후 모두 예약 취소
 
 로그인 후 cgntId 구하기
     이메일로 로그인 화면 오픈
