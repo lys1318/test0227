@@ -23,7 +23,7 @@ ${TEST_PHASE}     1
 ${stage_username}    qa_test02@yanolja.com
 ${stage_password}    qwert12345@
 ${GoogleDrive_URL_StageBasic}    https://docs.google.com/spreadsheets/d/1esDCuZK5eO4fT0XDrDjRc3l4DS3WMxJHnBCMIv0Pes0/edit#gid=0
-${WORKSHEET_StageBasic}    v.8.10.5 기준
+${WORKSHEET_StageBasic}    v.8.13.0 기준
 ${QAMain}         https://qa-m.yanolja.com
 ${StageMain}      https://stage-m.yanolja.com
 ${LiveMain}       https://www.yanolja.com
@@ -1586,3 +1586,10 @@ live 테스트숙소 노출 설정
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
     Should Be Equal    ${title}    전국 렌터카
+
+렌터카 서브홈 > PDP
+    ${listTitle}    Get Text[텍스트 가져오기]    xpath:(//*[@class='LeisureListItem_title__U-d8s'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[@class='ExhibitionDetailDomesticLeisure_container__15r_2'])[1]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
+    Should Be Equal    ${title}    ${listTitle}

@@ -258,7 +258,35 @@ Resource          common.robot
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    32
 
-33.해외숙소 결제
+33.국내숙소 > 선착순쿠폰
+    국내숙소 > 선착순쿠폰 (stage)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    33
+
+34.국내숙소 > 무한쿠폰룸
+    국내숙소 > 무한쿠폰룸 (stage)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    34
+
+35.국내숙소 > 혜택모음
+    홈 > 국내숙소탭 클릭
+    국내숙소 > 월혜택모음 (stage)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    35
+
+36.해외여행 > 여행자보험
+    홈 > 해외여행탭 클릭
+    해외여행 > 여행자보험
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    36
+
+37.해외여행 > 해외숙소
+    홈 > 해외여행탭 클릭
+    해외여행 > 해외숙소 메뉴 클릭
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    37
+
+38.해외숙소 결제
     Comment    홈 > 해외여행탭 클릭 (stage)
     Comment    해외여행 > 해외숙소 메뉴 클릭
     해외숙소 > 여행지 선택 (stage)
@@ -270,9 +298,9 @@ Resource          common.robot
     해외숙소 무료취소 가능 체크
     해외숙소 예약(포인트 결제) > 예약완료
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    33
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    38
 
-34.해외숙소 취소
+39.해외숙소 취소
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 해외여행 통합예약 메뉴 클릭
     해외여행 예약내역 > 예약내역 상세
@@ -280,16 +308,16 @@ Resource          common.robot
     해외 예약취소 요청 > 취소 요청하기
     해외숙소 취소요청 완료 > 예약내역 상세 & 취소완료 체크
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    34
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    39
 
-35.레저/티켓 서브홈 이동
+40.레저/티켓 서브홈 이동
     Comment    홈 > 즐길거리탭 클릭 (stage)
     Comment    즐길거리 > 레저/티켓 메뉴 클릭
     즐길거리 > 레저/티켓 (stage)
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    35
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    40
 
-36.레저 일반 바로예약 결제
+41.레저/티켓 바로예약 결제
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [제주 서귀포] 공룡휴게소박물관
@@ -297,39 +325,66 @@ Resource          common.robot
     예약(포인트 결제) > 예약완료
     sleep    2s
     예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    36
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    41
 
-37.레저 모바일 바로예약 결제
-    홈 > 검색 버튼 클릭
-    검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    [스타벅스] 카페 아메리카노 T
-    레저 상세 > 예약
-    예약(포인트 결제) > 예약완료
-    sleep    2s
-    예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    37
-
-38.레저 일반 장바구니 결제
+42.레저/티켓 장바구니 결제
     [Setup]    홈 > 장바구니 유무 체크
     레저티켓 장바구니 담기    [제주 서귀포] 공룡휴게소박물관
     장바구니 이동
     장바구니 > 예약
     예약(포인트 결제) > 예약완료
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    38
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    42
 
-39.레저 취소
+43.레저/티켓 취소
     예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    39
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    43
 
-40.KTX 서브홈 이동
+44.모바일교환권 서브홈 이동
+    홈 > 즐길거리탭 클릭
+    즐길거리 > 모바일교환권 (stage)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    44
+
+45.모바일교환권 바로예약 결제
+    홈 > 검색 버튼 클릭
+    검색 > 레저/티켓탭 클릭
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [스타벅스] 카페 아메리카노 T
+    레저 상세 > 예약
+    예약(포인트 결제) > 예약완료
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    45
+
+46.모바일교환권 취소
+    예약내역 취소
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    46
+
+47.맛집 서브홈 이동
+    즐길거리 > 맛집 (stage)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    47
+
+48.렌터카 서브홈 이동
+    홈 > 교통/항공탭 클릭
+    교통/항공 > 렌터카 (stage)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    48
+
+49.렌터카 PDP 이동
+    홈 > 교통/항공탭 클릭
+    교통/항공 > 렌터카 (stage)
+    렌터카 서브홈 > PDP
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    49
+
+50.KTX 서브홈 이동
     Comment    홈 > 교통/항공탭 클릭 (stage)
     Comment    교통/항공 > KTX 메뉴 클릭
     교통/항공 > KTX (stage)
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    40
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    50
 
-41.KTX 왕복상품 장바구니 결제
+51.KTX 왕복상품 장바구니 결제
     [Setup]    홈 > 장바구니 유무 체크
     모텔 장바구니 담기
     Comment    홈 > 교통/항공탭 클릭 (stage)
@@ -346,30 +401,30 @@ Resource          common.robot
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
     예약(포인트 결제) > 예약완료
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    41
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    51
 
-42.KTX 취소
+52.KTX 취소
     예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    42
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    52
 
-43.고속버스 서브홈 이동
+53.고속버스 서브홈 이동
     Comment    홈 > 교통/항공탭 클릭 (stage)
     Comment    교통/항공 > 고속버스 메뉴 클릭
     교통/항공 > 고속버스 (stage)
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    43
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    53
 
-47.항공권 왕복 리스트 확인
+57.항공권 왕복 리스트 확인
     Comment    홈 > 교통/항공탭 클릭 (stage)
     Comment    교통/항공 > 항공권 메뉴 클릭
     교통/항공 > 항공권 (stage)
     항공권 왕복 검색    BCN
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    47
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    57
 
-48.항공권 편도 리스트 확인
+58.항공권 편도 리스트 확인
     Comment    홈 > 교통/항공탭 클릭 (stage)
     Comment    교통/항공 > 항공권 메뉴 클릭
     교통/항공 > 항공권 (stage)
     항공권 > 편도 클릭
     항공권 편도 검색    BCN
-    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    48
+    [Teardown]    구글 스프레드 시트 결과 업데이트[StageBasic]    ${TEST_STATUS}    58
