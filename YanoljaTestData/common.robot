@@ -1093,6 +1093,7 @@ MY야놀자 > 국내여행 통합예약 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='선택 완료']
     sleep    1s
     Click Element[버튼 클릭]    xpath://*[contains (@class, 'primary')]
+    sleep    2s
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의하기']
     sleep    2s
     ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'primary')]    class
@@ -1280,8 +1281,8 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     Should Be Equal    ${title}    오는날 승차권 조회
 
 교통/항공 > 고속버스 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='고속버스']
-    Click Element[버튼 클릭]    xpath://*[text()='고속버스']
+    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'exhibition/6055')]
+    Click Element[버튼 클릭]    xpath://*[contains (@href, 'exhibition/6055')]
     ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
     Should Be Equal    ${title}    다운로드
     sleep    1s
@@ -1455,7 +1456,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
 교통/항공 > 고속버스 (stage)
     go to    ${StageMain}/exhibition/6055
     sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='ExhibitionDetailNav_title__1NE43'])[1]
     Should Be Equal    ${title}    다운로드
     sleep    1s
 
