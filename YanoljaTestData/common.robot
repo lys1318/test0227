@@ -296,10 +296,10 @@ TC Teardown
 
 검색 > 국내숙소 검색결과 > PDP 이동
     [Arguments]    ${keyword}
-    sleep    1s
+    sleep    3s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
     Click Element[버튼 클릭]    xpath: //*[@alt='검색']
-    sleep    1s
+    sleep    3s
     Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
@@ -451,7 +451,9 @@ RDP > 숙박 예약
 
 검색 > 레저티켓 검색결과 > 상품상세 이동
     [Arguments]    ${keyword}
+    sleep    3s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    sleep    3s
     Click Element[버튼 클릭]    xpath://*[text()='${keyword}']
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
@@ -1177,7 +1179,7 @@ RDP > 예약
     ${amount}    Get Text[텍스트 가져오기]    class:payment-amount
     Should Be Equal    ${amount}    0원으로 예약하기
     Click Element[버튼 클릭]    class:payment-amount
-    sleep    5s
+    sleep    10s
     ${title}    Get Text[텍스트 가져오기]    class:status-text
     Should Contain    ${title}    예약이 완료 되었습니다.
 
@@ -1283,7 +1285,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
 교통/항공 > 고속버스 메뉴 클릭
     Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'exhibition/6055')]
     Click Element[버튼 클릭]    xpath://*[contains (@href, 'exhibition/6055')]
-    ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    다운로드
     sleep    1s
 
