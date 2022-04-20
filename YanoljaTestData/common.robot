@@ -128,7 +128,7 @@ TC Teardown
 국내숙소 > 강원도 메뉴 클릭
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='강원도']
     Click Element[버튼 클릭]    xpath://*[text()='강원도']
-    ${title}    Get Text[텍스트 가져오기]    class:RegionhomeMain_title__2GftR
+    ${title}    Get Text[텍스트 가져오기]    class:RegionhomeMain_title__2vNhH
     Should Be Equal    ${title}    강원도
 
 홈 > 라이브 방송 메뉴 클릭
@@ -142,8 +142,8 @@ TC Teardown
 홈 > 검색 버튼 클릭
     메인 이동
     sleep    1s
-    Element Visible[요소 표시 여부 체크]    class:HomeSearchBar_search__2wDcY
-    Click Element[버튼 클릭]    class:HomeSearchBar_search__2wDcY
+    Element Visible[요소 표시 여부 체크]    xpath://*[text()='무엇을 하고 놀까요?']
+    Click Element[버튼 클릭]    xpath://*[text()='무엇을 하고 놀까요?']
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    검색
@@ -160,13 +160,13 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/train')]
     Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/train')]
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    KTX
+    Should Be Equal    ${title}    기차
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
     Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾고 계신 상품이 있나요?']
     Execute Javascript    window.scrollTo(0, 500)
-    Click Element[버튼 클릭]    xpath:(//*[@class='ThemeRecommendList_contentWrapper__3X0YV'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[@class='ThemeRecommendList_itemWrapper__1Y0NM'])[1]
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
     sleep    1s
 
@@ -181,9 +181,10 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
 
 지역 서브홈 > 지도 클릭
-    ${listTitle}    Get Text[텍스트 가져오기]    class:RegionhomeMapInfo_active__3ZXSV
+    ${listTitle}    Get Text[텍스트 가져오기]    class:RegionhomeMapInfo_active__3d7xW
+    sleep    2s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Click Element[버튼 클릭]    xpath://*[@aria-label='Map']
+    Click Element[버튼 클릭]    class:RegionhomeMapInfo_map__3cGqj
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${listTitle}    ${title}
 
@@ -978,7 +979,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath:(//*[text()='추천'])[1]
     Click Element[버튼 클릭]    xpath:(//*[text()='추천'])[1]
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][1]    id
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='추천']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
 
@@ -987,7 +988,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='국내숙소']
     Click Element[버튼 클릭]    xpath://*[text()='국내숙소']
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][2]    id
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='국내숙소']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
 
@@ -996,7 +997,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='교통/항공']
     Click Element[버튼 클릭]    xpath://*[text()='교통/항공']
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][4]    id
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='교통/항공']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
 
@@ -1005,7 +1006,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='즐길거리']
     Click Element[버튼 클릭]    xpath://*[text()='즐길거리']
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][3]    id
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='즐길거리']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
 
@@ -1014,18 +1015,25 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외여행']
     Click Element[버튼 클릭]    xpath://*[text()='해외여행']
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[contains (@class, 'HomeTabs_tab__u77-O')][5]    id
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='해외여행']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
 
 홈 추천 위젯 > 상품 클릭
-    Comment    Run keyword and Ignore error    Click Element[버튼 클릭]    xpath://*[text()='찾는 상품이 있으신가요?']
-    Execute Javascript    window.scrollTo(0, 500)
-    Comment    Click Element[버튼 클릭]    xpath:(//*[text()='TEST YAN 전용 호텔 숙소'])[1]
-    sleep    3s
-    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
-    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     sleep    1s
+    Execute Javascript    window.scrollTo(0, 0)
+    ${start}    Set Variable    0
+    ${end}    Set Variable    300
+    FOR    ${index}    IN RANGE    5
+        ${ImageChk}    IR.Find Target    ${CURDIR}/Images/weeklyProduct.png
+        Run Keyword If    '${ImageChk}' == 'None'    Execute Javascript    window.scrollTo(${start}, ${end})
+        ${start}    Set Variable    ${end}
+        ${end}    Set Variable    ${end} * 2
+        Run Keyword If    '${ImageChk}' != 'None'    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
+        Run Keyword If    '${ImageChk}' != 'None'    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
+        Run Keyword If    '${ImageChk}' != 'None'    Exit For Loop
+    END
 
 국내숙소 날짜 설정
     [Arguments]    ${days_later}
