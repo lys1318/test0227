@@ -142,8 +142,8 @@ TC Teardown
 홈 > 검색 버튼 클릭
     메인 이동
     sleep    1s
-    Element Visible[요소 표시 여부 체크]    class:HomeSearchBar_search__3R15k
-    Click Element[버튼 클릭]    class:HomeSearchBar_search__3R15k
+    Element Visible[요소 표시 여부 체크]    class:HomeSearchBar_search__2wDcY
+    Click Element[버튼 클릭]    class:HomeSearchBar_search__2wDcY
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    검색
