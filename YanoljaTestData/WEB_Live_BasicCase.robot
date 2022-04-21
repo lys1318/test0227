@@ -420,3 +420,48 @@ Resource          common.robot
     항공권 > 편도 클릭
     항공권 편도 검색    BCN
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    58
+
+----------TEST용----------
+    [Tags]    TEST
+    No operation
+
+국내숙소 키워드 검색
+    [Tags]    TEST
+    홈 > 검색 버튼 클릭
+    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
+    Go Back
+    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
+    Go Back
+    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
+    Go Back
+    검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트
+
+레저/티켓 키워드 검색
+    [Tags]    TEST
+    홈 > 검색 버튼 클릭
+    검색 > 레저/티켓탭 클릭
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [제주 서귀포] 공룡휴게소박물관
+    Go Back
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [스타벅스] 카페 아메리카노 T
+    Go Back
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [전국] 슈퍼윙스 키즈카페 8개지점★
+    Go Back
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [전국] 플레이타임 키즈카페 17개점
+
+해외숙소 키워드 검색
+    [Tags]    TEST
+    홈 > 검색 버튼 클릭
+    검색 > 해외숙소탭 클릭
+    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    도톤보리 크리스탈 호텔
+    Go Back
+    sleep    3s
+    Go Back
+    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    노보텔 다낭 프리미어 한 리버
+    Go Back
+    sleep    3s
+    Go Back
+    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    리오 호텔 마카오
+    Go Back
+    sleep    3s
+    Go Back
+    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    인사이드 파이브 시티 아파트먼츠

@@ -71,9 +71,14 @@ TC Teardown
 메인 이동
     ${tags}    Set Variable    @{TEST TAGS}
     Set Global Variable    ${TAGS}    ${tags}
-    Run Keyword If    '${Tags}' == 'WEB_LOG'    go to    https://qa-m.yanolja.com/
-    Run Keyword If    '${Tags}' == 'StageBasic'    go to    https://stage-m.yanolja.com/
-    Run Keyword If    '${Tags}' == 'LiveBasic'    go to    https://www.yanolja.com/
+    ${type_TAGS}    Run keyword and Ignore error    Evaluate    type(${TAGS}).__name__
+    IF    '${type_TAGS}[0]' == 'FAIL'
+        Run Keyword If    '${TAGS}' == 'WEB_LOG'    go to    https://qa-m.yanolja.com/
+        Run Keyword If    '${TAGS}' == 'StageBasic'    go to    https://stage-m.yanolja.com/
+        Run Keyword If    '${TAGS}' == 'LiveBasic'    go to    https://www.yanolja.com/
+    ELSE
+        Run Keyword If    '${TAGS}[1]' == 'TEST'    go to    https://www.yanolja.com/
+    END
 
 현재 시간 구하기
     ${date}    DT.Get Current Date
@@ -142,8 +147,8 @@ TC Teardown
 홈 > 검색 버튼 클릭
     메인 이동
     sleep    1s
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='무엇을 하고 놀까요?']
-    Click Element[버튼 클릭]    xpath://*[text()='무엇을 하고 놀까요?']
+    Element Visible[요소 표시 여부 체크]    xpath://*[contains(@class, 'HomeSearchBar_search__')]
+    Click Element[버튼 클릭]    xpath://*[contains(@class, 'HomeSearchBar_search__')]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    검색
@@ -160,7 +165,7 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/train')]
     Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/train')]
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    기차
+    Should Be Equal    ${title}    KTX
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
@@ -295,14 +300,16 @@ TC Teardown
 하단 메뉴 홈 클릭
     Click Element[버튼 클릭]    class:TabIcon_home__1SIsl
 
-검색 > 국내숙소 검색결과 > PDP 이동
+검색 > 국내숙소 검색결과 > PDP 이동 (QA)
     [Arguments]    ${keyword}
     sleep    3s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
     Click Element[버튼 클릭]    xpath: //*[@alt='검색']
     sleep    3s
     Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
-    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    class:PlaceDetailTitle_title__9jpRM
+    Should Be Equal    ${title}    ${keyword}
 
 검색 > 레저/티켓탭 클릭
     sleep    1s
@@ -454,8 +461,10 @@ RDP > 숙박 예약
     [Arguments]    ${keyword}
     sleep    3s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
-    sleep    3s
-    Click Element[버튼 클릭]    xpath://*[text()='${keyword}']
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    1s
+    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    2s
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
 
@@ -1460,7 +1469,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     go to    ${StageMain}/train
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    KTX
+    Should Be Equal    ${title}    기차
     sleep    1s
 
 교통/항공 > 고속버스 (stage)
@@ -1604,3 +1613,27 @@ live 테스트숙소 노출 설정
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${listTitle}
+
+검색 > 국내숙소 검색결과 > PDP 이동
+    [Arguments]    ${keyword}
+    sleep    3s
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    1s
+    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    class:PlaceDetailTitle_title__9jpRM
+    Should Be Equal    ${title}    ${keyword}
+
+검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)
+    [Arguments]    ${keyword}
+    sleep    3s
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    1s
+    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    2s
+    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListItem_title__3vXxU'])[1]
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailHeaderInfo_placeName__3QQMz
+    Should Be Equal    ${title}    ${keyword}
