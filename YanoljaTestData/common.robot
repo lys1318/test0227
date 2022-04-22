@@ -67,17 +67,18 @@ TC Teardown
 
 이메일로 로그인 화면 오픈
     Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
+    Maximize Browser Window
 
 메인 이동
     ${tags}    Set Variable    @{TEST TAGS}
     Set Global Variable    ${TAGS}    ${tags}
     ${type_TAGS}    Run keyword and Ignore error    Evaluate    type(${TAGS}).__name__
     IF    '${type_TAGS}[0]' == 'FAIL'
-        Run Keyword If    '${TAGS}' == 'WEB_LOG'    go to    https://qa-m.yanolja.com/
-        Run Keyword If    '${TAGS}' == 'StageBasic'    go to    https://stage-m.yanolja.com/
-        Run Keyword If    '${TAGS}' == 'LiveBasic'    go to    https://www.yanolja.com/
+    Run Keyword If    '${TAGS}' == 'WEB_LOG'    go to    https://qa-m.yanolja.com/
+    Run Keyword If    '${TAGS}' == 'StageBasic'    go to    https://stage-m.yanolja.com/
+    Run Keyword If    '${TAGS}' == 'LiveBasic'    go to    https://www.yanolja.com/
     ELSE
-        Run Keyword If    '${TAGS}[1]' == 'TEST'    go to    https://www.yanolja.com/
+    Run Keyword If    '${TAGS}[1]' == 'TEST'    go to    https://www.yanolja.com/
     END
 
 현재 시간 구하기
@@ -165,7 +166,7 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/train')]
     Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/train')]
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    KTX
+    Should Be Equal    ${title}    기차
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
@@ -844,6 +845,7 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
 
 Suite Setup (stage)
     stage 테스트숙소 노출 설정
+    Maximize Browser Window
     구글시트 테스트 수행 날짜 업데이트 (stage)
 
 Suite Teardown (stage)
@@ -1497,7 +1499,10 @@ RDP > 무료취소여부체크
 
 Suite Setup (live)
     live 테스트숙소 노출 설정
+    Maximize Browser Window
     구글시트 테스트 수행 날짜 업데이트 (live)
+    Comment    IR.Keybord Ctrl
+    Comment    IR.Image Click    ${CURDIR}/Images/network.png
 
 live 테스트숙소 노출 설정
     Open Browser    ${LiveMain}/_settings    Chrome    executable_path=${CURDIR}/chromedriver
@@ -1637,3 +1642,7 @@ live 테스트숙소 노출 설정
     sleep    2s
     ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailHeaderInfo_placeName__3QQMz
     Should Be Equal    ${title}    ${keyword}
+
+TEST_Setup
+    IR.Keybord Ctrl
+    IR.Image Click    ${CURDIR}/Images/network.png
