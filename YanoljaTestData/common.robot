@@ -1630,19 +1630,23 @@ live 테스트숙소 노출 설정
     ${title}    Get Text[텍스트 가져오기]    class:PlaceDetailTitle_title__9jpRM
     Should Be Equal    ${title}    ${keyword}
 
-검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)
+검색 > 해외숙소 검색결과 (테스트용)
     [Arguments]    ${keyword}
     sleep    3s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
     Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
     sleep    1s
     Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
-    sleep    2s
-    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListItem_title__3vXxU'])[1]
-    sleep    2s
-    ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailHeaderInfo_placeName__3QQMz
-    Should Be Equal    ${title}    ${keyword}
+    Comment    sleep    2s
+    Comment    Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListItem_title__3vXxU'])[1]
+    Comment    sleep    2s
+    Comment    ${title}    Get Text[텍스트 가져오기]    class:GlobalPlaceDetailHeaderInfo_placeName__3QQMz
+    Comment    Should Be Equal    ${title}    ${keyword}
 
 TEST_Setup
     IR.Keybord Ctrl
+    sleep    3s
     IR.Image Click    ${CURDIR}/Images/network.png
+
+TEST_Status_Check
+    Run Keyword If    '${TEST STATUS}' == 'FAIL'    Fatal Error

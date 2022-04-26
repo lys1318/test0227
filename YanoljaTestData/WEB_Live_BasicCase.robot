@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     Suite Setup (live)
 ...
-...               Suite Teardown (live)
+...               Suite Teardown (stage)
 Suite Setup       Suite Setup (live)
 Suite Teardown    Suite Teardown (stage)
 Force Tags        LiveBasic
@@ -423,7 +423,8 @@ Resource          common.robot
 
 ----------TEST용----------
     [Tags]    TEST
-    No operation
+    [Setup]    TEST_Setup
+    No Operation
 
 국내숙소 키워드 검색
     [Tags]    TEST
@@ -452,16 +453,16 @@ Resource          common.robot
     [Tags]    TEST
     홈 > 검색 버튼 클릭
     검색 > 해외숙소탭 클릭
-    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    도톤보리 크리스탈 호텔
+    검색 > 해외숙소 검색결과 (테스트용)    도톤보리 크리스탈 호텔
     Go Back
     sleep    3s
     Go Back
-    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    노보텔 다낭 프리미어 한 리버
+    검색 > 해외숙소 검색결과 (테스트용)    노보텔 다낭 프리미어 한 리버
     Go Back
     sleep    3s
     Go Back
-    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    리오 호텔 마카오
+    검색 > 해외숙소 검색결과 (테스트용)    리오 호텔 마카오
     Go Back
     sleep    3s
     Go Back
-    검색 > 해외숙소 검색결과 > PDP 이동 (테스트용)    인사이드 파이브 시티 아파트먼츠
+    검색 > 해외숙소 검색결과 (테스트용)    인사이드 파이브 시티 아파트먼츠
