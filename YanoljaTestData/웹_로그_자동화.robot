@@ -104,7 +104,7 @@ Resource          common.robot
     홈 > 해외여행탭 클릭
     해외여행 > 해외숙소 메뉴 클릭
     해외숙소 서브홈 > 숙소 검색    시 피닉스 호텔
-    해외숙소 상세 > 해외숙소 예약하기 진입
+    해외숙소 상세 > 해외숙소 예약하기 진입 (QA)
     해외숙소 예약하기 > 해외숙소 결제하기 진입
     Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalPayment    view    18    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    view    19    ${date}

@@ -263,7 +263,7 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    class:GlobalPlaceDetailBody_container__emEX3
     sleep    1s
 
-해외숙소 상세 > 해외숙소 예약하기 진입
+해외숙소 상세 > 예약가능날짜 체크
     FOR    ${index}    IN RANGE    10
         sleep    3s
         ${btn}    Get Text[텍스트 가져오기]    xpath:(//*[@class='RectButton_label__WcAp7'])[1]
@@ -278,11 +278,6 @@ TC Teardown
         Exit For Loop
     END
     END
-    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
-    sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
-    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
-    Should Be Equal    ${title}    해외숙소 예약
 
 해외숙소 예약하기 > 해외숙소 결제하기 진입
     Comment    InputText Element[텍스트 입력하기]    id:성명    이영성
@@ -1172,10 +1167,10 @@ RDP > 예약
     Click Element[버튼 클릭]    xpath:(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[${days_later}]
     Click Element[버튼 클릭]    xpath://*[contains (text(), '체크인 검색')]
 
-해외숙소 무료취소 가능 체크
+해외숙소 결제 무료취소 가능 체크
     sleep    5s
     FOR    ${index}    IN RANGE    2    5
-        ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='txt'])[1]
+        ${title}    Get Text[텍스트 가져오기]    xpath://*[@class='txt']/span
         ${freeChk}    Run keyword and Ignore error    Should Contain    ${title}    무료취소
         IF    '${freeChk}[0]' == 'FAIL'
         Go Back
@@ -1184,7 +1179,7 @@ RDP > 예약
         Go Back
         sleep    1s
         해외숙소 검색결과 > PDP    ${index}
-        해외숙소 상세 > 해외숙소 예약하기 진입
+        해외숙소 상세 > 예약가능날짜 체크
         ELSE
         Exit For Loop
     END
@@ -1650,3 +1645,57 @@ TEST_Setup
 
 TEST_Status_Check
     Run Keyword If    '${TEST STATUS}' == 'FAIL'    Fatal Error
+
+해외숙소 PDP 무료취소 가능 체크
+    FOR    ${index}    IN RANGE    99999
+        ${elChk}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@class, 'DotLoader_container__359O8')]
+        Run Keyword If    '${elChk}[0]' == 'FAIL'    Exit For Loop
+        sleep    3s
+    END
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceCommonOptionItemInfoRefundBadge_nonRefundableBadge__JfaB8')])[1]
+    ${freeChk}    Should Contain    ${title}    무료취소
+
+해외숙소 PDP 무료취소 가능 체크 > 예약하기 진입
+    FOR    ${index1}    IN RANGE    2    5
+    FOR    ${index2}    IN RANGE    99999
+        ${elChk}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@class, 'DotLoader_container__359O8')]
+        Run Keyword If    '${elChk}[0]' == 'FAIL'    Exit For Loop
+        sleep    3s
+    END
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceCommonOptionItemInfoRefundBadge_nonRefundableBadge__JfaB8')])[1]
+    ${freeChk}    Run keyword and Ignore error    Should Contain    ${title}    무료취소
+    IF    '${freeChk}[0]' == 'FAIL'
+    Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
+    sleep    1s
+    해외숙소 검색결과 > PDP    ${index1}
+    해외숙소 상세 > 예약가능날짜 체크
+    ELSE
+    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
+    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    Should Be Equal    ${title}    해외숙소 예약
+    Exit For Loop
+    END
+    END
+
+해외숙소 상세 > 해외숙소 예약하기 진입 (QA)
+    FOR    ${index}    IN RANGE    10
+        sleep    3s
+        ${btn}    Get Text[텍스트 가져오기]    xpath:(//*[@class='RectButton_label__WcAp7'])[1]
+        IF    '${btn}' == '날짜 변경하기'
+        Execute Javascript    window.scrollTo(0, 500)
+        Click Element[버튼 클릭]    class:GlobalPlaceCommonUnbookableInfo_changeDateBtn__2A0ra
+        ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
+        Should Be Equal    ${title}    날짜 선택
+        Click Element[버튼 클릭]    xpath:(//*[text()='체크아웃'])[2]
+        Click Element[버튼 클릭]    xpath://*[contains(text(), '체크인 검색')]
+        ELSE
+        Click Element[버튼 클릭]    class:RectButton_label__WcAp7
+        sleep    1s
+        Click Element[버튼 클릭]    xpath://*[text()='예약하기']
+        ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+        Should Be Equal    ${title}    해외숙소 예약
+        Exit For Loop
+    END
+    END
