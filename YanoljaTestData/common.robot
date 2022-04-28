@@ -166,7 +166,7 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/train')]
     Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/train')]
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    KTX
+    Should Be Equal    ${title}    기차
     sleep    1s
 
 국내숙소 추천 위젯 > 상품 클릭
