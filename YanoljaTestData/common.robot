@@ -1605,7 +1605,7 @@ live 테스트숙소 노출 설정
     Click Element[버튼 클릭]    xpath:(//*[text()='렌터카'])[1]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:ExhibitionDetailNav_title__1NE43
-    Should Be Equal    ${title}    전국 렌터카
+    Should Be Equal    ${title}    렌터카
 
 렌터카 서브홈 > PDP
     ${listTitle}    Get Text[텍스트 가져오기]    xpath:(//*[@class='LeisureListItem_title__U-d8s'])[1]
