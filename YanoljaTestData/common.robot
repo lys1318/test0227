@@ -7,6 +7,7 @@ Library           RequestsLibrary    WITH NAME    Re
 Library           String
 Library           Collections
 Library           ImageRecognition.py    WITH NAME    IR
+Library           OperatingSystem    WITH NAME    OS
 
 *** Variables ***
 ${executable_path}    /Users/youngsung.lee/Desktop/pythonWorkspace/테스트프로젝트/chromedriver
@@ -28,6 +29,10 @@ ${QAMain}         https://qa-m.yanolja.com
 ${StageMain}      https://stage-m.yanolja.com
 ${LiveMain}       https://www.yanolja.com
 ${TAGS}           ${EMPTY}
+${GoogleDriveLive_FolderID}    1LxHVRACBKasJEPkthAArZxQyFje9B6Eq
+${GoogleDriveLive_FileID}    1Kld4gqXtOsnbtRQ7o8Ek4GjJ2462DsixZ2bEyOgI8ho
+${GoogleURL}      /Users/youngsung.lee/google_url
+${GoogleColumn}    K
 
 *** Keywords ***
 Suite Setup
@@ -1300,7 +1305,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     Element Visible[요소 표시 여부 체크]    xpath://*[@alt='고속버스']
     Click Element[버튼 클릭]    xpath://*[@alt='고속버스']
     sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class: PageTitle_pageTitle__Q5MEn
+    ${title}    Get Text[텍스트 가져오기]    class: ExhibitionDetailNav_title__1NE43
     Should Be Equal    ${title}    다운로드
     sleep    1s
 
@@ -1489,14 +1494,13 @@ RDP > 무료취소여부체크
     ${cancelYn}    Run keyword and Ignore error    Should Contain    ${cancelTxt}    무료 취소 가능
     Run Keyword If    '${cancelYn}[0]' == 'FAIL'    국내숙소 날짜 설정    10
 
-구글시트 테스트 수행 날짜 업데이트 (stage)
-    ${date}    DT.Get Current Date    result_format=%Y.%m.%d
-    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    K12    ${date}
-
 Suite Setup (live)
+    구글 시트 파일 복사
+    구글시트 테스트 수행 날짜 업데이트 (live)
+    sleep    3s
     live 테스트숙소 노출 설정
     Maximize Browser Window
-    구글시트 테스트 수행 날짜 업데이트 (live)
+    Comment    구글시트 테스트 수행 날짜 업데이트 (live)
     Comment    IR.Keybord Ctrl
     Comment    IR.Image Click    ${CURDIR}/Images/network.png
 
@@ -1506,7 +1510,7 @@ live 테스트숙소 노출 설정
 
 구글시트 테스트 수행 날짜 업데이트 (live)
     ${date}    DT.Get Current Date    result_format=%Y.%m.%d
-    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    L12    ${date}
+    Run Keyword If    "${TEST_PHASE}"!="TEST"    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    ${GoogleColumn}13    ${date}
 
 구글 스프레드 시트 결과 업데이트[LiveBasic]
     [Arguments]    ${status}    ${case_no}    ${response}=${EMPTY}
@@ -1514,7 +1518,7 @@ live 테스트숙소 노출 설정
     ${status}    Set Variable If    "${status}" == "PASS"    Pass    Fail
     ${cell}    Evaluate    ${case_no} + 14
     # 결과 업데이트
-    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    L${cell}    ${status}
+    Google.Write Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    ${GoogleColumn}${cell}    ${status}
     Comment    # 응답 업데이트
     Comment    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    O${cell}    ${response}
 
@@ -1700,3 +1704,64 @@ TEST_Status_Check
         Exit For Loop
     END
     END
+
+구글 시트 파일 복사
+    Comment    ${date}    DT.Get Current Date    result_format=%m
+    Comment    ${date}    DT.Get Current Date    result_format=%d
+    Run Keyword If    "${TEST_PHASE}"!="1"    1회차가 아닐 때
+    Return From Keyword If    "${TEST_PHASE}"!="1"
+    ${date}    DT.Get Current Date
+    ${date}    Convert Date    ${date}    datetime
+    Log    ${date.weekday()}    # 월요일 0
+    Run Keyword If    "${date.weekday()}" == "0"    월요일 파일 생성
+    Run Keyword Unless    "${date.weekday()}" == "0"    월요일 외 시트 생성
+
+월요일 파일 생성
+    ${date}    DT.Get Current Date
+    ${date}    Convert Date    ${date}    datetime
+    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
+    # 파일 복사
+    ${url}    Google.Copy File    ${date.year}-${date.month}월${week_no}주차    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
+    # 새파일 URL 전역변수 저장
+    Set Global Variable    ${GoogleDrive_URL_StageBasic}    ${url}
+    # 새파일 URL 파일 저장
+    OS.Create File    ${GoogleURL}    ${url}
+    # 시트 생성    # 시트 이름 전역변수 저장
+    Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${url}
+    Google.Update Sheet TEMP    ${date.month}월${week_no}주차    ${url}
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${date.day}일
+    Set Global Variable    ${GoogleColumn}    K
+
+월요일 외 시트 생성
+    # 파일에서 URL 불러오기    # URL 전역변수 저장
+    ${url}    OS.Get File    ${GoogleURL}
+    Set Global Variable    ${GoogleDrive_URL_StageBasic}    ${url}
+    Comment    # 시트 생성    # 시트 이름 전역변수 저장    # 시트 생성안함
+    ${date}    DT.Get Current Date
+    ${date}    Convert Date    ${date}    datetime
+    Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${GoogleDrive_URL_StageBasic}    # 시트 생성안함
+    # M월N주차 구해서 넣기
+    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    Run keyword If    "${date.weekday()}" == "1"    Set Global Variable    ${GoogleColumn}    L    # 화
+    Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
+    Run keyword If    "${date.weekday()}" == "3"    Set Global Variable    ${GoogleColumn}    N    # 목
+    Run keyword If    "${date.weekday()}" == "4"    Set Global Variable    ${GoogleColumn}    O    # 금
+
+1회차가 아닐 때
+    # 파일에서 URL 불러오기    # URL 전역변수 저장
+    ${url}    OS.Get File    ${GoogleURL}
+    Set Global Variable    ${GoogleDrive_URL_StageBasic}    ${url}
+    # 시트명 계산
+    ${date}    DT.Get Current Date
+    ${date}    Convert Date    ${date}    datetime
+    Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${GoogleDrive_URL_StageBasic}    # 복사 안함
+    Comment    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${date.day}일
+    # M월N주차 구해서 넣기
+    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    Run keyword If    "${date.weekday()}" == "0"    Set Global Variable    ${GoogleColumn}    K    # 월
+    Run keyword If    "${date.weekday()}" == "1"    Set Global Variable    ${GoogleColumn}    L    # 화
+    Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
+    Run keyword If    "${date.weekday()}" == "3"    Set Global Variable    ${GoogleColumn}    N    # 목
+    Run keyword If    "${date.weekday()}" == "4"    Set Global Variable    ${GoogleColumn}    O    # 금
