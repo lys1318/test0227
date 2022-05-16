@@ -1729,7 +1729,7 @@ TEST_Status_Check
     # 시트 생성    # 시트 이름 전역변수 저장
     Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${url}
     Google.Update Sheet TEMP    ${date.month}월${week_no}주차    ${url}
-    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${date.day}일
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
     Set Global Variable    ${GoogleColumn}    K
 
 월요일 외 시트 생성
