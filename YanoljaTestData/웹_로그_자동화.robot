@@ -90,9 +90,11 @@ Resource          common.robot
     기획전 > QA로그전용 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='국내그룹_수정X']
     Click Element[버튼 클릭]    class:place-content
+    sleep    3s
     go back
     Click Element[버튼 클릭]    xpath://*[text()='레저그룹_수정X']
     Click Element[버튼 클릭]    class:LeisureListItem_body__1iNjJ
+    sleep    3s
     go back
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    15    ${date}    그룹별, 개별 상품 클릭(국내숙소)
@@ -176,5 +178,5 @@ Resource          common.robot
     ${date}    현재 시간 구하기
     메인 이동
     홈 추천 위젯 > 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=6
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=5
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    44    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 클릭

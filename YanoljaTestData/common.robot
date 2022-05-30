@@ -71,7 +71,8 @@ TC Teardown
     sleep    1s
 
 이메일로 로그인 화면 오픈
-    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
+    Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
+    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Safari
     Maximize Browser Window
 
 메인 이동
@@ -125,7 +126,7 @@ TC Teardown
     메인 이동
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='무한쿠폰룸']
     Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
-    Go To    ${QAMain}/motel?myRoom=1
+    Comment    Go To    ${QAMain}/motel?myRoom=1
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    무한쿠폰룸
 
@@ -137,15 +138,15 @@ TC Teardown
     sleep    3s
 
 국내숙소 > 강원도 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='강원도']
-    Click Element[버튼 클릭]    xpath://*[text()='강원도']
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(),'강원도')])[1]
+    Click Element[버튼 클릭]    xpath:(//*[contains(text(),'강원도')])[1]
     ${title}    Get Text[텍스트 가져오기]    class:RegionhomeMain_title__2vNhH
     Should Be Equal    ${title}    강원도
 
 홈 > 라이브 방송 메뉴 클릭
     메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='야놀자라이브']
-    Click Element[버튼 클릭]    xpath://*[text()='야놀자라이브']
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains (text(), '라이브')])[1]
+    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '라이브')])[1]
     ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
     Should Be Equal    ${title}    야놀자라이브
     sleep    3s
@@ -196,6 +197,7 @@ TC Teardown
     sleep    2s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Click Element[버튼 클릭]    class:RegionhomeMapInfo_map__3cGqj
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${listTitle}    ${title}
 
@@ -205,6 +207,7 @@ TC Teardown
     ${listTitle}    Get Text[텍스트 가져오기]    xpath:(//*[@class='info-title'])[1]
     sleep    3s
     Click Element[버튼 클릭]    class:card_wrapper
+    Unselect Frame
     Select Frame[프레임 선택]    id:live-commerce-broadcast
     ${title}    Get Text[텍스트 가져오기]    class:HeaderTitle_title__3SXU4
     Should Be Equal    ${listTitle}    ${title}
@@ -999,6 +1002,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='국내숙소']
     Click Element[버튼 클릭]    xpath://*[text()='국내숙소']
+    sleep    1s
     ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='국내숙소']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
@@ -1008,6 +1012,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='교통/항공']
     Click Element[버튼 클릭]    xpath://*[text()='교통/항공']
+    sleep    1s
     ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='교통/항공']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
@@ -1026,6 +1031,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외여행']
     Click Element[버튼 클릭]    xpath://*[text()='해외여행']
+    sleep    1s
     ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='해외여행']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
