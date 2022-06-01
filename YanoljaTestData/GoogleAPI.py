@@ -165,8 +165,12 @@ class GoogleAPI():
 		#copy_template = doc.duplicate_sheet(source_sheet_id=template.id)
 		template.update_title(title=destination_sheet_name)
 		#template.update_index(len(doc.worksheets()))
-
-
+	
+	
+	def get_sheet_TEMP(self, url):
+		self.setup()
+		doc = gc.open_by_url(url)
+		return doc.get_worksheet(1).title
 
 
 

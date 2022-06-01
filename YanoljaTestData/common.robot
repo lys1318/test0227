@@ -71,8 +71,8 @@ TC Teardown
     sleep    1s
 
 이메일로 로그인 화면 오픈
-    Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
-    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Safari
+    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
+    Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Safari
     Maximize Browser Window
 
 메인 이동
@@ -126,7 +126,7 @@ TC Teardown
     메인 이동
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='무한쿠폰룸']
     Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
-    Go To    ${QAMain}/motel?myRoom=1
+    Comment    Go To    ${QAMain}/motel?myRoom=1
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    무한쿠폰룸
 
@@ -993,6 +993,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    5s
     Element Visible[요소 표시 여부 체크]    xpath:(//*[text()='추천'])[1]
     Click Element[버튼 클릭]    xpath:(//*[text()='추천'])[1]
+    sleep    1s
     ${attr}    Get Element Attribute[속성값 가져오기]    xpath://*[text()='추천']/parent::a/parent::li    id
     Should Be Equal    ${attr}    activeTab
     sleep    1s
@@ -1037,6 +1038,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    1s
 
 홈 추천 위젯 > 상품 클릭
+    ${listName}    Get Text[텍스트 가져오기]    xpath:(//*[@class='RecommendRankingItemProduct_title__3hVvJ'])[1]
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     sleep    1s
     Execute Javascript    window.scrollTo(0, 0)
@@ -1048,9 +1050,10 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
         ${start}    Set Variable    ${end}
         ${end}    Set Variable    ${end} * 2
         Run Keyword If    '${ImageChk}' != 'None'    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
-        Run Keyword If    '${ImageChk}' != 'None'    Element Visible[요소 표시 여부 체크]    class:_place_no__container__1FhXY
         Run Keyword If    '${ImageChk}' != 'None'    Exit For Loop
     END
+    ${detailName}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
+    Should Contain    ${listName}    ${detailName}
 
 국내숙소 날짜 설정
     [Arguments]    ${days_later}
@@ -1747,8 +1750,11 @@ TEST_Status_Check
     ${date}    Convert Date    ${date}    datetime
     Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${GoogleDrive_URL_StageBasic}    # 시트 생성안함
     # M월N주차 구해서 넣기
-    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
-    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    Comment    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
+    Comment    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    # 마지막 주 및 다음달 첫주가 다른 케이스 방지
+    ${week_no}    Google.Get Sheet Temp    ${GoogleDrive_URL_StageBasic}
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${week_no}
     Run keyword If    "${date.weekday()}" == "1"    Set Global Variable    ${GoogleColumn}    L    # 화
     Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
     Run keyword If    "${date.weekday()}" == "3"    Set Global Variable    ${GoogleColumn}    N    # 목
@@ -1764,8 +1770,11 @@ TEST_Status_Check
     Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${GoogleDrive_URL_StageBasic}    # 복사 안함
     Comment    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${date.day}일
     # M월N주차 구해서 넣기
-    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
-    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    Comment    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
+    Comment    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    # 마지막 주 및 다음달 첫주가 다른 케이스 방지
+    ${week_no}    Google.Get Sheet Temp    ${GoogleDrive_URL_StageBasic}
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${week_no}
     Run keyword If    "${date.weekday()}" == "0"    Set Global Variable    ${GoogleColumn}    K    # 월
     Run keyword If    "${date.weekday()}" == "1"    Set Global Variable    ${GoogleColumn}    L    # 화
     Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
