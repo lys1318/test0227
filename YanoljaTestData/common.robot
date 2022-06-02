@@ -71,8 +71,8 @@ TC Teardown
     sleep    1s
 
 이메일로 로그인 화면 오픈
-    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
-    Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Safari
+    Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
+    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Safari
     Maximize Browser Window
 
 메인 이동
