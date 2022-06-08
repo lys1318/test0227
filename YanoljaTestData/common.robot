@@ -1431,7 +1431,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     Run Keyword If    '${cartCnt}[0]' == 'PASS'    장바구니 비우기
 
 장바구니 비우기
-    Go To    https://qa-platform-site.yanolja.com/cart
+    Go To    https://platform-site.yanolja.com/cart
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:center
     Should Be Equal    ${title}    장바구니
@@ -1799,10 +1799,10 @@ TEST_Status_Check
 로그인 여부 체크_LIVE
     go to    https://www.yanolja.com/mypage
     sleep    1s
-    ${loginYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '로그인 및 회원가입 하기')]
-    Run Keyword If    '${loginYn}[0]' == 'FAIL'    No Operation
-    Run Keyword If    '${loginYn}[0]' == 'PASS'    go to    https://www.yanolja.com/emaillogin?redirect=/mypage
-    Run Keyword If    '${loginYn}[0]' == 'PASS'    로그인 하기 (stage)
+    ${loginYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:MyNick_nickname__2Scd9
+    Run Keyword If    '${loginYn}[0]' == 'PASS'    No Operation
+    Run Keyword If    '${loginYn}[0]' == 'FAIL'    go to    https://www.yanolja.com/emaillogin?redirect=/mypage
+    Run Keyword If    '${loginYn}[0]' == 'FAIL'    로그인 하기 (stage)
 
 로그인 여부 & 장바구니 유무 체크
     로그인 여부 체크_LIVE
