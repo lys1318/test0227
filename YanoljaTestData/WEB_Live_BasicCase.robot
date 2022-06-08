@@ -23,6 +23,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    4
 
 05.MY 야놀자 > 내 정보 관리 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    5
     MY야놀자 > 내정보관리 메뉴 클릭
     내정보관리 > 비밀번호입력 후 상세 이동
@@ -31,6 +32,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    5
 
 06.MY 야놀자 > 포인트 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    6
     MY야놀자 > 포인트 메뉴 클릭
     Click Element[버튼 클릭]    class:toolbar-btn
@@ -38,6 +40,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    6
 
 07.MY 야놀자 > MY 혜택 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    7
     MY야놀자 > MY혜택 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
@@ -45,6 +48,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    7
 
 08.MY 야놀자 > 야놀자 코인 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    8
     MY야놀자 > 야놀자코인 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
@@ -52,6 +56,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    8
 
 09.MY 야놀자 > 쿠폰함 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    9
     MY야놀자 > 쿠폰함 메뉴 클릭
     Click Element[버튼 클릭]    class:toolbar-btn
@@ -59,6 +64,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    9
 
 10.MY 야놀자 > 나의 후기 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    10
     MY야놀자 > 나의후기 메뉴 클릭
     Click Element[버튼 클릭]    class:toolbar-btn
@@ -66,6 +72,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    10
 
 11.MY 야놀자 > 찜 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    11
     MY야놀자 > 찜 메뉴 클릭
     Click Element[버튼 클릭]    class:CollapsingNavTopButtons_backButton__1NQwd
@@ -73,6 +80,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    11
 
 13.MY 야놀자 > 공지 사항 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    13
     MY야놀자 > 공지사항 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
@@ -80,6 +88,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    13
 
 14.MY 야놀자 > 자주 묻는 질문 FAQ 이동
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    14
     MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
@@ -94,6 +103,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    15
 
 16.모텔 대실 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    16
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
@@ -108,6 +118,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    16
 
 17.모텔 숙소 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    17
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
@@ -122,7 +133,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    17
 
 18.모텔 대실 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    18
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
@@ -139,7 +150,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    18
 
 19.모텔 숙소 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    19
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
@@ -155,6 +166,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    19
 
 20.모텔 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    20
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    20
@@ -167,6 +179,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    21
 
 22.호텔 숙소 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    22
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
@@ -180,7 +193,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    22
 
 23.호텔 숙소 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    23
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
@@ -195,6 +208,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    23
 
 24.호텔 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    24
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    24
@@ -207,6 +221,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    25
 
 26.펜션 숙소 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    26
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
@@ -221,7 +236,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    26
 
 27.펜션 숙소 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    27
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
@@ -237,6 +252,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    27
 
 28.펜션 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    28
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    28
@@ -249,6 +265,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    29
 
 30.게하 숙소 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    30
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트
@@ -263,7 +280,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    30
 
 31.게하 숙소 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    31
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트
@@ -279,6 +296,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    31
 
 32.게하 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    32
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    32
@@ -319,6 +337,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    37
 
 38.해외숙소 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    38
     홈 > 해외여행탭 클릭
     해외여행 > 해외숙소 메뉴 클릭
@@ -333,6 +352,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    38
 
 39.해외숙소 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    39
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 해외여행 통합예약 메뉴 클릭
@@ -351,6 +371,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    40
 
 41.레저/티켓 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    41
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
@@ -362,7 +383,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
 
 42.레저/티켓 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    42
     레저티켓 장바구니 담기    [제주 서귀포시] 본태박물관
     장바구니 이동
@@ -372,6 +393,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    42
 
 43.레저/티켓 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    43
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43
@@ -384,6 +406,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    44
 
 45.모바일교환권 바로예약 결제
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    45
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
@@ -394,6 +417,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    45
 
 46.모바일교환권 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    46
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    46
@@ -428,7 +452,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    50
 
 51.KTX 왕복상품 장바구니 결제
-    [Setup]    홈 > 장바구니 유무 체크
+    [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    51
     모텔 장바구니 담기
     홈 > 교통/항공탭 클릭
@@ -447,6 +471,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    51
 
 52.KTX 취소
+    [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    52
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    52

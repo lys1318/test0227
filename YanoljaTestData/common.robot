@@ -1426,20 +1426,21 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
 
 홈 > 장바구니 유무 체크
     메인 이동
-    ${cartCnt}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    class:HomeSearchBar_cartCount__uljw0
+    ${cartCnt}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    class:HomeSearchBar_cartCount__LJD06
     Run Keyword If    '${cartCnt}[0]' == 'FAIL'    No Operation
     Run Keyword If    '${cartCnt}[0]' == 'PASS'    장바구니 비우기
 
 장바구니 비우기
-    메인 이동
-    Click Element[버튼 클릭]    class:PageTitleImageButton_button__3MXeo
+    Go To    https://qa-platform-site.yanolja.com/cart
     sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:center
+    Should Be Equal    ${title}    장바구니
     Click Element[버튼 클릭]    xpath://*[text()='선택 삭제']
     Element Visible[요소 표시 여부 체크]    class:css-e84qjx
     Click Element[버튼 클릭]    xpath://*[@class='primary css-17y1gu4']
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:no-item-text
-    Should Be Equal    ${title}    장바구니에 담긴 상품이 없습니다
+    Should Contain    ${title}    장바구니에 담긴 상품이 없습니다
 
 해외숙소 > 여행지 선택 (stage)
     go to    ${StageMain}/global/place/area-list?search=y
@@ -1794,3 +1795,14 @@ TEST_Status_Check
     [Arguments]    ${case_no}
     ${status}    Run Keyword If    "${TEST_PHASE}"=="2"    결과 값 가져오기_LIVE    ${case_no}
     Pass Execution If    "${status}" == "Pass"    2회차 수행으로 PASS 처리
+
+로그인 여부 체크_LIVE
+    go to    https://www.yanolja.com/mypage
+    sleep    1s
+    ${loginYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '로그인 및 회원가입 하기')]
+    Run Keyword If    '${loginYn}[0]' == 'FAIL'    No Operation
+    Run Keyword If    '${loginYn}[0]' == 'PASS'    로그인 하기 (stage)
+
+로그인 여부 & 장바구니 유무 체크
+    로그인 여부 체크_LIVE
+    홈 > 장바구니 유무 체크
