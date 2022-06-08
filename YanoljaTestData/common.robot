@@ -1801,6 +1801,7 @@ TEST_Status_Check
     sleep    1s
     ${loginYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '로그인 및 회원가입 하기')]
     Run Keyword If    '${loginYn}[0]' == 'FAIL'    No Operation
+    Run Keyword If    '${loginYn}[0]' == 'PASS'    go to    https://www.yanolja.com/emaillogin?redirect=/mypage
     Run Keyword If    '${loginYn}[0]' == 'PASS'    로그인 하기 (stage)
 
 로그인 여부 & 장바구니 유무 체크
