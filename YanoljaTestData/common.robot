@@ -497,8 +497,8 @@ RDP > 숙박 예약
 
 MY야놀자 > 기획전 메뉴 클릭
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Click Element[버튼 클릭]    //*[@href='/exhibition']
-    ${title}    Get Text[텍스트 가져오기]    (//*[@class='ExhibitionListNav_normal__1ha2N'])[1]
+    Click Element[버튼 클릭]    xpath://*[text()='기획전']
+    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='ExhibitionListNav_normal__1ha2N'])[1]
     Should Be Equal    ${title}    기획전
 
 기획전 > QA로그전용 메뉴 클릭
@@ -506,7 +506,7 @@ MY야놀자 > 기획전 메뉴 클릭
     Comment    Scroll Wheel Click[휠로 스크롤하여 요소 클릭]    xpath://*[text()='QA 로그 전용']
     Click Element[버튼 클릭]    xpath:(//*[text()='해외 숙소'])[2]
     Click Element[버튼 클릭]    xpath://*[text()='QA 로그 전용']
-    ${title}    Get Text[텍스트 가져오기]    //*[@class='ExhibitionDetailNav_title__1NE43']
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    QA 로그 전용
 
 KTX > 승차권 조건 선택 후 조회 버튼 클릭
@@ -1052,7 +1052,8 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
         Run Keyword If    '${ImageChk}' != 'None'    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' != 'None'    Exit For Loop
     END
-    ${detailName}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
+    Comment    ${detailName}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
+    ${detailName}    Get Text[텍스트 가져오기]    class:PlaceDetailTitle_title__9jpRM
     Should Contain    ${listName}    ${detailName}
 
 국내숙소 날짜 설정
@@ -1780,3 +1781,16 @@ TEST_Status_Check
     Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
     Run keyword If    "${date.weekday()}" == "3"    Set Global Variable    ${GoogleColumn}    N    # 목
     Run keyword If    "${date.weekday()}" == "4"    Set Global Variable    ${GoogleColumn}    O    # 금
+
+결과 값 가져오기_LIVE
+    [Arguments]    ${case_no}
+    ${status}    Set Variable    ${EMPTY}
+    sleep    1s
+    ${cell}    Evaluate    ${case_no} + 14
+    ${status}    Google.Get Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    ${GoogleColumn}${cell}
+    [Return]    ${status}
+
+1회차 Fail건 재확인_LIVE
+    [Arguments]    ${case_no}
+    ${status}    Run Keyword If    "${TEST_PHASE}"=="2"    결과 값 가져오기_LIVE    ${case_no}
+    Pass Execution If    "${status}" == "Pass"    2회차 수행으로 PASS 처리

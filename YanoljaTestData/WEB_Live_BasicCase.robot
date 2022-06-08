@@ -9,18 +9,21 @@ Resource          common.robot
 
 *** Test Cases ***
 03.비로그인 상태로 로그인 화면 이동
+    1회차 Fail건 재확인_LIVE    3
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 로그인 메뉴 클릭
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    3
 
 04.로그인
+    1회차 Fail건 재확인_LIVE    4
     로그인 > 이메일로 로그인 버튼 클릭
     로그인 하기 (stage)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    4
 
 05.MY 야놀자 > 내 정보 관리 이동
+    1회차 Fail건 재확인_LIVE    5
     MY야놀자 > 내정보관리 메뉴 클릭
     내정보관리 > 비밀번호입력 후 상세 이동
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
@@ -28,42 +31,49 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    5
 
 06.MY 야놀자 > 포인트 이동
+    1회차 Fail건 재확인_LIVE    6
     MY야놀자 > 포인트 메뉴 클릭
     Click Element[버튼 클릭]    class:toolbar-btn
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    6
 
 07.MY 야놀자 > MY 혜택 이동
+    1회차 Fail건 재확인_LIVE    7
     MY야놀자 > MY혜택 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    7
 
 08.MY 야놀자 > 야놀자 코인 이동
+    1회차 Fail건 재확인_LIVE    8
     MY야놀자 > 야놀자코인 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    8
 
 09.MY 야놀자 > 쿠폰함 이동
+    1회차 Fail건 재확인_LIVE    9
     MY야놀자 > 쿠폰함 메뉴 클릭
     Click Element[버튼 클릭]    class:toolbar-btn
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    9
 
 10.MY 야놀자 > 나의 후기 이동
+    1회차 Fail건 재확인_LIVE    10
     MY야놀자 > 나의후기 메뉴 클릭
     Click Element[버튼 클릭]    class:toolbar-btn
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    10
 
 11.MY 야놀자 > 찜 이동
+    1회차 Fail건 재확인_LIVE    11
     MY야놀자 > 찜 메뉴 클릭
     Click Element[버튼 클릭]    class:CollapsingNavTopButtons_backButton__1NQwd
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    11
 
 13.MY 야놀자 > 공지 사항 이동
+    1회차 Fail건 재확인_LIVE    13
     MY야놀자 > 공지사항 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
     sleep    2s
