@@ -12,7 +12,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    3
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 로그인 메뉴 클릭
-    sleep    2s
+    sleep    1s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    3
 
 04.로그인
