@@ -943,13 +943,13 @@ MY야놀자 > 찜 메뉴 클릭
 MY야놀자 > 공지사항 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='공지사항']
     sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    ${title}    Get Text[텍스트 가져오기]    class:css-melwew
     Should Be Equal    ${title}    공지사항
 
 MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='자주 묻는 질문 FAQ']
     sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    ${title}    Get Text[텍스트 가져오기]    class:css-melwew
     Should Be Equal    ${title}    자주 묻는 질문
 
 모텔 대실 예약가능 여부 체크
