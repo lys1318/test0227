@@ -1,2 +1,4 @@
 *** Settings ***
+Test Setup        TEST_Setup
+Test Teardown     TEST_Setup
 Resource          common.robot

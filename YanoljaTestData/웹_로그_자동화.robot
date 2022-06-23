@@ -84,7 +84,6 @@ Resource          common.robot
 
 14~17_기획전
     ${date}    현재 시간 구하기
-    메인 이동
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 기획전 메뉴 클릭
     기획전 > QA로그전용 메뉴 클릭
@@ -178,5 +177,5 @@ Resource          common.robot
     ${date}    현재 시간 구하기
     메인 이동
     홈 추천 위젯 > 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=5
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=10
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    44    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 클릭

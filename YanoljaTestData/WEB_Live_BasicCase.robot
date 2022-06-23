@@ -83,7 +83,7 @@ Resource          common.robot
     [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    13
     MY야놀자 > 공지사항 메뉴 클릭
-    Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
+    Click Element[버튼 클릭]    xpath:(//*[@class='css-1ca9sw1'])[1]
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    13
 
@@ -91,7 +91,7 @@ Resource          common.robot
     [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    14
     MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
-    Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
+    Click Element[버튼 클릭]    xpath:(//*[@class='css-1ca9sw1'])[1]
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    14
 

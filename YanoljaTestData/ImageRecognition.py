@@ -27,3 +27,6 @@ def image_moveTo(img_file, timeout=30):
 
 def mouse_scroll():
     pyautogui.scroll(-1000)
+
+def keybord_ctrl():
+    pyautogui.hotkey('win', 'f12')
