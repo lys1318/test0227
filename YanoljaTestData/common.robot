@@ -1389,7 +1389,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${today}    오늘날짜확인
     ${getText}    Get Text[텍스트 가져오기]    (//*[@class='CheckinOutBox_date__HMm-F'])[1]
     ${convert}    문자열에서 숫자만 추출    ${getText}
-    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정    7
+    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정    8
 
 해외숙소 검색결과 > 가격 낮은순 정렬
     Click Element[버튼 클릭]    xpath:(//*[@class='GlobalPlaceListSortSection_sort__2ZeKM'])[2]
