@@ -20,9 +20,9 @@ Resource          common.robot
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동 (QA)    QA정지훈DILOG자동화
     PDP > RDP (모텔 숙박)
-    RDP > 숙박 예약
-    장바구니 담기
-    장바구니 이동
+    RDP > 모텔 숙박 예약 (QA)
+    숙소 장바구니 담기
+    숙소 장바구니 이동
     장바구니 > 예약
     예약(포인트 결제) > 예약완료
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrderComplete    view    3    ${date}
@@ -38,13 +38,13 @@ Resource          common.robot
 
 08_11.기차티켓
     ${date}    현재 시간 구하기
-    레저티켓 장바구니 담기    [테스트] 야놀자 놀이공원
+    레저티켓 장바구니 담기    [경기] 야놀자 놀이공원
     홈 > 교통/항공탭 클릭
     교통/항공 > KTX 메뉴 클릭
     KTX > 승차권 조건 선택 후 조회 버튼 클릭    부산
     승차권 유무 체크 후 요금조회 버튼 클릭
     바로 예매 > 선택한 승차권 장바구니 담기
-    장바구니 이동
+    숙소 외 장바구니 이동
     장바구니 > 예약
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
     예약(포인트 결제) > 예약완료
@@ -56,7 +56,7 @@ Resource          common.robot
     ${date}    현재 시간 구하기
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    [테스트] 야놀자 놀이공원
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [경기] 야놀자 놀이공원
     레저 상세 > 예약
     예약(포인트 결제) > 예약완료
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
@@ -87,12 +87,10 @@ Resource          common.robot
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 기획전 메뉴 클릭
     기획전 > QA로그전용 메뉴 클릭
-    Click Element[버튼 클릭]    xpath://*[text()='국내그룹_수정X']
-    Click Element[버튼 클릭]    class:place-content
+    기획전 > 숙소 상세
     sleep    3s
     go back
-    Click Element[버튼 클릭]    xpath://*[text()='레저그룹_수정X']
-    Click Element[버튼 클릭]    class:LeisureListItem_body__1iNjJ
+    기획전 > 레저 상세
     sleep    3s
     go back
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
@@ -145,7 +143,8 @@ Resource          common.robot
     국내숙소 > 호텔 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    view    34    ${date}
     서브홈 > 테마형그룹 상품 클릭
-    Go Back
+    sleep    1s
+    go back
     서브홈 > 리스트형 상품 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    click    35    ${date}    테마형그룹 추천 상품-카테고리별 상품 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    click    36    ${date}    리스트형 추천상품 - 상품 클릭
@@ -156,6 +155,7 @@ Resource          common.robot
     국내숙소 > 펜션 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    view    37    ${date}
     서브홈 > 테마형그룹 상품 클릭
+    sleep    1s
     Go Back
     서브홈 > 리스트형 상품 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    38    ${date}    테마형그룹 추천 상품-카테고리별 상품 클릭
