@@ -126,6 +126,8 @@ class DILog():
             if desc != '':
                 log.info('desc is not none')
                 log.info(desc)
+                log.info('response')
+                log.info(response)
 
                 #response = list(filter(lambda x:x["def"]["desc"]==desc, response))
                 response = list(filter(lambda x:x.get("def", {}).get("desc", None)==desc, response))
