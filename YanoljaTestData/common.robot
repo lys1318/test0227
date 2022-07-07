@@ -340,20 +340,11 @@ PDP > RDP (모텔 숙박)
     ${title}    Get Text[텍스트 가져오기]    class:css-1kml15s
     Should Be Equal    ${title}    객실상세
 
-PDP > RDP (호텔/게하)
-    sleep    1s
-    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
-    호텔/게하 예약가능 여부 체크
-    sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    객실상세
-
 PDP > RDP (펜션)
     sleep    1s
-    Click Element[버튼 클릭]    class:RectButton_label__WcAp7
     펜션 예약가능 여부 체크
-    sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    class:css-1kml15s
     Should Be Equal    ${title}    객실상세
 
 RDP > 모텔 숙박 예약
@@ -379,6 +370,7 @@ RDP > 모텔 숙박 예약
     ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
     Run Keyword If    '${transportYn}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
     Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Execute Javascript    window.scrollTo(0, 500)
     Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    0원 결제하기
@@ -963,42 +955,29 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[@class='css-1ao9jo6']/div[1]
     ${Index2}    Set Variable    1
     FOR    ${index}    IN    @{elements}
-        ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    ${index}    class
-        Run Keyword If    '${attr}' == 'css-ujbvld'    Continue For Loop
-        Run Keyword If    '${attr}' == 'css-ujbvld'    ${Index2}    Set Variable    ${Index2} + 1
-        Run Keyword If    '${attr}' != 'css-ujbvld'    Click Element[버튼 클릭]    (//*[text()='객실 선택하기'])[${Index2}]
-        Run Keyword If    '${attr}' != 'css-ujbvld'    Exit For Loop
+        ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    ${index}    disabled
+        log    ${attr}
+        Run Keyword If    '${attr}' == 'true'    Continue For Loop
+        Run Keyword If    '${attr}' == 'true'    ${Index2}    Set Variable    ${Index2} + 1
+        Run Keyword If    '${attr}' != 'true'    Click Element[버튼 클릭]    (//*[text()='객실 선택하기'])[${Index2}]
+        Run Keyword If    '${attr}' != 'true'    Exit For Loop
     END
 
 모텔 숙박 예약가능 여부 체크
     @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[@class='css-1ao9jo6']/div[2]
     ${Index2}    Set Variable    1
     FOR    ${index}    IN    @{elements}
-        ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    ${index}    class
-        Run Keyword If    '${attr}' == 'css-ujbvld'    Continue For Loop
-        Run Keyword If    '${attr}' == 'css-ujbvld'    ${Index2}    Set Variable    ${Index2} + 1
-        Run Keyword If    '${attr}' != 'css-ujbvld'    Click Element[버튼 클릭]    (//*[text()='객실 선택하기'])[${Index2}]
-        Run Keyword If    '${attr}' != 'css-ujbvld'    Exit For Loop
-    END
-    [Teardown]    PDP 튜토리얼 체크
-
-호텔/게하 예약가능 여부 체크
-    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath://*[contains(@class, 'RoomItem_roomItemPriceContainerStyle__1IBQG')]//*[text()='숙박']/parent::div/parent::div//*[@class='price']
-    FOR    ${index}    IN    @{elements}
-        ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
-        Run Keyword If    '${price}' == '예약마감'    Continue For Loop
-        Run Keyword If    '${price}' != '예약마감'    Click Element[버튼 클릭]    ${index}
-        Run Keyword If    '${price}' != '예약마감'    Exit For Loop
+        ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    ${index}    disabled
+        log    ${attr}
+        Run Keyword If    '${attr}' == 'true'    Continue For Loop
+        Run Keyword If    '${attr}' == 'true'    ${Index2}    Set Variable    ${Index2} + 1
+        Run Keyword If    '${attr}' != 'true'    Click Element[버튼 클릭]    (//*[text()='객실 선택하기'])[${Index2}]
+        Run Keyword If    '${attr}' != 'true'    Exit For Loop
     END
 
 펜션 예약가능 여부 체크
-    @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get WebElements    xpath:(//*[text()='영성TEST'])[3]
-    FOR    ${index}    IN    @{elements}
-        ${price}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get text    ${index}
-        Run Keyword If    '${price}' == '예약마감'    Continue For Loop
-        Run Keyword If    '${price}' != '예약마감'    Click Element[버튼 클릭]    ${index}
-        Run Keyword If    '${price}' != '예약마감'    Exit For Loop
-    END
+    ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    xpath://*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::div//*[text()='객실 선택하기']    disabled
+    Run Keyword If    '${attr}' != 'true'    Click Element[버튼 클릭]    xpath://*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::div//*[text()='객실 선택하기']
 
 홈 > 추천탭 클릭
     메인 이동
@@ -1078,7 +1057,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
 
 RDP > 대실 예약
     sleep    1s
-    Click Element[버튼 클릭]    xpath:(//*[text()='객실 예약하기'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[@class='css-1wxsndh' and text()='대실']/parent::div//*[@class='css-17unkfs']//*[text()='객실 예약하기'])[1]
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
     Should Be Equal    ${title}    대실 예약
@@ -1164,11 +1143,13 @@ MY야놀자 > 국내여행 통합예약 메뉴 클릭
     Should Be Equal    ${title}    취소 완료
     sleep    1s
 
-RDP > 예약
+RDP > 호/펜/게 예약
     sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='예약하기']
-    ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]
-    Should Be Equal    ${title}    예약
+    Click Element[버튼 클릭]    xpath:(//*[text()='객실 예약하기'])[1]
+    sleep    3s
+    ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
+    Should Be Equal    ${title}    숙박 예약
+    RDP > 무료취소여부체크
 
 검색 > 해외숙소탭 클릭
     sleep    1s
@@ -1289,7 +1270,6 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 숙박)
-    RDP > 무료취소여부체크
     RDP > 모텔 숙박 예약
     숙소 장바구니 담기
     sleep    2s
@@ -1400,10 +1380,10 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     [Return]    ${checkIn}
 
 체크인날짜확인
-    Comment    ${today}    오늘날짜확인
+    ${today}    오늘날짜확인
     ${getText}    Get Text[텍스트 가져오기]    xpath://*[@class='css-1cq8r2w']/span
-    Comment    ${convert}    문자열에서 숫자만 추출    ${getText}
-    Comment    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정    8
+    ${convert}    문자열에서 숫자만 추출    ${getText}
+    Run Keyword If    '${today}' == '${convert}'    국내숙소 날짜 설정    8
     Run Keyword If    '${getText}' == '지금부터'    국내숙소 날짜 설정    8
 
 해외숙소 검색결과 > 가격 낮은순 정렬
@@ -1521,8 +1501,8 @@ RDP > 무료취소여부체크
     Run Keyword If    '${cancelYn}[0]' == 'FAIL'    국내숙소 날짜 설정    10
 
 Suite Setup (live)
-    Comment    구글 시트 파일 복사
-    Comment    구글시트 테스트 수행 날짜 업데이트 (live)
+    구글 시트 파일 복사
+    구글시트 테스트 수행 날짜 업데이트 (live)
     sleep    3s
     live 테스트숙소 노출 설정
     Maximize Browser Window
@@ -1533,6 +1513,7 @@ Suite Setup (live)
 live 테스트숙소 노출 설정
     Open Browser    ${LiveMain}/_settings    Chrome    executable_path=${CURDIR}/chromedriver
     Click Element[버튼 클릭]    xpath://*[@for='testProduct-ONLY']/span[1]
+    Comment    Click Element[버튼 클릭]    xpath://*[@for='testProduct-YES']/span[1]
 
 구글시트 테스트 수행 날짜 업데이트 (live)
     ${date}    DT.Get Current Date    result_format=%Y.%m.%d
@@ -1655,6 +1636,7 @@ live 테스트숙소 노출 설정
     sleep    2s
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Be Equal    ${title}    ${keyword}
+    [Teardown]    PDP 튜토리얼 체크
 
 검색 > 해외숙소 검색결과 (테스트용)
     [Arguments]    ${keyword}
@@ -1858,7 +1840,7 @@ PDP 튜토리얼 다음 클릭
 
 RDP > 모텔 숙박 예약 (QA)
     sleep    1s
-    Click Element[버튼 클릭]    xpath:(//*[text()='객실 예약하기'])[2]
+    Click Element[버튼 클릭]    xpath:(//*[@class='css-1wxsndh' and text()='숙박']/parent::div//*[@class='css-17unkfs']//*[text()='객실 예약하기'])[1]
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
     Should Be Equal    ${title}    숙박 예약
