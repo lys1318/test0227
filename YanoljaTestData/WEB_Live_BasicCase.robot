@@ -490,6 +490,13 @@ Resource          common.robot
     항공권 편도 검색    BCN
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    58
 
+59.알림함 이동 확인
+    [Setup]    로그인 여부 체크_LIVE
+    1회차 Fail건 재확인_LIVE    59
+    홈 > MY야놀자 메뉴 클릭
+    MY야놀자 > 알림함 클릭
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    59
+
 ----------TEST용----------
     [Tags]    TEST
     [Setup]    TEST_Setup

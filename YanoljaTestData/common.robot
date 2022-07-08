@@ -178,7 +178,7 @@ TC Teardown
 국내숙소 추천 위젯 > 상품 클릭
     Element Visible[요소 표시 여부 체크]    class:ThemeRecommend_container__3BtqE
     ${listName}    Get Text[텍스트 가져오기]    xpath:(//*[@class='ThemeRecommendList_title__3ak-i'])[1]
-    Comment    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Click Element[버튼 클릭]    xpath:(//*[@class='ThemeRecommendList_itemWrapper__1Y0NM'])[1]
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Contain    ${title}    ${listName}
@@ -844,11 +844,6 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     ${reservation_dir}    Create Dictionary    id=${reservationNo}    itemIds=${item_list}
     Log    ${reservation_dir}
     [Return]    ${reservation_dir}
-
-Suite Setup (stage)
-    stage 테스트숙소 노출 설정
-    Maximize Browser Window
-    구글시트 테스트 수행 날짜 업데이트 (stage)
 
 Suite Teardown (stage)
     sleep    3s
@@ -1844,3 +1839,9 @@ RDP > 모텔 숙박 예약 (QA)
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
     Should Be Equal    ${title}    숙박 예약
+
+MY야놀자 > 알림함 클릭
+    Click Element[버튼 클릭]    class:Icon_icon__2BP_o
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    알림
