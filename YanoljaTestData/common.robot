@@ -1619,7 +1619,7 @@ live 테스트숙소 노출 설정
     Click Element[버튼 클릭]    xpath:(//*[@class='ExhibitionDetailDomesticLeisure_container__15r_2'])[1]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
-    Should Be Equal    ${title}    ${listTitle}
+    Should Contain    ${title}    ${listTitle}
 
 검색 > 국내숙소 검색결과 > PDP 이동
     [Arguments]    ${keyword}
