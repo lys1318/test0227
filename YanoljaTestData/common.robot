@@ -1616,6 +1616,7 @@ live 테스트숙소 노출 설정
 
 렌터카 서브홈 > PDP
     ${listTitle}    Get Text[텍스트 가져오기]    xpath:(//*[@class='LeisureListItem_title__U-d8s'])[1]
+    sleep    2s
     Click Element[버튼 클릭]    xpath:(//*[@class='ExhibitionDetailDomesticLeisure_container__15r_2'])[1]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
