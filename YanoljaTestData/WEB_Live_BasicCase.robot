@@ -309,7 +309,7 @@ Resource          common.robot
 
 35.국내숙소 > 혜택모음
     1회차 Fail건 재확인_LIVE    35
-    홈 > 즐길거리탭 클릭
+    홈 > 국내숙소탭 클릭
     국내숙소 > 월혜택모음
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    35
