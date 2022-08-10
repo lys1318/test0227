@@ -1,5 +1,4 @@
 *** Settings ***
-Library           SeleniumLibrary    WITH NAME    S
 Library           DILog.py    WITH NAME    DILog
 Library           DateTime    WITH NAME    DT
 Library           GoogleAPI.py    WITH NAME    Google
@@ -8,6 +7,7 @@ Library           String
 Library           Collections
 Library           ImageRecognition.py    WITH NAME    IR
 Library           OperatingSystem    WITH NAME    OS
+Library           SeleniumLibrary
 
 *** Variables ***
 ${executable_path}    /Users/youngsung.lee/Desktop/pythonWorkspace/테스트프로젝트/chromedriver
@@ -134,7 +134,7 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외숙소']
     Click Element[버튼 클릭]    xpath://*[text()='해외숙소']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    여행지 선택
+    Should Be Equal    ${title}    해외숙소 여행지 선택
     sleep    3s
 
 국내숙소 > 강원도 메뉴 클릭
@@ -189,6 +189,7 @@ TC Teardown
     Click Element[버튼 클릭]    class:ThemePlaceItem_container__1Clhm
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Contain    ${title}    ${listName}
+    [Teardown]    PDP 튜토리얼 체크
 
 서브홈 > 리스트형 상품 클릭
     Element Visible[요소 표시 여부 체크]    class:SubhomeList_container__1WIAh
@@ -196,6 +197,7 @@ TC Teardown
     Click Element[버튼 클릭]    class:ListItem_container__1z7jK
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Contain    ${title}    ${listName}
+    [Teardown]    PDP 튜토리얼 체크
 
 지역 서브홈 > 지도 클릭
     ${listTitle}    Get Text[텍스트 가져오기]    class:RegionhomeMapInfo_active__3d7xW
@@ -1029,7 +1031,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    1s
     Execute Javascript    window.scrollTo(0, 0)
     ${start}    Set Variable    0
-    ${end}    Set Variable    300
+    ${end}    Set Variable    200
     FOR    ${index}    IN RANGE    5
         ${ImageChk}    IR.Find Target    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' == 'None'    Execute Javascript    window.scrollTo(${start}, ${end})
