@@ -134,7 +134,7 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    xpath://*[text()='해외숙소']
     Click Element[버튼 클릭]    xpath://*[text()='해외숙소']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
-    Should Be Equal    ${title}    해외숙소 여행지 선택
+    Should Contain    ${title}    여행지 선택
     sleep    3s
 
 국내숙소 > 강원도 메뉴 클릭
