@@ -1848,3 +1848,22 @@ MY야놀자 > 알림함 클릭
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    알림
+
+예약(포인트 결제) > 예약완료 (QA)
+    sleep    1s
+    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Execute Javascript    window.scrollTo(0, 500)
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[text()='전액 사용하기']
+    ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
+    Should Be Equal    ${amount}    0원 결제하기
+    Click Element[버튼 클릭]    class:css-128od1m
+    sleep    5s
+    Comment    ${windows}    Get Window Handles
+    Comment    Switch Window    ${windows}[1]
+    ${title}    Get Text[텍스트 가져오기]    class:title
+    Should Be Equal    ${title}    예약 완료되었습니다.
+    Comment    sleep    3s
+    Comment    Close Window
+    Comment    Switch Window    ${windows}[0]

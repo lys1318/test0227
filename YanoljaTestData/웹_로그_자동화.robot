@@ -24,7 +24,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(포인트 결제) > 예약완료 (QA)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrderComplete    view    3    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrderPayment    view    4    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrder    view    5    ${date}
@@ -47,7 +47,7 @@ Resource          common.robot
     숙소 외 장바구니 이동
     장바구니 > 예약
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
-    예약(포인트 결제) > 예약완료
+    예약(포인트 결제) > 예약완료 (QA)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainPayment    view    8    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    11    ${date}
     [Teardown]    TC Teardown
@@ -58,7 +58,7 @@ Resource          common.robot
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [경기] 야놀자 놀이공원
     레저 상세 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(포인트 결제) > 예약완료 (QA)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrder    view    25    ${date}
     [Teardown]    TC Teardown
@@ -69,7 +69,7 @@ Resource          common.robot
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [KFC] 징거버거세트
     레저 상세 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(포인트 결제) > 예약완료 (QA)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrderComplete    view    10    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrder    view    26    ${date}
     [Teardown]    TC Teardown
