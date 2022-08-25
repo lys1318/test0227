@@ -262,7 +262,7 @@ Resource          common.robot
     [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    27
     홈 > 검색 버튼 클릭
-    검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트2
+    검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)
     RDP > 호/펜/게 예약
@@ -276,7 +276,7 @@ Resource          common.robot
     [Setup]    로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    28
     홈 > 검색 버튼 클릭
-    검색 > 국내숙소 검색결과 > PDP 이동    (테스트) 게하 스프테스트2
+    검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)
     RDP > 호/펜/게 예약
