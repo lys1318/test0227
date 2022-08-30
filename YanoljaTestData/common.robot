@@ -1679,6 +1679,7 @@ TEST_Status_Check
     Click Element[버튼 클릭]    xpath://*[@alt='뒤로가기']
     sleep    1s
     해외숙소 검색결과 > PDP    ${index1}
+    해외숙소 날짜 설정    7
     해외숙소 상세 > 예약가능날짜 체크
     ELSE
     Click Element[버튼 클릭]    class:RectButton_label__WcAp7
