@@ -386,82 +386,6 @@ RDP > 모텔 숙박 예약
     Comment    Close Window
     Comment    Switch Window    ${windows}[0]
 
-예약(신한카드 결제) > 예약완료
-    Click Element[버튼 클릭]    xpath://*[@alt='카드 아이콘']
-    Click Element[버튼 클릭]    class:css-128od1m
-    sleep    5s
-    ${windows}    Get Window Handles
-    Switch Window    ${windows}[1]
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Select Frame    id:naxIfr
-    ${title}    Get Text[텍스트 가져오기]    id:spay_logo_t
-    Should Be Equal    ${title}    야놀자_TEST
-    Click Element[버튼 클릭]    xpath://*[@for='chk_all']
-    Click Element[버튼 클릭]    id:CCLG
-    Click Element[버튼 클릭]    id:cardNext
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Select Frame    id:CARD_CERT_IFR
-    ${title}    Get Text[텍스트 가져오기]    class:npm-logo
-    Should Be Equal    ${title}    ShinhanCard
-    Click Element[버튼 클릭]    xpath:(//*[text()='다른 결제'])[1]
-    Click Element[버튼 클릭]    xpath://*[text()='일반 결제']
-    InputText Element[텍스트 입력하기]    id:cardNum1    3562
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan9.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan7.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan4.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan6.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan0.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan4.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan9.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan7.png
-    InputText Element[텍스트 입력하기]    id:cardNum4    4758
-    Click Element[버튼 클릭]    id:inputCVC
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan4.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan1.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan6.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan입력완료.png
-    Click Element[버튼 클릭]    class:btn-primary
-    Click Element[버튼 클릭]    id:authPassword
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhanㄷ.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhanㅐ.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhanㅎ.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhanㅕ.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhanㄴ.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan_1.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan_0.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan_1.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan_4.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan#+=.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan!.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan@.png
-    IR.Image Click    ${CURDIR}/Images/shinhan/shinhan_입력완료.png
-    Click Element[버튼 클릭]    class:btn-primary
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Select Frame    id:naxIfr
-    Click Element[버튼 클릭]    id:cardNext
-    ${title}    Get Text[텍스트 가져오기]    class:title
-    Should Be Equal    ${title}    예약 완료되었습니다.
-    sleep    3s
-    Close Window
-    Switch Window    ${windows}[0]
-
-예약(간편계좌 결제) > 예약완료
-    Click Element[버튼 클릭]    xpath://*[@alt='간편 계좌 결제 아이콘']
-    Click Element[버튼 클릭]    class:css-128od1m
-    sleep    5s
-    ${windows}    Get Window Handles
-    Switch Window    ${windows}[1]
-    Select Frame[프레임 선택]    name:yanoljapay_view
-    Click Element[버튼 클릭]    id:081
-    IR.Image Click    ${CURDIR}/Images/easy/간편8.png
-    IR.Image Click    ${CURDIR}/Images/easy/간편5.png
-    IR.Image Click    ${CURDIR}/Images/easy/간편1.png
-    IR.Image Click    ${CURDIR}/Images/easy/간편3.png
-    IR.Image Click    ${CURDIR}/Images/easy/간편1.png
-    IR.Image Click    ${CURDIR}/Images/easy/간편8.png
-    ${title}    Get Text[텍스트 가져오기]    class:title
-    Should Be Equal    ${title}    예약 완료되었습니다.
-    sleep    3s
-    Close Window
-    Switch Window    ${windows}[0]
-
 검색 > 레저티켓 검색결과 > 상품상세 이동
     [Arguments]    ${keyword}
     sleep    3s
@@ -1849,3 +1773,38 @@ MY야놀자 > 알림함 클릭
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    알림
+
+예약(간편결제) > 예약완료 (QA)
+    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    ${payPrice}    Get Text[텍스트 가져오기]    xpath://*[@class='css-vik48o']
+    ${convert}    문자열에서 숫자만 추출    ${payPrice}
+    ${inputPrice}    Evaluate    ${convert} - 100
+    InputText Element[텍스트 입력하기]    xpath://*[@placeholder='- 0']    ${inputPrice}
+    Click Element[버튼 클릭]    xpath://*[text()='다른 결제 수단 더보기']
+    Click Element[버튼 클릭]    xpath://div[text()='간편 계좌 결제']
+    ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
+    Should Be Equal    ${amount}    100원 결제하기
+    Click Element[버튼 클릭]    class:css-128od1m
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[1]
+    Select Frame[프레임 선택]    name:yanoljapay_view
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@id='header']/h1
+    Should Contain    ${title}    계좌 등록/결제
+    Click Element[버튼 클릭]    xpath://*[text()='하나은행']
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@id='header']/h1
+    Should Contain    ${title}    결제진행
+    IR.Image Click    ${CURDIR}/Images/easy1.png
+    IR.Image Click    ${CURDIR}/Images/easy6.png
+    IR.Image Click    ${CURDIR}/Images/easy0.png
+    IR.Image Click    ${CURDIR}/Images/easy7.png
+    IR.Image Click    ${CURDIR}/Images/easy2.png
+    IR.Image Click    ${CURDIR}/Images/easy3.png
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[0]
+    ${title}    Get Text[텍스트 가져오기]    class:title
+    Should Be Equal    ${title}    예약 완료되었습니다.
