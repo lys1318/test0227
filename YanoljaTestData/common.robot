@@ -181,6 +181,8 @@ TC Teardown
     Element Visible[요소 표시 여부 체크]    class:ThemeRecommend_container__3BtqE
     ${listName}    Get Text[텍스트 가져오기]    xpath:(//*[@class='ThemeRecommendList_title__3ak-i'])[1]
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    sleep    2s
+    Execute Javascript    window.scrollTo(0, 0)
     Click Element[버튼 클릭]    xpath:(//*[@class='ThemeRecommendList_itemWrapper__1Y0NM'])[1]
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Contain    ${title}    ${listName}
