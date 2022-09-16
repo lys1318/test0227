@@ -36,6 +36,7 @@ ${GoogleColumn}    K
 
 *** Keywords ***
 Suite Setup
+    QA 테스트숙소 노출 설정
     로그인 후 cgntId 구하기
     [API_SET] 장바구니 조회 후 모두 삭제
     구글시트 테스트 수행 날짜 업데이트
@@ -71,8 +72,9 @@ TC Teardown
     sleep    1s
 
 이메일로 로그인 화면 오픈
-    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
+    Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Chrome    executable_path=${CURDIR}/chromedriver
     Comment    Open Browser    ${QAMain}/emaillogin?redirect=/mypage    Safari
+    go to    ${QAMain}/emaillogin?redirect=/mypage
     Maximize Browser Window
 
 메인 이동
@@ -955,8 +957,8 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    1s
     Execute Javascript    window.scrollTo(0, 0)
     ${start}    Set Variable    0
-    ${end}    Set Variable    200
-    FOR    ${index}    IN RANGE    5
+    ${end}    Set Variable    150
+    FOR    ${index}    IN RANGE    30
         ${ImageChk}    IR.Find Target    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' == 'None'    Execute Javascript    window.scrollTo(${start}, ${end})
         ${start}    Set Variable    ${end}
@@ -1808,3 +1810,7 @@ MY야놀자 > 알림함 클릭
     Switch Window    ${windows}[0]
     ${title}    Get Text[텍스트 가져오기]    class:title
     Should Be Equal    ${title}    예약 완료되었습니다.
+
+QA 테스트숙소 노출 설정
+    Open Browser    ${QAMain}/_settings    Chrome    executable_path=${CURDIR}/chromedriver
+    Click Element[버튼 클릭]    xpath://*[@for='testProduct-YES']/span[1]
