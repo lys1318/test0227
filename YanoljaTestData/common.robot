@@ -1505,7 +1505,7 @@ live 테스트숙소 노출 설정
 해외여행 > 여행자보험
     Click Element[버튼 클릭]    xpath://*[text()='여행자보험']
     sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:title-in-app
+    ${title}    Get Text[텍스트 가져오기]    class:nav-tit
     Should Be Equal    ${title}    해외여행보험
 
 국내숙소 > 선착순쿠폰
