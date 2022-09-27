@@ -111,7 +111,7 @@ Resource          common.robot
     PDP > RDP (모/호/게 대실포함)
     RDP > 대실 예약
     바로 예약 > 예약
-    예약(포인트 결제) > 예약완료 (stage)
+    예약(간편결제) > 예약완료 (일반)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    13
@@ -125,7 +125,7 @@ Resource          common.robot
     PDP > RDP (모텔 숙박)
     RDP > 모텔 숙박 예약
     바로 예약 > 예약
-    예약(포인트 결제) > 예약완료 (stage)
+    예약(간편결제) > 예약완료 (일반)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    14
@@ -141,7 +141,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    15
@@ -157,7 +157,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    16
 
@@ -183,7 +183,7 @@ Resource          common.robot
     PDP > RDP (모/호/게 대실포함)
     RDP > 호/펜/게 예약
     바로 예약 > 예약
-    예약(포인트 결제) > 예약완료 (stage)
+    예약(간편결제) > 예약완료 (일반)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    19
@@ -199,7 +199,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    20
 
@@ -225,7 +225,7 @@ Resource          common.robot
     PDP > RDP (펜션)
     RDP > 호/펜/게 예약
     바로 예약 > 예약
-    예약(포인트 결제) > 예약완료 (stage)
+    예약(간편결제) > 예약완료 (일반)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    23
@@ -241,7 +241,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    24
 
@@ -267,7 +267,7 @@ Resource          common.robot
     PDP > RDP (모/호/게 대실포함)
     RDP > 호/펜/게 예약
     바로 예약 > 예약
-    예약(포인트 결제) > 예약완료 (stage)
+    예약(간편결제) > 예약완료 (일반)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    27
@@ -283,7 +283,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    28
 
@@ -339,7 +339,7 @@ Resource          common.robot
     해외숙소 날짜 설정    7
     해외숙소 상세 > 예약가능날짜 체크
     해외숙소 PDP 무료취소 가능 체크 > 예약하기 진입
-    해외숙소 예약(포인트 결제) > 예약완료
+    해외숙소 예약(간편결제) > 예약완료
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    35
 
@@ -369,7 +369,7 @@ Resource          common.robot
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [제주 서귀포시] 본태박물관
     레저 상세 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (일반)
     sleep    2s
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    38
@@ -380,7 +380,7 @@ Resource          common.robot
     레저티켓 장바구니 담기    [제주 서귀포시] 본태박물관
     숙소 외 장바구니 이동
     장바구니 > 예약
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    39
 
@@ -396,23 +396,6 @@ Resource          common.robot
     즐길거리 > 모바일교환권
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
-
-42.모바일교환권 바로예약 결제
-    [Setup]    로그인 여부 체크_LIVE
-    1회차 Fail건 재확인_LIVE    42
-    홈 > 검색 버튼 클릭
-    검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    [스타벅스] 카페 아메리카노 T
-    레저 상세 > 예약
-    예약(포인트 결제) > 예약완료
-    sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    42
-
-43.모바일교환권 취소
-    [Setup]    로그인 여부 체크_LIVE
-    1회차 Fail건 재확인_LIVE    43
-    예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43
 
 44.맛집 서브홈 이동
     1회차 Fail건 재확인_LIVE    44
@@ -458,7 +441,7 @@ Resource          common.robot
     숙소 외 장바구니 이동
     장바구니 > 예약
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
-    예약(포인트 결제) > 예약완료
+    예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    48
 
@@ -542,3 +525,22 @@ Resource          common.robot
     sleep    3s
     Go Back
     검색 > 해외숙소 검색결과 (테스트용)    인사이드 파이브 시티 아파트먼츠
+
+42.모바일교환권 바로예약 결제
+    [Tags]    TEST
+    [Setup]    로그인 여부 체크_LIVE
+    1회차 Fail건 재확인_LIVE    42
+    홈 > 검색 버튼 클릭
+    검색 > 레저/티켓탭 클릭
+    검색 > 레저티켓 검색결과 > 상품상세 이동    [스타벅스] 카페 아메리카노 T
+    레저 상세 > 예약
+    예약(간편결제) > 예약완료 (일반)
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    42
+
+43.모바일교환권 취소
+    [Tags]    TEST
+    [Setup]    로그인 여부 체크_LIVE
+    1회차 Fail건 재확인_LIVE    43
+    예약내역 취소
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43

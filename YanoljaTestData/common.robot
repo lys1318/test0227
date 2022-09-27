@@ -1120,15 +1120,38 @@ RDP > 호/펜/게 예약
     END
     END
 
-해외숙소 예약(포인트 결제) > 예약완료
+해외숙소 예약(간편결제) > 예약완료
     sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='전액 사용']
+    ${payPrice}    Get Text[텍스트 가져오기]    class:sale-price
+    ${convert}    문자열에서 숫자만 추출    ${payPrice}
+    ${inputPrice}    Evaluate    ${convert} - 100
+    InputText Element[텍스트 입력하기]    xpath://*[contains (@placeholder, '보유')]    ${inputPrice}
+    Click Element[버튼 클릭]    xpath://*[text()='다른 결제 수단 더보기']
+    Click Element[버튼 클릭]    xpath://*[@class='pg-item-select-icon']/parent::div/*[text()='간편계좌결제']
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의']
     sleep    1s
     ${amount}    Get Text[텍스트 가져오기]    class:payment-amount
-    Should Be Equal    ${amount}    0원으로 예약하기
+    Should Be Equal    ${amount}    100원 결제하기
     Click Element[버튼 클릭]    class:payment-amount
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[1]
+    Select Frame[프레임 선택]    name:yanoljapay_view
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@id='header']/h1
+    Should Contain    ${title}    계좌 등록/결제
+    Click Element[버튼 클릭]    xpath://*[text()='하나은행']
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@id='header']/h1
+    Should Contain    ${title}    결제진행
+    IR.Image Click    ${CURDIR}/Images/easy1.png
+    IR.Image Click    ${CURDIR}/Images/easy6.png
+    IR.Image Click    ${CURDIR}/Images/easy0.png
+    IR.Image Click    ${CURDIR}/Images/easy7.png
+    IR.Image Click    ${CURDIR}/Images/easy2.png
+    IR.Image Click    ${CURDIR}/Images/easy3.png
     sleep    10s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[0]
     ${title}    Get Text[텍스트 가져오기]    class:status-text
     Should Contain    ${title}    예약이 완료 되었습니다.
 
@@ -1423,6 +1446,7 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
 RDP > 무료취소여부체크
     ${cancelTxt}    Get Text[텍스트 가져오기]    class:css-1fqi9i1
     ${cancelYn}    Run keyword and Ignore error    Should Contain    ${cancelTxt}    무료취소
+    Run Keyword If    '${cancelYn}[0]' == 'FAIL'    Click Element[버튼 클릭]    class:css-gtuddj
     Run Keyword If    '${cancelYn}[0]' == 'FAIL'    국내숙소 날짜 설정    10
 
 Suite Setup (live)
@@ -1778,7 +1802,11 @@ MY야놀자 > 알림함 클릭
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    알림
 
-예약(간편결제) > 예약완료 (QA)
+QA 테스트숙소 노출 설정
+    Open Browser    ${QAMain}/_settings    Chrome    executable_path=${CURDIR}/chromedriver
+    Click Element[버튼 클릭]    xpath://*[@for='testProduct-YES']/span[1]
+
+예약(간편결제) > 예약완료 (장바구니)
     ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
     Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
     Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
@@ -1787,7 +1815,7 @@ MY야놀자 > 알림함 클릭
     ${inputPrice}    Evaluate    ${convert} - 100
     InputText Element[텍스트 입력하기]    xpath://*[@placeholder='- 0']    ${inputPrice}
     Click Element[버튼 클릭]    xpath://*[text()='다른 결제 수단 더보기']
-    Click Element[버튼 클릭]    xpath://div[text()='간편 계좌 결제']
+    Click Element[버튼 클릭]    xpath://div[contains (text(), '간편')]
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    100원 결제하기
     Click Element[버튼 클릭]    class:css-128od1m
@@ -1813,6 +1841,40 @@ MY야놀자 > 알림함 클릭
     ${title}    Get Text[텍스트 가져오기]    class:title
     Should Be Equal    ${title}    예약 완료되었습니다.
 
-QA 테스트숙소 노출 설정
-    Open Browser    ${QAMain}/_settings    Chrome    executable_path=${CURDIR}/chromedriver
-    Click Element[버튼 클릭]    xpath://*[@for='testProduct-YES']/span[1]
+예약(간편결제) > 예약완료 (일반)
+    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
+    ${payPrice}    Get Text[텍스트 가져오기]    xpath://*[@class='css-vik48o']
+    ${convert}    문자열에서 숫자만 추출    ${payPrice}
+    ${inputPrice}    Evaluate    ${convert} - 100
+    InputText Element[텍스트 입력하기]    xpath://*[@placeholder='- 0']    ${inputPrice}
+    Click Element[버튼 클릭]    xpath://*[text()='다른 결제 수단 더보기']
+    Click Element[버튼 클릭]    xpath://div[contains (text(), '간편')]
+    ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
+    Should Be Equal    ${amount}    100원 결제하기
+    Click Element[버튼 클릭]    class:css-128od1m
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[2]
+    Select Frame[프레임 선택]    name:yanoljapay_view
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@id='header']/h1
+    Should Contain    ${title}    계좌 등록/결제
+    Click Element[버튼 클릭]    xpath://*[text()='하나은행']
+    sleep    2s
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@id='header']/h1
+    Should Contain    ${title}    결제진행
+    IR.Image Click    ${CURDIR}/Images/easy1.png
+    IR.Image Click    ${CURDIR}/Images/easy6.png
+    IR.Image Click    ${CURDIR}/Images/easy0.png
+    IR.Image Click    ${CURDIR}/Images/easy7.png
+    IR.Image Click    ${CURDIR}/Images/easy2.png
+    IR.Image Click    ${CURDIR}/Images/easy3.png
+    sleep    5s
+    ${windows}    Get Window Handles
+    Switch Window    ${windows}[1]
+    ${title}    Get Text[텍스트 가져오기]    class:title
+    Should Be Equal    ${title}    예약 완료되었습니다.
+    sleep    3s
+    Close Window
+    Switch Window    ${windows}[0]
