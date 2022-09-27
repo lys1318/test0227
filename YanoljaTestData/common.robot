@@ -831,7 +831,7 @@ MY야놀자 > 내정보관리 메뉴 클릭
 MY야놀자 > 포인트 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='포인트']
     sleep    1s
-    ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[@class='css-z0igb2']/div[1]
     Should Be Equal    ${title}    포인트
 
 MY야놀자 > MY혜택 메뉴 클릭

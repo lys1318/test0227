@@ -35,7 +35,7 @@ Resource          common.robot
     [Setup]    로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    4
     MY야놀자 > 포인트 메뉴 클릭
-    Click Element[버튼 클릭]    class:toolbar-btn
+    Click Element[버튼 클릭]    xpath://*[@data-testid='back-button']
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    4
 
