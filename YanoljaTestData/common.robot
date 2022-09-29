@@ -1133,7 +1133,7 @@ RDP > 호/펜/게 예약
     ${amount}    Get Text[텍스트 가져오기]    class:payment-amount
     Should Be Equal    ${amount}    100원 결제하기
     Click Element[버튼 클릭]    class:payment-amount
-    sleep    5s
+    sleep    10s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[1]
     Select Frame[프레임 선택]    name:yanoljapay_view
