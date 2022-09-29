@@ -397,13 +397,6 @@ Resource          common.robot
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
 
-44.맛집 서브홈 이동
-    1회차 Fail건 재확인_LIVE    44
-    홈 > 즐길거리탭 클릭
-    즐길거리 > 맛집
-    sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    44
-
 45.렌터카 서브홈 이동
     1회차 Fail건 재확인_LIVE    45
     홈 > 교통/항공탭 클릭
@@ -544,3 +537,11 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    43
     예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43
+
+44.맛집 서브홈 이동
+    [Tags]    TEST
+    1회차 Fail건 재확인_LIVE    44
+    홈 > 즐길거리탭 클릭
+    즐길거리 > 맛집
+    sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    44
