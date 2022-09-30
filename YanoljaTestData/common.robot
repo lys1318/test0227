@@ -1350,15 +1350,15 @@ KTX > 승차권 조건 선택 후 조회 버튼 클릭 (왕복)
     ${title}    Get Text[텍스트 가져오기]    class:Nickname_memberID__3MMXU
     Should Be Equal    ${title}    ${stage_username}
 
-여행지 선택 > 베트남
-    Click Element[버튼 클릭]    xpath://*[text()='베트남']
-    ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceAreaListBody_countryEntry')])[9]    class
+여행지 선택 > 오사카
+    Click Element[버튼 클릭]    xpath://*[text()='오사카/교토']
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'GlobalPlaceAreaListBody_countryEntry')])[1]    class
     Should Contain    ${attr}    Expanded__1nWy4
     sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='다낭']
+    Click Element[버튼 클릭]    xpath://*[text()='오사카']
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:KeywordInputInNav_searchPseudoInput__2KG7_
-    Should Be Equal    ${title}    다낭, 베트남
+    Should Contain    ${title}    오사카
 
 해외숙소 검색결과 > PDP
     [Arguments]    ${index}
