@@ -1835,7 +1835,7 @@ QA 테스트숙소 노출 설정
     IR.Image Click    ${CURDIR}/Images/easy7.png
     IR.Image Click    ${CURDIR}/Images/easy2.png
     IR.Image Click    ${CURDIR}/Images/easy3.png
-    sleep    5s
+    sleep    20s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[0]
     ${title}    Get Text[텍스트 가져오기]    class:title
