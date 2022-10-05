@@ -24,7 +24,7 @@ Resource          common.robot
     숙소 장바구니 담기
     숙소 장바구니 이동
     장바구니 > 예약
-    예약(간편결제) > 예약완료 (QA)
+    예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrderComplete    view    3    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrderPayment    view    4    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrder    view    5    ${date}
@@ -38,7 +38,13 @@ Resource          common.robot
 
 08_11.기차티켓
     ${date}    현재 시간 구하기
-    레저티켓 장바구니 담기    [경기] 야놀자 놀이공원
+    Comment    레저티켓 장바구니 담기    [경기] 야놀자 놀이공원
+    go to    https://qa-m.yanolja.com/leisure/54420
+    sleep    1s
+    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='+']
+    숙소 외 장바구니 담기
     홈 > 교통/항공탭 클릭
     교통/항공 > KTX 메뉴 클릭
     KTX > 승차권 조건 선택 후 조회 버튼 클릭    부산
@@ -47,29 +53,31 @@ Resource          common.robot
     숙소 외 장바구니 이동
     장바구니 > 예약
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
-    예약(간편결제) > 예약완료 (QA)
+    예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainPayment    view    8    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    11    ${date}
     [Teardown]    TC Teardown
 
 09_25.레저티켓(일반) 예약
     ${date}    현재 시간 구하기
-    홈 > 검색 버튼 클릭
-    검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    [경기] 야놀자 놀이공원
+    Comment    홈 > 검색 버튼 클릭
+    Comment    검색 > 레저/티켓탭 클릭
+    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    [경기] 야놀자 놀이공원
+    go to    https://qa-m.yanolja.com/leisure/54420
     레저 상세 > 예약
-    예약(간편결제) > 예약완료 (QA)
+    예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrder    view    25    ${date}
     [Teardown]    TC Teardown
 
 10_26.레저티켓(모바일) 예약
     ${date}    현재 시간 구하기
-    홈 > 검색 버튼 클릭
-    검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    [KFC] 징거버거세트
+    Comment    홈 > 검색 버튼 클릭
+    Comment    검색 > 레저/티켓탭 클릭
+    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    [KFC] 징거버거세트
+    go to    https://qa-m.yanolja.com/leisure/53415
     레저 상세 > 예약
-    예약(간편결제) > 예약완료 (QA)
+    예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrderComplete    view    10    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrder    view    26    ${date}
     [Teardown]    TC Teardown
