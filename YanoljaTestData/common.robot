@@ -959,12 +959,12 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    1s
     Execute Javascript    window.scrollTo(0, 0)
     ${start}    Set Variable    0
-    ${end}    Set Variable    150
+    ${end}    Set Variable    500
     FOR    ${index}    IN RANGE    30
         ${ImageChk}    IR.Find Target    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' == 'None'    Execute Javascript    window.scrollTo(${start}, ${end})
         ${start}    Set Variable    ${end}
-        ${end}    Set Variable    ${end} * 2
+        ${end}    Set Variable    ${end} + 500
         Run Keyword If    '${ImageChk}' != 'None'    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' != 'None'    Exit For Loop
     END
