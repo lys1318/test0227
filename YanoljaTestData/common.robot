@@ -973,7 +973,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
 
 국내숙소 날짜 설정
     [Arguments]    ${days_later}
-    Click Element[버튼 클릭]    class:css-roety0
+    Click Element[버튼 클릭]    class:css-6t3bhl
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:css-ftkmw0
     Should Be Equal    ${title}    날짜 선택
