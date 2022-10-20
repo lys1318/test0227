@@ -119,8 +119,8 @@ TC Teardown
     Should Be Equal    ${title}    게하/한옥
 
 교통/항공 > 항공권 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/flights')]
-    Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/flights')]
+    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '항공권')]
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '항공권')]
     ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
     Should Be Equal    ${title}    항공권
 
@@ -171,8 +171,8 @@ TC Teardown
     Should Be Equal    ${title}    MY 야놀자
 
 교통/항공 > KTX 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@href, 'yanolja.com/train')]
-    Click Element[버튼 클릭]    xpath://*[contains (@href, 'yanolja.com/train')]
+    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '기차')]
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '기차')]
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    기차
     sleep    1s
