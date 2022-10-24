@@ -103,7 +103,7 @@ Resource          common.robot
     go back
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    15    ${date}    그룹별, 개별 상품 클릭(국내숙소)
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    16    ${date}    그룹별, 개별 상품별 노출(국내레져)    count=2
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    16    ${date}    그룹별, 개별 상품별 노출(국내레져)    count=3
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    17    ${date}    그룹별, 개별 상품 클릭(국내레져)
 
 18~21.해외숙소 서브홈 & 상품 클릭 & 예약 & 결제
