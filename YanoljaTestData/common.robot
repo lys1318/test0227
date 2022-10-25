@@ -1669,11 +1669,12 @@ TEST_Status_Check
     Comment    ${date}    DT.Get Current Date    result_format=%d
     Run Keyword If    "${TEST_PHASE}"!="1"    1회차가 아닐 때
     Return From Keyword If    "${TEST_PHASE}"!="1"
-    ${date}    DT.Get Current Date
-    ${date}    Convert Date    ${date}    datetime
-    Log    ${date.weekday()}    # 월요일 0
-    Run Keyword If    "${date.weekday()}" == "0"    월요일 파일 생성
-    Run Keyword Unless    "${date.weekday()}" == "0"    월요일 외 시트 생성
+    Comment    ${date}    DT.Get Current Date
+    Comment    ${date}    Convert Date    ${date}    datetime
+    Comment    Log    ${date.weekday()}    # 월요일 0
+    Comment    Run Keyword If    "${date.weekday()}" == "0"    월요일 파일 생성
+    Comment    Run Keyword Unless    "${date.weekday()}" == "0"    월요일 외 시트 생성
+    버전별 시트 복사
 
 월요일 파일 생성
     ${date}    DT.Get Current Date
@@ -1878,3 +1879,23 @@ QA 테스트숙소 노출 설정
     sleep    3s
     Close Window
     Switch Window    ${windows}[0]
+
+버전별 시트 복사
+    ${date}    DT.Get Current Date
+    ${date}    Convert Date    ${date}    datetime
+    ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
+    # 파일 복사
+    Comment    ${url}    Google.Copy File    ${date.year}-${date.month}월${week_no}주차    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
+    ${url}    Google.Copy File    ${TEST_VER}    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
+    # 새파일 URL 전역변수 저장
+    Set Global Variable    ${GoogleDrive_URL_StageBasic}    ${url}
+    # 새파일 URL 파일 저장
+    OS.Create File    ${GoogleURL}    ${url}
+    # 시트 생성    # 시트 이름 전역변수 저장
+    Comment    Google.Copy Sheet TEMP    ${date.month}월${date.day}일    ${url}
+    Comment    Google.Update Sheet TEMP    ${date.month}월${week_no}주차    ${url}
+    Comment    Google.Update Sheet TEMP    ${TEST_VER}    ${url}
+    Comment    Set Global Variable    ${WORKSHEET_StageBasic}    ${TEST_VER}
+    Google.Update Sheet TEMP    ${date.month}월${week_no}주차    ${url}
+    Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
+    Set Global Variable    ${GoogleColumn}    K

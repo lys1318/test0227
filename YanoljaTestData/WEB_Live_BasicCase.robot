@@ -397,31 +397,31 @@ Resource          common.robot
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
 
-45.렌터카 서브홈 이동
-    1회차 Fail건 재확인_LIVE    45
+42.렌터카 서브홈 이동
+    1회차 Fail건 재확인_LIVE    42
     홈 > 교통/항공탭 클릭
     교통/항공 > 렌터카
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    45
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    42
 
-46.렌터카 PDP 이동
-    1회차 Fail건 재확인_LIVE    46
+43.렌터카 PDP 이동
+    1회차 Fail건 재확인_LIVE    43
     홈 > 교통/항공탭 클릭
     교통/항공 > 렌터카
     렌터카 서브홈 > PDP
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    46
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43
 
-47.KTX 서브홈 이동
-    1회차 Fail건 재확인_LIVE    47
+44.KTX 서브홈 이동
+    1회차 Fail건 재확인_LIVE    44
     홈 > 교통/항공탭 클릭
     교통/항공 > KTX 메뉴 클릭
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    47
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    44
 
-48.KTX 왕복상품 장바구니 결제
+45.KTX 왕복상품 장바구니 결제
     [Setup]    로그인 여부 & 장바구니 유무 체크
-    1회차 Fail건 재확인_LIVE    48
+    1회차 Fail건 재확인_LIVE    45
     모텔 장바구니 담기
     홈 > 교통/항공탭 클릭
     교통/항공 > KTX 메뉴 클릭
@@ -436,42 +436,42 @@ Resource          common.robot
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
     예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    48
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    45
 
-49.KTX 취소
+46.KTX 취소
     [Setup]    로그인 여부 체크_LIVE
-    1회차 Fail건 재확인_LIVE    49
+    1회차 Fail건 재확인_LIVE    46
     예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    49
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    46
 
-50.고속버스 서브홈 이동
-    1회차 Fail건 재확인_LIVE    50
+47.고속버스 서브홈 이동
+    1회차 Fail건 재확인_LIVE    47
     홈 > 교통/항공탭 클릭
     교통/항공 > 고속버스 메뉴 클릭
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    50
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    47
 
-51.항공권 왕복 리스트 확인
-    1회차 Fail건 재확인_LIVE    51
+48.항공권 왕복 리스트 확인
+    1회차 Fail건 재확인_LIVE    48
     홈 > 교통/항공탭 클릭
     교통/항공 > 항공권 메뉴 클릭
     항공권 왕복 검색    BCN
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    51
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    48
 
-52.항공권 편도 리스트 확인
-    1회차 Fail건 재확인_LIVE    52
+49.항공권 편도 리스트 확인
+    1회차 Fail건 재확인_LIVE    49
     홈 > 교통/항공탭 클릭
     교통/항공 > 항공권 메뉴 클릭
     항공권 > 편도 클릭
     항공권 편도 검색    BCN
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    52
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    49
 
-53.알림함 이동 확인
+50.알림함 이동 확인
     [Setup]    로그인 여부 체크_LIVE
-    1회차 Fail건 재확인_LIVE    53
+    1회차 Fail건 재확인_LIVE    50
     홈 > MY야놀자 메뉴 클릭
     MY야놀자 > 알림함 클릭
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    53
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    50
 
 ----------TEST용----------
     [Tags]    TEST
