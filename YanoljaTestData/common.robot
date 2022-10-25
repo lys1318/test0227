@@ -1885,8 +1885,8 @@ QA 테스트숙소 노출 설정
     ${date}    Convert Date    ${date}    datetime
     ${week_no}    Google.Get Week No    ${date.year}    ${date.month}    ${date.day}
     # 파일 복사
-    Comment    ${url}    Google.Copy File    ${date.year}-${date.month}월${week_no}주차    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
-    ${url}    Google.Copy File    ${TEST_VER}    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
+    ${url}    Google.Copy File    ${date.year}-${date.month}월${week_no}주차    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
+    Comment    ${url}    Google.Copy File    ${TEST_VER}    ${GoogleDriveLive_FileID}    ${GoogleDriveLive_FolderID}
     # 새파일 URL 전역변수 저장
     Set Global Variable    ${GoogleDrive_URL_StageBasic}    ${url}
     # 새파일 URL 파일 저장
