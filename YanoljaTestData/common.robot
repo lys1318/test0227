@@ -1726,11 +1726,12 @@ TEST_Status_Check
     # 마지막 주 및 다음달 첫주가 다른 케이스 방지
     ${week_no}    Google.Get Sheet Temp    ${GoogleDrive_URL_StageBasic}
     Set Global Variable    ${WORKSHEET_StageBasic}    ${week_no}
-    Run keyword If    "${date.weekday()}" == "0"    Set Global Variable    ${GoogleColumn}    K    # 월
-    Run keyword If    "${date.weekday()}" == "1"    Set Global Variable    ${GoogleColumn}    L    # 화
-    Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
-    Run keyword If    "${date.weekday()}" == "3"    Set Global Variable    ${GoogleColumn}    N    # 목
-    Run keyword If    "${date.weekday()}" == "4"    Set Global Variable    ${GoogleColumn}    O    # 금
+    Comment    Run keyword If    "${date.weekday()}" == "0"    Set Global Variable    ${GoogleColumn}    K    # 월
+    Comment    Run keyword If    "${date.weekday()}" == "1"    Set Global Variable    ${GoogleColumn}    L    # 화
+    Comment    Run keyword If    "${date.weekday()}" == "2"    Set Global Variable    ${GoogleColumn}    M    # 수
+    Comment    Run keyword If    "${date.weekday()}" == "3"    Set Global Variable    ${GoogleColumn}    N    # 목
+    Comment    Run keyword If    "${date.weekday()}" == "4"    Set Global Variable    ${GoogleColumn}    O    # 금
+    Set Global Variable    ${GoogleColumn}    K
 
 결과 값 가져오기_LIVE
     [Arguments]    ${case_no}
