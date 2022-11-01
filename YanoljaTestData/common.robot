@@ -1820,6 +1820,7 @@ QA 테스트숙소 노출 설정
     Click Element[버튼 클릭]    xpath://div[contains (text(), '간편')]
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    100원 결제하기
+    Click Element[버튼 클릭]    //*[contains (text(), '필수 약관 전체 동의')]
     Click Element[버튼 클릭]    class:css-128od1m
     sleep    5s
     ${windows}    Get Window Handles
@@ -1855,6 +1856,7 @@ QA 테스트숙소 노출 설정
     Click Element[버튼 클릭]    xpath://div[contains (text(), '간편')]
     ${amount}    Get Text[텍스트 가져오기]    class:css-128od1m
     Should Be Equal    ${amount}    100원 결제하기
+    Click Element[버튼 클릭]    //*[contains (text(), '필수 약관 전체 동의')]
     Click Element[버튼 클릭]    class:css-128od1m
     sleep    5s
     ${windows}    Get Window Handles
