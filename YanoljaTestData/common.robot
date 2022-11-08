@@ -1206,7 +1206,8 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     [Arguments]    ${productName}
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
-    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
+    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
+    검색 > 키워드 입력 후 돋보기 이동    ${productName}
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     sleep    1s
@@ -1902,3 +1903,15 @@ QA 테스트숙소 노출 설정
     Google.Update Sheet TEMP    ${date.month}월${week_no}주차    ${url}
     Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
     Set Global Variable    ${GoogleColumn}    K
+
+검색 > 키워드 입력 후 돋보기 이동
+    [Arguments]    ${keyword}
+    sleep    3s
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Comment    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    Comment    sleep    1s
+    Comment    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    2s
+    Click Element[버튼 클릭]    xpath://*[@alt='검색']
+    ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
+    Should Be Equal    ${title}    ${keyword}
