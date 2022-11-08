@@ -1913,5 +1913,14 @@ QA 테스트숙소 노출 설정
     Comment    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
     sleep    2s
     Click Element[버튼 클릭]    xpath://*[@alt='검색']
+    Click Element[버튼 클릭]    xpath:(//*[text()='[제주 서귀포시] 본태박물관'])[2]
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
+
+PDP > RDP (모/호/게 대실포함)_호텔 임시
+    sleep    1s
+    Comment    모텔 대실 예약가능 여부 체크
+    Click Element[버튼 클릭]    xpath:(//*[text()='객실 선택하기'])[4]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:css-1kml15s
+    Should Be Equal    ${title}    객실상세

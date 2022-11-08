@@ -180,7 +180,7 @@ Resource          common.robot
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
     체크인날짜확인
-    PDP > RDP (모/호/게 대실포함)
+    PDP > RDP (모/호/게 대실포함)_호텔 임시
     RDP > 호/펜/게 예약
     바로 예약 > 예약
     예약(간편결제) > 예약완료 (일반)
@@ -194,7 +194,7 @@ Resource          common.robot
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
     체크인날짜확인
-    PDP > RDP (모/호/게 대실포함)
+    PDP > RDP (모/호/게 대실포함)_호텔 임시
     RDP > 호/펜/게 예약
     숙소 장바구니 담기
     숙소 장바구니 이동
