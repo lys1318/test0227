@@ -1206,8 +1206,8 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     [Arguments]    ${productName}
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
-    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
-    검색 > 키워드 입력 후 돋보기 이동    ${productName}
+    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
+    Comment    검색 > 키워드 입력 후 돋보기 이동    ${productName}
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     sleep    1s
