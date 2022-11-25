@@ -14,7 +14,6 @@ Resource          common.robot
     라이브 방송 서브홈 > 특정 방송 진입
     Run Keyword And Continue On Failure    DILog 조회 및 검증    라이브방송    LiveCommerceHome    view    1    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    라이브방송    Broadcast    view    2    ${date}
-    Comment    test
 
 03~07.장바구니를 통한 국내숙소 예약
     ${date}    현재 시간 구하기
