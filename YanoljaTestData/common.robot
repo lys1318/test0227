@@ -622,7 +622,7 @@ DILog 조회 및 검증
 
 Click Element[버튼 클릭]
     [Arguments]    ${element}
-    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Click Element    ${element}
+    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    click element    ${element}
 
 InputText Element[텍스트 입력하기]
     [Arguments]    ${element}    ${input_text}
@@ -901,8 +901,8 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     END
 
 펜션 예약가능 여부 체크
-    ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    xpath://*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::div//*[text()='객실 선택하기']    disabled
-    Run Keyword If    '${attr}' != 'true'    Click Element[버튼 클릭]    xpath://*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::div//*[text()='객실 선택하기']
+    ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Attribute    xpath://*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::a//*[text()='객실 선택하기']    disabled
+    Run Keyword If    '${attr}' != 'true'    Click Element[버튼 클릭]    xpath://*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::a//*[text()='객실 선택하기']
 
 홈 > 추천탭 클릭
     메인 이동
@@ -973,7 +973,8 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
 
 국내숙소 날짜 설정
     [Arguments]    ${days_later}
-    Click Element[버튼 클릭]    class:css-6t3bhl
+    ${today}    오늘날짜확인2
+    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '${today}')])[1]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:css-ftkmw0
     Should Be Equal    ${title}    날짜 선택
@@ -982,7 +983,7 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
 
 RDP > 대실 예약
     sleep    1s
-    Click Element[버튼 클릭]    xpath:(//*[@class='css-1wxsndh' and text()='대실']/parent::div//*[@class='css-17unkfs']//*[text()='객실 예약하기'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[@class='css-1wxsndh' and text()='대실']/parent::div//*[text()='객실 예약하기'])[1]
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
     Should Be Equal    ${title}    대실 예약
@@ -1920,7 +1921,23 @@ QA 테스트숙소 노출 설정
 PDP > RDP (모/호/게 대실포함)_호텔 임시
     sleep    1s
     Comment    모텔 대실 예약가능 여부 체크
-    Click Element[버튼 클릭]    xpath:(//*[text()='객실 선택하기'])[4]
+    Click Element[버튼 클릭]    xpath://*[text()='객실 선택하기']
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:css-1kml15s
     Should Be Equal    ${title}    객실상세
+
+오늘날짜확인2
+    ${date}    현재 시간 구하기
+    ${mmdd}    Get Substring    ${date}    5    10
+    ${checkIn}    Replace String    ${mmdd}    -    .
+    Comment    ${month}    ${day}    Split String    ${mmdd}    -
+    Comment    ${month2}    Get Substring    ${month}    0    1
+    Comment    ${day2}    Get Substring    ${day}    0    1
+    Comment    IF    '${month2}' == '0'
+    Comment    ${month}    Get Substring    ${month}    1    2
+    Comment    END
+    Comment    IF    '${day2}' == '0'
+    Comment    ${day}    Get Substring    ${day}    1    2
+    Comment    END
+    Comment    ${checkIn}    Catenate    SEPARATOR=    ${month}    ${day}
+    [Return]    ${checkIn}
