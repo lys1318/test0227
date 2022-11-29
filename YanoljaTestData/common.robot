@@ -1547,7 +1547,8 @@ live 테스트숙소 노출 설정
     Should Be Equal    ${title}    무한쿠폰룸
 
 국내숙소 > 월혜택모음
-    Click Element[버튼 클릭]    xpath://div[@class='QuickCategory_recommendBWrap__2mNKz']//*[contains (text(), '혜택')]
+    Comment    Click Element[버튼 클릭]    xpath://div[@class='QuickCategory_recommendBWrap__2mNKz']//*[contains (text(), '혜택')]
+    Click Element[버튼 클릭]    xpath://p[contains (text(), '의혜택')]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    야놀자 혜택 모아보기

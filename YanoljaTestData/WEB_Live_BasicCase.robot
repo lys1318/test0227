@@ -309,7 +309,7 @@ Resource          common.robot
 
 32.국내숙소 > 혜택모음
     1회차 Fail건 재확인_LIVE    32
-    홈 > 국내숙소탭 클릭
+    홈 > 추천탭 클릭
     국내숙소 > 월혜택모음
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    32
@@ -435,6 +435,7 @@ Resource          common.robot
     숙소 외 장바구니 이동
     장바구니 > 예약
     InputText Element[텍스트 입력하기]    xpath://*[@name='user.birthDate_']    19850223
+    Execute Javascript    window.scrollTo(0, 0)
     예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    45
