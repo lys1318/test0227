@@ -220,8 +220,8 @@ TC Teardown
     Click Element[버튼 클릭]    class:card_wrapper
     Unselect Frame
     Select Frame[프레임 선택]    id:live-commerce-broadcast
-    ${title}    Get Text[텍스트 가져오기]    class:HeaderTitle_title__3SXU4
-    Should Be Equal    ${listTitle}    ${title}
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'HeaderInfo_broadcast_name')]
+    Should Contain    ${listTitle}    ${title}
 
 항공권 검색
     [Arguments]    ${arrival}
@@ -1796,7 +1796,7 @@ PDP 튜토리얼 다음 클릭
 
 RDP > 모텔 숙박 예약 (QA)
     sleep    1s
-    Click Element[버튼 클릭]    xpath:(//*[@class='css-1wxsndh' and text()='숙박']/parent::div//*[@class='css-17unkfs']//*[text()='객실 예약하기'])[1]
+    Click Element[버튼 클릭]    xpath:(//*[@class='css-1wxsndh' and text()='숙박']/parent::div//*[text()='객실 예약하기'])[1]
     sleep    3s
     ${title}    Get Text[텍스트 가져오기]    class:css-18k5no3
     Should Be Equal    ${title}    숙박 예약
@@ -1915,7 +1915,7 @@ QA 테스트숙소 노출 설정
     Comment    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
     sleep    2s
     Click Element[버튼 클릭]    xpath://*[@alt='검색']
-    Click Element[버튼 클릭]    xpath:(//*[text()='[제주 서귀포시] 본태박물관'])[2]
+    Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
 
@@ -1942,3 +1942,15 @@ PDP > RDP (모/호/게 대실포함)_호텔 임시
     Comment    END
     Comment    ${checkIn}    Catenate    SEPARATOR=    ${month}    ${day}
     [Return]    ${checkIn}
+
+레저티켓 장바구니 담기 (QA)
+    [Arguments]    ${productName}
+    홈 > 검색 버튼 클릭
+    검색 > 레저/티켓탭 클릭
+    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
+    검색 > 키워드 입력 후 돋보기 이동    ${productName}
+    sleep    1s
+    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    sleep    1s
+    Click Element[버튼 클릭]    xpath://*[text()='+']
+    숙소 외 장바구니 담기

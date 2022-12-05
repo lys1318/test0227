@@ -38,13 +38,13 @@ Resource          common.robot
 
 08_11.기차티켓
     ${date}    현재 시간 구하기
-    Comment    레저티켓 장바구니 담기    [경기] 야놀자 놀이공원
-    go to    https://qa-m.yanolja.com/leisure/54420
-    sleep    1s
-    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
-    sleep    1s
-    Click Element[버튼 클릭]    xpath://*[text()='+']
-    숙소 외 장바구니 담기
+    레저티켓 장바구니 담기 (QA)    [통합] 야놀자 놀이공원
+    Comment    go to    https://qa-m.yanolja.com/leisure/54420
+    Comment    sleep    1s
+    Comment    Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
+    Comment    sleep    1s
+    Comment    Click Element[버튼 클릭]    xpath://*[text()='+']
+    Comment    숙소 외 장바구니 담기
     홈 > 교통/항공탭 클릭
     교통/항공 > KTX 메뉴 클릭
     KTX > 승차권 조건 선택 후 조회 버튼 클릭    부산
@@ -62,8 +62,8 @@ Resource          common.robot
     ${date}    현재 시간 구하기
     Comment    홈 > 검색 버튼 클릭
     Comment    검색 > 레저/티켓탭 클릭
-    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    [경기] 야놀자 놀이공원
-    go to    https://qa-m.yanolja.com/leisure/54420
+    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    [통합] 야놀자 놀이공원
+    go to    https://qa-m.yanolja.com/leisure/10005544
     레저 상세 > 예약
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
@@ -185,5 +185,5 @@ Resource          common.robot
     ${date}    현재 시간 구하기
     메인 이동
     홈 추천 위젯 > 상품 클릭
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=16
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=11
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    44    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 클릭
