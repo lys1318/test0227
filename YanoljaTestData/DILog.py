@@ -14,8 +14,8 @@ class DILog():
     LOG_SERVER_WAIT_TIME = 7
 
     # defining the api-endpoint
-    endPointLog = "https://dilog.di.yanolja.in/api/qa/logs"
-    endPointLogDevice = "https://dilog.di.yanolja.in/api/find/device?service=YanoljaCX"
+    endPointLog = "https://dilog-api.di.yanolja.in/api/qa/logs"
+    endPointLogDevice = "https://dilog-api.di.yanolja.in/api/find/device?service=YanoljaCX"
 
     # def getAdid(self):
 
@@ -100,8 +100,8 @@ class DILog():
         # testTs = DILog.getNowTs() - DILog.LOG_SERVER_WAIT_TIME
         # log.info(testTs)
 
-    
         response = list(filter(lambda x:int(str(x["raw"]["system"]["createdTs"])[:-3]) > date_timestamp, response))
+        #log.info(response)
         if not response:
             message = "Not Found Log - 테스트 시작 시간인 " + str(date) + " 이후의 로그가 없습니다."
             log.error(message)
