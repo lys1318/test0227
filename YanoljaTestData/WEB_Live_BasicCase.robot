@@ -107,7 +107,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    13
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    검색 > 키워드 입력 후 돋보기 이동    신규테스트 AUTO
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)
     RDP > 대실 예약
@@ -122,7 +122,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    14
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    검색 > 키워드 입력 후 돋보기 이동    신규테스트 AUTO
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 숙박)
     RDP > 모텔 숙박 예약
@@ -137,7 +137,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    15
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    검색 > 키워드 입력 후 돋보기 이동    신규테스트 AUTO
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)
     RDP > 대실 예약
@@ -154,7 +154,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    16
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    검색 > 키워드 입력 후 돋보기 이동    신규테스트 AUTO
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 숙박)
     RDP > 모텔 숙박 예약
@@ -183,7 +183,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    19
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
-    검색 > 키워드 입력 후 돋보기 이동    QA Auto 호텔TEST
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    QA Auto 호텔TEST
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)_호텔 임시
     RDP > 호/펜/게 예약
@@ -198,7 +198,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    20
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
-    검색 > 키워드 입력 후 돋보기 이동    QA Auto 호텔TEST
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    QA Auto 호텔TEST
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)_호텔 임시
     RDP > 호/펜/게 예약
@@ -227,7 +227,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    23
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
-    검색 > 키워드 입력 후 돋보기 이동    QA Auto 펜션TEST
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    QA Auto 펜션TEST
     체크인날짜확인
     PDP > RDP (펜션)
     RDP > 호/펜/게 예약
@@ -242,7 +242,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    24
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
-    검색 > 키워드 입력 후 돋보기 이동    QA Auto 펜션TEST
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    QA Auto 펜션TEST
     체크인날짜확인
     PDP > RDP (펜션)
     RDP > 호/펜/게 예약
@@ -271,7 +271,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    27
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
-    검색 > 키워드 입력 후 돋보기 이동    api test 0003 게하
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    api test 0003 게하
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)
     RDP > 호/펜/게 예약
@@ -286,7 +286,7 @@ Resource          common.robot
     1회차 Fail건 재확인_LIVE    28
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
-    검색 > 키워드 입력 후 돋보기 이동    api test 0003 게하
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    api test 0003 게하
     체크인날짜확인
     PDP > RDP (모/호/게 대실포함)
     RDP > 호/펜/게 예약
@@ -378,7 +378,7 @@ Resource          common.robot
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    [제주 서귀포시] 본태박물관
-    Comment    검색 > 키워드 입력 후 돋보기 이동    [제주 서귀포시] 본태박물관
+    Comment    검색 > 키워드 입력 후 돋보기 이동 (레저)    [제주 서귀포시] 본태박물관
     레저 상세 > 예약
     예약(간편결제) > 예약완료 (장바구니)
     sleep    2s

@@ -1208,7 +1208,7 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
     검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
-    Comment    검색 > 키워드 입력 후 돋보기 이동    ${productName}
+    Comment    검색 > 키워드 입력 후 돋보기 이동 (숙소)    ${productName}
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     sleep    1s
@@ -1218,7 +1218,7 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
 모텔 장바구니 담기
     홈 > 검색 버튼 클릭
     Comment    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    검색 > 키워드 입력 후 돋보기 이동    신규테스트 AUTO
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    신규테스트 AUTO
     체크인날짜확인
     PDP > RDP (모텔 숙박)
     RDP > 모텔 숙박 예약
@@ -1907,7 +1907,7 @@ QA 테스트숙소 노출 설정
     Set Global Variable    ${WORKSHEET_StageBasic}    ${date.month}월${week_no}주차
     Set Global Variable    ${GoogleColumn}    K
 
-검색 > 키워드 입력 후 돋보기 이동
+검색 > 키워드 입력 후 돋보기 이동 (숙소)
     [Arguments]    ${keyword}
     sleep    3s
     InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
@@ -1916,9 +1916,10 @@ QA 테스트숙소 노출 설정
     Comment    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
     sleep    2s
     Click Element[버튼 클릭]    xpath://*[@alt='검색']
-    Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
+    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '${keyword}')])[3]
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Be Equal    ${title}    ${keyword}
+    [Teardown]    PDP 튜토리얼 체크
 
 PDP > RDP (모/호/게 대실포함)_호텔 임시
     sleep    1s
@@ -1949,9 +1950,22 @@ PDP > RDP (모/호/게 대실포함)_호텔 임시
     홈 > 검색 버튼 클릭
     검색 > 레저/티켓탭 클릭
     Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
-    검색 > 키워드 입력 후 돋보기 이동    ${productName}
+    검색 > 키워드 입력 후 돋보기 이동 (숙소)    ${productName}
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='+']
     숙소 외 장바구니 담기
+
+검색 > 키워드 입력 후 돋보기 이동 (레저)
+    [Arguments]    ${keyword}
+    sleep    3s
+    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Comment    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    Comment    sleep    1s
+    Comment    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    sleep    2s
+    Click Element[버튼 클릭]    xpath://*[@alt='검색']
+    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '${keyword}')])[3]
+    ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
+    Should Be Equal    ${title}    ${keyword}
