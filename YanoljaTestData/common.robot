@@ -1917,7 +1917,7 @@ QA 테스트숙소 노출 설정
     sleep    2s
     Click Element[버튼 클릭]    xpath://*[@alt='검색']
     Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
-    ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
+    ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Be Equal    ${title}    ${keyword}
 
 PDP > RDP (모/호/게 대실포함)_호텔 임시
