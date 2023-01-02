@@ -678,7 +678,7 @@ MW_홈 > 추천탭
 
 MW_월혜택모음
     Comment    Ap.Click Element[버튼 클릭]    //div[@class='QuickCategory_recommendBWrap__2mNKz']//*[contains (text(), '혜택')]
-    Ap.Click Element[버튼 클릭]    //p[contains (text(), '의혜택')]
+    Ap.Click Element[버튼 클릭]    //*[contains (text(), '월') and contains (text(), '혜택')]
     sleep    1s
     타이틀 체크    //*[contains (@class, 'title')]    야놀자 혜택 모아보기
 
@@ -930,7 +930,7 @@ MW_렌터카 서브홈 > PDP
     ${listTitle}    Ap.Get Text[텍스트 가져오기]    xpath=(//*[contains (@class, 'LeisureListItem_title')])[1]
     sleep    2s
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'ExhibitionDetailDomesticLeisure_container')])[1]
-    sleep    1s
+    sleep    3s
     타이틀 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${listTitle}
 
 MW_교통/항공 > 기차
