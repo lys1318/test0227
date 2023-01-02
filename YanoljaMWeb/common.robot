@@ -1,7 +1,6 @@
 *** Settings ***
 Library           Process
 Library           RequestsLibrary    WITH NAME    Re
-Library           DILog.py    WITH NAME    DILog
 Library           Collections
 Library           DateTime    WITH NAME    DT
 Library           GoogleAPI.py    WITH NAME    Google
@@ -29,6 +28,7 @@ ${GoogleColumn}    K
 ${GoogleDriveLive_FileID}    1Kld4gqXtOsnbtRQ7o8Ek4GjJ2462DsixZ2bEyOgI8ho
 ${GoogleDriveLive_FolderID}    1LxHVRACBKasJEPkthAArZxQyFje9B6Eq
 ${TEST_PHASE}     1
+${live_nickname}    Qatest02
 
 *** Keywords ***
 앱 실행
@@ -105,12 +105,6 @@ MW_Suite Setup (live)
     sleep    3s
     MW_live 테스트숙소 노출 설정
 
-MW_Suite Setup (QA)
-    MW_QA 테스트숙소 노출 설정
-    MW_로그인 후 cgntId 구하기
-    [API_SET] 장바구니 조회 후 모두 삭제
-    구글시트 테스트 수행 날짜 업데이트
-
 MW_Suite Teardown
     sleep    3s
     Close Application
@@ -124,7 +118,7 @@ MW_로그인 여부 체크_LIVE
     ${loginYn}    Run keyword and Ignore error    Ap.Element Visible[요소 표시 여부 체크]    //*[@class='MyNick_nickname__2Scd9']/div
     Run Keyword If    '${loginYn}[0]' == 'PASS'    No Operation
     Run Keyword If    '${loginYn}[0]' == 'FAIL'    Go To Url    https://www.yanolja.com/emaillogin?redirect=/mypage
-    Run Keyword If    '${loginYn}[0]' == 'FAIL'    MW_로그인 하기
+    Run Keyword If    '${loginYn}[0]' == 'FAIL'    MW_로그인 하기    ${live_username}    ${live_password}    ${live_nickname}
 
 MW_PDP 튜토리얼 체크
     FOR    ${index}    IN RANGE    3

@@ -471,6 +471,3 @@ Resource          common.robot
     MW_홈 > MY야놀자
     MW_MY야놀자 > 알림함
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    50
-
-테스트
-    [Tags]    TEST
