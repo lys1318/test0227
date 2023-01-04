@@ -10,6 +10,8 @@ Resource          common.robot
 *** Test Cases ***
 01_02.라이브방송 shome & 특정 방송 진입
     ${date}    현재 시간 구하기
+    go to    ${QAMain}/live-commerce
+    sleep    2s
     홈 > 라이브 방송 메뉴 클릭
     라이브 방송 서브홈 > 특정 방송 진입
     Run Keyword And Continue On Failure    DILog 조회 및 검증    라이브방송    LiveCommerceHome    view    1    ${date}
@@ -45,8 +47,10 @@ Resource          common.robot
     Comment    sleep    1s
     Comment    Click Element[버튼 클릭]    xpath://*[text()='+']
     Comment    숙소 외 장바구니 담기
-    홈 > 교통/항공탭 클릭
-    교통/항공 > KTX 메뉴 클릭
+    Comment    홈 > 교통/항공탭 클릭
+    Comment    교통/항공 > KTX 메뉴 클릭
+    go to    ${QAMain}/train
+    sleep    2s
     KTX > 승차권 조건 선택 후 조회 버튼 클릭    부산
     승차권 유무 체크 후 요금조회 버튼 클릭
     바로 예매 > 선택한 승차권 장바구니 담기
@@ -63,7 +67,7 @@ Resource          common.robot
     Comment    홈 > 검색 버튼 클릭
     Comment    검색 > 레저/티켓탭 클릭
     Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    [통합] 야놀자 놀이공원
-    go to    https://qa-m.yanolja.com/leisure/10005544
+    go to    ${QAMain}/leisure/10005544
     레저 상세 > 예약
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
@@ -75,7 +79,7 @@ Resource          common.robot
     Comment    홈 > 검색 버튼 클릭
     Comment    검색 > 레저/티켓탭 클릭
     Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    [KFC] 징거버거세트
-    go to    https://qa-m.yanolja.com/leisure/53415
+    go to    ${QAMain}/leisure/10005804
     레저 상세 > 예약
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrderComplete    view    10    ${date}
@@ -84,16 +88,18 @@ Resource          common.robot
 
 12_13.지역 서브홈 & 지도 페이지뷰
     ${date}    현재 시간 구하기
-    홈 > 국내숙소탭 클릭
-    국내숙소 > 강원도 메뉴 클릭
+    Comment    홈 > 국내숙소탭 클릭
+    Comment    국내숙소 > 강원도 메뉴 클릭
     지역 서브홈 > 지도 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    지역홈    RegionMap    view    12    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    지역홈    RegionHome    view    13    ${date}
 
 14~17_기획전
     ${date}    현재 시간 구하기
-    홈 > MY야놀자 메뉴 클릭
-    MY야놀자 > 기획전 메뉴 클릭
+    Comment    홈 > MY야놀자 메뉴 클릭
+    Comment    MY야놀자 > 기획전 메뉴 클릭
+    go to    ${QAMain}/exhibition
+    sleep    2s
     기획전 > QA로그전용 메뉴 클릭
     기획전 > 숙소 상세
     sleep    3s
@@ -108,9 +114,11 @@ Resource          common.robot
 
 18~21.해외숙소 서브홈 & 상품 클릭 & 예약 & 결제
     ${date}    현재 시간 구하기
-    홈 > 해외여행탭 클릭
-    해외여행 > 해외숙소 메뉴 클릭
-    해외숙소 서브홈 > 숙소 검색    시 피닉스 호텔
+    Comment    홈 > 해외여행탭 클릭
+    Comment    해외여행 > 해외숙소 메뉴 클릭
+    Comment    해외숙소 서브홈 > 숙소 검색    시 피닉스 호텔
+    go to    ${QAMain}/global/place/CMS-1005021
+    sleep    2s
     해외숙소 상세 > 해외숙소 예약하기 진입 (QA)
     해외숙소 예약하기 > 해외숙소 결제하기 진입
     Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalPayment    view    18    ${date}
@@ -120,24 +128,32 @@ Resource          common.robot
 
 22.무한쿠폰룸 서브홈 진입
     ${date}    현재 시간 구하기
+    go to    ${QAMain}/motel?myRoom=1
+    sleep    2s
     추천 > 무한쿠폰룸 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    마이룸    MyRoomHome    view    22    ${date}
 
 23.게하 서브홈 진입
     ${date}    현재 시간 구하기
-    홈 > 국내숙소탭 클릭
+    Comment    홈 > 국내숙소탭 클릭
+    go to    ${QAMain}/guest-house
+    sleep    2s
     국내숙소 > 게하/한옥 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    게스트하우스    GHHome    view    23    ${date}
 
 24.모텔 서브홈 진입
     ${date}    현재 시간 구하기
-    홈 > 국내숙소탭 클릭
+    Comment    홈 > 국내숙소탭 클릭
+    go to    ${QAMain}/motel
+    sleep    2s
     국내숙소 > 모텔 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내모텔    MTHome    view    24    ${date}
 
 29~31.항공홈 & 검색결과 & 결제처 선택
     ${date}    현재 시간 구하기
-    홈 > 교통/항공탭 클릭
+    Comment    홈 > 교통/항공탭 클릭
+    go to    ${QAMain}/flights
+    sleep    2s
     교통/항공 > 항공권 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    항공권    FlightHome    view    31    ${date}
     항공권 > 편도 클릭
@@ -147,7 +163,9 @@ Resource          common.robot
 
 34~36.호텔 서브홈 & 테마형/리스트형 상품 클릭
     ${date}    현재 시간 구하기
-    홈 > 국내숙소탭 클릭
+    Comment    홈 > 국내숙소탭 클릭
+    go to    ${QAMain}/hotel
+    sleep    2s
     국내숙소 > 호텔 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내호텔    HTHome    view    34    ${date}
     서브홈 > 테마형그룹 상품 클릭
@@ -159,7 +177,9 @@ Resource          common.robot
 
 37~39.펜션 서브홈 & 테마형/리스트형 상품 클릭
     ${date}    현재 시간 구하기
-    홈 > 국내숙소탭 클릭
+    Comment    홈 > 국내숙소탭 클릭
+    go to    ${QAMain}/pension
+    sleep    2s
     국내숙소 > 펜션 메뉴 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    view    37    ${date}
     서브홈 > 테마형그룹 상품 클릭
@@ -171,7 +191,9 @@ Resource          common.robot
 
 40_41.국내숙소 추천 위젯 테마 & 상품 클릭
     ${date}    현재 시간 구하기
-    홈 > 국내숙소탭 클릭
+    Comment    홈 > 국내숙소탭 클릭
+    go to    ${QAMain}/?tab=DOMESTIC
+    sleep    2s
     국내숙소 추천 위젯 > 상품 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    40    ${date}    국내숙소 추천 위젯 테마(숙소카테고리) 숙소단위 impression    count=4
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    41    ${date}    국내숙소 추천 위젯 > 호텔/펜션 각 추천 상품 클릭

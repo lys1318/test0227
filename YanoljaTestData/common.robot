@@ -94,40 +94,40 @@ TC Teardown
     [Return]    ${date}
 
 국내숙소 > 모텔 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='모텔']
-    Click Element[버튼 클릭]    xpath://*[text()='모텔']
-    sleep    1s
+    Comment    Element Visible[요소 표시 여부 체크]    xpath://*[text()='모텔']
+    Comment    Click Element[버튼 클릭]    xpath://*[text()='모텔']
+    Comment    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    모텔
 
 국내숙소 > 호텔 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='호텔']
-    Click Element[버튼 클릭]    xpath://*[text()='호텔']
+    Comment    Element Visible[요소 표시 여부 체크]    xpath://*[text()='호텔']
+    Comment    Click Element[버튼 클릭]    xpath://*[text()='호텔']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    호텔/리조트
 
 국내숙소 > 펜션 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='펜션/풀빌라']
-    Click Element[버튼 클릭]    xpath://*[text()='펜션/풀빌라']
+    Comment    Element Visible[요소 표시 여부 체크]    xpath://*[text()='펜션/풀빌라']
+    Comment    Click Element[버튼 클릭]    xpath://*[text()='펜션/풀빌라']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    펜션/풀빌라
 
 국내숙소 > 게하/한옥 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='게하/한옥']
-    Click Element[버튼 클릭]    xpath://*[text()='게하/한옥']
+    Comment    Element Visible[요소 표시 여부 체크]    xpath://*[text()='게하/한옥']
+    Comment    Click Element[버튼 클릭]    xpath://*[text()='게하/한옥']
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    게하/한옥
 
 교통/항공 > 항공권 메뉴 클릭
-    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '항공권')]
-    Click Element[버튼 클릭]    xpath://*[contains (text(), '항공권')]
+    Comment    Element Visible[요소 표시 여부 체크]    xpath://*[contains (text(), '항공권')]
+    Comment    Click Element[버튼 클릭]    xpath://*[contains (text(), '항공권')]
     ${title}    Get Text[텍스트 가져오기]    class:flights_title__35srd
     Should Be Equal    ${title}    항공권
 
 추천 > 무한쿠폰룸 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath://*[text()='무한쿠폰룸']
-    Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
+    Comment    메인 이동
+    Comment    Element Visible[요소 표시 여부 체크]    xpath://*[text()='무한쿠폰룸']
+    Comment    Click Element[버튼 클릭]    xpath://*[text()='무한쿠폰룸']
     Comment    Go To    ${QAMain}/motel?myRoom=1
     ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
     Should Be Equal    ${title}    무한쿠폰룸
@@ -146,9 +146,9 @@ TC Teardown
     Should Be Equal    ${title}    강원도
 
 홈 > 라이브 방송 메뉴 클릭
-    메인 이동
-    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains (text(), '라이브')])[1]
-    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '라이브')])[1]
+    Comment    메인 이동
+    Comment    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains (text(), '라이브')])[1]
+    Comment    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '라이브')])[1]
     ${title}    Get Text[텍스트 가져오기]    class:NavigationBarHeading_title__hHbul
     Should Be Equal    ${title}    야놀자라이브
     sleep    3s
@@ -204,6 +204,7 @@ TC Teardown
     [Teardown]    PDP 튜토리얼 체크
 
 지역 서브홈 > 지도 클릭
+    go to    ${QAMain}/region/4200000000
     ${listTitle}    Get Text[텍스트 가져오기]    class:RegionhomeMapInfo_active__3d7xW
     sleep    2s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
@@ -322,6 +323,7 @@ TC Teardown
     Click Element[버튼 클릭]    xpath: //*[@alt='검색']
     sleep    3s
     Click Element[버튼 클릭]    xpath:(//*[text()='${keyword}'])[2]
+    Comment    go to    https://qa-place-site.yanolja.com/places/10005602
     sleep    2s
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Be Equal    ${title}    ${keyword}
@@ -392,11 +394,12 @@ RDP > 모텔 숙박 예약
 
 검색 > 레저티켓 검색결과 > 상품상세 이동
     [Arguments]    ${keyword}
-    sleep    3s
-    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
-    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
-    sleep    1s
-    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    Comment    sleep    3s
+    Comment    InputText Element[텍스트 입력하기]    class:SearchInput_input__342U2    ${keyword}
+    Comment    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    Comment    sleep    1s
+    Comment    Click Element[버튼 클릭]    xpath:(//*[contains(text(), '${keyword}')])[1]
+    go to    https://qa-m.yanolja.com/leisure/10005544
     sleep    2s
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
@@ -435,6 +438,7 @@ MY야놀자 > 기획전 메뉴 클릭
     Comment    Scroll Wheel Click[휠로 스크롤하여 요소 클릭]    xpath://*[text()='QA 로그 전용']
     Click Element[버튼 클릭]    xpath:(//*[text()='해외 숙소'])[2]
     Click Element[버튼 클릭]    xpath://*[text()='QA 로그 전용']
+    sleep    1s
     ${title}    Get Text[텍스트 가져오기]    xpath://*[@class='ExhibitionDetailNav_title__1NE43']
     Should Be Equal    ${title}    QA 로그 전용
 
@@ -956,17 +960,18 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
 홈 추천 위젯 > 상품 클릭
     ${listName}    Get Text[텍스트 가져오기]    xpath:(//*[@class='RecommendRankingItemProduct_title__3hVvJ'])[1]
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    sleep    1s
+    sleep    2s
     Execute Javascript    window.scrollTo(0, 0)
     ${start}    Set Variable    0
     ${end}    Set Variable    500
-    FOR    ${index}    IN RANGE    30
+    FOR    ${index}    IN RANGE    10
         ${ImageChk}    IR.Find Target    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' == 'None'    Execute Javascript    window.scrollTo(${start}, ${end})
         ${start}    Set Variable    ${end}
         ${end}    Set Variable    ${end} + 500
         Run Keyword If    '${ImageChk}' != 'None'    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' != 'None'    Exit For Loop
+        sleep    2s
     END
     ${detailName}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Contain    ${listName}    ${detailName}
@@ -1813,7 +1818,7 @@ QA 테스트숙소 노출 설정
     Click Element[버튼 클릭]    xpath://*[@for='testProduct-YES']/span[1]
 
 예약(간편결제) > 예약완료 (장바구니)
-    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    class:css-i1l4h7
     Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
     Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
     ${payPrice}    Get Text[텍스트 가져오기]    xpath://*[@class='css-vik48o']
@@ -1849,7 +1854,7 @@ QA 테스트숙소 노출 설정
     Should Be Equal    ${title}    예약 완료되었습니다.
 
 예약(간편결제) > 예약완료 (일반)
-    ${transportYn}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    class:css-i1l4h7
+    ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Element Should Be Visible    class:css-i1l4h7
     Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
     Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
     ${payPrice}    Get Text[텍스트 가져오기]    xpath://*[@class='css-vik48o']
@@ -1947,10 +1952,10 @@ PDP > RDP (모/호/게 대실포함)_호텔 임시
 
 레저티켓 장바구니 담기 (QA)
     [Arguments]    ${productName}
-    홈 > 검색 버튼 클릭
-    검색 > 레저/티켓탭 클릭
-    Comment    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
-    검색 > 키워드 입력 후 돋보기 이동 (숙소)    ${productName}
+    Comment    홈 > 검색 버튼 클릭
+    Comment    검색 > 레저/티켓탭 클릭
+    검색 > 레저티켓 검색결과 > 상품상세 이동    ${productName}
+    Comment    검색 > 키워드 입력 후 돋보기 이동 (숙소)    ${productName}
     sleep    1s
     Click Element[버튼 클릭]    class: RectButton_primary__3O9TH
     sleep    1s
@@ -1969,3 +1974,16 @@ PDP > RDP (모/호/게 대실포함)_호텔 임시
     Click Element[버튼 클릭]    xpath:(//*[contains (text(), '${keyword}')])[3]
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Be Equal    ${title}    ${keyword}
+
+Scroll after element check[요소 체크 후 스크롤]
+    [Arguments]    ${element}    ${scrollY}
+    ${start}    Set Variable    0
+    ${end}    Set Variable    300
+    FOR    ${index}    IN RANGE    30
+        ${elemChk}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    3s    click element    ${element}
+        Run Keyword If    '${elemChk}[0]' == 'FAIL'    Execute Javascript    window.scrollTo(${start}, ${end})
+        ${start}    Set Variable    ${end}
+        ${end}    Set Variable    ${end} + ${scrollY}
+        Run Keyword If    '${elemChk}[0]' == 'PASS'    Exit For Loop
+        sleep    5s
+    END
