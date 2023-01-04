@@ -102,10 +102,10 @@ Resource          common.robot
     sleep    2s
     기획전 > QA로그전용 메뉴 클릭
     기획전 > 숙소 상세
-    sleep    3s
+    sleep    5s
     go back
     기획전 > 레저 상세
-    sleep    3s
+    sleep    5s
     go back
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    impr    14    ${date}    그룹별, 개별 상품별 노출(국내숙소)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기획전    Exhibition    click    15    ${date}    그룹별, 개별 상품 클릭(국내숙소)

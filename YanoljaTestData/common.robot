@@ -1789,6 +1789,7 @@ PDP 튜토리얼 다음 클릭
 기획전 > 숙소 상세
     Click Element[버튼 클릭]    xpath://*[text()='국내그룹_수정X']
     ${listName}    Get Text[텍스트 가져오기]    class:PlaceListTitle_container__qe7XH
+    sleep    3s
     Click Element[버튼 클릭]    class:place-content
     ${title}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
     Should Contain    ${title}    ${listName}
@@ -1796,6 +1797,7 @@ PDP 튜토리얼 다음 클릭
 기획전 > 레저 상세
     Click Element[버튼 클릭]    xpath://*[text()='레저그룹_수정X']
     ${listName}    Get Text[텍스트 가져오기]    xpath:(//*[@class='LeisureListItem_title__U-d8s'])[1]
+    sleep    3s
     Click Element[버튼 클릭]    class:LeisureListItem_body__1iNjJ
     ${title}    Get Text[텍스트 가져오기]    class:LeisureDetailTitle_title__39CSC
     Should Contain    ${title}    ${listName}
