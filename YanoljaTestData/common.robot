@@ -1816,6 +1816,7 @@ MY야놀자 > 알림함 클릭
 QA 테스트숙소 노출 설정
     Open Browser    ${QAMain}/_settings    Chrome    executable_path=${CURDIR}/chromedriver
     Click Element[버튼 클릭]    xpath://*[@for='testProduct-YES']/span[1]
+    sleep    5s
 
 예약(간편결제) > 예약완료 (장바구니)
     ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    class:css-i1l4h7
