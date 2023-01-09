@@ -711,7 +711,7 @@ Scroll Wheel Click[휠로 스크롤하여 요소 클릭]
     [Arguments]    ${r_authorization}    ${order_list}
     [Documentation]    https://confluence.yanolja.in/pages/viewpage.action?pageId=229235534
     Comment    ${headers}    Create Dictionary    authorization=${r_authorization}
-    Log    ${order_list}
+    Run Keyword And Ignore Error    Log    ${order_list}
     Run Keyword And Ignore Error    Log    ${order_list}[0]
     FOR    ${order}    IN    @{order_list}
     ${reservation_list}    Create List
@@ -1990,3 +1990,10 @@ Scroll after element check[요소 체크 후 스크롤]
         Run Keyword If    '${elemChk}[0]' == 'PASS'    Exit For Loop
         sleep    5s
     END
+
+홈 > 특정탭 클릭
+    Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'HomeTabs_tab')])[2]
+    sleep    1s
+    ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'HomeTabs_tab')])[2]    id
+    Should Contain    ${attr}    activeTab
+    sleep    1s

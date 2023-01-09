@@ -18,6 +18,7 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    라이브방송    Broadcast    view    2    ${date}
 
 03~07.장바구니를 통한 국내숙소 예약
+    [Documentation]    TC Teardown
     ${date}    현재 시간 구하기
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동 (QA)    QA정지훈DILOG자동화
@@ -36,9 +37,9 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    28    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    OrderComplete    view    32    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    Order    view    33    ${date}
-    [Teardown]    TC Teardown
 
 08_11.기차티켓
+    [Documentation]    TC Teardown
     ${date}    현재 시간 구하기
     레저티켓 장바구니 담기 (QA)    [통합] 야놀자 놀이공원
     Comment    go to    https://qa-m.yanolja.com/leisure/54420
@@ -60,9 +61,9 @@ Resource          common.robot
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainPayment    view    8    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    11    ${date}
-    [Teardown]    TC Teardown
 
 09_25.레저티켓(일반) 예약
+    [Documentation]    TC Teardown
     ${date}    현재 시간 구하기
     Comment    홈 > 검색 버튼 클릭
     Comment    검색 > 레저/티켓탭 클릭
@@ -72,9 +73,9 @@ Resource          common.robot
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrder    view    25    ${date}
-    [Teardown]    TC Teardown
 
 10_26.레저티켓(모바일) 예약
+    [Documentation]    TC Teardown
     ${date}    현재 시간 구하기
     Comment    홈 > 검색 버튼 클릭
     Comment    검색 > 레저/티켓탭 클릭
@@ -84,7 +85,6 @@ Resource          common.robot
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrderComplete    view    10    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrder    view    26    ${date}
-    [Teardown]    TC Teardown
 
 12_13.지역 서브홈 & 지도 페이지뷰
     ${date}    현재 시간 구하기
@@ -190,6 +190,7 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    39    ${date}    리스트형 추천상품 - 상품 클릭
 
 40_41.국내숙소 추천 위젯 테마 & 상품 클릭
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     Comment    홈 > 국내숙소탭 클릭
     go to    ${QAMain}/?tab=DOMESTIC
@@ -199,13 +200,41 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    41    ${date}    국내숙소 추천 위젯 > 호텔/펜션 각 추천 상품 클릭
 
 42.홈 내 특정 Tab 화면 진입(노출)
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     홈 > 추천탭 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    42    ${date}    홈 내 특정 Tab 화면 진입(노출)
 
 43_44.홈 추천 위젯 내 상품/아티클 노출 & 클릭
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     메인 이동
     홈 추천 위젯 > 상품 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    43    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 노출    count=11
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    44    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 클릭
+
+45~48.홈 화면 케이스
+    ${date}    현재 시간 구하기
+    메인 이동
+    sleep    3s
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    view    45    ${date}    홈 화면 진입
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    view    46    ${date}    Home 내 특정 Tab 진입
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    47    ${date}    홈 내 특정 Tab 화면 진입(노출)
+    홈 > 특정탭 클릭
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    48    ${date}    홈 내 특정 Tab 화면 진입(클릭)
+
+49_50.퀵 카테고리
+    ${date}    현재 시간 구하기
+    메인 이동
+    ${elCount}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Count    xpath://*[contains (@class, 'QuickCategoryItem_businessItem')]    # 퀵 카테고리 개수 확인
+    sleep    10s
+    Click Element[버튼 클릭]    xpath:(//*[contains (@class, 'QuickCategoryItem_businessItem')])[1]    # 첫번째 퀵 카테고리 클릭
+    sleep    5s
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    49    ${date}    퀵 카테고리 노출 (server driven 대응)    count=${elCount}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    50    ${date}    퀵 카테고리 클릭 (server driven 대응)
+
+51.검색 국내숙소탭
+    ${date}    현재 시간 구하기
+    홈 > 검색 버튼 클릭
+    sleep    5s
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    검색    Search    view    51    ${date}    국내숙소 탭 진입
