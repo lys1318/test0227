@@ -99,8 +99,8 @@ Resource          common.robot
     Comment    홈 > MY야놀자 메뉴 클릭
     Comment    MY야놀자 > 기획전 메뉴 클릭
     go to    ${QAMain}/exhibition
-    sleep    2s
     기획전 > QA로그전용 메뉴 클릭
+    sleep    5s
     기획전 > 숙소 상세
     sleep    5s
     go back
