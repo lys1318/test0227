@@ -22,6 +22,7 @@ Resource          common.robot
     ${date}    현재 시간 구하기
     홈 > 검색 버튼 클릭
     검색 > 국내숙소 검색결과 > PDP 이동 (QA)    QA정지훈DILOG자동화
+    체크인날짜확인
     PDP > RDP (모텔 숙박)
     RDP > 모텔 숙박 예약 (QA)
     숙소 장바구니 담기
@@ -37,6 +38,7 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    28    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    OrderComplete    view    32    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    Order    view    33    ${date}
+    예약내역 취소 (QA)
 
 08_11.기차티켓
     [Documentation]    TC Teardown
@@ -61,6 +63,7 @@ Resource          common.robot
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainPayment    view    8    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    기차티켓    TrainOrderComplete    view    11    ${date}
+    예약내역 취소 (QA)
 
 09_25.레저티켓(일반) 예약
     [Documentation]    TC Teardown
@@ -73,6 +76,7 @@ Resource          common.robot
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrderComplete    view    9    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(일반)    LeisureOrder    view    25    ${date}
+    예약내역 취소 (QA)
 
 10_26.레저티켓(모바일) 예약
     [Documentation]    TC Teardown
@@ -85,6 +89,7 @@ Resource          common.robot
     예약(간편결제) > 예약완료 (장바구니)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrderComplete    view    10    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    레저티켓(모바일)    LeisureOrder    view    26    ${date}
+    예약내역 취소 (QA)
 
 12_13.지역 서브홈 & 지도 페이지뷰
     ${date}    현재 시간 구하기

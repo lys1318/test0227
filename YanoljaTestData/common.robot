@@ -1997,3 +1997,13 @@ Scroll after element check[요소 체크 후 스크롤]
     ${attr}    Get Element Attribute[속성값 가져오기]    xpath:(//*[contains (@class, 'HomeTabs_tab')])[2]    id
     Should Contain    ${attr}    activeTab
     sleep    1s
+
+예약내역 취소 (QA)
+    Go To    ${QAMain}/mypage
+    MY야놀자 > 국내여행 통합예약 메뉴 클릭
+    국내여행 예약내역 > 예약내역 상세
+    국내 예약내역 상세 > 예약취소 요청
+    국내 예약취소 요청 > 취소 요청하기
+    sleep    5s
+    취소요청 완료 > 예약내역 상세
+    sleep    2s
