@@ -627,7 +627,7 @@ MW_국내숙소 > 호텔
 MW_PDP > RDP (모/호/게 대실포함)_호텔 임시
     sleep    1s
     Comment    모텔 대실 예약가능 여부 체크
-    Ap.Click Element[버튼 클릭]    //*[text()='객실 선택하기']
+    Ap.Click Element[버튼 클릭]    xpath=(//*[text()='객실 선택하기'])[2]
     sleep    1s
     타이틀 체크    //*[contains (text(), '객실상세')]    객실상세
 
