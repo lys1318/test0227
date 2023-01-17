@@ -94,8 +94,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    13
     MW_홈 > 검색
-    Comment    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
     MW_체크인날짜확인
     MW_PDP > RDP (모/호/게 대실포함)
     MW_RDP > 대실 예약
@@ -108,8 +108,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    14
     MW_홈 > 검색
-    Comment    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
     MW_체크인날짜확인
     MW_PDP > RDP (모텔 숙박)
     MW_RDP > 모텔 숙박 예약
@@ -122,8 +122,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    15
     MW_홈 > 검색
-    Comment    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
     MW_체크인날짜확인
     MW_PDP > RDP (모/호/게 대실포함)
     MW_RDP > 대실 예약
@@ -139,8 +139,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    16
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    신규테스트 AUTO
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    신규테스트 AUTO
     MW_체크인날짜확인
     MW_PDP > RDP (모텔 숙박)
     MW_RDP > 모텔 숙박 예약
@@ -168,8 +168,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    19
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 호텔TEST
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 호텔TEST
     MW_체크인날짜확인
     MW_PDP > RDP (모/호/게 대실포함)_호텔 임시
     MW_RDP > 호/펜/게 예약
@@ -183,8 +183,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    20
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 호텔TEST
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 호텔TEST
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 호텔TEST
     MW_체크인날짜확인
     MW_PDP > RDP (모/호/게 대실포함)_호텔 임시
     MW_RDP > 호/펜/게 예약
@@ -212,8 +212,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    23
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 펜션TEST
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 펜션TEST
     MW_체크인날짜확인
     MW_PDP > RDP (펜션)
     MW_RDP > 호/펜/게 예약
@@ -227,8 +227,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    24
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 펜션TEST
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    QA Auto 펜션TEST
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    QA Auto 펜션TEST
     MW_체크인날짜확인
     MW_PDP > RDP (펜션)
     MW_RDP > 호/펜/게 예약
@@ -256,8 +256,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 체크_LIVE
     1회차 Fail건 재확인_LIVE    27
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    api test 0003 게하
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    api test 0003 게하
     MW_체크인날짜확인
     MW_PDP > RDP (모/호/게 대실포함)
     MW_RDP > 호/펜/게 예약
@@ -271,8 +271,8 @@ Resource          common.robot
     [Setup]    MW_로그인 여부 & 장바구니 유무 체크
     1회차 Fail건 재확인_LIVE    28
     MW_홈 > 검색
-    Comment    검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
-    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    api test 0003 게하
+    MW_검색 > 국내숙소 검색결과 > PDP 이동    api test 0003 게하
+    Comment    MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)    api test 0003 게하
     MW_체크인날짜확인
     MW_PDP > RDP (모/호/게 대실포함)
     MW_RDP > 호/펜/게 예약
