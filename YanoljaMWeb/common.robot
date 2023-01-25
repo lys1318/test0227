@@ -29,83 +29,16 @@ ${GoogleDriveLive_FileID}    1Kld4gqXtOsnbtRQ7o8Ek4GjJ2462DsixZ2bEyOgI8ho
 ${GoogleDriveLive_FolderID}    1LxHVRACBKasJEPkthAArZxQyFje9B6Eq
 ${TEST_PHASE}     1
 ${live_nickname}    Qatest02
+${APPIUM_URL}     http://127.0.0.1:4723/wd/hub
 
 *** Keywords ***
-앱 실행
-    Comment    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:appPackage=com.cultsotry.yanolja.nativeapp.dev    appium:appActivity=com.yanolja.presentation.intro.view.IntroActivity    appium:udid=R3CN8001X3X    noReset=false    fullReset=false    newCommandTimeout=300
-    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:appPackage=com.cultsotry.yanolja.nativeapp.dev    appium:appActivity=com.yanolja.presentation.intro.view.IntroActivity    appium:udid=192.168.35.50:5555    noReset=false    fullReset=false    newCommandTimeout=300
-
-앱 재실행
-    Terminate Application    com.cultsotry.yanolja.nativeapp.dev
-    sleep    3s
-    Activate Application    com.cultsotry.yanolja.nativeapp.dev
-
-앱 사용 동의
-    타이틀 체크    //*[contains (@resource-id, 'tvTermsComment')]    항목에 동의
-    Comment    ${title}    Ap.Get Text[텍스트 가져오기]    //*[contains (@resource-id, 'tvTermsComment')]
-    Comment    Should Contain    ${title}    항목에 동의
-    Ap.Click Element[버튼 클릭]    //*[contains (@text, '전체 동의')]
-    Ap.Click Element[버튼 클릭]    //*[contains (@text, '시작')]
-    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '홈')]
-
-APP_홈 > My 야놀자
-    Comment    홈 이동 키워드 추가 필요
-    Ap.Click Element[버튼 클릭]    //*[contains (@text, '마이')]
-    타이틀 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
-
-APP_My 야놀자 > 로그인 화면
-    Ap.Click Element[버튼 클릭]    //*[contains (@text, '로그인 및 회원가입')]
-    sleep    1s
-    타이틀 체크    //*[contains (@resource-id, 'title')]    로그인
-
-APP_로그인 하기
-    Ap.Click Element[버튼 클릭]    //*[contains (@text, '이메일로 로그인')]
-    타이틀 체크    //*[contains (@resource-id, 'title')]    이메일로 로그인
-    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '비밀번호 찾기')]
-    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '이메일로 회원가입')]
-    Ap.InputText Element[텍스트 입력하기]    xpath=(//*[contains (@resource-id, 'editText')])[1]    ${qa_username}
-    Ap.InputText Element[텍스트 입력하기]    xpath=(//*[contains (@resource-id, 'editText')])[2]    ${qa_password}
-    Ap.Click Element[버튼 클릭]    //*[contains (@resource-id, 'btnLogin')]
-
-Scroll until element[요소 노출까지 스크롤_Native]
-    [Arguments]    ${element}    ${scrollY}
-    ${mobile_width}    Get Window Width
-    ${mobile_height}    Get Window Height
-    ${centerX}    Evaluate    ${mobile_width}/2
-    ${centerY}    Evaluate    ${mobile_height}/2
-    ${centerX_CV}    Convert To Integer    ${centerX}
-    ${centerY_CV}    Convert To Integer    ${centerY}
-    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
-    IF    '${plusY}' <= '0'
-    ${plusY}    Evaluate    0
-    END
-    FOR    ${index}    IN RANGE    30
-        ${elementYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    3s    Ap.Element Should Be Visible    ${element}
-        Run Keyword If    '${elementYn}[0]' == 'FAIL'    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    ${plusY}
-        Run Keyword If    '${elementYn}[0]' == 'PASS'    Ap.Click Element[버튼 클릭]    ${element}
-        Run Keyword If    '${elementYn}[0]' == 'PASS'    Exit For Loop
-        sleep    3s
-    END
-
-context 전환
-    IF    '${contextNow}' == 'NATIVE_APP'
-    Switch To Context    ${webview}
-    Set Global Variable    ${contextNow}    ${webview}
-    ELSE IF    '${contextNow}' == 'WEBVIEW_com.cultsotry.yanolja.nativeapp.dev'
-    Switch To Context    ${native}
-    Set Global Variable    ${contextNow}    ${native}
-    END
-    Log To Console    ${contextNow}
-
-ㅡㅡㅡㅡㅡㅡㅡㅡ앱/모웹 구분ㅡㅡㅡㅡㅡㅡㅡㅡ
-
-MW_Suite Setup (live)
+MW_Suite Setup
     구글 시트 파일 복사
     구글시트 테스트 수행 날짜 업데이트 (live)
     sleep    3s
     MW_live 테스트숙소 노출 설정
 
-MW_Suite Teardown
+Suite Teardown
     sleep    3s
     Close Application
 
@@ -1146,3 +1079,183 @@ MW_기차 장바구니 이동
     ${cell}    Evaluate    ${case_no} + 14
     ${status}    Google.Get Value On Cell    ${GoogleDrive_URL_StageBasic}    ${WORKSHEET_StageBasic}    ${GoogleColumn}${cell}
     [Return]    ${status}
+
+ㅡㅡㅡㅡㅡㅡㅡㅡ앱/모웹 구분ㅡㅡㅡㅡㅡㅡㅡㅡ
+
+APP_Suite Setup
+    Comment    구글 시트 파일 복사
+    Comment    구글시트 테스트 수행 날짜 업데이트 (live)
+    sleep    3s
+    Comment    appium 실행 여부 체크 및 실행
+    APP_live 테스트숙소 노출 설정
+    Comment    APP_Live 환경 설정
+
+APP_Live 환경 설정
+    Comment    앱 실행    true
+    ${serverChk}    Run Keyword And Ignore Error    Wait Until Keyword Succeeds    12s    ${checkTime}    Ap.Element Should Be Visible    //*[contains (@resource-id, 'btnHomeToYa')]
+    Pass Execution If    "${serverChk}[0]" == "FAIL"    LIVE환경으로 서버변경 스킵
+    APP_홈 > My 야놀자 (QA)
+    APP_My 야놀자 > 야놀자 정보
+    APP_야놀자 정보 > Live 환경 설정
+
+APP_로그인 여부 체크_LIVE
+    Go To Url    yanoljamotel://etc
+    ${loginYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    12s    ${checkTime}    Ap.Element Should Be Visible    //*[contains (@resource-id, 'NickName')]
+    Run Keyword If    '${loginYn}[0]' == 'PASS'    No Operation
+    Run Keyword If    '${loginYn}[0]' == 'FAIL'    Go To Url    yanoljamotel://member/login
+    Run Keyword If    '${loginYn}[0]' == 'FAIL'    APP_로그인 하기    ${live_username}    ${live_password}    ${live_nickname}
+
+appium 실행 여부 체크 및 실행
+    ${status}    Run Keyword And Return Status    Re.GET    ${APPIUM_URL}/status
+    Log    ${status}
+    Return From Keyword If    '${status}' == 'True'
+    OS.Create File    ${CURDIR}/appium.sh    appium --port 4723 &
+    Run Keyword If    '${status}' == 'False'    Start Process    sh    ${CURDIR}/appium.sh
+    Comment    Run Keyword If    '${status}' == 'False'    Start Process    sh    /Users/jihun.jung/yanoljaApp/appium.sh
+    Wait Until Keyword Succeeds    1m    5s    Re.GET    ${APPIUM_URL}/status
+
+context 전환
+    sleep    2s
+    IF    '${contextNow}' == 'NATIVE_APP'
+    Switch To Context    ${webview}
+    Set Global Variable    ${contextNow}    ${webview}
+    ELSE IF    '${contextNow}' == 'WEBVIEW_com.cultsotry.yanolja.nativeapp.dev'
+    Switch To Context    ${native}
+    Set Global Variable    ${contextNow}    ${native}
+    END
+    Log To Console    ${contextNow}
+
+Scroll until element[요소 노출까지 스크롤_Native]
+    [Arguments]    ${element}    ${scrollY}
+    ${mobile_width}    Get Window Width
+    ${mobile_height}    Get Window Height
+    ${centerX}    Evaluate    ${mobile_width}/2
+    ${centerY}    Evaluate    ${mobile_height}/2
+    ${centerX_CV}    Convert To Integer    ${centerX}
+    ${centerY_CV}    Convert To Integer    ${centerY}
+    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
+    IF    '${plusY}' <= '0'
+    ${plusY}    Evaluate    0
+    END
+    FOR    ${index}    IN RANGE    30
+        ${elementYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    3s    Ap.Element Should Be Visible    ${element}
+        Run Keyword If    '${elementYn}[0]' == 'FAIL'    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    ${plusY}
+        Run Keyword If    '${elementYn}[0]' == 'PASS'    Ap.Click Element[버튼 클릭]    ${element}
+        Run Keyword If    '${elementYn}[0]' == 'PASS'    Exit For Loop
+        sleep    3s
+    END
+
+앱 실행
+    [Arguments]    ${noReset}
+    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:appPackage=com.cultsotry.yanolja.nativeapp.dev    appium:appActivity=com.yanolja.presentation.intro.view.IntroActivity    appium:udid=172.30.1.1:5555    noReset=${noReset}    fullReset=false    newCommandTimeout=3000    chromedriverExecutable=${CURDIR}/chromedriver
+
+앱 재실행
+    Terminate Application    com.cultsotry.yanolja.nativeapp.dev
+    sleep    2s
+    Activate Application    com.cultsotry.yanolja.nativeapp.dev
+
+앱 사용 동의
+    타이틀 체크    //*[contains (@resource-id, 'tvTermsComment')]    항목에 동의
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '전체 동의')]
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '시작')]
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '홈')]
+
+APP_홈 > My 야놀자 (QA)
+    Comment    홈 이동 키워드 추가 필요
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '마이')]
+    타이틀 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
+
+APP_홈 > My 야놀자
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, 'MY')]
+    타이틀 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
+
+APP_My 야놀자 > 로그인 화면
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '로그인 및 회원가입')]
+    타이틀 체크    //*[contains (@resource-id, 'title')]    로그인
+
+APP_로그인 하기
+    [Arguments]    ${id}    ${pw}    ${nickName}
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '이메일로 로그인')]
+    타이틀 체크    //*[contains (@resource-id, 'title')]    이메일로 로그인
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '비밀번호 찾기')]
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '이메일로 회원가입')]
+    Ap.InputText Element[텍스트 입력하기]    xpath=(//*[contains (@resource-id, 'editText')])[1]    ${id}
+    Ap.InputText Element[텍스트 입력하기]    xpath=(//*[contains (@resource-id, 'editText')])[2]    ${pw}
+    sleep    2s
+    Ap.Click Element[버튼 클릭]    //*[contains (@resource-id, 'btnLogin')]
+    타이틀 체크    //*[contains (@resource-id, 'NickName')]    ${nickName}
+
+APP_My 야놀자 > 야놀자 정보
+    Scroll until element[요소 노출까지 스크롤_Native]    //*[contains (@text, '야놀자 정보')]    1000
+    타이틀 체크    //*[contains (@resource-id, 'title')]    야놀자 정보
+
+APP_야놀자 정보 > Live 환경 설정
+    Ap.Click Element[버튼 클릭]    //*[contains (@resource-id, 'tvVersion')]
+    타이틀 체크    //*[contains (@resource-id, 'alertTitle')]    서버 변경
+    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'TextView') and @text='LIVE']
+    타이틀 체크    //*[contains (@class, 'TextView')]    앱 종료 후, 다시 실행시켜 주세요
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '확인')]
+    sleep    3s
+    앱 실행    true
+
+APP_live 테스트숙소 노출 설정
+    앱 실행    true
+    Go To Url    yanoljamotel://_EnvSetting?testProduct=YES
+
+APP_메인 이동
+    Go To Url    yanoljamotel://home?tab=recommend
+
+APP_MY야놀자 > 내정보관리
+    Ap.Click Element[버튼 클릭]    //*[@text='내정보 관리']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'title')]    내 정보 관리
+
+APP_내정보관리 > 비밀번호입력 후 상세 이동
+    Ap.InputText Element[텍스트 입력하기]    //*[@id='password']    ${live_password}
+    Ap.Click Element[버튼 클릭]    //*[text()='확인']
+    타이틀 체크    //*[contains (@class, 'Nickname_memberID')]    ${live_username}
+
+APP_MY야놀자 > 포인트
+    Ap.Click Element[버튼 클릭]    //*[@text='포인트']
+    context 전환
+    타이틀 체크    //*[@class='css-djecwh']    포인트
+
+APP_MY야놀자 > MY혜택
+    Ap.Click Element[버튼 클릭]    //*[@text='MY 혜택']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'title')]    MY 혜택
+
+APP_MY야놀자 > 야놀자코인
+    Ap.Click Element[버튼 클릭]    //*[@text='야놀자 코인']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'title')]    야놀자 코인
+
+APP_MY 야놀자 > 쿠폰함
+    Ap.Click Element[버튼 클릭]    //*[@text='쿠폰함']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'title')]    쿠폰함
+
+APP_MY야놀자 > 나의후기
+    Ap.Click Element[버튼 클릭]    //*[@text='나의 후기']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'title')]    나의 후기
+
+APP_MY야놀자 > 찜
+    Ap.Click Element[버튼 클릭]    //*[@text='찜']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'title')]    찜
+
+APP_MY야놀자 > 공지사항
+    Scroll until element[요소 노출까지 스크롤_Native]    //*[@text='공지사항']    1000
+    context 전환
+    타이틀 체크    //*[contains (@class, 'css-melwew')]    공지사항
+
+APP_MY야놀자 > 자주묻는질문FAQ
+    Scroll until element[요소 노출까지 스크롤_Native]    //*[@text='자주 묻는 질문 FAQ']    1000
+    context 전환
+    타이틀 체크    //*[contains (@class, 'css-melwew')]    자주 묻는 질문
+
+APP_MY야놀자 > 해외 여행자 보험
+    Ap.Click Element[버튼 클릭]    //*[@text='해외 여행자 보험']
+    context 전환
+    타이틀 체크    //*[contains (@class, 'nav-tit')]    가입내역 조회

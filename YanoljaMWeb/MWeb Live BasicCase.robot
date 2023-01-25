@@ -2,8 +2,8 @@
 Documentation     MW Suite Setup (live)
 ...
 ...               MW Suite Teardown
-Suite Setup       MW_Suite Setup (live)
-Suite Teardown    MW_Suite Teardown
+Suite Setup       MW_Suite Setup
+Suite Teardown    Suite Teardown
 Force Tags        LiveBasic
 Resource          common.robot
 
