@@ -613,7 +613,7 @@ MW_월혜택모음
     Comment    Ap.Click Element[버튼 클릭]    //div[@class='QuickCategory_recommendBWrap__2mNKz']//*[contains (text(), '혜택')]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '월') and contains (text(), '혜택')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'title')]    야놀자 혜택 모아보기
+    타이틀 체크    //*[contains (@class, 'css-18h35l6')]    야놀자 혜택 모아보기
 
 MW_홈 > 해외여행탭
     MW_메인 이동
@@ -957,10 +957,11 @@ MW_항공권 왕복 검색
     Ap.Click Element[버튼 클릭]    //*[contains(text(), '가는날')]
     sleep    1s
     타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
-    Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]
+    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]    500
     sleep    2s
     Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[32]
-    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
+    Comment    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
+    Click Element By Image[항공권 적용 버튼]    apply.png
     Ap.Click Element[버튼 클릭]    //*[text()='항공권 검색']
     sleep    10s
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@class, 'FlightListBody_tripContainer')]
@@ -984,8 +985,9 @@ MW_항공권 편도 검색
     Ap.Click Element[버튼 클릭]    //*[contains(text(), '가는날')]
     sleep    1s
     타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
-    Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]
-    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
+    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]    500
+    Comment    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
+    Click Element By Image[항공권 적용 버튼]    apply.png
     Ap.Click Element[버튼 클릭]    //*[text()='항공권 검색']
     sleep    10s
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@class, 'FlightListBody_tripContainer')]
@@ -998,6 +1000,15 @@ MW_MY야놀자 > 알림함
 MW_기차 장바구니 이동
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'Icon_icon__2BP_o')])[3]
     타이틀 체크    //*[contains (@class, 'left')]    장바구니
+
+Click Element By Image[항공권 적용 버튼]
+    [Arguments]    ${template}
+    ${add}    Evaluate    0
+    ${temp}    OC.Get Image    /Users/youngsung.lee/log/ori3.png    /Users/youngsung.lee/log/settle/${template}    /Users/youngsung.lee/log/result3.png    ${add}
+    Log    ${temp}
+    Comment    Ap.Click A Point    ${temp}[0]    ${temp}[1]
+    Ap.Tap    ${None}    ${temp}[0]    ${temp}[1]
+    sleep    1s
 
 구글 시트 파일 복사
     Comment    ${date}    DT.Get Current Date    result_format=%m
