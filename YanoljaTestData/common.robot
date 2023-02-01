@@ -64,7 +64,7 @@ TC Teardown
     sleep    1s
     ${loginYn}    Get Text[텍스트 가져오기]    xpath://*[@class='MyNick_nickname__2Scd9']/div
     Should Be Equal    ${loginYn}    냐옹냐옹풀향기0001
-    Click Element[버튼 클릭]    xpath://*[text()='포인트']
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '야놀자 포인트')]
     ${cookie}    Get Cookie    cgntId
     ${cgntId}    Replace String    ${cookie.value}    %3A    :
     Set Global Variable    ${CGNTID}    ${cgntId}
@@ -231,6 +231,7 @@ TC Teardown
     InputText Element[텍스트 입력하기]    class:FlightSearchAirportModal_searchInput__3oy24    ${arrival}
     Click Element[버튼 클릭]    class:FlightSearchAirportBody_searchResultRow__3e7KX
     Click Element[버튼 클릭]    xpath://*[contains(text(), '여행 날짜')]
+    sleep    1s
     Click Element[버튼 클릭]    xpath://*[text()='오늘']
     Click Element[버튼 클릭]    xpath://*[contains(text(), '적용')]
     Click Element[버튼 클릭]    xpath://*[text()='항공권 검색']
@@ -963,14 +964,16 @@ MY야놀자 > 자주묻는질문FAQ 메뉴 클릭
     sleep    2s
     Execute Javascript    window.scrollTo(0, 0)
     ${start}    Set Variable    0
-    ${end}    Set Variable    500
+    ${end}    Set Variable    800
+    Comment    ${scrollHeight}    Execute Javascript    return document.body.scrollHeight
     FOR    ${index}    IN RANGE    10
         ${ImageChk}    IR.Find Target    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' == 'None'    Execute Javascript    window.scrollTo(${start}, ${end})
         ${start}    Set Variable    ${end}
-        ${end}    Set Variable    ${end} + 500
+        ${end}    Set Variable    ${end} + 800
         Run Keyword If    '${ImageChk}' != 'None'    IR.Image Click    ${CURDIR}/Images/weeklyProduct.png
         Run Keyword If    '${ImageChk}' != 'None'    Exit For Loop
+        Comment    Run Keyword If    ${end_CV} > ${scrollHeight_CV}    Exit For Loop
         sleep    2s
     END
     ${detailName}    Get Text[텍스트 가져오기]    xpath://*[contains (@class, 'property-title')]
@@ -1824,7 +1827,7 @@ QA 테스트숙소 노출 설정
     ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Element Should Be Visible    class:css-i1l4h7
     Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
     Run Keyword If    '${transportYn}[0]' == 'PASS'    Click Element[버튼 클릭]    xpath://*[@class='css-1mwn02k']/button[1]
-    ${payPrice}    Get Text[텍스트 가져오기]    xpath://*[@class='css-vik48o']
+    ${payPrice}    Get Text[텍스트 가져오기]    xpath://*[@class='css-j3dtkl']/span
     ${convert}    문자열에서 숫자만 추출    ${payPrice}
     ${inputPrice}    Evaluate    ${convert} - 100
     InputText Element[텍스트 입력하기]    xpath://*[@placeholder='- 0']    ${inputPrice}
