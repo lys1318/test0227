@@ -390,7 +390,8 @@ Resource          common.robot
 41.MW_모바일교환권 서브홈 이동
     1회차 Fail건 재확인_LIVE    41
     MW_홈 > 즐길거리탭
-    MW_즐길거리 > 모바일교환권
+    MW_즐길거리 > 더보기
+    MW_전체 카테고리 > 모바일교환권
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
 

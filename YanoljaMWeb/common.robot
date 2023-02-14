@@ -838,10 +838,10 @@ MW_레저 장바구니 이동
     Ap.Click Element[버튼 클릭]    //*[contains (@alt, '장바구니')]
     텍스트 체크    //*[contains (@class, 'left')]    장바구니
 
-MW_즐길거리 > 모바일교환권
-    Ap.Click Element[버튼 클릭]    //*[text()='모바일교환권']
+MW_즐길거리 > 더보기
+    Ap.Click Element[버튼 클릭]    xpath=(//*[contains (text(), '더보기')])[1]
     sleep    1s
-    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    모바일교환권
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    전체 카테고리
 
 MW_홈 > 교통/항공탭
     MW_메인 이동
@@ -1008,6 +1008,11 @@ Click Element By Image[항공권 적용 버튼]
     Comment    Ap.Click A Point    ${temp}[0]    ${temp}[1]
     Ap.Tap    ${None}    ${temp}[0]    ${temp}[1]
     sleep    1s
+
+MW_전체 카테고리 > 모바일교환권
+    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'ExhibitionDetailBanners_c')]/img[16]
+    sleep    1s
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    모바일교환권
 
 구글 시트 파일 복사
     Comment    ${date}    DT.Get Current Date    result_format=%m
