@@ -141,7 +141,7 @@ Scroll[일반 스크롤_공통]
 
 MW_live 테스트숙소 노출 설정
     Comment    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:udid=R3CN8001X3X    noReset=true    fullReset=false    newCommandTimeout=300    browserName=Chrome
-    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:udid=172.30.1.1:5555    noReset=true    fullReset=false    newCommandTimeout=300    browserName=Chrome
+    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:udid=172.30.1.54:5555    noReset=true    fullReset=false    newCommandTimeout=300    browserName=Chrome
     Go To URL    ${LiveMain}/_settings
     Ap.Click Element[버튼 클릭]    //*[@for='testProduct-YES']/span[1]
 
@@ -1165,7 +1165,7 @@ Scroll until element[요소 노출까지 스크롤_Native]
 
 앱 실행
     [Arguments]    ${noReset}
-    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:appPackage=com.cultsotry.yanolja.nativeapp.dev    appium:appActivity=com.yanolja.presentation.intro.view.IntroActivity    appium:udid=172.30.1.1:5555    noReset=${noReset}    fullReset=false    newCommandTimeout=3000    chromedriverExecutable=${CURDIR}/chromedriver
+    Ap.Open Application    http://127.0.0.1:4723/wd/hub    platformName=Android    appium:platformversion=11.0    appium:deviceName=SM-N981N    appium:automationName=Appium    appium:appPackage=com.cultsotry.yanolja.nativeapp.dev    appium:appActivity=com.yanolja.presentation.intro.view.IntroActivity    appium:udid=172.30.1.54:5555    noReset=${noReset}    fullReset=false    newCommandTimeout=3000    chromedriverExecutable=${CURDIR}/chromedriver
 
 앱 재실행
     Terminate Application    com.cultsotry.yanolja.nativeapp.dev
