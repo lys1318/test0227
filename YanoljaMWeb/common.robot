@@ -55,7 +55,8 @@ MW_로그인 여부 체크_LIVE
 
 MW_PDP 튜토리얼 체크
     FOR    ${index}    IN RANGE    3
-        MW_PDP 튜토리얼 다음 클릭
+        ${tutorialYn}    MW_PDP 튜토리얼 다음 클릭
+        Run Keyword If    '${tutorialYn}' == 'FAIL'    Exit For Loop
     END
 
 Ap.Get Text[텍스트 가져오기]
@@ -104,39 +105,35 @@ Scroll after element check[요소 체크 후 스크롤_Webview]
     END
 
 Scroll until element[요소 노출까지 스크롤&클릭_Webview]
-    [Arguments]    ${element}    ${scrollY}
+    [Arguments]    ${element}
     ${mobile_width}    Get Window Width
     ${mobile_height}    Get Window Height
     ${centerX}    Evaluate    ${mobile_width}/2
-    ${centerY}    Evaluate    ${mobile_height}/2
+    ${centerY}    Evaluate    ${mobile_height} * 0.7
     ${centerX_CV}    Convert To Integer    ${centerX}
     ${centerY_CV}    Convert To Integer    ${centerY}
-    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
-    IF    '${plusY}' <= '0'
-    ${plusY}    Evaluate    0
-    END
+    Comment    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
+    Comment    IF    '${plusY}' <= '0'
+    Comment    ${plusY}    Evaluate    0
+    Comment    END
     FOR    ${index}    IN RANGE    30
         ${elementYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    3s    Ap.Click Element    ${element}
-        Run Keyword If    '${elementYn}[0]' == 'FAIL'    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    ${plusY}
+        Run Keyword If    '${elementYn}[0]' == 'FAIL'    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    0
         Run Keyword If    '${elementYn}[0]' == 'PASS'    Exit For Loop
         sleep    3s
     END
 
-Scroll[입력한 값만큼 스크롤]
-    [Arguments]    ${scrollY}
+Scroll[일반 스크롤_공통]
+    sleep    3s
     ${mobile_width}    Get Window Width
     ${mobile_height}    Get Window Height
     ${centerX}    Evaluate    ${mobile_width}/2
-    ${centerY}    Evaluate    ${mobile_height} * 0.9
+    ${centerY}    Evaluate    ${mobile_height} * 0.7
     ${centerX_CV}    Convert To Integer    ${centerX}
     ${centerY_CV}    Convert To Integer    ${centerY}
-    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
-    IF    '${plusY}' <= '0'
-    ${plusY}    Evaluate    0
-    END
-    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    ${plusY}
+    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    0
 
-타이틀 체크
+텍스트 체크
     [Arguments]    ${element}    ${title_compare}
     sleep    1s
     ${title}    Ap.Get Text[텍스트 가져오기]    ${element}
@@ -164,15 +161,15 @@ MW_홈 > MY야놀자
     MW_메인 이동
     Ap.Element Visible[요소 표시 여부 체크]    //*[@href='/mypage']
     Ap.Click Element[버튼 클릭]    //*[@href='/mypage']
-    타이틀 체크    //*[@class='mypage_title__1NaG1']    MY 야놀자
+    텍스트 체크    //*[@class='mypage_title__1NaG1']    MY 야놀자
 
 MW_MY야놀자 > 로그인
     Ap.Click Element[버튼 클릭]    //*[text()='로그인 및 회원가입 하기']
-    타이틀 체크    //*[@class='NavigationBarHeading_title__hHbul']    로그인
+    텍스트 체크    //*[@class='NavigationBarHeading_title__hHbul']    로그인
 
 MW_로그인 > 이메일로 로그인
     Ap.Click Element[버튼 클릭]    //*[text()='이메일로 로그인']
-    타이틀 체크    //*[@class='NavigationBarHeading_title__hHbul']    이메일로 로그인
+    텍스트 체크    //*[@class='NavigationBarHeading_title__hHbul']    이메일로 로그인
 
 MW_로그인 하기
     [Arguments]    ${id}    ${pw}    ${nickName}
@@ -187,50 +184,50 @@ MW_로그인 하기
         Run Keyword If    '${loginBtn}[0]' == 'PASS'    Ap.InputText Element[텍스트 입력하기]    id:password    ${pw}
     END
     Ap.Click Element[버튼 클릭]    //*[text()='로그인']
-    타이틀 체크    //*[@class='MyNick_nickname__2Scd9']/div    ${nickName}
+    텍스트 체크    //*[@class='MyNick_nickname__2Scd9']/div    ${nickName}
 
 MW_MY야놀자 > 내정보관리
     Ap.Click Element[버튼 클릭]    //*[text()='내정보 관리']
-    타이틀 체크    //*[contains (@class, 'title')]    내 정보 관리
+    텍스트 체크    //*[contains (@class, 'title')]    내 정보 관리
 
 MW_내정보관리 > 비밀번호입력 후 상세 이동
     Ap.InputText Element[텍스트 입력하기]    //*[@id='password']    ${live_password}
     Ap.Click Element[버튼 클릭]    //*[text()='확인']
-    타이틀 체크    //*[contains (@class, 'Nickname_memberID')]    ${live_username}
+    텍스트 체크    //*[contains (@class, 'Nickname_memberID')]    ${live_username}
 
 MW_MY야놀자 > 포인트
     Ap.Click Element[버튼 클릭]    //*[text()='포인트']
-    타이틀 체크    //*[@class='css-djecwh']    포인트
+    텍스트 체크    //*[@class='css-djecwh']    포인트
 
 MW_MY야놀자 > MY혜택
     Ap.Click Element[버튼 클릭]    //*[text()='MY 혜택']
-    타이틀 체크    //*[contains (@class, 'title')]    MY 혜택
+    텍스트 체크    //*[contains (@class, 'title')]    MY 혜택
 
 MW_MY야놀자 > 야놀자코인
     Ap.Click Element[버튼 클릭]    //*[text()='야놀자 코인']
-    타이틀 체크    //*[contains (@class, 'title')]    야놀자 코인
+    텍스트 체크    //*[contains (@class, 'title')]    야놀자 코인
 
 MW_MY야놀자 > 쿠폰함
     Ap.Click Element[버튼 클릭]    //*[text()='쿠폰함']
-    타이틀 체크    //*[contains (@class, 'title')]    쿠폰함
+    텍스트 체크    //*[contains (@class, 'title')]    쿠폰함
 
 MW_MY야놀자 > 나의후기
     Ap.Click Element[버튼 클릭]    //*[text()='나의 후기']
-    타이틀 체크    //*[contains (@class, 'title')]    나의 후기
+    텍스트 체크    //*[contains (@class, 'title')]    나의 후기
 
 MW_MY야놀자 > 찜
     Ap.Click Element[버튼 클릭]    //*[text()='찜']
-    타이틀 체크    //*[contains (@class, 'title')]    찜
+    텍스트 체크    //*[contains (@class, 'title')]    찜
 
 MW_MY야놀자 > 공지사항
     Execute Script    window.scrollTo(0, document.body.scrollHeight)
     Ap.Click Element[버튼 클릭]    //*[text()='공지사항']
-    타이틀 체크    //*[contains (@class, 'css-melwew')]    공지사항
+    텍스트 체크    //*[contains (@class, 'css-melwew')]    공지사항
 
 MW_MY야놀자 > 자주묻는질문FAQ
     Execute Script    window.scrollTo(0, document.body.scrollHeight)
     Ap.Click Element[버튼 클릭]    //*[text()='자주 묻는 질문 FAQ']
-    타이틀 체크    //*[contains (@class, 'css-melwew')]    자주 묻는 질문
+    텍스트 체크    //*[contains (@class, 'css-melwew')]    자주 묻는 질문
 
 MW_홈 > 국내숙소탭
     MW_메인 이동
@@ -243,21 +240,21 @@ MW_홈 > 국내숙소탭
 MW_국내숙소 > 모텔
     Ap.Element Visible[요소 표시 여부 체크]    //*[text()='모텔']
     Ap.Click Element[버튼 클릭]    //*[text()='모텔']
-    타이틀 체크    xpath=(//*[contains (@class, 'title')])[2]    모텔
+    텍스트 체크    xpath=(//*[contains (@class, 'title')])[2]    모텔
 
 MW_홈 > 검색
     MW_메인 이동
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains(@class, 'HomeSearchBar_search__')]
     Ap.Click Element[버튼 클릭]    //*[contains(@class, 'HomeSearchBar_search__')]
     sleep    2s
-    타이틀 체크    xpath=(//*[contains (@class, 'title')])[1]    검색
+    텍스트 체크    xpath=(//*[contains (@class, 'title')])[1]    검색
 
 MW_검색 > 국내숙소 검색결과 > PDP 이동
     [Arguments]    ${keyword}
     Ap.InputText Element[텍스트 입력하기]    //*[@class='SearchInput_input__342U2']    ${keyword}
     Ap.Element Visible[요소 표시 여부 체크]    xpath=(//*[(text()='${keyword}')])[1]
     Ap.Click Element[버튼 클릭]    xpath=(//*[(text()='${keyword}')])[1]
-    타이틀 체크    //*[contains (@class, 'title')]    ${keyword}
+    텍스트 체크    //*[contains (@class, 'title')]    ${keyword}
     [Teardown]    MW_PDP 튜토리얼 체크
 
 MW_체크인날짜확인
@@ -293,7 +290,7 @@ MW_국내숙소 날짜 설정
     [Arguments]    ${days_later}
     ${today}    MW_오늘날짜확인2
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (text(), '${today}')])[1]
-    타이틀 체크    xpath=(//*[@class='css-djecwh'])[2]    날짜 선택
+    텍스트 체크    xpath=(//*[@class='css-djecwh'])[2]    날짜 선택
     Ap.Click Element[버튼 클릭]    xpath=(//*[not(contains (@data-testid, 'undefined')) and contains (@class, 'css-1ego3xc') and not(contains (@class, 'css-elyyt7'))])[${days_later}]
     Ap.Click Element[버튼 클릭]    //*[@class='css-ijxt52']
 
@@ -301,18 +298,20 @@ MW_PDP 튜토리얼 다음 클릭
     ${tutorialYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Ap.Element Should Be Visible    //*[@id='BOTTOM_SHEET']
     Run Keyword If    '${tutorialYn}[0]' == 'PASS'    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'right')]
     Run Keyword If    '${tutorialYn}[0]' == 'FAIL'    No Operation
+    [Return]    ${tutorialYn}[0]
 
 MW_검색 > 키워드 입력 후 돋보기 이동 (국내숙소)
     [Arguments]    ${keyword}
     Ap.InputText Element[텍스트 입력하기]    //*[contains (@type, 'search')]    ${keyword}
     Ap.Click Element[버튼 클릭]    //*[@alt='검색']
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='${keyword}'])[2]
-    타이틀 체크    //*[contains (@class, 'title')]    ${keyword}
+    텍스트 체크    //*[contains (@class, 'title')]    ${keyword}
     [Teardown]    MW_PDP 튜토리얼 체크
 
 MW_PDP > RDP (모/호/게 대실포함)
     MW_모텔 대실 예약가능 여부 체크
-    타이틀 체크    //*[contains (text(), '객실상세')]    객실상세
+    윈도우 전환
+    텍스트 체크    //*[contains (text(), '객실상세')]    객실상세
 
 MW_모텔 대실 예약가능 여부 체크
     @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Ap.Get WebElements    //*[@class='css-1ao9jo6']/div[1]
@@ -328,7 +327,7 @@ MW_모텔 대실 예약가능 여부 체크
 
 MW_RDP > 대실 예약
     Ap.Click Element[버튼 클릭]    xpath=(//*[@class='css-1wxsndh' and text()='대실']/parent::div//*[text()='객실 예약하기'])[1]
-    타이틀 체크    //*[@class='css-18k5no3']    대실 예약
+    텍스트 체크    //*[@class='css-18k5no3']    대실 예약
     MW_RDP > 무료취소여부체크
     Ap.Click Element[버튼 클릭]    xpath=(//*[@class='css-ihwtry'])[1]
     ${attr}    Ap.Get Element Attribute[속성값 가져오기]    xpath=(//*[contains (@class, 'time')])[1]    class
@@ -346,7 +345,7 @@ MW_바로 예약 > 예약
     sleep    3s
     ${windows}    Get Windows
     Switch to Window    ${windows}[1]
-    타이틀 체크    //*[contains (@class, 'left')]    예약
+    텍스트 체크    //*[contains (@class, 'left')]    예약
 
 MW_예약(간편결제) > 예약완료 (일반)
     ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Ap.Element Should Be Visible    //*[@class='css-i1l4h7']
@@ -358,20 +357,20 @@ MW_예약(간편결제) > 예약완료 (일반)
     Ap.InputText Element[텍스트 입력하기]    //*[@placeholder='- 0']    ${inputPrice}
     Ap.Click Element[버튼 클릭]    //*[text()='다른 결제 수단 더보기']
     Ap.Click Element[버튼 클릭]    //div[contains (text(), '간편')]
-    타이틀 체크    //*[@class='css-128od1m']    100원 결제하기
+    텍스트 체크    //*[@class='css-128od1m']    100원 결제하기
     sleep    2s
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '필수 약관 전체 동의')]
     Ap.Click Element[버튼 클릭]    //*[@class='css-128od1m']
     sleep    5s
     ${windows}    Get Windows
     Switch to Window    ${windows}[2]
-    타이틀 체크    //*[@id='header']/h1    계좌 등록/결제
+    텍스트 체크    //*[@id='header']/h1    계좌 등록/결제
     MW_PG 결제 키패드 클릭 (일반)
 
 MW_PG 결제 키패드 클릭 (일반)
     Ap.Click Element[버튼 클릭]    //*[text()='하나은행']
     sleep    2s
-    타이틀 체크    //*[@id='header']/h1    결제진행
+    텍스트 체크    //*[@id='header']/h1    결제진행
     Capture Page Screenshot    ori.png
     Click Element By Image[이미지 매칭 클릭]    1.png
     Click Element By Image[이미지 매칭 클릭]    6.png
@@ -382,7 +381,7 @@ MW_PG 결제 키패드 클릭 (일반)
     sleep    5s
     ${windows}    Get Windows
     Switch to Window    ${windows}[1]
-    타이틀 체크    //*[@class='title']    예약 완료되었습니다.
+    텍스트 체크    //*[@class='title']    예약 완료되었습니다.
     sleep    3s
     Click Element By Image[탭 종료]    close.png
     sleep    3s
@@ -419,17 +418,17 @@ MW_예약내역 취소
 MW_MY야놀자 > 국내여행 통합예약
     Ap.Click Element[버튼 클릭]    //*[text()='국내여행 통합예약']
     sleep    2s
-    타이틀 체크    //*[contains (@class, 'left')]    국내여행 예약내역
+    텍스트 체크    //*[contains (@class, 'left')]    국내여행 예약내역
 
 MW_국내여행 예약내역 > 예약내역 상세
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='상세보기'])[1]
     sleep    2s
-    타이틀 체크    //*[contains (@class, 'left')]    예약내역 상세
+    텍스트 체크    //*[contains (@class, 'left')]    예약내역 상세
 
 MW_국내 예약내역 상세 > 예약취소 요청
     Ap.Click Element[버튼 클릭]    //*[text()='예약취소 요청']
     sleep    2s
-    타이틀 체크    //*[contains (@class, 'left')]    예약취소 요청
+    텍스트 체크    //*[contains (@class, 'left')]    예약취소 요청
 
 MW_국내 예약취소 요청 > 취소 요청하기
     Ap.Click Element[버튼 클릭]    //*[text()='전체 선택']
@@ -437,7 +436,7 @@ MW_국내 예약취소 요청 > 취소 요청하기
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'primary')]
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'css-y1bp6q')]
     sleep    1s
-    타이틀 체크    //*[@class='css-18k5no3']    취소 사유 선택
+    텍스트 체크    //*[@class='css-18k5no3']    취소 사유 선택
     sleep    1s
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '예약정보 변경')]
     Ap.Click Element[버튼 클릭]    //*[text()='선택 완료']
@@ -449,24 +448,24 @@ MW_국내 예약취소 요청 > 취소 요청하기
     ${cancelBtn}    Run keyword and Ignore error    Should Contain    ${attr}    disabled
     Run Keyword If    '${cancelBtn}[0]' == 'FAIL'    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'primary')]
     sleep    2s
-    타이틀 체크    //*[@class='css-tmlfjl']    예약 취소를 요청하시겠어요?
+    텍스트 체크    //*[@class='css-tmlfjl']    예약 취소를 요청하시겠어요?
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'css-17y1gu4')])[2]
     sleep    4s
-    타이틀 체크    //*[contains (@class, 'title')]    취소 요청이 완료되었습니다.
+    텍스트 체크    //*[contains (@class, 'title')]    취소 요청이 완료되었습니다.
 
 MW_취소요청 완료 > 예약내역 상세
     Ap.Click Element[버튼 클릭]    //*[text()='예약상세 보기']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'left')]    예약내역 상세
+    텍스트 체크    xpath=//*[contains (@class, 'left')]    예약내역 상세
     sleep    2s
     # 취소완료 체크
-    타이틀 체크    //*[@class='cancel-completed css-1esg0fo']    취소 완료
+    텍스트 체크    //*[@class='cancel-completed css-1esg0fo']    취소 완료
 
 MW_PDP > RDP (모텔 숙박)
     sleep    1s
     MW_모텔 숙박 예약가능 여부 체크
     sleep    1s
-    타이틀 체크    //*[contains (text(), '객실상세')]    객실상세
+    텍스트 체크    //*[contains (text(), '객실상세')]    객실상세
 
 MW_모텔 숙박 예약가능 여부 체크
     @{elements}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Ap.Get WebElements    //*[@class='css-1ao9jo6']/div[2]
@@ -485,7 +484,7 @@ MW_RDP > 모텔 숙박 예약
     sleep    1s
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='객실 예약하기'])[2]
     sleep    3s
-    타이틀 체크    //*[@class='css-18k5no3']    숙박 예약
+    텍스트 체크    //*[@class='css-18k5no3']    숙박 예약
     MW_RDP > 무료취소여부체크
 
 MW_숙소 장바구니 담기
@@ -501,20 +500,20 @@ MW_홈 > 장바구니 유무 체크
 MW_장바구니 비우기
     Go To Url    https://platform-site.yanolja.com/cart
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'left')]    장바구니
+    텍스트 체크    //*[contains (@class, 'left')]    장바구니
     Ap.Click Element[버튼 클릭]    //*[text()='선택 삭제']
     Ap.Element Visible[요소 표시 여부 체크]    //*[@class='css-e84qjx']
     Ap.Click Element[버튼 클릭]    //*[@class='primary css-17y1gu4']
     sleep    1s
-    타이틀 체크    //*[@class='no-item-text']    장바구니에 담긴 상품이 없습니다
+    텍스트 체크    //*[@class='no-item-text']    장바구니에 담긴 상품이 없습니다
 
 MW_숙소 장바구니 이동
     Ap.Click Element[버튼 클릭]    //*[@class='css-1ai9mni']
-    타이틀 체크    //*[text()='장바구니']    장바구니
+    텍스트 체크    //*[text()='장바구니']    장바구니
 
 MW_장바구니 > 예약
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'primary')]
-    타이틀 체크    //*[text()='예약']    예약
+    텍스트 체크    //*[text()='예약']    예약
 
 MW_예약(간편결제) > 예약완료 (장바구니)
     ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Ap.Element Should Be Visible    //*[@class='css-i1l4h7']
@@ -526,20 +525,20 @@ MW_예약(간편결제) > 예약완료 (장바구니)
     Ap.InputText Element[텍스트 입력하기]    //*[@placeholder='- 0']    ${inputPrice}
     Ap.Click Element[버튼 클릭]    //*[text()='다른 결제 수단 더보기']
     Ap.Click Element[버튼 클릭]    //div[contains (text(), '간편')]
-    타이틀 체크    //*[@class='css-128od1m']    100원 결제하기
+    텍스트 체크    //*[@class='css-128od1m']    100원 결제하기
     sleep    2s
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '필수 약관 전체 동의')]
     Ap.Click Element[버튼 클릭]    //*[@class='css-128od1m']
     sleep    5s
     ${windows}    Get Windows
     Switch to Window    ${windows}[1]
-    타이틀 체크    //*[@id='header']/h1    계좌 등록/결제
+    텍스트 체크    //*[@id='header']/h1    계좌 등록/결제
     MW_PG 결제 키패드 클릭 (장바구니)
 
 MW_PG 결제 키패드 클릭 (장바구니)
     Ap.Click Element[버튼 클릭]    //*[text()='하나은행']
     sleep    2s
-    타이틀 체크    //*[@id='header']/h1    결제진행
+    텍스트 체크    //*[@id='header']/h1    결제진행
     Capture Page Screenshot    ori.png
     Click Element By Image[이미지 매칭 클릭]    1.png
     Click Element By Image[이미지 매칭 클릭]    6.png
@@ -550,37 +549,37 @@ MW_PG 결제 키패드 클릭 (장바구니)
     sleep    20s
     ${windows}    Get Windows
     Switch to Window    ${windows}[0]
-    타이틀 체크    //*[@class='title']    예약 완료되었습니다.
+    텍스트 체크    //*[@class='title']    예약 완료되었습니다.
 
 MW_국내숙소 > 호텔
     Ap.Element Visible[요소 표시 여부 체크]    //*[text()='호텔']
     Ap.Click Element[버튼 클릭]    //*[text()='호텔']
-    타이틀 체크    //*[contains (@class, 'CollapsingNav_title')]    호텔/리조트
+    텍스트 체크    //*[contains (@class, 'CollapsingNav_title')]    호텔/리조트
 
 MW_PDP > RDP (모/호/게 대실포함)_호텔 임시
     sleep    1s
     Comment    모텔 대실 예약가능 여부 체크
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='객실 선택하기'])[2]
     sleep    1s
-    타이틀 체크    //*[contains (text(), '객실상세')]    객실상세
+    텍스트 체크    //*[contains (text(), '객실상세')]    객실상세
 
 MW_RDP > 호/펜/게 예약
     sleep    1s
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='객실 예약하기'])[1]
     sleep    1s
-    타이틀 체크    //*[@class='css-18k5no3']    숙박 예약
+    텍스트 체크    //*[@class='css-18k5no3']    숙박 예약
     MW_RDP > 무료취소여부체크
 
 MW_국내숙소 > 펜션
     Ap.Element Visible[요소 표시 여부 체크]    //*[text()='펜션/풀빌라']
     Ap.Click Element[버튼 클릭]    //*[text()='펜션/풀빌라']
-    타이틀 체크    //*[contains (@class, 'CollapsingNav_title')]    펜션/풀빌라
+    텍스트 체크    //*[contains (@class, 'CollapsingNav_title')]    펜션/풀빌라
 
 MW_PDP > RDP (펜션)
     sleep    1s
     MW_펜션 예약가능 여부 체크
     sleep    2s
-    타이틀 체크    //*[contains (text(), '객실상세')]    객실상세
+    텍스트 체크    //*[contains (text(), '객실상세')]    객실상세
 
 MW_펜션 예약가능 여부 체크
     ${attr}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Ap.Get Element Attribute    //*[@class='css-1ux2lue' and contains (text(), '영성')]/parent::div/parent::a//*[text()='객실 선택하기']    disabled
@@ -589,15 +588,15 @@ MW_펜션 예약가능 여부 체크
 MW_국내숙소 > 게하/한옥
     Ap.Element Visible[요소 표시 여부 체크]    //*[text()='게하/한옥']
     Ap.Click Element[버튼 클릭]    //*[text()='게하/한옥']
-    타이틀 체크    //*[contains (@class, 'CollapsingNav_title')]    게하/한옥
+    텍스트 체크    //*[contains (@class, 'CollapsingNav_title')]    게하/한옥
 
 MW_국내숙소 > 선착순쿠폰
     Scroll after element check[요소 체크 후 스크롤_Webview]    //*[text()='선착순쿠폰']    500
-    타이틀 체크    //*[contains (@class, 'PlaceListTitle_normal')]    테헤란로108길
+    텍스트 체크    //*[contains (@class, 'PlaceListTitle_normal')]    테헤란로108길
 
 MW_국내숙소 > 무한쿠폰룸
     Scroll after element check[요소 체크 후 스크롤_Webview]    //*[text()='무한쿠폰룸']    500
-    타이틀 체크    //*[contains (@class, 'CollapsingNav_title')]    무한쿠폰룸
+    텍스트 체크    //*[contains (@class, 'CollapsingNav_title')]    무한쿠폰룸
 
 MW_홈 > 추천탭
     MW_메인 이동
@@ -613,7 +612,7 @@ MW_월혜택모음
     Comment    Ap.Click Element[버튼 클릭]    //div[@class='QuickCategory_recommendBWrap__2mNKz']//*[contains (text(), '혜택')]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '월') and contains (text(), '혜택')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'css-18h35l6')]    야놀자 혜택 모아보기
+    텍스트 체크    //*[contains (@class, 'css-18h35l6')]    야놀자 혜택 모아보기
 
 MW_홈 > 해외여행탭
     MW_메인 이동
@@ -628,12 +627,12 @@ MW_홈 > 해외여행탭
 MW_해외여행 > 여행자보험
     Ap.Click Element[버튼 클릭]    //*[text()='여행자보험']
     sleep    1s
-    타이틀 체크    //*[@class='nav-tit']    해외여행보험
+    텍스트 체크    //*[@class='nav-tit']    해외여행보험
 
 MW_해외여행 > 해외숙소
     Ap.Click Element[버튼 클릭]    //*[text()='해외숙소']
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'title')])[1]    여행지 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'title')])[1]    여행지 선택
 
 MW_여행지 선택 > 오사카
     Ap.Click Element[버튼 클릭]    //*[text()='오사카/교토']
@@ -642,7 +641,7 @@ MW_여행지 선택 > 오사카
     sleep    1s
     Ap.Click Element[버튼 클릭]    //*[text()='오사카']
     sleep    5s
-    타이틀 체크    //*[contains (@class, 'searchP')]    오사카
+    텍스트 체크    //*[contains (@class, 'searchP')]    오사카
 
 MW_해외숙소 검색결과 > PDP
     [Arguments]    ${index}
@@ -655,7 +654,7 @@ MW_해외숙소 날짜 설정
     [Arguments]    ${days_later}
     Scroll after element check[요소 체크 후 스크롤_Webview]    xpath=(//*[contains (@class, 'CheckinOutBox')])[1]    500
     Comment    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//*[contains (@class, 'CheckinOutBox')])[1]    300
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    날짜 선택
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    날짜 선택
     Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[${days_later}]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '체크인 검색')]
 
@@ -667,8 +666,8 @@ MW_해외숙소 상세 > 예약가능날짜 체크
         Execute script    window.scrollTo(0, 500)
         sleep    2s
         Ap.Click Element[버튼 클릭]    //*[@class='GlobalPlaceCommonUnbookableInfo_changeDateBtn__2A0ra']
-        Comment    타이틀 체크    xpath=(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]    날짜 선택
-        타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    날짜 선택
+        Comment    텍스트 체크    xpath=(//*[@class='PageTitle_pageTitle__Q5MEn'])[2]    날짜 선택
+        텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    날짜 선택
         Ap.Click Element[버튼 클릭]    xpath=(//*[text()='체크아웃'])[2]
         Ap.Click Element[버튼 클릭]    //*[contains(text(), '체크인 검색')]
         ELSE
@@ -694,7 +693,7 @@ MW_해외숙소 PDP 무료취소 가능 체크 > 예약하기 진입
     ELSE
     Scroll after element check[요소 체크 후 스크롤_Webview]    xpath=(//*[text()='예약하기'])[1]    500
     sleep    1s
-    타이틀 체크    //*[@class='toolbar-title']    해외숙소 예약
+    텍스트 체크    //*[@class='toolbar-title']    해외숙소 예약
     Exit For Loop
     END
     END
@@ -711,28 +710,28 @@ MW_해외숙소 예약(간편결제) > 예약완료
     sleep    1s
     Ap.Click Element[버튼 클릭]    //*[text()='전체 동의']
     sleep    1s
-    타이틀 체크    //*[@class='payment-amount']    100원 결제하기
+    텍스트 체크    //*[@class='payment-amount']    100원 결제하기
     Ap.Click Element[버튼 클릭]    //*[@class='payment-amount']
     sleep    10s
     ${windows}    Get Windows
     Switch to Window    ${windows}[1]
-    타이틀 체크    //*[@id='header']/h1    계좌 등록/결제
+    텍스트 체크    //*[@id='header']/h1    계좌 등록/결제
     MW_PG 결제 키패드 클릭 (해외숙소)
 
 MW_MY야놀자 > 해외여행 통합예약
     Ap.Click Element[버튼 클릭]    //*[text()='해외 예약 내역']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'toolbar-title')]    해외숙소 예약내역
+    텍스트 체크    //*[contains (@class, 'toolbar-title')]    해외숙소 예약내역
 
 MW_해외여행 예약내역 > 예약내역 상세
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'list-item--right-block')]
     sleep    3s
-    타이틀 체크    xpath=(//*[contains (@class, 'toolbar-title')])[2]    예약내역 상세
+    텍스트 체크    xpath=(//*[contains (@class, 'toolbar-title')])[2]    예약내역 상세
 
 MW_해외 예약내역 상세 > 예약취소 요청
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '예약취소 신청하기')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'toolbar-title')]    예약취소 하기
+    텍스트 체크    //*[contains (@class, 'toolbar-title')]    예약취소 하기
 
 MW_해외 예약취소 요청 > 취소 요청하기
     sleep    2s
@@ -742,22 +741,22 @@ MW_해외 예약취소 요청 > 취소 요청하기
     Run Keyword If    '${cancelBtn}[0]' == 'FAIL'    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'order-cancel-action-txt')]
     Run Keyword If    '${cancelBtn}[0]' == 'PASS'    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'checkbox-icon-container')]
     sleep    1s
-    타이틀 체크    xpath=(//*[@class='modal-header'])[1]    예약을 취소하시겠어요?
+    텍스트 체크    xpath=(//*[@class='modal-header'])[1]    예약을 취소하시겠어요?
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'confirm-btn-txt')]
     sleep    5s
-    타이틀 체크    //*[contains (@class, 'status-text')]    예약취소가 완료되었습니다.
+    텍스트 체크    //*[contains (@class, 'status-text')]    예약취소가 완료되었습니다.
 
 MW_해외숙소 취소요청 완료 > 예약내역 상세 & 취소완료 체크
     Ap.Click Element[버튼 클릭]    //*[text()='예약내역 보기']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'toolbar-title')]    해외숙소 예약내역
+    텍스트 체크    //*[contains (@class, 'toolbar-title')]    해외숙소 예약내역
     sleep    5s
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@class, 'empty-display')]
 
 MW_PG 결제 키패드 클릭 (해외숙소)
     Ap.Click Element[버튼 클릭]    //*[text()='하나은행']
     sleep    2s
-    타이틀 체크    //*[@id='header']/h1    결제진행
+    텍스트 체크    //*[@id='header']/h1    결제진행
     Capture Page Screenshot    ori.png
     Click Element By Image[이미지 매칭 클릭]    1.png
     Click Element By Image[이미지 매칭 클릭]    6.png
@@ -768,7 +767,7 @@ MW_PG 결제 키패드 클릭 (해외숙소)
     sleep    20s
     ${windows}    Get Windows
     Switch to Window    ${windows}[0]
-    타이틀 체크    //*[contains (@class, 'status-text')]    예약이 완료 되었습니다.
+    텍스트 체크    //*[contains (@class, 'status-text')]    예약이 완료 되었습니다.
 
 MW_홈 > 즐길거리탭
     MW_메인 이동
@@ -782,7 +781,7 @@ MW_홈 > 즐길거리탭
 MW_즐길거리 > 레저/티켓
     Ap.Element Visible[요소 표시 여부 체크]    //*[@href='https://www.yanolja.com/leisure']
     Ap.Click Element[버튼 클릭]    //*[@href='https://www.yanolja.com/leisure']
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    레저/티켓
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    레저/티켓
 
 MW_검색 > 레저/티켓탭
     sleep    1s
@@ -798,7 +797,7 @@ MW_검색 > 레저티켓 검색결과 > 상품상세 이동
     sleep    1s
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains(text(), '${keyword}')])[1]
     sleep    2s
-    타이틀 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${keyword}
+    텍스트 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${keyword}
 
 MW_검색 > 키워드 입력 후 돋보기 이동 (레저)
     [Arguments]    ${keyword}
@@ -808,7 +807,7 @@ MW_검색 > 키워드 입력 후 돋보기 이동 (레저)
     sleep    1s
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains(text(), '${keyword}')])[1]
     sleep    2s
-    타이틀 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${keyword}
+    텍스트 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${keyword}
 
 MW_레저 상세 > 예약
     sleep    1s
@@ -817,7 +816,7 @@ MW_레저 상세 > 예약
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='+'])[1]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '바로 구매하기')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'left')]    예약
+    텍스트 체크    //*[contains (@class, 'left')]    예약
 
 MW_레저티켓 장바구니 담기
     [Arguments]    ${productName}
@@ -837,12 +836,12 @@ MW_숙소 외 장바구니 담기
 
 MW_레저 장바구니 이동
     Ap.Click Element[버튼 클릭]    //*[contains (@alt, '장바구니')]
-    타이틀 체크    //*[contains (@class, 'left')]    장바구니
+    텍스트 체크    //*[contains (@class, 'left')]    장바구니
 
 MW_즐길거리 > 모바일교환권
     Ap.Click Element[버튼 클릭]    //*[text()='모바일교환권']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    모바일교환권
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    모바일교환권
 
 MW_홈 > 교통/항공탭
     MW_메인 이동
@@ -857,7 +856,7 @@ MW_홈 > 교통/항공탭
 MW_교통/항공 > 렌터카
     Ap.Click Element[버튼 클릭]    xpath=(//*[text()='렌터카'])[1]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    렌터카
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    렌터카
     sleep    2s
 
 MW_렌터카 서브홈 > PDP
@@ -865,13 +864,13 @@ MW_렌터카 서브홈 > PDP
     sleep    2s
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'ExhibitionDetailDomesticLeisure_container')])[1]
     sleep    3s
-    타이틀 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${listTitle}
+    텍스트 체크    //*[contains (@class, 'LeisureDetailTitle_title')]    ${listTitle}
 
 MW_교통/항공 > 기차
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (text(), '기차')]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '기차')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    기차
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    기차
 
 MW_모텔 장바구니 담기
     MW_홈 > 검색
@@ -893,19 +892,19 @@ MW_기차 > 승차권 조건 선택 후 조회 (왕복)
     [Arguments]    ${arrival}
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'TrainSHomeStationDisplay_placeholder')]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    도착역 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    도착역 선택
     Ap.InputText Element[텍스트 입력하기]    //*[contains (@class, 'TrainSHomeStationModalTitle_input_')]    ${arrival}
     Ap.Click Element[버튼 클릭]    //*[text()='${arrival}']
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'TrainSHomeBody_datePlaceholder_')]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
     Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))])[6]
     sleep    1s
     Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'TrainSHomeCalendarModal_calendarDaySelector__uXOSA') and not(contains(@class, 'TrainSHomeCalendarModal_outsideRangeStyle___ZYRF'))])[6]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '∙ 적용')]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '승차권 조회')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    가는날 승차권 조회
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    가는날 승차권 조회
 
 MW_승차권 유무 체크 후 요금조회
     ${status}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Ap.Get WebElement    //*[text()='재시도 하기']
@@ -922,41 +921,41 @@ MW_바로 예매 > 오는날 승차권 조회
     Ap.Click Element[버튼 클릭]    //*[text()='바로 예매']
     Ap.Click Element[버튼 클릭]    //*[text()='확인']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    오는날 승차권 조회
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    오는날 승차권 조회
 
 MW_바로 예매 > 선택한 승차권 장바구니 담기
     Ap.Click Element[버튼 클릭]    //*[text()='바로 예매']
     Ap.Click Element[버튼 클릭]    //*[text()='확인']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    선택한 승차권
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    선택한 승차권
     Ap.Click Element[버튼 클릭]    //*[text()='장바구니 담기']
     sleep    10s
-    타이틀 체크    //*[contains (@class, 'NavigationBarIconButton_count')]    2
+    텍스트 체크    //*[contains (@class, 'NavigationBarIconButton_count')]    2
 
 MW_교통/항공 > 고속버스
     Ap.Element Visible[요소 표시 여부 체크]    //*[@alt='고속버스']
     Ap.Click Element[버튼 클릭]    //*[@alt='고속버스']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    다운로드
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    다운로드
 
 MW_교통/항공 > 항공권
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (text(), '항공권')]
     Ap.Click Element[버튼 클릭]    //*[contains (text(), '항공권')]
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    항공권
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    항공권
 
 MW_항공권 왕복 검색
     [Arguments]    ${arrival}
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'FlightSearchFormBody_airportCode__2a2VV')])[2]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    도착지 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    도착지 선택
     Ap.InputText Element[텍스트 입력하기]    //*[contains (@name, 'search-location')]    ${arrival}
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'searchResultRow')]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'FlightSearchFormBody_airportCode')])[2]    BCN
+    텍스트 체크    xpath=(//*[contains (@class, 'FlightSearchFormBody_airportCode')])[2]    BCN
     Ap.Click Element[버튼 클릭]    //*[contains(text(), '가는날')]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
     Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]    500
     sleep    2s
     Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[32]
@@ -977,14 +976,14 @@ MW_항공권 편도 검색
     [Arguments]    ${arrival}
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'FlightSearchFormBody_airportCode__2a2VV')])[2]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    도착지 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    도착지 선택
     Ap.InputText Element[텍스트 입력하기]    //*[contains (@name, 'search-location')]    ${arrival}
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'searchResultRow')]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'FlightSearchFormBody_airportCode')])[2]    BCN
+    텍스트 체크    xpath=(//*[contains (@class, 'FlightSearchFormBody_airportCode')])[2]    BCN
     Ap.Click Element[버튼 클릭]    //*[contains(text(), '가는날')]
     sleep    1s
-    타이틀 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
+    텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
     Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]    500
     Comment    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
     Click Element By Image[항공권 적용 버튼]    apply.png
@@ -995,11 +994,11 @@ MW_항공권 편도 검색
 MW_MY야놀자 > 알림함
     Ap.Click Element[버튼 클릭]    //*[@class='Icon_icon__2BP_o']
     sleep    1s
-    타이틀 체크    //*[contains (@class, 'NavigationBarHeading_title')]    알림
+    텍스트 체크    //*[contains (@class, 'NavigationBarHeading_title')]    알림
 
 MW_기차 장바구니 이동
     Ap.Click Element[버튼 클릭]    xpath=(//*[contains (@class, 'Icon_icon__2BP_o')])[3]
-    타이틀 체크    //*[contains (@class, 'left')]    장바구니
+    텍스트 체크    //*[contains (@class, 'left')]    장바구니
 
 Click Element By Image[항공권 적용 버튼]
     [Arguments]    ${template}
@@ -1126,31 +1125,34 @@ appium 실행 여부 체크 및 실행
     Wait Until Keyword Succeeds    1m    5s    Re.GET    ${APPIUM_URL}/status
 
 context 전환
-    sleep    2s
-    IF    '${contextNow}' == 'NATIVE_APP'
+    sleep    5s
+    ${curContext}    Get Current Context
+    Comment    ${contextList}    Get Contexts
+    Comment    ${size}    Get Length    ${contextList}
+    IF    'NATIVE' in '${curContext}'
     Switch To Context    ${webview}
     Set Global Variable    ${contextNow}    ${webview}
-    ELSE IF    '${contextNow}' == 'WEBVIEW_com.cultsotry.yanolja.nativeapp.dev'
+    ELSE
     Switch To Context    ${native}
     Set Global Variable    ${contextNow}    ${native}
     END
     Log To Console    ${contextNow}
 
 Scroll until element[요소 노출까지 스크롤_Native]
-    [Arguments]    ${element}    ${scrollY}
+    [Arguments]    ${element}
     ${mobile_width}    Get Window Width
     ${mobile_height}    Get Window Height
     ${centerX}    Evaluate    ${mobile_width}/2
-    ${centerY}    Evaluate    ${mobile_height}/2
+    ${centerY}    Evaluate    ${mobile_height} * 0.7
     ${centerX_CV}    Convert To Integer    ${centerX}
     ${centerY_CV}    Convert To Integer    ${centerY}
-    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
-    IF    '${plusY}' <= '0'
-    ${plusY}    Evaluate    0
-    END
+    Comment    ${plusY}    Evaluate    ${centerY_CV} - ${scrollY}
+    Comment    IF    '${plusY}' <= '0'
+    Comment    ${plusY}    Evaluate    0
+    Comment    END
     FOR    ${index}    IN RANGE    30
         ${elementYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    3s    Ap.Element Should Be Visible    ${element}
-        Run Keyword If    '${elementYn}[0]' == 'FAIL'    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    ${plusY}
+        Run Keyword If    '${elementYn}[0]' == 'FAIL'    Swipe    ${centerX_CV}    ${centerY_CV}    ${centerX_CV}    0
         Run Keyword If    '${elementYn}[0]' == 'PASS'    Ap.Click Element[버튼 클릭]    ${element}
         Run Keyword If    '${elementYn}[0]' == 'PASS'    Exit For Loop
         sleep    3s
@@ -1166,45 +1168,48 @@ Scroll until element[요소 노출까지 스크롤_Native]
     Activate Application    com.cultsotry.yanolja.nativeapp.dev
 
 앱 사용 동의
-    타이틀 체크    //*[contains (@resource-id, 'tvTermsComment')]    항목에 동의
+    텍스트 체크    //*[contains (@resource-id, 'tvTermsComment')]    항목에 동의
     Ap.Click Element[버튼 클릭]    //*[contains (@text, '전체 동의')]
     Ap.Click Element[버튼 클릭]    //*[contains (@text, '시작')]
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '홈')]
 
 APP_홈 > My 야놀자 (QA)
-    Comment    홈 이동 키워드 추가 필요
+    APP_메인 이동
     Ap.Click Element[버튼 클릭]    //*[contains (@text, '마이')]
-    타이틀 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
+    텍스트 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
 
 APP_홈 > My 야놀자
-    Ap.Click Element[버튼 클릭]    //*[contains (@text, 'MY')]
-    타이틀 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
+    APP_메인 이동
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, 'MY 야놀자')]
+    텍스트 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '국내여행 통합예약')]
 
 APP_My 야놀자 > 로그인 화면
     Ap.Click Element[버튼 클릭]    //*[contains (@text, '로그인 및 회원가입')]
-    타이틀 체크    //*[contains (@resource-id, 'title')]    로그인
+    텍스트 체크    //*[contains (@resource-id, 'title')]    로그인
 
 APP_로그인 하기
     [Arguments]    ${id}    ${pw}    ${nickName}
     Ap.Click Element[버튼 클릭]    //*[contains (@text, '이메일로 로그인')]
-    타이틀 체크    //*[contains (@resource-id, 'title')]    이메일로 로그인
+    텍스트 체크    //*[contains (@resource-id, 'title')]    이메일로 로그인
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '비밀번호 찾기')]
     Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@text, '이메일로 회원가입')]
     Ap.InputText Element[텍스트 입력하기]    xpath=(//*[contains (@resource-id, 'editText')])[1]    ${id}
     Ap.InputText Element[텍스트 입력하기]    xpath=(//*[contains (@resource-id, 'editText')])[2]    ${pw}
     sleep    2s
     Ap.Click Element[버튼 클릭]    //*[contains (@resource-id, 'btnLogin')]
-    타이틀 체크    //*[contains (@resource-id, 'NickName')]    ${nickName}
+    텍스트 체크    //*[contains (@resource-id, 'title')]    MY 야놀자
+    텍스트 체크    //*[contains (@resource-id, 'NickName')]    ${nickName}
 
 APP_My 야놀자 > 야놀자 정보
-    Scroll until element[요소 노출까지 스크롤_Native]    //*[contains (@text, '야놀자 정보')]    1000
-    타이틀 체크    //*[contains (@resource-id, 'title')]    야놀자 정보
+    Scroll until element[요소 노출까지 스크롤_Native]    //*[contains (@text, '야놀자 정보')]
+    텍스트 체크    //*[contains (@resource-id, 'title')]    야놀자 정보
 
 APP_야놀자 정보 > Live 환경 설정
     Ap.Click Element[버튼 클릭]    //*[contains (@resource-id, 'tvVersion')]
-    타이틀 체크    //*[contains (@resource-id, 'alertTitle')]    서버 변경
+    텍스트 체크    //*[contains (@resource-id, 'alertTitle')]    서버 변경
     Ap.Click Element[버튼 클릭]    //*[contains (@class, 'TextView') and @text='LIVE']
-    타이틀 체크    //*[contains (@class, 'TextView')]    앱 종료 후, 다시 실행시켜 주세요
+    텍스트 체크    //*[contains (@class, 'TextView')]    앱 종료 후, 다시 실행시켜 주세요
     Ap.Click Element[버튼 클릭]    //*[contains (@text, '확인')]
     sleep    3s
     앱 실행    true
@@ -1212,61 +1217,178 @@ APP_야놀자 정보 > Live 환경 설정
 APP_live 테스트숙소 노출 설정
     앱 실행    true
     Go To Url    yanoljamotel://_EnvSetting?testProduct=YES
+    sleep    3s
 
 APP_메인 이동
     Go To Url    yanoljamotel://home?tab=recommend
 
 APP_MY야놀자 > 내정보관리
     Ap.Click Element[버튼 클릭]    //*[@text='내정보 관리']
-    context 전환
-    타이틀 체크    //*[contains (@class, 'title')]    내 정보 관리
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[1]    내 정보 관리
 
 APP_내정보관리 > 비밀번호입력 후 상세 이동
-    Ap.InputText Element[텍스트 입력하기]    //*[@id='password']    ${live_password}
-    Ap.Click Element[버튼 클릭]    //*[text()='확인']
-    타이틀 체크    //*[contains (@class, 'Nickname_memberID')]    ${live_username}
+    Ap.InputText Element[텍스트 입력하기]    //*[contains (@resource-id, 'password')]    ${live_password}
+    Ap.Click Element[버튼 클릭]    xpath=(//android.widget.Button)[2]
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[2]    ${live_nickname}
 
 APP_MY야놀자 > 포인트
-    Ap.Click Element[버튼 클릭]    //*[@text='포인트']
-    context 전환
-    타이틀 체크    //*[@class='css-djecwh']    포인트
+    [Arguments]    ${point}
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '포인트')]
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[1]    포인트
+    ${detailPointAmount}    요소 텍스트에서 숫자만 추출    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView[2])[1]
+    Should Be Equal    ${point}    ${detailPointAmount}
 
 APP_MY야놀자 > MY혜택
     Ap.Click Element[버튼 클릭]    //*[@text='MY 혜택']
-    context 전환
-    타이틀 체크    //*[contains (@class, 'title')]    MY 혜택
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[1]    MY 혜택
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[2]    ${live_nickname}
 
 APP_MY야놀자 > 야놀자코인
     Ap.Click Element[버튼 클릭]    //*[@text='야놀자 코인']
-    context 전환
-    타이틀 체크    //*[contains (@class, 'title')]    야놀자 코인
+    텍스트 체크    xpath=(//android.widget.TextView)[1]    야놀자 코인
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@resource-id, 'next')]/android.view.View[2]
+    Ap.Element Visible[요소 표시 여부 체크]    xpath=(//*[contains (@resource-id, 'next')]//android.widget.Button)[3]
 
 APP_MY 야놀자 > 쿠폰함
+    [Arguments]    ${coupon}
     Ap.Click Element[버튼 클릭]    //*[@text='쿠폰함']
-    context 전환
-    타이틀 체크    //*[contains (@class, 'title')]    쿠폰함
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'nuxt')]//android.widget.TextView)[1]    쿠폰함
+    ${detailCouponCnt}    요소 텍스트에서 숫자만 추출    xpath=(//*[contains (@resource-id, 'layout')]//android.widget.TextView)[3]
+    Should Be Equal    ${coupon}    ${detailCouponCnt}
 
 APP_MY야놀자 > 나의후기
     Ap.Click Element[버튼 클릭]    //*[@text='나의 후기']
-    context 전환
-    타이틀 체크    //*[contains (@class, 'title')]    나의 후기
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'nuxt')]//android.widget.TextView)[1]    나의 후기
+    텍스트 체크    //*[@index='7']    ${live_nickname}
 
 APP_MY야놀자 > 찜
     Ap.Click Element[버튼 클릭]    //*[@text='찜']
-    context 전환
-    타이틀 체크    //*[contains (@class, 'title')]    찜
+    텍스트 체크    //*[contains (@resource-id, 'title')]    찜
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@resource-id, 'tabPager')]
 
 APP_MY야놀자 > 공지사항
-    Scroll until element[요소 노출까지 스크롤_Native]    //*[@text='공지사항']    1000
-    context 전환
-    타이틀 체크    //*[contains (@class, 'css-melwew')]    공지사항
+    Scroll until element[요소 노출까지 스크롤_Native]    //*[@text='공지사항']
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[1]    공지사항
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[2]    전체
 
 APP_MY야놀자 > 자주묻는질문FAQ
-    Scroll until element[요소 노출까지 스크롤_Native]    //*[@text='자주 묻는 질문 FAQ']    1000
-    context 전환
-    타이틀 체크    //*[contains (@class, 'css-melwew')]    자주 묻는 질문
+    Scroll until element[요소 노출까지 스크롤_Native]    //*[@text='자주 묻는 질문 FAQ']
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[1]    자주 묻는 질문
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'next')]//android.widget.TextView)[2]    전체
 
 APP_MY야놀자 > 해외 여행자 보험
     Ap.Click Element[버튼 클릭]    //*[@text='해외 여행자 보험']
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'cert')]//android.widget.TextView)[1]    가입내역 조회
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@resource-id, '_certForm_')]
+    Ap.Element Visible[요소 표시 여부 체크]    //*[@content-desc="인증하기"]
+
+요소 텍스트에서 숫자만 추출
+    [Arguments]    ${element}
+    ${getText}    Ap.Get Text[텍스트 가져오기]    ${element}
+    ${number}    MW_문자열에서 숫자만 추출    ${getText}
+    [Return]    ${number}
+
+APP_홈 > 모텔
+    go to url    yanoljamotel://home?tab=domestic
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '모텔')]
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'title')])[1]    모텔
+    텍스트 체크    //*[contains (@resource-id, 'headerView')]/android.widget.TextView    지역선택
+
+APP_홈 > 검색
+    go to url    yanoljamotel://home?tab=recommend
+    Ap.Click Element[버튼 클릭]    //*[@content-desc='키워드 검색']
+    텍스트 체크    xpath=(//*[contains (@resource-id, 'title')])[1]    검색
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@resource-id, 'radioPlace')]    # 국내숙소탭 표시 여부 체크
+    ${attr}    Ap.Get Element Attribute[속성값 가져오기]    //*[contains (@resource-id, 'radioPlace')]    checked    # 국내숙소탭 선택 여부 체크
+    Should Be Equal    ${attr}    true
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@resource-id, 'editKeyword')]    # 검색 입력필드 표시 여부 체크
+    Ap.Element Visible[요소 표시 여부 체크]    //*[contains (@resource-id, 'tvDate')]    # 날짜 설정 버튼 표시 여부 체크
+
+APP_검색 > 국내숙소 검색결과 > PDP 이동
+    [Arguments]    ${keyword}
+    Ap.InputText Element[텍스트 입력하기]    //*[contains (@resource-id, 'editContent')]    ${keyword}
+    Ap.Element Visible[요소 표시 여부 체크]    xpath=(//*[@text='${keyword}'])[2]
+    텍스트 체크    //*[contains (@resource-id, 'recommendKeywordList')]//android.widget.TextView    ${keyword}
+    Ap.Click Element[버튼 클릭]    //*[contains (@resource-id, 'recommendKeywordList')]//android.widget.TextView
     context 전환
-    타이틀 체크    //*[contains (@class, 'nav-tit')]    가입내역 조회
+    텍스트 체크    //*[contains (@class, 'title')]    ${keyword}
+    [Teardown]    MW_PDP 튜토리얼 체크
+
+윈도우 전환
+    sleep    3s
+    ${windows}    Get Windows
+    ${winLen}    Get Length    ${windows}
+    ${winLenCV}    Evaluate    ${winLen} - 1
+    Switch to Window    ${windows}[${winLenCV}]
+
+APP_바로 예약 > 예약
+    Ap.Click Element[버튼 클릭]    //*[text()='바로 예약']
+    Ap.Click Element[버튼 클릭]    //*[@data-testid='popup-button']
+    윈도우 전환
+    텍스트 체크    //*[contains (@class, 'left')]    예약
+
+APP_예약(간편결제) > 예약완료 (일반)
+    ${transportYn}    Run keyword and Ignore error    Wait Until Keyword Succeeds    9s    ${checkTime}    Ap.Element Should Be Visible    //*[@class='css-i1l4h7']
+    Run Keyword If    '${transportYn}[0]' == 'FAIL'    No Operation
+    Run Keyword If    '${transportYn}[0]' == 'PASS'    Ap.Click Element[버튼 클릭]    //*[@class='css-1mwn02k']/button[1]
+    ${payPrice}    Ap.Get Text[텍스트 가져오기]    //*[@class='css-vik48o']
+    ${convert}    MW_문자열에서 숫자만 추출    ${payPrice}
+    ${inputPrice}    Evaluate    ${convert} - 100
+    Ap.InputText Element[텍스트 입력하기]    //*[@placeholder='- 0']    ${inputPrice}
+    Ap.Click Element[버튼 클릭]    //*[text()='다른 결제 수단 더보기']
+    Ap.Click Element[버튼 클릭]    //div[contains (text(), '간편')]
+    텍스트 체크    //*[@class='css-128od1m']    100원 결제하기
+    sleep    2s
+    Ap.Click Element[버튼 클릭]    //*[contains (text(), '필수 약관 전체 동의')]
+    Ap.Click Element[버튼 클릭]    //*[@class='css-128od1m']
+    sleep    2s
+    윈도우 전환
+    텍스트 체크    //*[@id='header']/h1    계좌 등록/결제
+    APP_PG 결제 키패드 클릭 (일반)
+
+APP_PG 결제 키패드 클릭 (일반)
+    Ap.Click Element[버튼 클릭]    //*[text()='하나은행']
+    sleep    2s
+    텍스트 체크    //*[@id='header']/h1    결제진행
+    Capture Page Screenshot    ori.png
+    Click Element By Image[이미지 매칭 클릭]    1.png
+    Click Element By Image[이미지 매칭 클릭]    6.png
+    Click Element By Image[이미지 매칭 클릭]    0.png
+    Click Element By Image[이미지 매칭 클릭]    7.png
+    Click Element By Image[이미지 매칭 클릭]    2.png
+    Click Element By Image[이미지 매칭 클릭]    3.png
+    sleep    2s
+    윈도우 전환
+    텍스트 체크    //*[@class='title']    예약 완료되었습니다.
+    Comment    Ap.Click Element[버튼 클릭]    xpath=(//*[@class='css-1am8kzc']/child::*)[1]
+
+APP_예약내역 취소
+    APP_홈 > MY야놀자
+    APP_MY야놀자 > 국내여행 통합예약
+    MW_국내여행 예약내역 > 예약내역 상세
+    MW_국내 예약내역 상세 > 예약취소 요청
+    MW_국내 예약취소 요청 > 취소 요청하기
+    sleep    5s
+    APP_취소요청 완료 > 예약내역 상세
+    context 전환
+
+APP_MY야놀자 > 국내여행 통합예약
+    Ap.Click Element[버튼 클릭]    //*[contains (@text, '국내여행 통합예약')]
+    context 전환
+    텍스트 체크    //*[contains (@class, 'left')]    국내여행 예약내역
+    텍스트 체크    //*[@class='css-1alsj3f']    예외 무료취소 가능 여부
+    ${attr}    Ap.Get Element Attribute[속성값 가져오기]    xpath=((//*[contains (@class, 'css-183f9il')])[1]/div)[1]    class
+    Should Not Contain    ${attr}    cancel-completed
+
+APP_국내여행 예약내역 > 예약내역 상세
+    Ap.Click Element[버튼 클릭]    xpath=(//*[@text='상세보기'])[1]
+    sleep    2s
+    텍스트 체크    //*[contains (@class, 'left')]    예약내역 상세
+
+APP_취소요청 완료 > 예약내역 상세
+    Ap.Click Element[버튼 클릭]    //*[text()='예약상세 보기']
+    윈도우 전환
+    텍스트 체크    xpath=//*[contains (@class, 'left')]    예약내역 상세
+    sleep    2s
+    # 취소완료 체크
+    텍스트 체크    //*[@class='cancel-completed css-1esg0fo']    취소 완료
