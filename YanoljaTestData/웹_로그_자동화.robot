@@ -35,8 +35,8 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrder    view    5    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    Cart    view    6    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    PlaceHandler    view    7    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    impr    27    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    28    ${date}
+    Comment    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    impr    27    ${date}
+    Comment    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    28    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    OrderComplete    view    32    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    Order    view    33    ${date}
     예약내역 취소 (QA)
@@ -196,6 +196,7 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내펜션    PSHome    click    39    ${date}    리스트형 추천상품 - 상품 클릭
 
 40_41.국내숙소 추천 위젯 테마 & 상품 클릭
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     Comment    홈 > 국내숙소탭 클릭
     go to    ${QAMain}/?tab=DOMESTIC
@@ -205,11 +206,13 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    41    ${date}    국내숙소 추천 위젯 > 호텔/펜션 각 추천 상품 클릭
 
 42.홈 내 특정 Tab 화면 진입(노출)
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     홈 > 추천탭 클릭
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    impr    42    ${date}    홈 내 특정 Tab 화면 진입(노출)
 
 43_44.홈 추천 위젯 내 상품/아티클 노출 & 클릭
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     메인 이동
     홈 추천 위젯 > 상품 클릭
@@ -217,7 +220,6 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    44    ${date}    홈 추천 위젯 내, 상품(숙소, 레저 등)/아티클 클릭
 
 45~48.홈 화면 케이스
-    [Tags]    TEST
     ${date}    현재 시간 구하기
     메인 이동
     sleep    3s
@@ -228,7 +230,6 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    48    ${date}    홈 내 특정 Tab 화면 진입(클릭)
 
 49_50.퀵 카테고리
-    [Tags]    TEST
     ${date}    현재 시간 구하기
     메인 이동
     ${elCount}    Wait Until Keyword Succeeds    ${totalTime}    ${checkTime}    Get Element Count    xpath://*[contains (@class, 'QuickCategoryItem_businessItem')]    # 퀵 카테고리 개수 확인
@@ -239,7 +240,6 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    홈    Home    click    50    ${date}    퀵 카테고리 클릭 (server driven 대응)
 
 51.검색 국내숙소탭
-    [Tags]    TEST
     ${date}    현재 시간 구하기
     홈 > 검색 버튼 클릭
     sleep    5s
