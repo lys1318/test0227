@@ -599,12 +599,13 @@ DILog 조회 및 검증
     [Arguments]    ${class}    ${page_name}    ${event_type}    ${case_no}    ${date}    ${desc}=${EMPTY}    ${count}=1
     ${status}    ${response}    DILog.Get Log Page Name Event Type    ${page_name}    ${event_type}    ${date}    ${desc}    ${count}    ${CGNTID}
     Run Keyword If    ${status}    Set Test Message    설명 : ${response}[desc]\n페이지명 : ${response}[pageName]\n이벤트타입 : ${response}[eventType]\n버전 : ${response}[version] \n야놀자 앱 버전 : ${response}[app_ver]\nOS 이름 : ${response}[os_name]\n로그 기록 시간 : ${response}[time]
-    Comment    구글 스프레드 시트 결과 업데이트    ${status}    ${WORKSHEET}    ${case_no}
-    Run Keyword If    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트_플러스    ${status}    ${WORKSHEET}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
-    Run Keyword Unless    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트    ${status}    ${WORKSHEET}    ${case_no}    ${response}
+    Comment    구글 스프레드 시트 결과 업데이트_2차    ${status}    ${WORKSHEET}    ${case_no}
+    Comment    Run Keyword If    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트_플러스    ${status}    ${WORKSHEET}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
+    Run Keyword If    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트_1차    ${status}    ${WORKSHEET}    ${case_no}    ${response}
+    Run Keyword Unless    '${TEST_PHASE}' == '1'    구글 스프레드 시트 결과 업데이트_2차    ${status}    ${WORKSHEET}    ${case_no}    ${response}
     Should Be True    ${status}
 
-구글 스프레드 시트 결과 업데이트
+구글 스프레드 시트 결과 업데이트_2차
     [Arguments]    ${status}    ${work_sheet}    ${case_no}    ${response}
     ${status}    Set Variable If    ${status}    Pass    Fail
     ${cell}    Evaluate    ${case_no} + 13
@@ -617,9 +618,12 @@ DILog 조회 및 검증
     [Arguments]    ${status}    ${work_sheet}    ${case_no}    ${response}    ${class}    ${page_name}    ${event_type}
     ${status}    Set Variable If    ${status}    Pass    Fail
     ${cell}    Evaluate    ${case_no} + 13
-    @{update_value}    Run Keyword If    '${status}' == 'Pass'    Create List    ${case_no}    ${response}[priority]    ${class}    ${response}[pageName]    ${response}[desc] (v${response}[version])    ${response}[eventType]    ${status}    ${response}
+    Comment    @{update_value}    Run Keyword If    '${status}' == 'Pass'    Create List    ${case_no}    ${response}[priority]    ${class}    ${response}[pageName]    ${response}[desc] (v${response}[version])    ${response}[eventType]    ${status}    ${response}
     ...    ELSE    Create List    ${case_no}    ${EMPTY}    ${class}    ${page_name}    ${EMPTY}    ${event_type}    ${status}    ${EMPTY}
-    Google.Batch Update    ${GoogleDrive_URL}    ${work_sheet}    B${cell}:P${cell}    @{update_value}
+    @{update_value}    Run Keyword If    '${status}' == 'Pass'    Create List    ${status}    ${response}
+    ...    ELSE    Create List    ${status}    ${response}
+    Comment    Google.Batch Update    ${GoogleDrive_URL}    ${work_sheet}    B${cell}:P${cell}    @{update_value}
+    Google.Batch Update    ${GoogleDrive_URL}    ${work_sheet}    K${cell}:P${cell}    @{update_value}
 
 구글시트 테스트 수행 날짜 업데이트
     ${date}    DT.Get Current Date    result_format=%Y.%m.%d
@@ -1131,12 +1135,15 @@ RDP > 호/펜/게 예약
 
 해외숙소 예약(간편결제) > 예약완료
     sleep    1s
+    InputText Element[텍스트 입력하기]    id:성(영문)    test
+    InputText Element[텍스트 입력하기]    id:이름(영문)    test
     ${payPrice}    Get Text[텍스트 가져오기]    class:sale-price
     ${convert}    문자열에서 숫자만 추출    ${payPrice}
     ${inputPrice}    Evaluate    ${convert} - 100
-    InputText Element[텍스트 입력하기]    xpath://*[contains (@placeholder, '보유')]    ${inputPrice}
+    InputText Element[텍스트 입력하기]    xpath:(//*[contains (@placeholder, '- 0 P')])[1]    ${inputPrice}
     Click Element[버튼 클릭]    xpath://*[text()='다른 결제 수단 더보기']
-    Click Element[버튼 클릭]    xpath://*[@class='pg-item-select-icon']/parent::div/*[text()='간편계좌결제']
+    Click Element[버튼 클릭]    xpath://*[@class='pg-item-select-icon']/parent::div/*[contains (text(), '간편')]
+    sleep    2s
     Click Element[버튼 클릭]    xpath://*[text()='전체 동의']
     sleep    1s
     ${amount}    Get Text[텍스트 가져오기]    class:payment-amount
@@ -1158,11 +1165,11 @@ RDP > 호/펜/게 예약
     IR.Image Click    ${CURDIR}/Images/easy7.png
     IR.Image Click    ${CURDIR}/Images/easy2.png
     IR.Image Click    ${CURDIR}/Images/easy3.png
-    sleep    10s
+    sleep    15s
     ${windows}    Get Window Handles
     Switch Window    ${windows}[0]
     ${title}    Get Text[텍스트 가져오기]    class:status-text
-    Should Contain    ${title}    예약이 완료 되었습니다.
+    Should Contain    ${title}    예약이 완료되었습니다.
 
 MY야놀자 > 해외여행 통합예약 메뉴 클릭
     Click Element[버튼 클릭]    xpath://*[text()='해외 예약 내역']
@@ -1177,10 +1184,10 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     Should Contain    ${title}    예약내역 상세
 
 해외 예약내역 상세 > 예약취소 요청
-    Click Element[버튼 클릭]    xpath://*[contains (text(), '예약취소 신청하기')]
+    Click Element[버튼 클릭]    xpath://*[contains (text(), '예약취소 요청하기')]
     sleep    1s
     ${title}    Get Text[텍스트 가져오기]    class:toolbar-title
-    Should Be Equal    ${title}    예약취소 하기
+    Should Be Equal    ${title}    예약취소 요청
 
 해외 예약취소 요청 > 취소 요청하기
     sleep    2s
@@ -1193,7 +1200,7 @@ MY야놀자 > 해외여행 통합예약 메뉴 클릭
     ${title}    Get Text[텍스트 가져오기]    xpath:(//*[@class='modal-header'])[1]
     Should Be Equal    ${title}    예약을 취소하시겠어요?
     Click Element[버튼 클릭]    class:confirm-btn-txt
-    sleep    5s
+    sleep    10s
     ${title}    Get Text[텍스트 가져오기]    class:status-text
     Should Contain    ${title}    예약취소가 완료되었습니다.
 
@@ -1633,7 +1640,7 @@ TEST_Status_Check
 해외숙소 PDP 무료취소 가능 체크 > 예약하기 진입
     FOR    ${index1}    IN RANGE    2    5
     FOR    ${index2}    IN RANGE    99999
-        ${elChk}    Run keyword and Ignore error    Element Visible[요소 표시 여부 체크]    xpath://*[contains (@class, 'DotLoader_container__359O8')]
+        ${elChk}    Run keyword and Ignore error    Wait Until Keyword Succeeds    12s    ${checkTime}    Element Should Be Visible    xpath://*[contains (@class, 'DotLoader_container__359O8')]
         Run Keyword If    '${elChk}[0]' == 'FAIL'    Exit For Loop
         sleep    3s
     END
@@ -2010,3 +2017,37 @@ Scroll after element check[요소 체크 후 스크롤]
     sleep    5s
     취소요청 완료 > 예약내역 상세
     sleep    2s
+
+홈 > 해외여행 메뉴 클릭
+    메인 이동
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains (text(), '해외여행')])[1]
+    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '해외여행')])[1]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    해외여행
+
+홈 > 교통/항공 메뉴 클릭
+    메인 이동
+    sleep    5s
+    Element Visible[요소 표시 여부 체크]    xpath:(//*[contains (text(), '교통/항공')])[1]
+    Click Element[버튼 클릭]    xpath:(//*[contains (text(), '교통/항공')])[1]
+    sleep    1s
+    ${title}    Get Text[텍스트 가져오기]    class:PageTitle_pageTitle__Q5MEn
+    Should Be Equal    ${title}    교통/항공
+
+해외숙소 예약취소(QA용)
+    홈 > MY야놀자 메뉴 클릭
+    MY야놀자 > 해외여행 통합예약 메뉴 클릭
+    해외여행 예약내역 > 예약내역 상세
+    해외 예약내역 상세 > 예약취소 요청
+    해외 예약취소 요청 > 취소 요청하기
+
+구글 스프레드 시트 결과 업데이트_1차
+    [Arguments]    ${status}    ${work_sheet}    ${case_no}    ${response}
+    ${status}    Set Variable If    ${status}    Pass    Fail
+    ${cell}    Evaluate    ${case_no} + 13
+    # 결과 업데이트
+    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    K${cell}    ${status}
+    # 응답 업데이트
+    Google.Write Value On Cell    ${GoogleDrive_URL}    ${work_sheet}    N${cell}    ${response}

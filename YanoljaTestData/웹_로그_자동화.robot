@@ -35,8 +35,8 @@ Resource          common.robot
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    CartOrder    view    5    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    Cart    view    6    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    장바구니    PlaceHandler    view    7    ${date}
-    Comment    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    impr    27    ${date}
-    Comment    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    28    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    impr    27    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    숙소리스트    PlaceList    click    28    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    OrderComplete    view    32    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    국내숙소    Order    view    33    ${date}
     예약내역 취소 (QA)
@@ -81,6 +81,7 @@ Resource          common.robot
 
 10_26.레저티켓(모바일) 예약
     [Documentation]    TC Teardown
+    [Tags]    TEST
     ${date}    현재 시간 구하기
     Comment    홈 > 검색 버튼 클릭
     Comment    검색 > 레저/티켓탭 클릭
@@ -124,13 +125,18 @@ Resource          common.robot
     Comment    해외여행 > 해외숙소 메뉴 클릭
     Comment    해외숙소 서브홈 > 숙소 검색    시 피닉스 호텔
     go to    ${QAMain}/global/place/CMS-1005021
-    sleep    2s
-    해외숙소 상세 > 해외숙소 예약하기 진입 (QA)
-    해외숙소 예약하기 > 해외숙소 결제하기 진입
+    sleep    5s
+    Comment    해외숙소 상세 > 해외숙소 예약하기 진입 (QA)
+    Comment    해외숙소 예약하기 > 해외숙소 결제하기 진입
+    해외숙소 날짜 설정    7
+    해외숙소 상세 > 예약가능날짜 체크
+    해외숙소 PDP 무료취소 가능 체크 > 예약하기 진입
+    해외숙소 예약(간편결제) > 예약완료
+    해외숙소 예약취소(QA용)
     Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalPayment    view    18    ${date}
     Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    view    19    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrder    click    20    ${date}
-    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GPlaceDetail    view    21    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GPlaceDetail    view    20    ${date}
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GlobalOrderStatus    view    21    ${date}    count=2
 
 22.무한쿠폰룸 서브홈 진입
     ${date}    현재 시간 구하기
@@ -244,3 +250,15 @@ Resource          common.robot
     홈 > 검색 버튼 클릭
     sleep    5s
     Run Keyword And Continue On Failure    DILog 조회 및 검증    검색    Search    view    51    ${date}    국내숙소 탭 진입
+
+52.해외숙소 서브홈
+    ${date}    현재 시간 구하기
+    홈 > 해외여행 메뉴 클릭
+    sleep    3s
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    해외숙소    GHome    view    52    ${date}    해외숙소 서브홈 페이지 뷰
+
+53.교통/항공 서브홈
+    ${date}    현재 시간 구하기
+    홈 > 교통/항공 메뉴 클릭
+    sleep    3s
+    Run Keyword And Continue On Failure    DILog 조회 및 검증    교통/항공    TransportationHome    view    53    ${date}    교통/항공 서브홈 페이지 뷰
