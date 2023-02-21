@@ -388,6 +388,7 @@ Resource          common.robot
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    40
 
 41.MW_모바일교환권 서브홈 이동
+    [Tags]    TEST
     1회차 Fail건 재확인_LIVE    41
     MW_홈 > 즐길거리탭
     MW_즐길거리 > 더보기
@@ -395,31 +396,31 @@ Resource          common.robot
     sleep    2s
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
 
-42.MW_렌터카 서브홈 이동
-    1회차 Fail건 재확인_LIVE    42
+41.MW_렌터카 서브홈 이동
+    1회차 Fail건 재확인_LIVE    41
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 렌터카
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    42
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    41
 
-43.MW_렌터카 PDP 이동
-    1회차 Fail건 재확인_LIVE    43
+42.MW_렌터카 PDP 이동
+    1회차 Fail건 재확인_LIVE    42
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 렌터카
     MW_렌터카 서브홈 > PDP
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    42
 
-44.MW_KTX 서브홈 이동
-    1회차 Fail건 재확인_LIVE    44
+43.MW_KTX 서브홈 이동
+    1회차 Fail건 재확인_LIVE    43
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 기차
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    44
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    43
 
-45.MW_KTX 왕복상품 장바구니 결제
+44.MW_KTX 왕복상품 장바구니 결제
     [Setup]    MW_로그인 여부 & 장바구니 유무 체크
-    1회차 Fail건 재확인_LIVE    45
+    1회차 Fail건 재확인_LIVE    44
     MW_모텔 장바구니 담기
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 기차
@@ -436,39 +437,39 @@ Resource          common.robot
     Execute script    window.scrollTo(0, 0)
     MW_예약(간편결제) > 예약완료 (장바구니)
     sleep    2s
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    44
+
+45.MW_KTX 취소
+    [Setup]    MW_로그인 여부 체크_LIVE
+    1회차 Fail건 재확인_LIVE    45
+    MW_예약내역 취소
     [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    45
 
-46.MW_KTX 취소
-    [Setup]    MW_로그인 여부 체크_LIVE
+46.MW_고속버스 서브홈 이동
     1회차 Fail건 재확인_LIVE    46
-    MW_예약내역 취소
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    46
-
-47.MW_고속버스 서브홈 이동
-    1회차 Fail건 재확인_LIVE    47
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 고속버스
     sleep    2s
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    47
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    46
 
-48.MW_항공권 왕복 리스트 확인
-    1회차 Fail건 재확인_LIVE    48
+47.MW_항공권 왕복 리스트 확인
+    1회차 Fail건 재확인_LIVE    47
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 항공권
     MW_항공권 왕복 검색    BCN
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    48
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    47
 
-49.MW_항공권 편도 리스트 확인
-    1회차 Fail건 재확인_LIVE    49
+48.MW_항공권 편도 리스트 확인
+    1회차 Fail건 재확인_LIVE    48
     MW_홈 > 교통/항공탭
     MW_교통/항공 > 항공권
     MW_항공권 > 편도
     MW_항공권 편도 검색    BCN
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    49
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    48
 
-50.MW_알림함 이동 확인
+49.MW_알림함 이동 확인
     [Setup]    MW_로그인 여부 체크_LIVE
-    1회차 Fail건 재확인_LIVE    50
+    1회차 Fail건 재확인_LIVE    49
     MW_홈 > MY야놀자
     MW_MY야놀자 > 알림함
-    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    50
+    [Teardown]    구글 스프레드 시트 결과 업데이트[LiveBasic]    ${TEST_STATUS}    49

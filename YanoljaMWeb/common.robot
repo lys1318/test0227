@@ -767,7 +767,7 @@ MW_PG 결제 키패드 클릭 (해외숙소)
     sleep    20s
     ${windows}    Get Windows
     Switch to Window    ${windows}[0]
-    텍스트 체크    //*[contains (@class, 'status-text')]    예약이 완료 되었습니다.
+    텍스트 체크    //*[contains (@class, 'status-text')]    결제 및 예약요청이 완료되었습니다
 
 MW_홈 > 즐길거리탭
     MW_메인 이동
@@ -956,7 +956,7 @@ MW_항공권 왕복 검색
     Ap.Click Element[버튼 클릭]    //*[contains(text(), '가는날')]
     sleep    1s
     텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
-    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]    500
+    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]
     sleep    2s
     Ap.Click Element[버튼 클릭]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[32]
     Comment    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
@@ -984,7 +984,7 @@ MW_항공권 편도 검색
     Ap.Click Element[버튼 클릭]    //*[contains(text(), '가는날')]
     sleep    1s
     텍스트 체크    xpath=(//*[contains (@class, 'NavigationBarHeading_title')])[2]    날짜 선택
-    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]    500
+    Scroll until element[요소 노출까지 스크롤&클릭_Webview]    xpath=(//div[contains(@class, 'DatePicker_calendarDaySelector__2_Ftx') and not(contains(@class, 'DatePicker_outsideRangeStyle__O4dXX'))])[30]
     Comment    Ap.Click Element[버튼 클릭]    //*[contains(text(), '적용')]
     Click Element By Image[항공권 적용 버튼]    apply.png
     Ap.Click Element[버튼 클릭]    //*[text()='항공권 검색']
@@ -1397,3 +1397,13 @@ APP_취소요청 완료 > 예약내역 상세
     sleep    2s
     # 취소완료 체크
     텍스트 체크    //*[@class='cancel-completed css-1esg0fo']    취소 완료
+
+APP_숙소 장바구니 이동
+    Ap.Click Element[버튼 클릭]    //*[@class='css-1ai9mni']
+    윈도우 전환
+    텍스트 체크    //*[text()='장바구니']    장바구니
+
+APP_장바구니 > 예약
+    Ap.Click Element[버튼 클릭]    //*[contains (@class, 'primary')]
+    윈도우 전환
+    텍스트 체크    //*[text()='예약']    예약
