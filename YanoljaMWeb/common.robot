@@ -767,7 +767,7 @@ MW_PG 결제 키패드 클릭 (해외숙소)
     sleep    20s
     ${windows}    Get Windows
     Switch to Window    ${windows}[0]
-    텍스트 체크    //*[contains (@class, 'status-text')]    결제 및 예약요청이 완료되었습니다
+    텍스트 체크    //*[contains (@class, 'status-text')]    예약이 완료 되었습니다
 
 MW_홈 > 즐길거리탭
     MW_메인 이동
